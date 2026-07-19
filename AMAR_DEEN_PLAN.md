@@ -247,7 +247,7 @@ For every task:
 - [x] **TASK-003**: Confirm green build on a real/emulated device. **Done 2026-07-19** — required a full Android Gradle toolchain migration (Gradle 7.4→8.14.2, AGP 7.1.2→8.11.1, Kotlin 1.6.10→2.2.20) plus replacing 2 dead plugins whose native code used removed Flutter v1-embedding APIs (`flutter_native_timezone`→`flutter_timezone`, `motion_sensors`→`flutter_qiblah`). Full blow-by-blow in `PROGRESS.md`. **Epic 0 is now fully closed.**
 
 ### EPIC 1 — Architecture Scaffold
-- [ ] **TASK-004**: Create `core/` + `features/` folder skeleton (Section 5.1), placeholder files only.
+- [x] **TASK-004**: Create `core/` + `features/` folder skeleton (Section 5.1), placeholder files only. **Done 2026-07-19** — see `PROGRESS.md`.
 - [ ] **TASK-005**: `get_it` + `injectable` DI container in `core/di/`.
 - [ ] **TASK-006**: `go_router` setup in `core/routing/`.
 - [ ] **TASK-007** (partial): Migrate `Qibla` feature end-to-end — proof of pattern, smallest feature first. Sensor/bearing engine already replaced (`motion_sensors`→`flutter_qiblah`) as a side effect of TASK-003's build fix, collapsing `QiblaBloc`+`AngleBloc` into one bloc. Folder move into `data/domain/presentation` still open.

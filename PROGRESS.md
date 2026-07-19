@@ -3,8 +3,8 @@
 See `harness.yaml` for the machine-readable operating config (workflow gates, standard rules, epics/tasks, memory/checkpoint discipline). This file is the memory log that config points at — keep both in sync.
 
 ## Current status
-Active epic: EPIC 0 — Stabilize — **fully closed 2026-07-19**
-Active task: none — awaiting Dipu's call on which Epic 1 task to start (TASK-007 Qibla migration is already largely done as a side effect, see below)
+Active epic: EPIC 1 — Architecture Scaffold
+Active task: TASK-004 — done 2026-07-19 (Dipu picked this to start Epic 1, over TASK-005/006/007)
 Blocked on: nothing
 
 ## Completed
@@ -26,8 +26,11 @@ Blocked on: nothing
   9. **Java heap OOM during Jetifier**: `org.gradle.jvmargs=-Xmx1536M` was too small for AGP 8 + Kotlin 2.x tooling processing multiple large per-ABI Flutter engine jars. Bumped to `-Xmx4608M`, and killed stale Gradle daemons left running from the earlier 7.4/8.10.2/8.14 version attempts.
 - [x] Qibla feature rewrite (triggered by the `motion_sensors` swap, effectively front-loading most of TASK-007): removed `calculateDirection`/`getCompassAngle`/`getMagnetometerAvailability`/manual moving-average smoothing from `qibla_controller.dart` (kept only `getDirectionText`); collapsed `QiblaBloc` + `AngleBloc` into a single `QiblaBloc` using `emit.forEach(FlutterQiblah.qiblahStream)` (package handles location + sensor fusion + bearing math internally); deleted `lib/src/features/qibla/blocs/angle_bloc/` entirely; rewrote `compass.dart` as a stateless widget using the package's own official rotation formula (`Transform.rotate(angle: heading * (pi/180) * -1)` for the ring, `qiblah * (pi/180) * -1` for the needle — pulled from `flutter_qiblah`'s GitHub example rather than derived by hand, since compass sign conventions aren't verifiable without a real device). **Known regression**: the old "no magnetometer sensor" fallback UI (lottie animation + message) was dropped in this pass — `flutter_qiblah` has its own `androidDeviceSensorSupport()` check + maps-fallback pattern that should replace it, follow-up whenever TASK-007 is formally closed.
 
+- [x] TASK-004: `core/` + `features/` folder skeleton — 2026-07-19, per `AMAR_DEEN_PLAN.md` §5.1 verbatim. Created **alongside** the existing `lib/src/` tree (Phase 1 explicitly doesn't delete/move anything yet — that's Phase 3, per-feature, after each migration is verified). New dirs: `lib/core/{constants,error,theme,localization,di,routing,notifications,utils,widgets}/` and `lib/features/{prayer_times,quran,dua_azkar,tasbih,hijri_calendar,ramadan,qibla,hadith,settings}/{data,domain,presentation}/` — all placeholder-only, each holding a single `.gitkeep` (git doesn't track empty dirs; skipped fake Dart stub classes since there's no real content yet and the code-quality bar requires doc comments on public `domain/` members, which a stub would either violate or fake meaninglessly). No existing files touched, no imports changed.
+- **Tooling note**: this session's remote environment has no `flutter`/`dart` binary on `PATH`, so `flutter analyze` (the post-edit gate) could not be run directly. Not a concern for this specific change since it added zero `.dart` files, but flagging it — any future task in this environment that touches real Dart code will need this checked another way (CI, or a session where Flutter is available) before being marked done.
+
 ## Up next
-- Epic 0 is closed. Ask Dipu which Epic 1 task to pick up: TASK-004 (folder skeleton), TASK-005 (DI), TASK-006 (go_router), TASK-007 (Qibla — sensor/bearing engine already done, folder move into `data/domain/presentation` still open), or TASK-008 (Theme).
+- TASK-005 (`get_it`+`injectable` DI in `core/di/`), TASK-006 (`go_router` in `core/routing/`), TASK-007 (finish Qibla folder move — sensor/bearing engine already done), or TASK-008 (Theme) are all now unblocked structurally. Ask Dipu which to pick up next.
 
 ## Notes for next session
 - `getAddress()` in `location_controller.dart` (the Google Maps HTTP reverse-geocode path, as opposed to `getAddressFromLatLng()` in `location_bloc.dart` which uses the on-device `geocoding` plugin and needs no API key) is currently **dead code** — nothing in `lib/` calls it. Worth flagging for Epic 2/6: it's also a live network call to Google, which conflicts with the offline-first constraint. Decide then whether to delete it or wire it in as an optional online enhancement.

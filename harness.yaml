@@ -172,7 +172,7 @@ epics:
     name: Architecture Scaffold
     tasks:
       - id: TASK-004
-        status: todo
+        status: done
         summary: Create core/ + features/ folder skeleton, placeholder files only.
       - id: TASK-005
         status: todo
