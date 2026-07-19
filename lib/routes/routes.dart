@@ -11,7 +11,7 @@ import '../src/features/permission/screen/location_permission_screen.dart';
 import '../src/features/permission/screen/notification_permission_screen.dart';
 import '../src/features/prayer_timing/screen/prayer_timing_screen.dart';
 import '../src/features/prayer_timing/screen/prayer_time_settings_screen.dart';
-import '../src/features/qibla/screen/qibla_screen.dart';
+import '../features/qibla/presentation/screen/qibla_screen.dart';
 import '../src/features/quran/screen/option_screen.dart';
 import '../src/features/quran/screen/quran_screen.dart';
 import '../src/features/setting/screen/thankyou_screen.dart';

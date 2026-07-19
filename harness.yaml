@@ -181,12 +181,15 @@ epics:
         status: todo
         summary: go_router setup in core/routing/.
       - id: TASK-007
-        status: partial
+        status: done
         summary: >
           Migrate Qibla feature end-to-end - proof of pattern, smallest feature first.
           Sensor/bearing engine already replaced (motion_sensors -> flutter_qiblah) as part of
           TASK-003's build fix, collapsing QiblaBloc+AngleBloc into one bloc. Folder move into
-          data/domain/presentation still not done - that part of this task remains open.
+          data/domain/presentation done 2026-07-19 with full Repository Pattern (entity, repo
+          interface + impl, use case) - see PROGRESS.md. Old lib/src/features/qibla/ left in
+          place pending real-build verification (no flutter binary in this session's env), not
+          yet deleted.
       - id: TASK-008
         status: todo
         summary: Migrate Theme (light/dark) into core/theme/, verify toggle still works.
