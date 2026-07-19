@@ -243,8 +243,8 @@ For every task:
 
 ### EPIC 0 — Stabilize
 - [x] **TASK-001**: Audit `pubspec.yaml`, fix SDK constraint, upgrade dependencies. **Done 2026-07-19** — see `PROGRESS.md` for full detail (SDK constraint fixed, 6 major-version packages bumped, one breaking API fixed in `location_bloc.dart`, `pub get` clean).
-- [ ] **TASK-002**: Resolve remaining build-breaking issues. Only open item: the pre-existing `lib/src/core/keys.dart` gap (gitignored, never existed, no template) — needs a decision from Dipu (get real key / add template+optional import / defer to offline rework), not a mechanical fix.
-- [ ] **TASK-003**: Confirm green build on a real/emulated device once TASK-002 is closed.
+- [x] **TASK-002**: Resolve remaining build-breaking issues. **Done 2026-07-19** — `keys.dart` now committed, reads key via `String.fromEnvironment`, no secret in repo, degrades gracefully. `flutter analyze` has zero errors.
+- [ ] **TASK-003**: Confirm green build on a real/emulated device.
 
 ### EPIC 1 — Architecture Scaffold
 - [ ] **TASK-004**: Create `core/` + `features/` folder skeleton (Section 5.1), placeholder files only.
