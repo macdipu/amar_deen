@@ -1,20 +1,7 @@
-buildscript {
-    ext.kotlin_version = '1.6.10'
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
@@ -26,4 +13,44 @@ subprojects {
 
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
+}
+
+// Some third-party plugins (e.g. flutter_native_timezone) predate AGP 8's
+// mandatory namespace requirement and don't declare one in their own
+// build.gradle. Backfill it from their AndroidManifest.xml package
+// attribute rather than forking/replacing the plugin.
+subprojects { subproject ->
+    // :app declares its own namespace and is evaluated eagerly (see
+    // evaluationDependsOn above), so calling afterEvaluate on it here
+    // would throw "project is already evaluated" — skip it.
+    if (subproject.name == 'app') return
+
+    subproject.afterEvaluate {
+        if (subproject.hasProperty('android')) {
+            subproject.android {
+                if (namespace == null) {
+                    def manifest = new XmlSlurper()
+                        .parse(subproject.file('src/main/AndroidManifest.xml'))
+                    namespace manifest.@package.text()
+                }
+                // Old plugins (e.g. flutter_native_timezone) don't declare
+                // compileOptions, defaulting to Java 8, while the bumped
+                // Kotlin plugin defaults Kotlin compilation to JVM 17 —
+                // that mismatch fails the build. Force both to match :app.
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_17
+                    targetCompatibility JavaVersion.VERSION_17
+                }
+                // Java 17 source needs compileSdkVersion >= 30. Some old
+                // plugins (e.g. motion_sensors) pin a lower one themselves —
+                // raise it to match :app's compileSdk (36).
+                compileSdk 36
+            }
+        }
+        subproject.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+            compilerOptions {
+                jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+            }
+        }
+    }
 }

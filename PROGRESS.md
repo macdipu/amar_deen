@@ -1,5 +1,7 @@
 # PROGRESS.md
 
+See `harness.yaml` for the machine-readable operating config (workflow gates, standard rules, epics/tasks, memory/checkpoint discipline). This file is the memory log that config points at — keep both in sync.
+
 ## Current status
 Active epic: EPIC 0 — Stabilize
 Active task: TASK-003 — Confirm green build on a real/emulated device
