@@ -123,13 +123,13 @@ class _TabScaffoldState extends State<TabScaffold> {
                 setState(() => _solidStatusBar = nextSolid);
               }
               if (tabState.index != 2) {
-                BlocProvider.of<QuranAudioBloc>(context)
-                    .add(const StopAudio());
+                BlocProvider.of<QuranAudioBloc>(context).add(const StopAudio());
               }
             },
             child: BlocBuilder<TabBloc, TabState>(
               builder: (context, state) {
-                final statusBarFillColor = Theme.of(context).scaffoldBackgroundColor;
+                final statusBarFillColor =
+                    Theme.of(context).scaffoldBackgroundColor;
                 final statusBarHeight = MediaQuery.of(context).padding.top;
                 final showStatusBarFill = _effectiveSolidForTab(state.index);
 

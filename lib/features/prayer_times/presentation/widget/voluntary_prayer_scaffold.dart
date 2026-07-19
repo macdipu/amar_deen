@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../src/core/util/bloc/location/location_bloc.dart';
 import '../../../../src/core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';

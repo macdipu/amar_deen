@@ -59,8 +59,9 @@ class SuccessWidgetController {
   /// Today's Hijri date, shifted by the user's configured
   /// [hijriAdjustmentDays].
   String generateIslamicDate() {
-    final hijriAdjustmentDays =
-        BlocProvider.of<PrayerTimeConfigBloc>(context).state.hijriAdjustmentDays;
+    final hijriAdjustmentDays = BlocProvider.of<PrayerTimeConfigBloc>(context)
+        .state
+        .hijriAdjustmentDays;
     return getIslamicDate(adjustmentDays: hijriAdjustmentDays);
   }
 
@@ -68,8 +69,9 @@ class SuccessWidgetController {
   /// or "Isha — from 8:12 PM" once Isha's window has no known end (it
   /// continues into tomorrow's Fajr, outside a single day's data).
   String currentPrayerWindowLabel({required bool is24Hour}) {
-    String format(DateTime time) =>
-        is24Hour ? DateFormat('HH:mm').format(time) : convertTimeTo12HourFormat(time);
+    String format(DateTime time) => is24Hour
+        ? DateFormat('HH:mm').format(time)
+        : convertTimeTo12HourFormat(time);
 
     final name = _controller.currentWindowPrayer;
     final start = format(_controller.currentWindowStart);

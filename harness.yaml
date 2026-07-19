@@ -176,8 +176,9 @@ epics:
           get_it + injectable DI container in core/di/. Dependencies added and versions
           verified against pub.dev; Qibla feature classes annotated (@LazySingleton,
           @injectable); QiblaBloc now resolves its use case via getIt. configureDependencies()
-          is hand-written manual registration, not generated getIt.init(), since this
-          environment has no flutter/dart binary to run build_runner - see PROGRESS.md.
+          was hand-written manual registration until 2026-07-19, when Flutter tooling became
+          available for the first time and build_runner generated the real injection.config.dart
+          (matched the hand-written version exactly) - see PROGRESS.md.
       - id: TASK-006
         status: done
         summary: >
@@ -194,9 +195,9 @@ epics:
           Sensor/bearing engine already replaced (motion_sensors -> flutter_qiblah) as part of
           TASK-003's build fix, collapsing QiblaBloc+AngleBloc into one bloc. Folder move into
           data/domain/presentation done 2026-07-19 with full Repository Pattern (entity, repo
-          interface + impl, use case) - see PROGRESS.md. Old lib/src/features/qibla/ left in
-          place pending real-build verification (no flutter binary in this session's env), not
-          yet deleted.
+          interface + impl, use case) - see PROGRESS.md. Old lib/src/features/qibla/ deleted
+          2026-07-19 once flutter analyze confirmed it was unreferenced (see "fix all bugs"
+          verification pass entry in PROGRESS.md).
       - id: TASK-008
         status: done
         summary: >

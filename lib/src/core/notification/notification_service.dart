@@ -156,7 +156,7 @@ class NotificationService {
         id: id,
         title: title,
         body: body,
-      scheduledDate:   tz.TZDateTime.now(tz.local).add(duration),
+        scheduledDate: tz.TZDateTime.now(tz.local).add(duration),
         notificationDetails: platformChannelSpecifics,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         payload: '');

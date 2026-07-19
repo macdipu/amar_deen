@@ -41,7 +41,8 @@ class VoluntaryPrayerBloc
 
         emit(VoluntaryPrayerLoaded(voluntaryPrayerTimes));
       } catch (e) {
-        emit(VoluntaryPrayerFailed(LocalFailure(message: e.toString(), error: 0)));
+        emit(VoluntaryPrayerFailed(
+            LocalFailure(message: e.toString(), error: 0)));
       }
     });
   }

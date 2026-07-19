@@ -58,7 +58,8 @@ class TimingController {
       _forTomorrow ? _timingsList.last.key : prayer;
 
   /// Start of the current prayer's window.
-  DateTime get currentWindowStart => _forTomorrow ? _timingsList.last.value : time;
+  DateTime get currentWindowStart =>
+      _forTomorrow ? _timingsList.last.value : time;
 
   /// End of the current prayer's window (the next prayer's start), or
   /// `null` if it's Isha - that window continues into tomorrow's Fajr,

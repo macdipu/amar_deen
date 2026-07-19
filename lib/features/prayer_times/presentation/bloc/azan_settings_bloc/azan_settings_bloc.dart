@@ -6,7 +6,8 @@ part 'azan_settings_state.dart';
 
 const kAzanPrayerNames = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
 
-class AzanSettingsBloc extends HydratedBloc<AzanSettingsEvent, AzanSettingsState> {
+class AzanSettingsBloc
+    extends HydratedBloc<AzanSettingsEvent, AzanSettingsState> {
   AzanSettingsBloc()
       : super(
           AzanSettingsState({

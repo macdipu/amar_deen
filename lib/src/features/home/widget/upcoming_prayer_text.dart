@@ -70,8 +70,8 @@ class _UpcomingPrayerTextState extends State<UpcomingPrayerText> {
       }
     }
 
-    final tomorrowFajr = DateTime(
-        now.year, now.month, now.day + 1, t.fajr.hour, t.fajr.minute);
+    final tomorrowFajr =
+        DateTime(now.year, now.month, now.day + 1, t.fajr.hour, t.fajr.minute);
     return _NextPrayerInfo('Fajr', tomorrowFajr.difference(now));
   }
 
