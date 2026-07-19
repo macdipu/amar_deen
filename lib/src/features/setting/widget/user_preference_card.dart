@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../../core/theme/theme_bloc/theme_bloc.dart';
 import '../../../core/util/bloc/notification/notification_bloc.dart';
-import '../../../core/util/bloc/theme/theme_bloc.dart';
 import '../../../core/util/bloc/time_format/time_format_bloc.dart';
 import '../../utils/sirat_card.dart';
 import '../controller/setting_controller.dart';

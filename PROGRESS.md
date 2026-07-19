@@ -3,9 +3,9 @@
 See `harness.yaml` for the machine-readable operating config (workflow gates, standard rules, epics/tasks, memory/checkpoint discipline). This file is the memory log that config points at — keep both in sync.
 
 ## Current status
-Active epic: EPIC 1 — Architecture Scaffold
-Active task: TASK-006 — done 2026-07-19 (Dipu picked this over TASK-008)
-Blocked on: nothing (see legacy-cleanup + injectable-codegen + go_router verification notes below — non-blocking follow-ups)
+Active epic: EPIC 1 — Architecture Scaffold — **fully closed 2026-07-19** (TASK-004/005/006/007/008 all done)
+Active task: TASK-008 — done 2026-07-19 (last task in Epic 1)
+Blocked on: nothing (see legacy-cleanup + injectable-codegen + go_router/theme verification notes below — non-blocking follow-ups, all stem from no Flutter tooling in this session)
 
 ## Completed
 - [x] Repo git-initialized, baseline commit taken (pre-migration snapshot) — 2026-07-19
@@ -57,10 +57,19 @@ Blocked on: nothing (see legacy-cleanup + injectable-codegen + go_router verific
   - **Found and deliberately left alone**: `home/widget/countdown_timer.dart` is a pre-existing dead file — despite its name it defines a second, unused `CollectionButton` class (not a countdown timer), byte-for-byte similar to the real `collection_button.dart` but never imported anywhere. Still has the old `Navigator.of(context).pushNamed(...)` call, harmless since nothing references the file. Out of scope for this task (not something TASK-006 touches); flagging for whoever eventually does cleanup — possibly worth deleting or renaming/wiring up properly, Dipu's call.
   - Could not run `flutter pub get`/`flutter analyze`/an actual app launch in this session (no Flutter tooling, same gap as TASK-004/005/007) — this is the biggest-blast-radius change so far (touches `main.dart` and 7 other files across unrelated features), so **flagging clearly: this needs a real `flutter run` smoke test before being treated as fully verified**, especially the splash → permission-screens → tab-screen flow and the Qibla/home-collection taps.
 
+- [x] TASK-008: Theme (light/dark) migrated into `core/theme/` — 2026-07-19, closes Epic 1.
+  - `lib/core/theme/app_theme.dart` — `AppTheme` enum + `kAppThemeData` map, moved verbatim from the old `lib/src/core/util/theme.dart` (deleted). Still imports the raw color constants (`kDarkPrimary`, `kLightBg`, etc.) from `lib/src/core/util/constants.dart` rather than moving them too — deliberately scoped narrow: those constants are general design tokens used directly (per this codebase's own documented convention) in 9 other files unrelated to the `ThemeBloc`/`ThemeData` machinery (e.g. `change_theme_switch.dart`, various `tasbih`/`quran` widgets). TASK-008 says "migrate Theme", not "migrate all constants" — moving the color tokens too would've meant touching 9 more files for zero benefit to this task; flagged as a separate future task if `core/constants/` (already scaffolded empty in TASK-004) ever gets its own migration pass.
+  - `lib/core/theme/theme_bloc/{theme_bloc,theme_event,theme_state}.dart` — `ThemeBloc` moved verbatim from `lib/src/core/util/bloc/theme/` (deleted), same `HydratedBloc`/part-file structure, same `fromJson`/`toJson` persistence logic, only its `import '../../theme.dart'` updated to `import '../app_theme.dart'` for the new co-located file.
+  - 3 importers updated: `main.dart` (`ThemeBloc()` in `MultiBlocProvider`), `setting/widget/user_preference_card.dart` (the actual toggle switch — dispatches `ToggleTheme()`), `home/widget/appbar_expanded.dart`.
+  - Toggle logic itself is untouched (byte-identical `ThemeBloc`), so this is a pure relocation — traced the full path by hand (switch → `BlocProvider.of<ThemeBloc>(context).add(ToggleTheme())` → bloc swaps between `kAppThemeData[AppTheme.light/dark]` → `MaterialApp.router`'s `theme: state.currentTheme` in `main.dart` picks it up) to confirm nothing broke, but this is static reading, not a run.
+  - Same tooling gap as every task this session: no `flutter`/`dart` binary, so **not verified by an actual toggle tap in a running app** — added to the same pending-smoke-test list as TASK-005/006.
+
+**EPIC 1 (Architecture Scaffold) is now fully closed.** All of TASK-004/005/006/007/008 done. Epic 2 (Offline Prayer Core) is next per the plan's strict priority order — but see the verification priority below first.
+
 ## Up next
-- **Priority**: get this session's cumulative unverified work (TASK-005 DI deps + TASK-006 go_router cutover) in front of a real `flutter pub get` / `flutter analyze` / `flutter run` as soon as an environment with Flutter tooling is available — several tasks in a row now have stacked without that safety net.
+- **Priority, before starting Epic 2**: get this session's entire cumulative unverified work (TASK-005 DI deps, TASK-006 go_router cutover, TASK-008 theme move) in front of a real `flutter pub get` / `flutter analyze` / `flutter run` as soon as an environment with Flutter tooling is available. Four tasks in a row (005/006/007/008) have now stacked without that safety net — this is the single biggest risk in the repo right now, bigger than any one task's content.
 - Once verified: run `build_runner`, wire `@InjectableInit()`, replace `configureDependencies()`'s manual body with `getIt.init()`, and delete `lib/src/features/qibla/` (legacy, unreferenced — see TASK-007 note above).
-- TASK-008 (Theme) is the last task in Epic 1 — after that, Epic 1 is fully closed and Epic 2 (Offline Prayer Core) opens up.
+- Epic 2 (Offline Prayer Core): TASK-009 (`PrayerRepository` + `adhan_dart`) is next per strict priority order, once the verification above happens.
 
 ## Notes for next session
 - `getAddress()` in `location_controller.dart` (the Google Maps HTTP reverse-geocode path, as opposed to `getAddressFromLatLng()` in `location_bloc.dart` which uses the on-device `geocoding` plugin and needs no API key) is currently **dead code** — nothing in `lib/` calls it. Worth flagging for Epic 2/6: it's also a live network call to Google, which conflicts with the offline-first constraint. Decide then whether to delete it or wire it in as an optional online enhancement.

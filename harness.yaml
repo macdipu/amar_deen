@@ -198,8 +198,13 @@ epics:
           place pending real-build verification (no flutter binary in this session's env), not
           yet deleted.
       - id: TASK-008
-        status: todo
-        summary: Migrate Theme (light/dark) into core/theme/, verify toggle still works.
+        status: done
+        summary: >
+          Migrate Theme (light/dark) into core/theme/, verify toggle still works. Done
+          2026-07-19 - closes Epic 1. app_theme.dart + theme_bloc/ moved verbatim, logic
+          unchanged. Deliberately did not move the raw color constants (kDarkPrimary etc.)
+          out of constants.dart - out of this task's scope, used directly in 9 unrelated
+          files. Not verified by an actual running toggle (no flutter tooling this session).
 
   - id: EPIC-2
     name: Offline Prayer Core

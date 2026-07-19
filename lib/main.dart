@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'core/di/injection.dart';
 import 'core/routing/app_router.dart';
+import 'core/theme/theme_bloc/theme_bloc.dart';
 import 'src/core/notification/notification_service.dart';
 import 'src/core/util/bloc/allah_names/allah_name_bloc.dart';
 import 'src/core/util/bloc/database/database_bloc.dart';
@@ -20,7 +21,6 @@ import 'src/core/util/bloc/quran/quran_bloc.dart';
 import 'src/core/util/bloc/quran_audio/quran_audio_bloc.dart';
 import 'src/core/util/bloc/surah/surah_bloc.dart';
 import 'src/core/util/bloc/tasbih/tasbih_bloc.dart';
-import 'src/core/util/bloc/theme/theme_bloc.dart';
 import 'src/core/util/bloc/time_format/time_format_bloc.dart';
 import 'src/features/bottom_tab/bloc/tab/tab_bloc.dart';
 import 'src/features/quran/bloc/quran_theme/quran_theme_bloc.dart';
