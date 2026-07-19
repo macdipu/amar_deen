@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../utils/sirat_card.dart';
 import '../model/general_option.dart';
@@ -30,8 +31,7 @@ class GeneralCard extends StatelessWidget {
                   imagePath: generalOptions[index].imagePath,
                   onTap: generalOptions[index].onTap ??
                       () {
-                        Navigator.of(context)
-                            .pushNamed(generalOptions[index].routeName!);
+                        context.push(generalOptions[index].routeName!);
                       },
                   title: generalOptions[index].title,
                   subtitle: generalOptions[index].subtitle,

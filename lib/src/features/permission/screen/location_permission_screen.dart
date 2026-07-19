@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../routes/routes.dart';
+import '../../../../core/routing/app_router.dart';
 import '../../../core/util/bloc/location/location_bloc.dart';
 import '../../../core/util/constants.dart';
 import '../../../core/util/widgets/elevated_button.dart';
@@ -13,9 +14,7 @@ class LocationPermissionScreen extends StatelessWidget {
   const LocationPermissionScreen({super.key});
 
   Future<void> _continue(BuildContext context) async {
-    Navigator.of(context).pushReplacementNamed(
-      RouteGenerator.notificationPermission,
-    );
+    context.pushReplacement(AppRoutes.notificationPermission);
   }
 
   @override

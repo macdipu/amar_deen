@@ -1,4 +1,4 @@
-import '../../../../routes/routes.dart';
+import '../../../../core/routing/app_router.dart';
 import '../../../core/util/constants.dart';
 import '../../../core/util/controller/share_controller.dart';
 import '../../../core/util/controller/url_launcher_controller.dart';
@@ -23,21 +23,21 @@ final List<GeneralOption> generalOptions = [
   GeneralOption(
     imagePath: 'assets/images/collection_icon/svg/quran.svg',
     onTap: null,
-    routeName: RouteGenerator.quranSettings,
+    routeName: AppRoutes.quranSettings,
     title: 'Quran settings',
     subtitle: 'Customize Quran font, translation mode and styling.',
   ),
   GeneralOption(
     imagePath: 'assets/images/home_icon/svg/fajr.svg',
     onTap: null,
-    routeName: RouteGenerator.prayerTimeSettings,
+    routeName: AppRoutes.prayerTimeSettings,
     title: 'Prayer time settings',
     subtitle: 'Configure calculation method, school and Hijri adjustment.',
   ),
   GeneralOption(
     imagePath: 'assets/images/setting_icon/svg/thank.svg',
     onTap: null,
-    routeName: RouteGenerator.thankyou,
+    routeName: AppRoutes.thankyou,
     title: 'Thank you',
     subtitle: 'These generous contributors helped make this app a reality!',
   ),

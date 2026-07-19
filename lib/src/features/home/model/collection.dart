@@ -1,4 +1,4 @@
-import '../../../../routes/routes.dart';
+import '../../../../core/routing/app_router.dart';
 
 class Collection {
   final String assetName;
@@ -12,7 +12,7 @@ List<Collection> collections = [
   Collection(
     'assets/images/collection_icon/svg/quran.svg',
     'Quran',
-    RouteGenerator.quran,
+    AppRoutes.quran,
   ),
   Collection(
     'assets/images/collection_icon/svg/hadees.svg',
@@ -22,37 +22,37 @@ List<Collection> collections = [
   Collection(
     'assets/images/collection_icon/svg/duas.svg',
     'Dua',
-    RouteGenerator.dua,
+    AppRoutes.dua,
   ),
   Collection(
     'assets/images/collection_icon/svg/tasbih.svg',
     'Tasbih',
-    RouteGenerator.tasbih,
+    AppRoutes.tasbih,
   ),
   Collection(
     'assets/images/collection_icon/svg/other.svg',
     'Azkars',
-    RouteGenerator.azkar,
+    AppRoutes.azkar,
   ),
   Collection(
     'assets/images/collection_icon/svg/allah.svg',
     '99 Names of Allah',
-    RouteGenerator.allahName,
+    AppRoutes.allahName,
   ),
   Collection(
     'assets/images/collection_icon/svg/prayer_time.svg',
     'Prayer Times',
-    RouteGenerator.prayerTimingPage,
+    AppRoutes.prayerTimingPage,
   ),
   Collection(
     'assets/images/collection_icon/svg/kiblat.svg',
     'Qabah Direction',
-    RouteGenerator.qibla,
+    AppRoutes.qibla,
   ),
   Collection(
     'assets/images/collection_icon/svg/qaabah.svg',
     'Live TV',
-    RouteGenerator.liveTv,
+    AppRoutes.liveTv,
   ),
   Collection(
     'assets/images/collection_icon/svg/other.svg',

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart'
     show Theme, Colors, BorderRadius, BoxDecoration, showDialog;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../utils/coming_soon_dialog.dart';
 import '../model/collection.dart';
@@ -26,7 +27,7 @@ class CollectionButton extends StatelessWidget {
           return;
         }
         if (collection.routeName != '') {
-          Navigator.of(context).pushNamed(collection.routeName);
+          context.push(collection.routeName);
         }
       },
       child: Container(

@@ -249,7 +249,7 @@ For every task:
 ### EPIC 1 — Architecture Scaffold
 - [x] **TASK-004**: Create `core/` + `features/` folder skeleton (Section 5.1), placeholder files only. **Done 2026-07-19** — see `PROGRESS.md`.
 - [x] **TASK-005**: `get_it` + `injectable` DI container in `core/di/`. **Done 2026-07-19** — deps added (versions checked against pub.dev), Qibla feature wired through `getIt` as the proof case, `configureDependencies()` is a manual registration standing in for generated `getIt.init()` until `build_runner` can run in a Flutter-equipped environment (see `PROGRESS.md`).
-- [ ] **TASK-006**: `go_router` setup in `core/routing/`.
+- [x] **TASK-006**: `go_router` setup in `core/routing/`. **Done 2026-07-19** — `lib/routes/routes.dart` deleted (atomic cutover), 7 call sites with named-route navigation updated to go_router's `context.push`/`pushReplacement`. Unverified by a real `flutter run` in this session (no Flutter tooling available) — see `PROGRESS.md`.
 - [x] **TASK-007**: Migrate `Qibla` feature end-to-end — proof of pattern, smallest feature first. **Done 2026-07-19** — sensor/bearing engine already replaced (`motion_sensors`→`flutter_qiblah`) as a side effect of TASK-003's build fix; folder move into `data/domain/presentation` completed with the full Repository Pattern (entity, repository interface + impl, use case), matching §5.1. Old `lib/src/features/qibla/` left in place until a real build verifies the migration (see `PROGRESS.md`).
 - [ ] **TASK-008**: Migrate `Theme` (light/dark) into `core/theme/`, verify toggle still works.
 

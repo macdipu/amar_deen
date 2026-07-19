@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../routes/routes.dart';
+import '../../../../core/routing/app_router.dart';
 import '../../notification/notification_service.dart';
 import '../../notification/receive_notification.dart';
 
@@ -9,7 +10,7 @@ void configureDidReceiveLocalNotificationSubject(BuildContext context) {
       .didReceiveLocalNotificationSubject
       .stream
       .listen((ReceivedNotification receivedNotification) async {
-    await Navigator.of(context).pushNamed(RouteGenerator.prayerTimingPage);
+    await context.push(AppRoutes.prayerTimingPage);
   });
 }
 
@@ -18,6 +19,6 @@ void configureSelectNotificationSubject(BuildContext context) {
       .selectNotificationSubject
       .stream
       .listen((String? payload) async {
-    await Navigator.of(context).pushNamed(RouteGenerator.prayerTimingPage);
+    await context.push(AppRoutes.prayerTimingPage);
   });
 }

@@ -183,8 +183,14 @@ epics:
           is hand-written manual registration, not generated getIt.init(), since this
           environment has no flutter/dart binary to run build_runner - see PROGRESS.md.
       - id: TASK-006
-        status: todo
-        summary: go_router setup in core/routing/.
+        status: done
+        summary: >
+          go_router setup in core/routing/. Old lib/routes/routes.dart deleted outright
+          (atomic cutover, not parallel-track like TASK-004/007 - a MaterialApp can't run
+          both onGenerateRoute and MaterialApp.router at once). 7 files with real named-route
+          navigation updated to go_router's context.push/pushReplacement; anonymous
+          MaterialPageRoute pushes and Navigator.pop left untouched. Unverified: no flutter
+          tooling in this session to run pub get/analyze/an actual app launch - see PROGRESS.md.
       - id: TASK-007
         status: done
         summary: >

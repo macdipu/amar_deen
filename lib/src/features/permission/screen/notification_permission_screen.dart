@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../routes/routes.dart';
+import '../../../../core/routing/app_router.dart';
 import '../../../core/util/constants.dart';
 import '../../../core/util/widgets/elevated_button.dart';
 
@@ -50,13 +51,9 @@ class NotificationPermissionScreen extends StatelessWidget {
               CustomElevatedButton(
                 onPressed: () async {
                   if (await Permission.notification.request().isGranted) {
-                    Navigator.of(context).pushReplacementNamed(
-                      RouteGenerator.tabScreen,
-                    );
+                    context.pushReplacement(AppRoutes.tabScreen);
                   } else {
-                    Navigator.of(context).pushReplacementNamed(
-                      RouteGenerator.tabScreen,
-                    );
+                    context.pushReplacement(AppRoutes.tabScreen);
                   }
                 },
                 text: 'Sure, I like that',
@@ -66,9 +63,7 @@ class NotificationPermissionScreen extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(
-                    RouteGenerator.tabScreen,
-                  );
+                  context.pushReplacement(AppRoutes.tabScreen);
                 },
                 child: Text(
                   'Not now',

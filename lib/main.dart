@@ -6,7 +6,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/di/injection.dart';
-import 'routes/routes.dart';
+import 'core/routing/app_router.dart';
 import 'src/core/notification/notification_service.dart';
 import 'src/core/util/bloc/allah_names/allah_name_bloc.dart';
 import 'src/core/util/bloc/database/database_bloc.dart';
@@ -24,9 +24,6 @@ import 'src/core/util/bloc/theme/theme_bloc.dart';
 import 'src/core/util/bloc/time_format/time_format_bloc.dart';
 import 'src/features/bottom_tab/bloc/tab/tab_bloc.dart';
 import 'src/features/quran/bloc/quran_theme/quran_theme_bloc.dart';
-import 'src/features/splash/screen/splash_screen.dart';
-
-final GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -99,14 +96,12 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, state) {
-              return MaterialApp(
+              return MaterialApp.router(
                 title: 'Sirate Mustaqeem',
                 debugShowCheckedModeBanner: false,
                 color: Colors.white,
                 theme: state.currentTheme,
-                navigatorKey: appNavigatorKey,
-                home: const SplashScreen(),
-                onGenerateRoute: RouteGenerator.generateRoute,
+                routerConfig: appRouter,
               );
             },
           );
