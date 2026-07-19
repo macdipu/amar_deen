@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hijri_calendar/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../features/prayer_times/domain/entities/prayer_times_entity.dart';
 import '../../../core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
 import '../../../core/util/bloc/time_format/time_format_bloc.dart';
 import '../../../core/util/constants.dart';
+import '../../../core/util/controller/date_controller.dart';
 import '../../../core/util/controller/timing_controller.dart';
 
 enum TimingProps {
@@ -29,13 +29,14 @@ Map<TimingProps, String> backgroundAsset = {
 class SuccessWidgetController {
   final PrayerTimesEntity prayerTimes;
   final BuildContext context;
+  late final TimingController _controller;
   late final int timingCount;
   late final List<MapEntry<String, DateTime>> timingsList;
 
   SuccessWidgetController(this.prayerTimes, this.context) {
-    final controller = TimingController(prayerTimes);
-    timingCount = controller.timingCount;
-    timingsList = controller.timingsList;
+    _controller = TimingController(prayerTimes);
+    timingCount = _controller.timingCount;
+    timingsList = _controller.timingsList;
   }
 
   String setBackgroundImage() {
@@ -55,14 +56,29 @@ class SuccessWidgetController {
     }
   }
 
-  /// Today's Hijri date, computed on-device via `hijri_calendar` (no
-  /// network) and shifted by the user's configured [hijriAdjustmentDays].
+  /// Today's Hijri date, shifted by the user's configured
+  /// [hijriAdjustmentDays].
   String generateIslamicDate() {
     final hijriAdjustmentDays =
         BlocProvider.of<PrayerTimeConfigBloc>(context).state.hijriAdjustmentDays;
-    final date = DateTime.now().add(Duration(days: hijriAdjustmentDays));
-    final hijri = HijriCalendarConfig.fromGregorian(date);
-    return '${hijri.hDay} ${hijri.getLongMonthName()} ${hijri.hYear}';
+    return getIslamicDate(adjustmentDays: hijriAdjustmentDays);
+  }
+
+  /// "Dhuhr — 12:34 PM to 3:45 PM" for the currently active prayer window,
+  /// or "Isha — from 8:12 PM" once Isha's window has no known end (it
+  /// continues into tomorrow's Fajr, outside a single day's data).
+  String currentPrayerWindowLabel({required bool is24Hour}) {
+    String format(DateTime time) =>
+        is24Hour ? DateFormat('HH:mm').format(time) : convertTimeTo12HourFormat(time);
+
+    final name = _controller.currentWindowPrayer;
+    final start = format(_controller.currentWindowStart);
+    final end = _controller.currentWindowEnd;
+
+    if (end == null) {
+      return '$name — from $start';
+    }
+    return '$name — $start to ${format(end)}';
   }
 
   List<Widget> generateTimingList() {

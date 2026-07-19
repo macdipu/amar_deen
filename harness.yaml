@@ -234,8 +234,16 @@ epics:
           PROGRESS.md for full detail and the specific risk callouts - recommend this be the
           first thing checked once Flutter tooling is available.
       - id: TASK-011
-        status: todo
-        summary: Prayer countdown + start/end time UI.
+        status: done
+        summary: >
+          Prayer countdown + start/end time UI. Done 2026-07-19. Countdown already existed
+          (upcoming_prayer_text.dart, pre-dates this session). Added the missing start/end
+          window display (TimingController.currentWindow*/SuccessWidgetController.
+          currentPrayerWindowLabel) to the Prayer Timing screen. Drive-by fix: consolidated
+          a duplicate Hijri-date computation TASK-010 had introduced onto the existing
+          date_controller.dart helper. Found but left alone: dead TimerBloc in
+          home/bloc/timer_bloc/ (unreferenced, has its own bug) - flagged for cleanup, not
+          fixed. Not verified by flutter tooling (unavailable this session).
       - id: TASK-012
         status: todo
         summary: Voluntary prayer times (Duha, Ishraq, Tahajjud).

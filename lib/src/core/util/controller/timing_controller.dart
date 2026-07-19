@@ -50,6 +50,26 @@ class TimingController {
   MapEntry<String, DateTime> get currentTiming => _timingsList[_timingCount];
   String get prayer => _timingsList[_timingCount].key;
   DateTime get time => _timingsList[_timingCount].value;
+
+  /// Name of the prayer whose window is currently active. Unlike [prayer]
+  /// (which resets to index 0 / "Fajr" once [forTomorrow] is true, even
+  /// though that Fajr time has already passed), this correctly reports
+  /// "Isha" for the remainder of the night until tomorrow's Fajr.
+  String get currentWindowPrayer =>
+      _forTomorrow ? _timingsList.last.key : prayer;
+
+  /// Start of the current prayer's window.
+  DateTime get currentWindowStart => _forTomorrow ? _timingsList.last.value : time;
+
+  /// End of the current prayer's window (the next prayer's start), or
+  /// `null` if it's Isha - that window continues into tomorrow's Fajr,
+  /// not available from a single day's [PrayerTimesEntity].
+  DateTime? get currentWindowEnd {
+    if (_forTomorrow) return null;
+    final nextIndex = _timingCount + 1;
+    if (nextIndex >= _timingsList.length) return null;
+    return _timingsList[nextIndex].value;
+  }
 }
 
 String convertTimeTo12HourFormat(DateTime time) =>
