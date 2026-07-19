@@ -1,5 +1,9 @@
 import 'package:get_it/get_it.dart';
 
+import '../../features/prayer_times/data/datasources/adhan_local_data_source.dart';
+import '../../features/prayer_times/data/repositories/prayer_times_repository_impl.dart';
+import '../../features/prayer_times/domain/repositories/prayer_times_repository.dart';
+import '../../features/prayer_times/domain/usecases/get_prayer_times.dart';
 import '../../features/qibla/data/datasources/qiblah_local_data_source.dart';
 import '../../features/qibla/data/repositories/qibla_repository_impl.dart';
 import '../../features/qibla/domain/repositories/qibla_repository.dart';
@@ -25,5 +29,15 @@ void configureDependencies() {
   );
   getIt.registerFactory<WatchQiblahDirection>(
     () => WatchQiblahDirection(getIt()),
+  );
+
+  getIt.registerLazySingleton<AdhanLocalDataSource>(
+    () => const AdhanLocalDataSourceImpl(),
+  );
+  getIt.registerLazySingleton<PrayerTimesRepository>(
+    () => PrayerTimesRepositoryImpl(getIt()),
+  );
+  getIt.registerFactory<GetPrayerTimes>(
+    () => GetPrayerTimes(getIt()),
   );
 }

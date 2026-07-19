@@ -210,8 +210,17 @@ epics:
     name: Offline Prayer Core
     tasks:
       - id: TASK-009
-        status: todo
-        summary: PrayerRepository interface + adhan_dart-backed impl in features/prayer_times/.
+        status: done
+        summary: >
+          PrayerRepository interface + adhan_dart-backed impl in features/prayer_times/. Done
+          2026-07-19. Scoped strictly to building the repository (domain entities/repository
+          interface/use case + data datasource/impl wrapping adhan_dart), registered in the DI
+          container - does NOT touch TimingBloc or remove the old Aladhan API call, that's
+          TASK-010. Introduces fresh PrayerCalculationMethod/PrayerMadhab domain enums,
+          temporarily duplicating PrayerTimeMethod/PrayerTimeSchool in the old
+          PrayerTimeConfigBloc until TASK-010 reconciles them. Not verified by flutter tooling
+          (unavailable this session) - flagged as higher-risk than prior tasks since it's new
+          computational logic, not a rewire.
       - id: TASK-010
         status: todo
         summary: Remove existing prayer-time API dependency entirely.

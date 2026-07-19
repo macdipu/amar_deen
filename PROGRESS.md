@@ -3,9 +3,9 @@
 See `harness.yaml` for the machine-readable operating config (workflow gates, standard rules, epics/tasks, memory/checkpoint discipline). This file is the memory log that config points at — keep both in sync.
 
 ## Current status
-Active epic: EPIC 1 — Architecture Scaffold — **fully closed 2026-07-19** (TASK-004/005/006/007/008 all done)
-Active task: TASK-008 — done 2026-07-19 (last task in Epic 1)
-Blocked on: nothing (see legacy-cleanup + injectable-codegen + go_router/theme verification notes below — non-blocking follow-ups, all stem from no Flutter tooling in this session)
+Active epic: EPIC 2 — Offline Prayer Core (Epic 1 fully closed 2026-07-19)
+Active task: TASK-009 — done 2026-07-19 (Dipu said "continue" after the Epic 1 close-out/verification-risk flag; proceeded per strict priority order rather than waiting, since verification isn't something achievable in this session's environment anyway)
+Blocked on: nothing new (same standing tooling-verification gap as before — see below; now 5 tasks deep)
 
 ## Completed
 - [x] Repo git-initialized, baseline commit taken (pre-migration snapshot) — 2026-07-19
@@ -66,10 +66,22 @@ Blocked on: nothing (see legacy-cleanup + injectable-codegen + go_router/theme v
 
 **EPIC 1 (Architecture Scaffold) is now fully closed.** All of TASK-004/005/006/007/008 done. Epic 2 (Offline Prayer Core) is next per the plan's strict priority order — but see the verification priority below first.
 
+- [x] TASK-009: `PrayerTimesRepository` interface + `adhan_dart`-backed impl in `features/prayer_times/` — 2026-07-19, first task of Epic 2.
+  - **Scope check against TASK-010** ("Remove existing prayer-time API dependency entirely," the very next task): TASK-009 is explicitly *build the repository*, not *wire it in and rip out the old API path*. So this task builds `features/prayer_times/{domain,data}/` in full but does **not** touch `TimingBloc`, `timing_controller.dart`'s `getPrayerTiming()` (the Aladhan HTTP call), or `PrayerTimeConfigBloc` — those all still exist and still work exactly as before. Deliberately not silently expanding into TASK-010's territory.
+  - `adhan_dart: ^2.0.1` added to `pubspec.yaml` (version + SDK constraint `>=2.19.0 <4.0.0` checked against pub.dev, compatible with installed Dart 3.12.2). API confirmed against pub.dev docs before writing any code (`Coordinates`, `PrayerTimes`, `CalculationParameters`, `CalculationMethodParameters.{muslimWorldLeague,northAmerica,egyptian,ummAlQura,karachi,tehran,jafari}()`, `Madhab.{shafi,hanafi}`) rather than assumed from memory.
+  - `domain/entities/prayer_calculation_method.dart` — fresh `PrayerCalculationMethod`/`PrayerMadhab` enums, **deliberately not reused from** the existing `PrayerTimeMethod`/`PrayerTimeSchool` enums in `lib/src/core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart`. Reusing those would mean domain importing a presentation-tier Bloc file (wrong dependency direction, violates "presentation never imports from data directly - always through domain" by inverting it). This creates a **temporary duplication** (two near-identical method/school enums) until TASK-010 wires `TimingBloc`/`PrayerTimeConfigBloc` to the new repository and has to reconcile them — same pattern as Qibla's temporary `lib/src/features/qibla/` + `lib/features/qibla/` duplication in TASK-007, expected under this phased migration strategy.
+  - `domain/entities/prayer_times_entity.dart` — `PrayerTimesEntity` (fajr/sunrise/dhuhr/asr/maghrib/isha as `DateTime`), a richer typed replacement for the old `Timing`/`Timings` model (which mirrors the Aladhan JSON response — string-keyed timing map). Not wired to any UI yet.
+  - `domain/repositories/prayer_times_repository.dart` — abstract `PrayerTimesRepository.getPrayerTimes(...)`. **Synchronous return (`PrayerTimesEntity`, not `Future`/`Either`)** — this is a pure local trigonometric calculation, no I/O, can't fail for coordinates a caller would already have validated via `LocationBloc` — matches `CLAUDE.md`'s "plain returns are fine for simple synchronous-feeling reads" guidance rather than reflexively wrapping everything in `Either`.
+  - `domain/usecases/get_prayer_times.dart` — single-responsibility `GetPrayerTimes` use case (matches `AMAR_DEEN_PLAN.md` §5.1's own example name).
+  - `data/datasources/adhan_local_data_source.dart` — wraps `adhan_dart`'s `PrayerTimes` class, maps `PrayerCalculationMethod` to the right `CalculationMethodParameters.*()` preset via a switch, sets `madhab`, computes with `precision: true` (matches the package's own documented recommended usage).
+  - `data/repositories/prayer_times_repository_impl.dart` — maps the plugin's `PrayerTimes` object to `PrayerTimesEntity`.
+  - All three injectable classes annotated (`@LazySingleton(as: ...)` / `@injectable`) and registered in `core/di/injection.dart`'s manual `configureDependencies()`, same hand-written-pending-build_runner pattern as Qibla (TASK-005) — `getIt<GetPrayerTimes>()` is usable today even though nothing calls it yet.
+  - Not verified by `flutter analyze`/`pub get`/a real computation run — same standing tooling gap, now the 5th task in a row without it. **Particularly worth double-checking once Flutter tooling is available**: this is the first task this session introducing genuinely new computational logic (not just moving/rewiring existing verified code), so there's real risk of an API-signature or type mismatch against the actual `adhan_dart` package that only a compile would catch.
+
 ## Up next
-- **Priority, before starting Epic 2**: get this session's entire cumulative unverified work (TASK-005 DI deps, TASK-006 go_router cutover, TASK-008 theme move) in front of a real `flutter pub get` / `flutter analyze` / `flutter run` as soon as an environment with Flutter tooling is available. Four tasks in a row (005/006/007/008) have now stacked without that safety net — this is the single biggest risk in the repo right now, bigger than any one task's content.
+- **Priority, still unaddressed**: get this session's entire cumulative unverified work (TASK-005/006/008/009) in front of a real `flutter pub get` / `flutter analyze` / `flutter run` as soon as an environment with Flutter tooling is available. Five tasks in a row now — this remains the single biggest risk in the repo, bigger than any one task's content. TASK-009 especially, since it's new logic rather than a rewire.
 - Once verified: run `build_runner`, wire `@InjectableInit()`, replace `configureDependencies()`'s manual body with `getIt.init()`, and delete `lib/src/features/qibla/` (legacy, unreferenced — see TASK-007 note above).
-- Epic 2 (Offline Prayer Core): TASK-009 (`PrayerRepository` + `adhan_dart`) is next per strict priority order, once the verification above happens.
+- TASK-010 (remove the existing prayer-time API dependency, wire `TimingBloc`/UI to the new `PrayerTimesRepository`, reconcile the temporary enum duplication noted above) is next per strict priority order.
 
 ## Notes for next session
 - `getAddress()` in `location_controller.dart` (the Google Maps HTTP reverse-geocode path, as opposed to `getAddressFromLatLng()` in `location_bloc.dart` which uses the on-device `geocoding` plugin and needs no API key) is currently **dead code** — nothing in `lib/` calls it. Worth flagging for Epic 2/6: it's also a live network call to Google, which conflicts with the offline-first constraint. Decide then whether to delete it or wire it in as an optional online enhancement.
