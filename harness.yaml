@@ -1,0 +1,295 @@
+# harness.yaml
+# Machine-readable agent operating config for Amar Deen.
+# Source of truth for prose is AMAR_DEEN_PLAN.md (Section 6-8) + DECISIONS.md + PROGRESS.md.
+# If this file and AMAR_DEEN_PLAN.md disagree, AMAR_DEEN_PLAN.md wins — update this file to match.
+
+project:
+  name: amar_deen
+  package: sirat_e_mustaqeem
+  description: >
+    Offline-first Islamic companion app (Flutter), fork of Sirat-E-Mustaqeem.
+    Clean Architecture + Feature-First + Repository Pattern migration in progress.
+  required_reading:
+    - AMAR_DEEN_PLAN.md   # operating manual + BRD/architecture spec, read in full every session
+    - PROGRESS.md         # what's done
+    - DECISIONS.md        # locked calls, do not silently reverse
+    - CLAUDE.md            # tool-level conventions actually used in this codebase
+
+memory:
+  # adapted from sibling project's rules.md §18 (Session Memory) — same discipline, this repo's files
+  file: PROGRESS.md   # this repo's equivalent of memory.md; treat as a live work log, not an end-of-session summary
+  principle: >
+    Assume the current agent may be cut off at any time. Write so a brand-new agent
+    with zero memory can resume from PROGRESS.md + DECISIONS.md + the repo alone.
+  log_live_on:
+    - starting or finishing a task/sub-task
+    - creating/renaming/moving/deleting a file
+    - an architectural, naming, or dependency decision (log why, then mirror locked ones into DECISIONS.md)
+    - a blocker, error, failing test, or open question
+    - changing or reordering the agreed plan
+  entry_style: "terse bullets - intent + outcome, not diffs (git log already has diffs)"
+  update_moments:
+    - session start   # log task/epic being resumed
+    - continuously    # progress, as it happens
+    - before any context-limit/handoff   # see context_limit_gate below
+    - session end     # status/outcome, commit
+
+context_limit_gate:
+  rule: >
+    Checkpoint to PROGRESS.md BEFORE context/token budget runs out - never after,
+    never at the last moment. Losing in-progress state is the failure this rule exists to prevent.
+  trigger_when_any:
+    - context/token budget running low (write while there's still comfortable room to write it fully)
+    - about to hand off to a fresh agent/session
+    - a long task is only partially complete
+    - about to run a large/expensive operation that could exhaust remaining budget
+  checkpoint_must_include:
+    - done_so_far: completed work, bulleted
+    - in_progress: exact task + current file:line, or "step N of M"
+    - next_steps: ordered and resumable - the first action a fresh agent should take
+    - do_not_redo: already-completed work, so a resuming agent won't duplicate it
+    - blockers_or_open_questions
+    - key_context: branch, feature/epic, decisions not obvious from git
+  on_resume:
+    - read the latest checkpoint in PROGRESS.md first
+    - continue from next_steps
+    - convert checkpoint items into normal progress lines as completed
+    - mark checkpoint RESUMED & COMPLETED once its task is fully done
+  prefer: "over-checkpointing to losing work - a slightly redundant checkpoint is cheap, a lost hour is not"
+
+session_start_checklist:
+  - read AMAR_DEEN_PLAN.md in full
+  - read PROGRESS.md
+  - read DECISIONS.md
+  - state current epic/task being resumed
+  - for a new task: analyze -> propose -> confirm before writing code
+  - end of session: update PROGRESS.md, commit, update DECISIONS.md if a new lock was made
+
+workflow:
+  name: analysis-first-confirmation-gated
+  steps:
+    - id: analyze
+      description: Read relevant existing code before touching anything. State what you found.
+    - id: propose
+      description: Short plan - files touched, pattern followed, uncertainties.
+    - id: confirm
+      description: >
+        Stop and ask before writing code, unless trivial (single file, <20 lines,
+        no architectural decision). When in doubt, ask.
+      gate: true
+    - id: implement
+      description: Do the work.
+    - id: report
+      description: Update PROGRESS.md before ending the session or moving to the next task.
+
+rules:
+  architectural:
+    - "presentation/ never imports from data/ directly - always through domain/ interfaces"
+    - "Never introduce a second state management approach alongside flutter_bloc without flagging it and asking"
+    - "Every feature module self-contained under features/<name>/ - no reaching into another feature's internals; cross-feature needs go through core/"
+    - "No feature ships without unit tests for its use cases and an airplane-mode verification note in PROGRESS.md"
+  scope:
+    - "Strict High -> Medium -> Low priority order (see epics below). Don't start Medium/Low while an earlier-epic High task is incomplete, unless told to reprioritize"
+    - "New scope discovered mid-task -> propose it as a new task in PROGRESS.md, don't silently expand current task"
+  reversibility:
+    - "Only what's under 'Decided' in DECISIONS.md is locked"
+    - "A past session finishing a task, or a past positive reaction, is NOT a lock - check before assuming"
+    - "Don't reverse a locked decision without explicit new instruction in the current session"
+  code_quality:
+    - "Null-safety strict, no dynamic unless unavoidable (third-party JSON)"
+    - "Doc comment on every public class/method in domain/"
+    - "effective_dart lint clean; zero analyzer warnings before marking a task done"
+    - "Bangla + English strings added to .arb in the same commit that introduces the string"
+  version_control:
+    - "Commit at the end of every completed task, small and reviewable"
+    - "Never push --force, reset --hard, or discard uncommitted work without git status + confirming with Dipu first"
+
+standard_rules:
+  code_style:
+    # from global ~/.claude/CLAUDE.md, applies on top of the project-specific rules above
+    - "Dart null-safety always - no ! unless provably non-null"
+    - "Prefer const constructors everywhere possible"
+    - "Named parameters over positional for widget constructors"
+    - "Extract widgets when build method exceeds ~50 lines"
+    - "No print() - use debugPrint() or proper logging"
+    - "No unnecessary comments - code self-documents; comment only non-obvious WHY (hidden constraint, workaround, invariant)"
+    - "No backwards-compat shims for removed code"
+    - "No error handling for impossible cases; validate only at real boundaries (user input, external APIs)"
+    - "Keep widgets pure - business logic lives in blocs/cubits/controllers"
+    - "Prefer composition over inheritance for widgets"
+    - "pubspec.yaml versions: use ^ for minor-safe pinning"
+  git_safety:
+    - "Never update git config"
+    - "Never run destructive git commands (push --force, reset --hard, checkout ./restore ./clean -f, branch -D) unless explicitly requested"
+    - "Never skip hooks (--no-verify, --no-gpg-sign) unless explicitly requested"
+    - "Never force-push to main/master; warn if requested"
+    - "Always create NEW commits rather than amending, unless explicitly requested"
+    - "Stage specific files by name, not git add -A / git add ., to avoid sweeping in secrets or build artifacts"
+    - "Never commit unless explicitly asked, even if changes look done"
+    - "Run git status before any command that could discard uncommitted work (checkout/restore/reset/clean, rm -rf, restoring a snapshot); stash or commit first if anything is found"
+  security:
+    - "No hardcoded API keys/secrets in source - use String.fromEnvironment / dart-define, per TASK-002 precedent (keys.dart)"
+    - "Check contents of any file before staging/committing it, even if the filename looks innocuous, to avoid leaking secrets"
+    - "Guard against OWASP-class issues (injection, unsafe deserialization, path traversal) in any code that touches external/user input"
+    - "Flag - don't silently fix - anything that looks like a real security vulnerability instead of papering over it"
+  destructive_action_gate:
+    - "Confirm before: deleting files/branches, dropping DB tables/data, overwriting uncommitted changes, force operations"
+    - "Confirm before anything visible to others or touching shared state: pushing, PRs/issues, external service calls"
+    - "A prior approval for one risky action does not imply approval for the same class of action later - re-confirm each time unless durably authorized (e.g. in DECISIONS.md)"
+
+non_negotiables:
+  - No backend - every feature works in airplane mode after first install
+  - Clean Architecture, Feature-First, Repository Pattern
+  - flutter_bloc / Cubit for state management, not GetX (locked, see DECISIONS.md)
+  - Bangla + English localization from day one - no hardcoded user-facing strings, ever
+
+commands:
+  run: flutter run
+  test: flutter test
+  test_single: flutter test test/widget_test.dart
+  analyze: flutter analyze
+  format: dart format .
+  pub_get: flutter pub get
+  build_android: flutter build apk --release
+  build_ios: flutter build ipa
+  post_edit_gate: flutter analyze   # run after edits, catch errors before reporting done
+
+epics:
+  - id: EPIC-0
+    name: Stabilize
+    tasks:
+      - id: TASK-001
+        status: done
+        summary: Audit pubspec.yaml, fix SDK constraint, upgrade dependencies.
+      - id: TASK-002
+        status: done
+        summary: Resolve remaining build-breaking issues (keys.dart via String.fromEnvironment).
+      - id: TASK-003
+        status: todo
+        summary: Confirm green build on a real/emulated device.
+
+  - id: EPIC-1
+    name: Architecture Scaffold
+    tasks:
+      - id: TASK-004
+        status: todo
+        summary: Create core/ + features/ folder skeleton, placeholder files only.
+      - id: TASK-005
+        status: todo
+        summary: get_it + injectable DI container in core/di/.
+      - id: TASK-006
+        status: todo
+        summary: go_router setup in core/routing/.
+      - id: TASK-007
+        status: todo
+        summary: Migrate Qibla feature end-to-end - proof of pattern, smallest feature first.
+      - id: TASK-008
+        status: todo
+        summary: Migrate Theme (light/dark) into core/theme/, verify toggle still works.
+
+  - id: EPIC-2
+    name: Offline Prayer Core
+    tasks:
+      - id: TASK-009
+        status: todo
+        summary: PrayerRepository interface + adhan_dart-backed impl in features/prayer_times/.
+      - id: TASK-010
+        status: todo
+        summary: Remove existing prayer-time API dependency entirely.
+      - id: TASK-011
+        status: todo
+        summary: Prayer countdown + start/end time UI.
+      - id: TASK-012
+        status: todo
+        summary: Voluntary prayer times (Duha, Ishraq, Tahajjud).
+      - id: TASK-013
+        status: todo
+        summary: Azan alarm system - flutter_local_notifications scheduling, per-prayer toggle, exact-alarm/Doze handling.
+      - id: TASK-014
+        status: todo
+        summary: Airplane-mode manual verification, logged in PROGRESS.md.
+
+  - id: EPIC-3
+    name: Worship Essentials
+    tasks:
+      - id: TASK-015
+        status: todo
+        summary: dua_azkar feature - categorized library, bundled local JSON/asset data.
+      - id: TASK-016
+        status: todo
+        summary: Favorite/bookmark for Dua/Azkar via Hive.
+      - id: TASK-017
+        status: todo
+        summary: tasbih feature - counter, resettable target, haptics.
+      - id: TASK-018
+        status: todo
+        summary: hijri_calendar feature via hijri package, current Hijri date across relevant screens.
+
+  - id: EPIC-4
+    name: Localization
+    tasks:
+      - id: TASK-019
+        status: todo
+        summary: Externalize all existing strings to .arb (English baseline).
+      - id: TASK-020
+        status: todo
+        summary: Bangla .arb translations.
+      - id: TASK-021
+        status: todo
+        summary: Language switcher in Settings, persisted in Hive.
+
+  - id: EPIC-5
+    name: Ramadan Tools
+    tasks:
+      - id: TASK-022
+        status: todo
+        summary: Suhoor/Iftar/Imsak derived from Fajr/Maghrib, countdown UI.
+      - id: TASK-023
+        status: todo
+        summary: Voluntary fasting reminders (Mon/Thu, Ayyam al-Beed, Arafah) via Hijri calendar.
+
+  - id: EPIC-6
+    name: Quran Enhancement
+    tasks:
+      - id: TASK-024
+        status: todo
+        summary: Migrate Quran feature into Clean Architecture structure.
+      - id: TASK-025
+        status: todo
+        summary: Tafsir data + reader UI per Ayah.
+      - id: TASK-026
+        status: todo
+        summary: Audio recitation + Qari selector (bundle vs stream - confirm with Dipu, must be optional/cached).
+      - id: TASK-027
+        status: todo
+        summary: Last-read position + bookmarks via Hive.
+
+  - id: EPIC-7
+    name: Extras
+    note: low priority, don't start before Epics 0-6 substantially done
+    tasks:
+      - id: TASK-028
+        status: todo
+        summary: 99 Names of Allah - static content.
+      - id: TASK-029
+        status: todo
+        summary: Zakat calculator - formula-driven.
+      - id: TASK-030
+        status: todo
+        summary: Daily reminder notifications, reusing TASK-013's notification service.
+
+  - id: EPIC-8
+    name: Polish
+    note: low priority, discuss scope before starting
+    tasks:
+      - id: TASK-031
+        status: todo
+        summary: Home-screen widgets (Android home_widget; iOS WidgetKit if scoped in).
+      - id: TASK-032
+        status: todo
+        summary: Confirm with Dipu whether Mosque Finder stays in scope (see DECISIONS.md open question).
+      - id: TASK-033
+        status: todo
+        summary: Hajj & Umrah guide - static content.
+
+locked_decisions_ref: DECISIONS.md   # do not duplicate content here, this file only points at it
