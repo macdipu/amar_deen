@@ -15,10 +15,16 @@ class QiblaLoading extends QiblaState {
 }
 
 class QiblaLoaded extends QiblaState {
+  /// Bearing from true north to the Qiblah, in degrees (0-360).
   final double direction;
-  const QiblaLoaded(this.direction);
+
+  /// Device's current compass heading, in degrees (0-360).
+  final double heading;
+
+  const QiblaLoaded({required this.direction, required this.heading});
+
   @override
-  List<Object> get props => [direction];
+  List<Object> get props => [direction, heading];
 }
 
 class QiblaFailed extends QiblaState {

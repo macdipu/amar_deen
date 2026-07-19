@@ -6,7 +6,6 @@ import '../../../core/util/bloc/location/location_bloc.dart';
 import '../../../core/util/constants.dart';
 import '../../error/widget/failure_widget.dart';
 import '../../utils/loading_widget.dart';
-import '../blocs/angle_bloc/angle_bloc.dart';
 import '../blocs/qibla_bloc/qibla_bloc.dart';
 import '../controller/qibla_controller.dart';
 import 'compass.dart';
@@ -74,9 +73,9 @@ class _QiblaScaffoldState extends State<QiblaScaffold> {
                                 ],
                               ),
                               Expanded(
-                                child: BlocProvider.value(
-                                  value: AngleBloc(state.direction),
-                                  child: Compass(),
+                                child: Compass(
+                                  heading: state.heading,
+                                  qiblah: state.direction,
                                 ),
                               ),
                             ],

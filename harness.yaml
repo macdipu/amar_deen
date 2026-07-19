@@ -165,8 +165,8 @@ epics:
         status: done
         summary: Resolve remaining build-breaking issues (keys.dart via String.fromEnvironment).
       - id: TASK-003
-        status: todo
-        summary: Confirm green build on a real/emulated device.
+        status: done
+        summary: Confirm green build on a real/emulated device. Required a full Android Gradle toolchain migration (Gradle 7.4->8.14.2, AGP 7.1.2->8.11.1, Kotlin 1.6.10->2.2.20) and replacing 2 dead plugins (flutter_native_timezone, motion_sensors) whose native code used removed Flutter v1-embedding APIs. See PROGRESS.md for full detail.
 
   - id: EPIC-1
     name: Architecture Scaffold
@@ -181,8 +181,12 @@ epics:
         status: todo
         summary: go_router setup in core/routing/.
       - id: TASK-007
-        status: todo
-        summary: Migrate Qibla feature end-to-end - proof of pattern, smallest feature first.
+        status: partial
+        summary: >
+          Migrate Qibla feature end-to-end - proof of pattern, smallest feature first.
+          Sensor/bearing engine already replaced (motion_sensors -> flutter_qiblah) as part of
+          TASK-003's build fix, collapsing QiblaBloc+AngleBloc into one bloc. Folder move into
+          data/domain/presentation still not done - that part of this task remains open.
       - id: TASK-008
         status: todo
         summary: Migrate Theme (light/dark) into core/theme/, verify toggle still works.
