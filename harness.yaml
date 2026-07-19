@@ -62,23 +62,19 @@ session_start_checklist:
   - read PROGRESS.md
   - read DECISIONS.md
   - state current epic/task being resumed
-  - for a new task: analyze -> propose -> confirm before writing code
+  - for a new task: analyze -> propose -> implement, no confirmation gate (see workflow below)
   - end of session: update PROGRESS.md, commit, update DECISIONS.md if a new lock was made
 
 workflow:
-  name: analysis-first-confirmation-gated
+  # No per-step confirmation gate - see DECISIONS.md 2026-07-19 entry for rationale/scope.
+  name: analysis-first-autonomous
   steps:
     - id: analyze
       description: Read relevant existing code before touching anything. State what you found.
     - id: propose
-      description: Short plan - files touched, pattern followed, uncertainties.
-    - id: confirm
-      description: >
-        Stop and ask before writing code, unless trivial (single file, <20 lines,
-        no architectural decision). When in doubt, ask.
-      gate: true
+      description: Short plan - files touched, pattern followed, uncertainties. State it, then proceed.
     - id: implement
-      description: Do the work.
+      description: Do the work. No confirmation gate - proceed directly from propose.
     - id: report
       description: Update PROGRESS.md before ending the session or moving to the next task.
 

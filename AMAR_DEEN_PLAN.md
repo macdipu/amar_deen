@@ -205,13 +205,14 @@ Do not introduce alternatives without flagging it as a decision request, not a s
 
 ## 6. Operating Rules (every session, no exceptions)
 
-### 6.1 Analysis-first, confirmation-gated workflow
-For every task:
+### 6.1 Analysis-first, autonomous workflow
+**Changed 2026-07-19 (Dipu's explicit instruction): the per-step confirmation gate between "propose" and "implement" is dropped.** For every task:
 1. **Analyze** — read the relevant existing code before touching anything. State what you found.
-2. **Propose** — short plan: files touched, pattern followed, uncertainties.
-3. **Confirm** — stop and ask before writing code, unless trivial (single file, <20 lines, no architectural decision). When in doubt, ask.
-4. **Implement.**
-5. **Report** — update `PROGRESS.md` before ending the session or moving to the next task.
+2. **Propose** — short plan: files touched, pattern followed, uncertainties. State it, then proceed — no stop-and-wait.
+3. **Implement.**
+4. **Report** — update `PROGRESS.md` before ending the session or moving to the next task.
+
+This doesn't relax `destructive_action_gate`/`git_safety` in `harness.yaml` (force-push, `reset --hard`, discarding uncommitted work, etc. still require confirmation) — those are a different risk category from "may I start implementing this task." Still ask (rather than guess) when genuinely blocked: missing information with no reasonable default, or a decision that's irreversibly the user's call (which epic/task to pick up next, or a fork with materially different tradeoffs and no clear best answer) — a narrow exception, not the default.
 
 ### 6.2 Architectural discipline
 - `presentation/` never imports from `data/` directly — always through `domain/` interfaces.
@@ -300,7 +301,7 @@ For every task:
 - [ ] Read `PROGRESS.md`
 - [ ] Read `DECISIONS.md`
 - [ ] State current Epic/Task being resumed
-- [ ] New task → Analyze → Propose → Confirm (Section 6.1) before writing code
+- [ ] New task → Analyze → Propose → Implement, no confirmation gate (Section 6.1)
 - [ ] End of session → update `PROGRESS.md`, commit, update `DECISIONS.md` if a new lock was made
 
 ---
