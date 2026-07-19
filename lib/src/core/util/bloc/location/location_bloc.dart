@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
-import 'package:geocoding/geocoding.dart';
+import 'package:geocoding/geocoding.dart' hide Geocoding;
+import 'package:geocoding/geocoding.dart' as geocoding_pkg show Geocoding;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../../../error/failures.dart';
@@ -106,7 +107,8 @@ class LocationBloc extends HydratedBloc<LocationEvent, LocationState> {
 
 Future<Placemark?> getAddressFromLatLng(double lat, double lng) async {
   try {
-    List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+    List<Placemark> placemarks =
+        await geocoding_pkg.Geocoding().placemarkFromCoordinates(lat, lng);
 
     if (placemarks.isNotEmpty) {
       return placemarks[0];
