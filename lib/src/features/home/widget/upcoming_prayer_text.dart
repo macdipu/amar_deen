@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../features/prayer_times/domain/entities/prayer_times_entity.dart';
 import '../../../core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
-import '../../../core/util/model/timing.dart';
 
 class _NextPrayerInfo {
   final String name;
@@ -38,14 +38,6 @@ class _UpcomingPrayerTextState extends State<UpcomingPrayerText> {
     super.dispose();
   }
 
-  static DateTime? _atToday(String hhmm, DateTime now) {
-    final parts = hhmm.split(':');
-    if (parts.length < 2) return null;
-    final h = int.tryParse(parts[0].trim()) ?? 0;
-    final m = int.tryParse(parts[1].trim().split(' ').first) ?? 0;
-    return DateTime(now.year, now.month, now.day, h, m);
-  }
-
   static String _formatDuration(Duration d) {
     if (d.isNegative) return '0 minutes';
     if (d.inMinutes < 1) return 'less than a minute';
@@ -61,9 +53,9 @@ class _UpcomingPrayerTextState extends State<UpcomingPrayerText> {
     return '$h ${h == 1 ? 'hour' : 'hours'} $mins ${mins == 1 ? 'minute' : 'minutes'}';
   }
 
-  static _NextPrayerInfo? _nextPrayer(Timings t) {
+  static _NextPrayerInfo? _nextPrayer(PrayerTimesEntity t) {
     final now = DateTime.now();
-    final items = <MapEntry<String, String>>[
+    final items = <MapEntry<String, DateTime>>[
       MapEntry('Fajr', t.fajr),
       MapEntry('Sunrise', t.sunrise),
       MapEntry('Dhuhr', t.dhuhr),
@@ -73,16 +65,13 @@ class _UpcomingPrayerTextState extends State<UpcomingPrayerText> {
     ];
 
     for (final e in items) {
-      final at = _atToday(e.value, now);
-      if (at != null && now.isBefore(at)) {
-        return _NextPrayerInfo(e.key, at.difference(now));
+      if (now.isBefore(e.value)) {
+        return _NextPrayerInfo(e.key, e.value.difference(now));
       }
     }
 
-    final fajr = _atToday(t.fajr, now);
-    if (fajr == null) return null;
-    final tomorrowFajr =
-        DateTime(now.year, now.month, now.day + 1, fajr.hour, fajr.minute);
+    final tomorrowFajr = DateTime(
+        now.year, now.month, now.day + 1, t.fajr.hour, t.fajr.minute);
     return _NextPrayerInfo('Fajr', tomorrowFajr.difference(now));
   }
 
@@ -95,7 +84,7 @@ class _UpcomingPrayerTextState extends State<UpcomingPrayerText> {
         if (state is! TimingLoaded) {
           return const SizedBox.shrink();
         }
-        final next = _nextPrayer(state.timing.data.timings);
+        final next = _nextPrayer(state.prayerTimes);
         if (next == null) {
           return const SizedBox.shrink();
         }

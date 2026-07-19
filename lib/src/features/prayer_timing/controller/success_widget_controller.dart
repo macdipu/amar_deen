@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hijri_calendar/hijri_calendar.dart';
+import 'package:intl/intl.dart';
 
+import '../../../../features/prayer_times/domain/entities/prayer_times_entity.dart';
+import '../../../core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
 import '../../../core/util/bloc/time_format/time_format_bloc.dart';
 import '../../../core/util/constants.dart';
 import '../../../core/util/controller/timing_controller.dart';
-import '../../../core/util/model/timing.dart';
 
 enum TimingProps {
   Fajr,
@@ -24,13 +27,13 @@ Map<TimingProps, String> backgroundAsset = {
 };
 
 class SuccessWidgetController {
-  final Timings timings;
+  final PrayerTimesEntity prayerTimes;
   final BuildContext context;
   late final int timingCount;
-  late final List<Map<String, String>> timingsList;
+  late final List<MapEntry<String, DateTime>> timingsList;
 
-  SuccessWidgetController(this.timings, this.context) {
-    final controller = TimingController(timings);
+  SuccessWidgetController(this.prayerTimes, this.context) {
+    final controller = TimingController(prayerTimes);
     timingCount = controller.timingCount;
     timingsList = controller.timingsList;
   }
@@ -52,8 +55,14 @@ class SuccessWidgetController {
     }
   }
 
-  String generateIslamicDate(Timing timing) {
-    return '${timing.data.date.hijri.day} ${timing.data.date.hijri.month.en} ${timing.data.date.hijri.year}';
+  /// Today's Hijri date, computed on-device via `hijri_calendar` (no
+  /// network) and shifted by the user's configured [hijriAdjustmentDays].
+  String generateIslamicDate() {
+    final hijriAdjustmentDays =
+        BlocProvider.of<PrayerTimeConfigBloc>(context).state.hijriAdjustmentDays;
+    final date = DateTime.now().add(Duration(days: hijriAdjustmentDays));
+    final hijri = HijriCalendarConfig.fromGregorian(date);
+    return '${hijri.hDay} ${hijri.getLongMonthName()} ${hijri.hYear}';
   }
 
   List<Widget> generateTimingList() {
@@ -76,7 +85,7 @@ class SuccessWidgetController {
           children: [
             Expanded(
               child: Text(
-                timingsList[index].entries.first.key,
+                timingsList[index].key,
                 textAlign: TextAlign.left,
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Colors.white,
@@ -88,9 +97,8 @@ class SuccessWidgetController {
                 builder: (context, state) {
                   return Text(
                     state.is24
-                        ? timingsList[index].entries.first.value
-                        : convertTimeTo12HourFormat(
-                            timingsList[index].entries.first.value),
+                        ? DateFormat('HH:mm').format(timingsList[index].value)
+                        : convertTimeTo12HourFormat(timingsList[index].value),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Colors.white,

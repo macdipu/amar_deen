@@ -5,19 +5,19 @@ abstract class PrayerTimeConfigEvent extends Equatable {
 }
 
 class SetPrayerTimeMethod extends PrayerTimeConfigEvent {
-  final PrayerTimeMethod method;
+  final PrayerCalculationMethod method;
   const SetPrayerTimeMethod(this.method);
 
   @override
   List<Object> get props => [method];
 }
 
-class SetPrayerTimeSchool extends PrayerTimeConfigEvent {
-  final PrayerTimeSchool school;
-  const SetPrayerTimeSchool(this.school);
+class SetPrayerTimeMadhab extends PrayerTimeConfigEvent {
+  final PrayerMadhab madhab;
+  const SetPrayerTimeMadhab(this.madhab);
 
   @override
-  List<Object> get props => [school];
+  List<Object> get props => [madhab];
 }
 
 class SetPrayerDayOffset extends PrayerTimeConfigEvent {
@@ -42,4 +42,3 @@ class ResetPrayerTimeConfig extends PrayerTimeConfigEvent {
   @override
   List<Object> get props => [];
 }
-

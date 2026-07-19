@@ -222,8 +222,17 @@ epics:
           (unavailable this session) - flagged as higher-risk than prior tasks since it's new
           computational logic, not a rewire.
       - id: TASK-010
-        status: todo
-        summary: Remove existing prayer-time API dependency entirely.
+        status: done
+        summary: >
+          Remove existing prayer-time API dependency entirely. Done 2026-07-19 - largest,
+          riskiest change of the session (18 files, several full rewrites, zero flutter
+          tooling to verify). Deleted the Aladhan-JSON Timing model + HTTP call entirely.
+          TimingBloc now uses TASK-009's GetPrayerTimes. Reconciled PrayerTimeConfigBloc onto
+          the domain's PrayerCalculationMethod/PrayerMadhab enums (was flagged as temporary
+          duplication in TASK-009). Hijri date display now computed on-device via the
+          already-present hijri_calendar package instead of the old API response. See
+          PROGRESS.md for full detail and the specific risk callouts - recommend this be the
+          first thing checked once Flutter tooling is available.
       - id: TASK-011
         status: todo
         summary: Prayer countdown + start/end time UI.

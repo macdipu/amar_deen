@@ -256,7 +256,7 @@ This doesn't relax `destructive_action_gate`/`git_safety` in `harness.yaml` (for
 
 ### EPIC 2 — Offline Prayer Core
 - [x] **TASK-009**: `PrayerRepository` interface + `adhan_dart`-backed impl in `features/prayer_times/`. **Done 2026-07-19** — repository built and DI-registered, deliberately not wired into `TimingBloc`/UI (that's TASK-010). Not verified by Flutter tooling this session — see `PROGRESS.md`.
-- [ ] **TASK-010**: Remove existing prayer-time API dependency entirely.
+- [x] **TASK-010**: Remove existing prayer-time API dependency entirely. **Done 2026-07-19** — largest unverified change this session (18 files); see `PROGRESS.md` for full detail and risk callouts before trusting this feature on a real device.
 - [ ] **TASK-011**: Prayer countdown + start/end time UI.
 - [ ] **TASK-012**: Voluntary prayer times (Duha, Ishraq, Tahajjud).
 - [ ] **TASK-013**: Azan alarm system — `flutter_local_notifications` scheduling, per-prayer toggle, exact-alarm/Doze handling.

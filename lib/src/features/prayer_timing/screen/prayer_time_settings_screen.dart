@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../features/prayer_times/domain/entities/prayer_calculation_method.dart';
 import '../../../core/util/bloc/location/location_bloc.dart';
 import '../../../core/util/bloc/notification/notification_bloc.dart';
 import '../../../core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
@@ -22,8 +23,8 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
       RequestTiming(
         notificationStatus,
         locationState,
-        config.method.id,
-        config.school.id,
+        config.method,
+        config.madhab,
         config.dayOffset,
         config.hijriAdjustmentDays,
       ),
@@ -45,10 +46,10 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
                 return Column(
                   children: [
                     SizedBox(height: 16.h),
-                    BottomSheetSelect<PrayerTimeMethod>(
+                    BottomSheetSelect<PrayerCalculationMethod>(
                       label: 'Calculation method',
                       value: state.method,
-                      options: PrayerTimeMethod.values,
+                      options: PrayerCalculationMethod.values,
                       optionLabelBuilder: (m) => m.label,
                       onChanged: (method) {
                         BlocProvider.of<PrayerTimeConfigBloc>(context)
@@ -57,14 +58,14 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
                       },
                     ),
                     const Divider(),
-                    BottomSheetSelect<PrayerTimeSchool>(
+                    BottomSheetSelect<PrayerMadhab>(
                       label: 'Asr school',
-                      value: state.school,
-                      options: PrayerTimeSchool.values,
+                      value: state.madhab,
+                      options: PrayerMadhab.values,
                       optionLabelBuilder: (s) => s.label,
-                      onChanged: (school) {
+                      onChanged: (madhab) {
                         BlocProvider.of<PrayerTimeConfigBloc>(context)
-                            .add(SetPrayerTimeSchool(school));
+                            .add(SetPrayerTimeMadhab(madhab));
                         _refreshTimings(context);
                       },
                     ),

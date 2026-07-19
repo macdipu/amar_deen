@@ -15,15 +15,10 @@ class KiblatCard extends StatelessWidget {
   static const _maghribIcon = 'assets/images/home_icon/svg/maghrib.png';
   static const _ishaIcon = 'assets/images/home_icon/svg/isha.png';
 
-  int _nextPrayerIndex(List<String> times) {
+  int _nextPrayerIndex(List<DateTime> times) {
     final now = DateTime.now();
     for (int i = 0; i < times.length; i++) {
-      final parts = times[i].split(':');
-      if (parts.length < 2) continue;
-      final hour = int.tryParse(parts[0]) ?? 0;
-      final min = int.tryParse(parts[1]) ?? 0;
-      final t = DateTime(now.year, now.month, now.day, hour, min);
-      if (now.isBefore(t)) return i;
+      if (now.isBefore(times[i])) return i;
     }
     return 0;
   }
@@ -46,14 +41,12 @@ class KiblatCard extends StatelessWidget {
         builder: (context, state) {
           if (state is TimingLoaded) {
             final items = [
-              _PrayerItem('Fazr', state.timing.data.timings.fajr, _fajrIcon),
-              _PrayerItem(
-                  'Sunrise', state.timing.data.timings.sunrise, _sunriseIcon),
-              _PrayerItem('Dhuhr', state.timing.data.timings.dhuhr, _dhuhrIcon),
-              _PrayerItem('Asr', state.timing.data.timings.asr, _asrIcon),
-              _PrayerItem(
-                  'Maghrib', state.timing.data.timings.maghrib, _maghribIcon),
-              _PrayerItem('Isha', state.timing.data.timings.isha, _ishaIcon),
+              _PrayerItem('Fazr', state.prayerTimes.fajr, _fajrIcon),
+              _PrayerItem('Sunrise', state.prayerTimes.sunrise, _sunriseIcon),
+              _PrayerItem('Dhuhr', state.prayerTimes.dhuhr, _dhuhrIcon),
+              _PrayerItem('Asr', state.prayerTimes.asr, _asrIcon),
+              _PrayerItem('Maghrib', state.prayerTimes.maghrib, _maghribIcon),
+              _PrayerItem('Isha', state.prayerTimes.isha, _ishaIcon),
             ];
 
             final nextIdx = _nextPrayerIndex(items.map((e) => e.time).toList());
@@ -81,7 +74,7 @@ class KiblatCard extends StatelessWidget {
 
 class _PrayerItem {
   final String title;
-  final String time;
+  final DateTime time;
   final String iconAsset;
   const _PrayerItem(this.title, this.time, this.iconAsset);
 }

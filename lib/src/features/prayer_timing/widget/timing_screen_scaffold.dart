@@ -31,7 +31,7 @@ class TimingScreenScaffold extends StatelessWidget {
             child: (state is TimingLoading)
                 ? LoadingWidget()
                 : (state is TimingLoaded)
-                    ? SuccessWidget(state.timing)
+                    ? SuccessWidget(state.prayerTimes)
                     : (state is TimingFailed)
                         ? SafeArea(
                             child: FailureWidget(

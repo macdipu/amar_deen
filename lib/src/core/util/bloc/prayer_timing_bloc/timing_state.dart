@@ -15,10 +15,10 @@ class TimingLoading extends TimingState {
 }
 
 class TimingLoaded extends TimingState {
-  final Timing timing;
-  TimingLoaded(this.timing);
+  final PrayerTimesEntity prayerTimes;
+  TimingLoaded(this.prayerTimes);
   @override
-  List<Object> get props => [timing];
+  List<Object> get props => [prayerTimes];
 }
 
 class TimingFailed extends TimingState {

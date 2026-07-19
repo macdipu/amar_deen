@@ -2,42 +2,56 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../core/util/controller/timing_controller.dart';
+import '../../../../../core/di/injection.dart';
+import '../../../../../features/prayer_times/domain/entities/prayer_calculation_method.dart';
+import '../../../../../features/prayer_times/domain/entities/prayer_times_entity.dart';
+import '../../../../../features/prayer_times/domain/usecases/get_prayer_times.dart';
 import '../../../error/failures.dart';
 import '../../../notification/notification_service.dart';
-import '../../model/timing.dart';
+import '../../controller/timing_controller.dart';
 import '../location/location_bloc.dart';
 
 part 'timing_event.dart';
 part 'timing_state.dart';
 
 class TimingBloc extends Bloc<TimingEvent, TimingState> {
-  /// storage for data to prevent unneccessary api call
-  Timing? _timing;
-  List<Map<String, Object>> _notificationList = [];
+  final GetPrayerTimes _getPrayerTimes;
+
+  /// storage for data to prevent unnecessary recomputation
+  PrayerTimesEntity? _prayerTimes;
+  List<MapEntry<String, DateTime>> _notificationList = [];
 
   /// constructor
-  TimingBloc() : super(TimingInitial()) {
+  TimingBloc({GetPrayerTimes? getPrayerTimes})
+      : _getPrayerTimes = getPrayerTimes ?? getIt<GetPrayerTimes>(),
+        super(TimingInitial()) {
     on<TimingEvent>((event, emit) async {
       if (event is RequestTiming) {
         emit(TimingLoading());
 
         if (!(event.locationState is LocationSuccess)) {
           emit(TimingFailed(event.locationState.failure!));
-        } else {
-          final result = await getPrayerTiming(
-            event.locationState.latitude,
-            event.locationState.longitude,
+          return;
+        }
+
+        try {
+          final baseDate = DateTime.now().add(
+            Duration(days: event.dayOffset),
+          );
+          final date = DateTime(baseDate.year, baseDate.month, baseDate.day);
+
+          final prayerTimes = _getPrayerTimes(
+            latitude: event.locationState.latitude,
+            longitude: event.locationState.longitude,
+            date: date,
             method: event.method,
-            school: event.school,
-            dayOffset: event.dayOffset,
-            hijriAdjustmentDays: event.hijriAdjustmentDays,
+            madhab: event.madhab,
           );
 
-          result.fold(
-            (failure) => emit(TimingFailed(failure)),
-            (timing) => emit(TimingLoaded(timing)),
-          );
+          _prayerTimes = prayerTimes;
+          emit(TimingLoaded(prayerTimes));
+        } catch (e) {
+          emit(TimingFailed(LocalFailure(message: e.toString(), error: 0)));
         }
       } else if (event is RequestTimingForTomorrow) {
         emit(TimingLoading());
@@ -47,33 +61,34 @@ class TimingBloc extends Bloc<TimingEvent, TimingState> {
           return;
         }
 
-        final result = await getPrayerTiming(
-          event.locationState.latitude,
-          event.locationState.longitude,
-          forTomorrow: true,
-          method: event.method,
-          school: event.school,
-          dayOffset: event.dayOffset,
-          hijriAdjustmentDays: event.hijriAdjustmentDays,
-        );
+        try {
+          final baseDate = DateTime.now().add(
+            Duration(days: event.dayOffset + 1),
+          );
+          final date = DateTime(baseDate.year, baseDate.month, baseDate.day);
 
-        if (result.isLeft()) {
-          emit(TimingFailed(result.fold((l) => l, (r) => throw StateError(''))));
-          return;
+          final prayerTimes = _getPrayerTimes(
+            latitude: event.locationState.latitude,
+            longitude: event.locationState.longitude,
+            date: date,
+            method: event.method,
+            madhab: event.madhab,
+          );
+
+          final controller = TimingController(prayerTimes);
+
+          _notificationList = await loadLocalNotification(controller.timingsList);
+
+          if (event.notificationEnabled == PermissionStatus.granted) {
+            await addToLocalNotification(_notificationList);
+          }
+
+          _prayerTimes = prayerTimes;
+
+          emit(TimingLoaded(prayerTimes));
+        } catch (e) {
+          emit(TimingFailed(LocalFailure(message: e.toString(), error: 0)));
         }
-
-        final timing = result.fold((l) => throw StateError(''), (r) => r);
-        final controller = TimingController(timing.data.timings);
-
-        _notificationList = await loadLocalNotification(controller.timingsList);
-
-        if (event.notificationEnabled == PermissionStatus.granted) {
-          await addToLocalNotification(_notificationList);
-        }
-
-        _timing = timing;
-
-        emit(TimingLoaded(timing));
       }
 
       /// when initialize app and toggle switch
@@ -88,17 +103,11 @@ class TimingBloc extends Bloc<TimingEvent, TimingState> {
         await NotificationService().cancelAllNotifications();
       }
 
-      /// if data is not yet outdated, we just update the data
-      /// to the new [dataCount] from [TimingController]
+      /// if data is not yet outdated, we just re-emit the cached
+      /// prayer times computed earlier
       else if (event is UpdateTiming) {
-        if (_timing != null) {
-          final Timing timing = Timing(
-            code: _timing!.code,
-            data: _timing!.data,
-            status: _timing!.status,
-          );
-
-          emit(TimingLoaded(timing));
+        if (_prayerTimes != null) {
+          emit(TimingLoaded(_prayerTimes!));
         }
       }
     });

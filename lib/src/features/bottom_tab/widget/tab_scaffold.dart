@@ -64,8 +64,8 @@ class _TabScaffoldState extends State<TabScaffold> {
       RequestTiming(
         BlocProvider.of<NotificationBloc>(context).state.status,
         BlocProvider.of<LocationBloc>(context).state,
-        prayerConfig.method.id,
-        prayerConfig.school.id,
+        prayerConfig.method,
+        prayerConfig.madhab,
         prayerConfig.dayOffset,
         prayerConfig.hijriAdjustmentDays,
       ),

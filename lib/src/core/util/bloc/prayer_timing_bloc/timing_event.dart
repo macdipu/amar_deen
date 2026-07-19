@@ -8,8 +8,8 @@ class RequestTiming extends TimingEvent {
   final LocationState locationState;
 
   final PermissionStatus notificationEnabled;
-  final int method;
-  final int school;
+  final PrayerCalculationMethod method;
+  final PrayerMadhab madhab;
   final int dayOffset;
   final int hijriAdjustmentDays;
 
@@ -17,7 +17,7 @@ class RequestTiming extends TimingEvent {
     this.notificationEnabled,
     this.locationState,
     this.method,
-    this.school,
+    this.madhab,
     this.dayOffset,
     this.hijriAdjustmentDays,
   );
@@ -27,7 +27,7 @@ class RequestTiming extends TimingEvent {
         notificationEnabled,
         locationState,
         method,
-        school,
+        madhab,
         dayOffset,
         hijriAdjustmentDays,
       ];
@@ -36,8 +36,8 @@ class RequestTiming extends TimingEvent {
 class RequestTimingForTomorrow extends TimingEvent {
   final LocationState locationState;
   final PermissionStatus notificationEnabled;
-  final int method;
-  final int school;
+  final PrayerCalculationMethod method;
+  final PrayerMadhab madhab;
   final int dayOffset;
   final int hijriAdjustmentDays;
 
@@ -45,7 +45,7 @@ class RequestTimingForTomorrow extends TimingEvent {
     this.notificationEnabled,
     this.locationState,
     this.method,
-    this.school,
+    this.madhab,
     this.dayOffset,
     this.hijriAdjustmentDays,
   );
@@ -55,7 +55,7 @@ class RequestTimingForTomorrow extends TimingEvent {
         notificationEnabled,
         locationState,
         method,
-        school,
+        madhab,
         dayOffset,
         hijriAdjustmentDays,
       ];
