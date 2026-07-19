@@ -50,11 +50,15 @@ class NotificationPermissionScreen extends StatelessWidget {
               ),
               CustomElevatedButton(
                 onPressed: () async {
-                  if (await Permission.notification.request().isGranted) {
-                    context.pushReplacement(AppRoutes.tabScreen);
-                  } else {
-                    context.pushReplacement(AppRoutes.tabScreen);
-                  }
+                  await Permission.notification.request();
+                  // Android 12+'s "Alarms & reminders" permission - lets Azan
+                  // notifications fire at the exact prayer time rather than
+                  // being delayed by the system. Requested here (once, during
+                  // onboarding) rather than each time a notification is
+                  // scheduled, since granting it opens a system Settings
+                  // screen rather than an in-app dialog.
+                  await Permission.scheduleExactAlarm.request();
+                  context.pushReplacement(AppRoutes.tabScreen);
                 },
                 text: 'Sure, I like that',
               ),

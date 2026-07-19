@@ -33,45 +33,7 @@ class RequestTiming extends TimingEvent {
       ];
 }
 
-class RequestTimingForTomorrow extends TimingEvent {
-  final LocationState locationState;
-  final PermissionStatus notificationEnabled;
-  final PrayerCalculationMethod method;
-  final PrayerMadhab madhab;
-  final int dayOffset;
-  final int hijriAdjustmentDays;
-
-  const RequestTimingForTomorrow(
-    this.notificationEnabled,
-    this.locationState,
-    this.method,
-    this.madhab,
-    this.dayOffset,
-    this.hijriAdjustmentDays,
-  );
-
-  @override
-  List<Object> get props => [
-        notificationEnabled,
-        locationState,
-        method,
-        madhab,
-        dayOffset,
-        hijriAdjustmentDays,
-      ];
-}
-
 class UpdateTiming extends TimingEvent {
-  @override
-  List<Object> get props => [];
-}
-
-class PushNotification extends TimingEvent {
-  @override
-  List<Object> get props => [];
-}
-
-class CancelNotification extends TimingEvent {
   @override
   List<Object> get props => [];
 }

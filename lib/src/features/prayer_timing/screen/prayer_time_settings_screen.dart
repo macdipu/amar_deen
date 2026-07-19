@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../features/prayer_times/domain/entities/prayer_calculation_method.dart';
+import '../../../../features/prayer_times/presentation/bloc/azan_settings_bloc/azan_settings_bloc.dart';
 import '../../../core/util/bloc/location/location_bloc.dart';
 import '../../../core/util/bloc/notification/notification_bloc.dart';
 import '../../../core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
 import '../../../core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
 import '../../../core/util/constants.dart';
+import '../../../core/util/controller/notification_controller.dart';
 import '../../utils/bottom_sheet_select.dart';
 
 class PrayerTimeSettingsScreen extends StatelessWidget {
@@ -107,6 +109,35 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16.h),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Azan reminders',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    BlocBuilder<AzanSettingsBloc, AzanSettingsState>(
+                      builder: (context, azanState) {
+                        return Column(
+                          children: [
+                            for (final prayer in kAzanPrayerNames)
+                              _AzanToggleRow(
+                                prayer: prayer,
+                                enabled: azanState.isEnabled(prayer),
+                                onChanged: (_) {
+                                  BlocProvider.of<AzanSettingsBloc>(context)
+                                      .add(ToggleAzan(prayer));
+                                  rescheduleAzans(context);
+                                },
+                              ),
+                          ],
+                        );
+                      },
+                    ),
+                    SizedBox(height: 16.h),
                   ],
                 );
               },
@@ -114,6 +145,35 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _AzanToggleRow extends StatelessWidget {
+  const _AzanToggleRow({
+    required this.prayer,
+    required this.enabled,
+    required this.onChanged,
+  });
+
+  final String prayer;
+  final bool enabled;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          prayer,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        Switch(
+          value: enabled,
+          onChanged: onChanged,
+        ),
+      ],
     );
   }
 }

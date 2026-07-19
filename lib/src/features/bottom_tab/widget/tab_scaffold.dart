@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../core/util/bloc/location/location_bloc.dart';
 import '../../../core/util/bloc/notification/notification_bloc.dart';
@@ -9,6 +10,7 @@ import '../../../core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart'
 import '../../../core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
 import '../../../core/util/bloc/quran_audio/quran_audio_bloc.dart';
 import '../../../core/util/constants.dart';
+import '../../../core/util/controller/notification_controller.dart';
 import '../../utils/loading_widget.dart';
 import '../bloc/tab/tab_bloc.dart';
 import 'sirat_bottom_tab.dart';
@@ -76,7 +78,14 @@ class _TabScaffoldState extends State<TabScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TimingBloc, TimingState>(
+    return BlocConsumer<TimingBloc, TimingState>(
+      listener: (context, state) {
+        if (state is TimingLoaded &&
+            BlocProvider.of<NotificationBloc>(context).state.status ==
+                PermissionStatus.granted) {
+          rescheduleAzans(context);
+        }
+      },
       builder: (context, state) {
         if (state is TimingLoading) {
           return Scaffold(

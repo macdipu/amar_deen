@@ -107,8 +107,18 @@ class NotificationService {
     await flutterLocalNotificationsPlugin.cancelAll();
   }
 
-  /// notification for prayer timing notification. Called when user request new
-  /// prayer timing from api
+  /// Schedules a one-shot Azan/prayer-timing notification at [duration]
+  /// from now, using an exact alarm that still fires during Doze
+  /// (`exactAllowWhileIdle`). Deliberately one-shot, not a daily-repeating
+  /// alarm (no `matchDateTimeComponents`) - prayer times shift by roughly a
+  /// minute a day, so a fixed daily repeat would slowly drift out of sync.
+  /// Callers are expected to reschedule (see `AzanSchedulerService`)
+  /// whenever fresh prayer times are loaded.
+  ///
+  /// NOTE: `slow_spring_board` is the placeholder sound bundled with this
+  /// fork (from the flutter_local_notifications example project) - it is
+  /// not an actual Azan recording. Swap the raw resource / iOS sound file
+  /// for a real Azan audio asset before shipping.
   Future<void> showPrayerNotification(
       {required int id,
       required String title,
@@ -148,11 +158,7 @@ class NotificationService {
         body: body,
       scheduledDate:   tz.TZDateTime.now(tz.local).add(duration),
         notificationDetails: platformChannelSpecifics,
-        // uiLocalNotificationDateInterpretation:
-        //     UILocalNotificationDateInterpretation.absoluteTime,
-        // androidAllowWhileIdle: true,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        matchDateTimeComponents: DateTimeComponents.time,
         payload: '');
   }
 

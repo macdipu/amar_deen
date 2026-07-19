@@ -256,8 +256,19 @@ epics:
           want to review. New route + home-screen entry point added. Not verified by
           flutter tooling (unavailable this session).
       - id: TASK-013
-        status: todo
-        summary: Azan alarm system - flutter_local_notifications scheduling, per-prayer toggle, exact-alarm/Doze handling.
+        status: done
+        summary: >
+          Azan alarm system. Done 2026-07-19. Found the pre-existing scheduling code was
+          dead (RequestTimingForTomorrow never dispatched) - rebuilt via new
+          AzanSchedulerService (lib/core/notifications/, one-shot exact alarms, not
+          daily-repeat) + AzanSettingsBloc (per-prayer toggle) + BlocConsumer wiring in
+          tab_scaffold.dart. Added missing Android manifest permissions
+          (POST_NOTIFICATIONS/SCHEDULE_EXACT_ALARM/RECEIVE_BOOT_COMPLETED/VIBRATE) and an
+          exact-alarm permission request during onboarding. KNOWN GAP: no real Azan audio
+          file exists in the repo - still uses the flutter_local_notifications example
+          project's placeholder sound, clearly flagged in code and PROGRESS.md. Needs
+          real-device verification more than any prior task (permission dialogs, Doze,
+          reboot survival can't be confirmed by reading code).
       - id: TASK-014
         status: todo
         summary: Airplane-mode manual verification, logged in PROGRESS.md.

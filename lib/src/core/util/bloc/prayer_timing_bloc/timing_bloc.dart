@@ -7,8 +7,6 @@ import '../../../../../features/prayer_times/domain/entities/prayer_calculation_
 import '../../../../../features/prayer_times/domain/entities/prayer_times_entity.dart';
 import '../../../../../features/prayer_times/domain/usecases/get_prayer_times.dart';
 import '../../../error/failures.dart';
-import '../../../notification/notification_service.dart';
-import '../../controller/timing_controller.dart';
 import '../location/location_bloc.dart';
 
 part 'timing_event.dart';
@@ -19,7 +17,6 @@ class TimingBloc extends Bloc<TimingEvent, TimingState> {
 
   /// storage for data to prevent unnecessary recomputation
   PrayerTimesEntity? _prayerTimes;
-  List<MapEntry<String, DateTime>> _notificationList = [];
 
   /// constructor
   TimingBloc({GetPrayerTimes? getPrayerTimes})
@@ -53,54 +50,6 @@ class TimingBloc extends Bloc<TimingEvent, TimingState> {
         } catch (e) {
           emit(TimingFailed(LocalFailure(message: e.toString(), error: 0)));
         }
-      } else if (event is RequestTimingForTomorrow) {
-        emit(TimingLoading());
-
-        if (!(event.locationState is LocationSuccess)) {
-          emit(TimingFailed(event.locationState.failure!));
-          return;
-        }
-
-        try {
-          final baseDate = DateTime.now().add(
-            Duration(days: event.dayOffset + 1),
-          );
-          final date = DateTime(baseDate.year, baseDate.month, baseDate.day);
-
-          final prayerTimes = _getPrayerTimes(
-            latitude: event.locationState.latitude,
-            longitude: event.locationState.longitude,
-            date: date,
-            method: event.method,
-            madhab: event.madhab,
-          );
-
-          final controller = TimingController(prayerTimes);
-
-          _notificationList = await loadLocalNotification(controller.timingsList);
-
-          if (event.notificationEnabled == PermissionStatus.granted) {
-            await addToLocalNotification(_notificationList);
-          }
-
-          _prayerTimes = prayerTimes;
-
-          emit(TimingLoaded(prayerTimes));
-        } catch (e) {
-          emit(TimingFailed(LocalFailure(message: e.toString(), error: 0)));
-        }
-      }
-
-      /// when initialize app and toggle switch
-      ///
-      else if (event is PushNotification) {
-        await addToLocalNotification(_notificationList);
-      }
-
-      /// cancel all notification when toggle switch
-      ///
-      else if (event is CancelNotification) {
-        await NotificationService().cancelAllNotifications();
       }
 
       /// if data is not yet outdated, we just re-emit the cached

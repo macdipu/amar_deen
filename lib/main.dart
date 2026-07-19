@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'core/di/injection.dart';
 import 'core/routing/app_router.dart';
 import 'core/theme/theme_bloc/theme_bloc.dart';
+import 'features/prayer_times/presentation/bloc/azan_settings_bloc/azan_settings_bloc.dart';
 import 'src/core/notification/notification_service.dart';
 import 'src/core/util/bloc/allah_names/allah_name_bloc.dart';
 import 'src/core/util/bloc/database/database_bloc.dart';
@@ -59,6 +60,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => PrayerTimeConfigBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AzanSettingsBloc(),
         ),
         BlocProvider(
           create: (context) => AllahNameBloc(),

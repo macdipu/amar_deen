@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../core/notification/notification_service.dart';
 import '../../../core/util/bloc/location/location_bloc.dart';
 import '../../../core/util/bloc/notification/notification_bloc.dart';
 import '../../../core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
@@ -51,9 +52,9 @@ class _TabScreenState extends State<TabScreen> with WidgetsBindingObserver {
         Future.delayed(Duration(milliseconds: 500), () {
           if (BlocProvider.of<NotificationBloc>(context).state.status ==
               PermissionStatus.granted) {
-            BlocProvider.of<TimingBloc>(context).add(PushNotification());
+            rescheduleAzans(context);
           } else {
-            BlocProvider.of<TimingBloc>(context).add(CancelNotification());
+            NotificationService().cancelAllNotifications();
           }
         });
       }

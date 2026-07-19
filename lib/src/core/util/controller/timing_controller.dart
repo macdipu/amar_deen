@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
 import '../../../../features/prayer_times/domain/entities/prayer_times_entity.dart';
-import '../../notification/notification_service.dart';
 
 /// Orders a day's [PrayerTimesEntity] into (prayer name, time) pairs and
 /// finds which prayer is current/next, for UI highlighting and notification
@@ -74,40 +73,3 @@ class TimingController {
 
 String convertTimeTo12HourFormat(DateTime time) =>
     DateFormat('h:mm a').format(time);
-
-Future<List<Map<String, Object>>> loadLocalNotification(
-  List<MapEntry<String, DateTime>> timingsList,
-) async {
-  final now = DateTime.now();
-  final List<Map<String, Object>> notificationList = [];
-
-  for (var i = 0; i < timingsList.length; i++) {
-    var target = timingsList[i].value;
-    if (!target.isAfter(now)) {
-      target = target.add(const Duration(days: 1));
-    }
-
-    notificationList.add({
-      'id': i,
-      'title': timingsList[i].key,
-      'body': 'The next prayer time is now.',
-      'duration': target.difference(now),
-    });
-  }
-
-  return notificationList;
-}
-
-Future<void> addToLocalNotification(
-    List<Map<String, Object>> notifications) async {
-  await NotificationService().cancelAllNotifications();
-
-  await Future.forEach(notifications, (Map<String, Object> notification) async {
-    await NotificationService().showPrayerNotification(
-      id: notification['id'] as int,
-      title: notification['title'].toString(),
-      body: notification['body'].toString(),
-      duration: notification['duration'] as Duration,
-    );
-  });
-}

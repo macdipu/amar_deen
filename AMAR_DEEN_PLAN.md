@@ -259,7 +259,7 @@ This doesn't relax `destructive_action_gate`/`git_safety` in `harness.yaml` (for
 - [x] **TASK-010**: Remove existing prayer-time API dependency entirely. **Done 2026-07-19** — largest unverified change this session (18 files); see `PROGRESS.md` for full detail and risk callouts before trusting this feature on a real device.
 - [x] **TASK-011**: Prayer countdown + start/end time UI. **Done 2026-07-19** — countdown already existed pre-session; added the missing start/end window display to the Prayer Timing screen. See `PROGRESS.md`.
 - [x] **TASK-012**: Voluntary prayer times (Duha, Ishraq, Tahajjud). **Done 2026-07-19** — fully new feature in `features/prayer_times/`. Ishraq/Duha minute offsets are a content-precision judgment call worth a second look — see `PROGRESS.md`.
-- [ ] **TASK-013**: Azan alarm system — `flutter_local_notifications` scheduling, per-prayer toggle, exact-alarm/Doze handling.
+- [x] **TASK-013**: Azan alarm system — `flutter_local_notifications` scheduling, per-prayer toggle, exact-alarm/Doze handling. **Done 2026-07-19** — found the pre-existing scheduling path was dead code and rebuilt it. **Known gap: no real Azan audio file exists yet**, still uses a placeholder sound — needs Dipu to supply one. See `PROGRESS.md`.
 - [ ] **TASK-014**: Airplane-mode manual verification, logged in `PROGRESS.md`.
 
 ### EPIC 3 — Worship Essentials
