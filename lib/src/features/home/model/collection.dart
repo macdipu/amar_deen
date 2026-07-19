@@ -45,6 +45,11 @@ List<Collection> collections = [
     AppRoutes.prayerTimingPage,
   ),
   Collection(
+    'assets/images/collection_icon/svg/prayer_time_1.svg',
+    'Voluntary Prayers',
+    AppRoutes.voluntaryPrayers,
+  ),
+  Collection(
     'assets/images/collection_icon/svg/kiblat.svg',
     'Qabah Direction',
     AppRoutes.qibla,

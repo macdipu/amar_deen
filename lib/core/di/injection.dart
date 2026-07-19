@@ -4,6 +4,7 @@ import '../../features/prayer_times/data/datasources/adhan_local_data_source.dar
 import '../../features/prayer_times/data/repositories/prayer_times_repository_impl.dart';
 import '../../features/prayer_times/domain/repositories/prayer_times_repository.dart';
 import '../../features/prayer_times/domain/usecases/get_prayer_times.dart';
+import '../../features/prayer_times/domain/usecases/get_voluntary_prayer_times.dart';
 import '../../features/qibla/data/datasources/qiblah_local_data_source.dart';
 import '../../features/qibla/data/repositories/qibla_repository_impl.dart';
 import '../../features/qibla/domain/repositories/qibla_repository.dart';
@@ -39,5 +40,8 @@ void configureDependencies() {
   );
   getIt.registerFactory<GetPrayerTimes>(
     () => GetPrayerTimes(getIt()),
+  );
+  getIt.registerFactory<GetVoluntaryPrayerTimes>(
+    () => GetVoluntaryPrayerTimes(getIt()),
   );
 }

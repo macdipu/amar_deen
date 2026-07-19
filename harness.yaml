@@ -245,8 +245,16 @@ epics:
           home/bloc/timer_bloc/ (unreferenced, has its own bug) - flagged for cleanup, not
           fixed. Not verified by flutter tooling (unavailable this session).
       - id: TASK-012
-        status: todo
-        summary: Voluntary prayer times (Duha, Ishraq, Tahajjud).
+        status: done
+        summary: >
+          Voluntary prayer times (Duha, Ishraq, Tahajjud). Done 2026-07-19 - fully new
+          feature built in lib/features/prayer_times/{domain,data,presentation}/, first real
+          use of the presentation/ layer there. Tahajjud uses adhan_dart's SunnahTimes
+          (verified against the package's actual GitHub source, not just docs). Ishraq/Duha
+          use commonly-cited minute-offset conventions since adhan_dart has no built-in
+          value for them - flagged in PROGRESS.md as a content-precision choice Dipu may
+          want to review. New route + home-screen entry point added. Not verified by
+          flutter tooling (unavailable this session).
       - id: TASK-013
         status: todo
         summary: Azan alarm system - flutter_local_notifications scheduling, per-prayer toggle, exact-alarm/Doze handling.

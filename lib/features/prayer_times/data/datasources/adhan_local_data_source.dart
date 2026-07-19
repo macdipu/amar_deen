@@ -14,6 +14,21 @@ abstract class AdhanLocalDataSource {
     required PrayerCalculationMethod method,
     required PrayerMadhab madhab,
   });
+
+  /// [PrayerTimes] plus its [SunnahTimes] (middle/last third of the
+  /// night) and the *next* day's Fajr - `SunnahTimes` internally computes
+  /// tomorrow's Fajr to find "night" duration (Maghrib tonight to Fajr
+  /// tomorrow) but doesn't expose it, and callers need it separately as
+  /// the end of the Tahajjud window (today's Fajr has already passed by
+  /// the time the last third of the night begins).
+  ({PrayerTimes prayerTimes, SunnahTimes sunnahTimes, DateTime nextDayFajr})
+      getVoluntaryTimes({
+    required double latitude,
+    required double longitude,
+    required DateTime date,
+    required PrayerCalculationMethod method,
+    required PrayerMadhab madhab,
+  });
 }
 
 @LazySingleton(as: AdhanLocalDataSource)
@@ -36,6 +51,37 @@ class AdhanLocalDataSourceImpl implements AdhanLocalDataSource {
       date: date,
       calculationParameters: calculationParameters,
       precision: true,
+    );
+  }
+
+  @override
+  ({PrayerTimes prayerTimes, SunnahTimes sunnahTimes, DateTime nextDayFajr})
+      getVoluntaryTimes({
+    required double latitude,
+    required double longitude,
+    required DateTime date,
+    required PrayerCalculationMethod method,
+    required PrayerMadhab madhab,
+  }) {
+    final prayerTimes = getPrayerTimes(
+      latitude: latitude,
+      longitude: longitude,
+      date: date,
+      method: method,
+      madhab: madhab,
+    );
+    final nextDayPrayerTimes = getPrayerTimes(
+      latitude: latitude,
+      longitude: longitude,
+      date: date.add(const Duration(days: 1)),
+      method: method,
+      madhab: madhab,
+    );
+
+    return (
+      prayerTimes: prayerTimes,
+      sunnahTimes: SunnahTimes(prayerTimes),
+      nextDayFajr: nextDayPrayerTimes.fajr,
     );
   }
 

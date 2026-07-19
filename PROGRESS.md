@@ -4,7 +4,7 @@ See `harness.yaml` for the machine-readable operating config (workflow gates, st
 
 ## Current status
 Active epic: EPIC 2 — Offline Prayer Core (Epic 1 fully closed 2026-07-19)
-Active task: TASK-011 — done 2026-07-19 (Dipu said "continue with TASK-011")
+Active task: TASK-012 — done 2026-07-19 (Dipu said "continue with TASK-012")
 Blocked on: nothing new (same standing tooling-verification gap, unchanged since TASK-010 — see below)
 
 ## Completed
@@ -99,11 +99,22 @@ Blocked on: nothing new (same standing tooling-verification gap, unchanged since
   - Small, focused diff (3 files) compared to TASK-010, since most of the underlying data plumbing (real `DateTime`s, `TimingController`) was already in place from that task.
   - Not verified by `flutter analyze`/a run — same standing gap as every task this session.
 
+- [x] TASK-012: Voluntary prayer times (Duha, Ishraq, Tahajjud) — 2026-07-19.
+  - **Fully new feature, no legacy code to preserve/port** — unlike TASK-007 (Qibla) or TASK-010, there's nothing old to keep running side-by-side. Built entirely in `lib/features/prayer_times/{domain,data,presentation}/` from the start, `presentation/` layer used for the first time in this feature (previously only `.gitkeep`-placeholder).
+  - **Domain**: `VoluntaryPrayerTimesEntity` (ishraq, duhaStart/duhaEnd, tahajjudStart/tahajjudEnd). Extended `PrayerTimesRepository` with `getVoluntaryPrayerTimes(...)` and added the `GetVoluntaryPrayerTimes` use case, following the exact pattern from TASK-009.
+  - **Data**: researched `adhan_dart`'s actual source (not just docs, which didn't specify the internals) to get `SunnahTimes` right — fetched `SunnahTimes.dart` from the package's GitHub repo directly. Confirmed `SunnahTimes(PrayerTimes prayerTimes)` internally computes the *next* day's Fajr itself (night = today's Maghrib to tomorrow's Fajr) but doesn't expose that value. **Caught and fixed a bug in my own first draft before committing it**: I initially set `tahajjudEnd: prayerTimes.fajr` (today's *already-passed* Fajr) instead of tomorrow's — would have produced a nonsensical/backwards-looking end time. Fixed by having `AdhanLocalDataSource.getVoluntaryTimes` also compute and return `nextDayFajr` explicitly (a Dart 3 record type: `({PrayerTimes prayerTimes, SunnahTimes sunnahTimes, DateTime nextDayFajr})`).
+  - **Formula transparency for Ishraq/Duha** (documented in code, not just here): unlike the 5 obligatory prayers or Tahajjud (both computed by `adhan_dart` itself), Ishraq and Duha have no single calculation-engine-provided value — different apps/scholars use slightly different minute offsets. Used commonly-cited defaults: Ishraq = sunrise + 20 min; Duha window = [Ishraq, Dhuhr − 10 min] (buffering before Zawal/solar noon, a traditionally forbidden prayer time). **Flagging for Dipu**: these exact offsets are a content-precision judgment call, not a hard requirement from the BRD — adjust in `PrayerTimesRepositoryImpl.getVoluntaryPrayerTimes` if a different convention is preferred.
+  - **Presentation**: `VoluntaryPrayerBloc` (mirrors `TimingBloc`'s request/loading/loaded/failed shape), `VoluntaryPrayerScreen`/`VoluntaryPrayerScaffold` (mirrors `QiblaScreen`/`QiblaScaffold`'s thin-screen + stateful-scaffold split), `VoluntaryPrayerCard` (reusable, single start time or start–end range, respects the existing 12h/24h `TimeFormatBloc` toggle).
+  - **Routing/discovery**: new `AppRoutes.voluntaryPrayers` route in `core/routing/app_router.dart`; new home-screen entry in `lib/src/features/home/model/collection.dart` ("Voluntary Prayers", reusing the already-bundled-but-previously-unused `prayer_time_1.svg` icon rather than inventing a new asset).
+  - All new classes annotated (`@LazySingleton`/`@injectable`) and registered in `core/di/injection.dart`, same manual-registration-pending-build_runner pattern as every other feature this session.
+  - Not verified by `flutter analyze`/a run — same standing gap. This task has real formula/domain-knowledge risk (the Ishraq/Duha offsets) on top of the usual compile risk, so worth a second look from Dipu specifically on the minute values chosen, independent of whether the code compiles.
+
 ## Up next
-- **Priority, still urgent**: get this session's entire cumulative unverified work in front of a real `flutter pub get` / `flutter analyze` / `flutter run` before any further tasks stack on top. Seven tasks deep (005 through 011) with zero compiler feedback the whole way. Recommend Dipu treat this as the next action regardless of what task would otherwise be "next per priority order."
+- **Priority, still urgent**: get this session's entire cumulative unverified work in front of a real `flutter pub get` / `flutter analyze` / `flutter run` before any further tasks stack on top. Eight tasks deep (005 through 012) with zero compiler feedback the whole way. Recommend Dipu treat this as the next action regardless of what task would otherwise be "next per priority order."
 - Once verified: run `build_runner`, wire `@InjectableInit()`, replace `configureDependencies()`'s manual body with `getIt.init()`, and delete `lib/src/features/qibla/` (legacy, unreferenced — see TASK-007 note above).
 - Optional cleanup (not urgent, flagged not actioned): delete the dead `lib/src/features/home/bloc/timer_bloc/` (`TimerBloc`) found during TASK-011 — unreferenced, superseded, and has its own pre-existing bug (see TASK-011 note above).
-- TASK-012 (voluntary prayer times — Duha, Ishraq, Tahajjud) is next per strict priority order.
+- Confirm with Dipu whether the Ishraq/Duha minute offsets chosen in TASK-012 match the convention wanted (see note above) - easy to adjust, just needs a decision.
+- TASK-013 (Azan alarm system — `flutter_local_notifications` scheduling, per-prayer toggle, exact-alarm/Doze handling) is next per strict priority order.
 
 ## Notes for next session
 - `getAddress()` in `location_controller.dart` (the Google Maps HTTP reverse-geocode path, as opposed to `getAddressFromLatLng()` in `location_bloc.dart` which uses the on-device `geocoding` plugin and needs no API key) is currently **dead code** — nothing in `lib/` calls it. Worth flagging for Epic 2/6: it's also a live network call to Google, which conflicts with the offline-first constraint. Decide then whether to delete it or wire it in as an optional online enhancement.
