@@ -223,27 +223,78 @@ Does this exist already? Can it be reused / moved to `core/` / made generic? Doe
 * ✅ `devAutoFill`-style code wrapped in `assert()`
 * ✅ No unnecessary dependencies
 * ✅ `flutter analyze` clean
+* ✅ `memory.md` updated — progress logged and a checkpoint written before the session/limit ended (see §18)
 
 ---
 
 # 18. Session Memory (`memory.md`)
 
-Maintain `memory.md` at repo root (`user_app/memory.md`). Log every session's tasks, phases, plans.
+Maintain `memory.md` at repo root (`user_app/memory.md`). It is the **single source of truth for what has been done and what a resuming agent must pick up.** Treat it as a *live work log*, not an end-of-session summary. Assume the current agent may be cut off at any time — write so a brand-new agent with zero memory can resume from `memory.md` + the repo alone.
 
-Per session entry, append (never overwrite):
+## 18.1 Log every action as you go
+
+Do **not** wait until the end of the session. Append a log line the moment you:
+* start a task or sub-task
+* finish a task or sub-task
+* create / rename / move / delete a file
+* make an architectural, naming, or dependency decision (log **why**)
+* hit a blocker, error, failing test, or open question
+* change or reorder the agreed plan
+
+Keep each line terse — one bullet, intent + outcome, not diffs (git log already has diffs).
+
+## 18.2 Session entry format
+
 ```
 ## YYYY-MM-DD — <short session title>
-**Task:** what asked
+**Task:** what was asked
 **Phase:** where in build order / feature lifecycle
 **Plan:** steps agreed/taken
 **Status:** done / in-progress / blocked
 **Notes:** decisions, gotchas, follow-ups
 ```
 
-Rules:
-* Append-only, newest entry at bottom (chronological).
-* Update at session start (log task/plan) and session end (log status/outcome).
-* Do not duplicate what's derivable from git log — log intent/decisions, not diffs.
+Under each session, keep a running **Progress** log — appended live as work happens:
+```
+### Progress (append-only, timestamped)
+- HH:MM start:    <task / sub-task>
+- HH:MM done:     <what changed> (<files touched>)
+- HH:MM decision: <choice> — <reason>
+- HH:MM blocked:  <what> — <why> — <what would unblock it>
+```
+
+## 18.3 Checkpoint BEFORE the limit ends
+
+The agent **MUST flush a checkpoint to `memory.md` before it runs out of context / token budget — never after, never at the very last moment.** Losing in-progress state is the failure this rule exists to prevent.
+
+Write a checkpoint as soon as **any** of these is true:
+* context / token budget is running low (write it while there is still comfortable room to write it fully)
+* you are about to hand off to a fresh agent
+* a long task is only partially complete
+* you're about to run a large/expensive operation that could exhaust the remaining budget
+
+Checkpoint format — append a `⏸ CHECKPOINT` block to the current session:
+```
+### ⏸ CHECKPOINT — YYYY-MM-DD HH:MM
+**Done so far:**   <bullets of completed work>
+**In progress:**   <exact task + current file:line, or "step N of M">
+**Next steps:**    <ordered & resumable — the first action a fresh agent should take>
+**Do NOT redo:**   <already-completed work, so a resuming agent won't duplicate it>
+**Blockers / open questions:** <...>
+**Key context:**   <branch, feature name, endpoints, decisions — anything not obvious from git>
+```
+
+Checkpoint rules:
+* Write enough that a brand-new agent can resume with **no** prior memory.
+* Prefer over-checkpointing to losing work — a slightly redundant checkpoint is cheap; a lost hour is not.
+* **On resume:** read the latest `⏸ CHECKPOINT` first, continue from **Next steps**, and convert checkpoint items into normal Progress lines as you complete them.
+* When the task the checkpoint covered is fully finished, mark it: `✅ RESUMED & COMPLETED — <date HH:MM>`.
+
+## 18.4 General rules
+
+* **Append-only**, newest entry at bottom (chronological). Never overwrite history.
+* Update `memory.md` at **four** moments: session **start** (task/plan) → **continuously** (progress) → **before any limit/handoff** (checkpoint) → session **end** (status/outcome).
+* Do not duplicate what's derivable from git log — log **intent and decisions**, not diffs.
 * Keep entries terse — bullet points, not prose.
 
 ---
@@ -257,3 +308,5 @@ Rules:
 **UI** — No hardcoded colors/spacing/typography. Always support Light & Dark. Keep UI consistent.
 
 **Code Quality** — Clean, readable, small methods, no dead code, no duplication, production-ready.
+
+**Continuity** — Log every action to `memory.md` as you go. Checkpoint *before* the context/token limit ends, never after — a resuming agent must be able to continue from `memory.md` + the repo alone.
