@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../../../core/di/injection.dart';
 import '../../../../../src/core/error/failures.dart';
 import '../../../../../src/core/util/bloc/location/location_bloc.dart';
-import '../../../data/datasources/qiblah_local_data_source.dart';
-import '../../../data/repositories/qibla_repository_impl.dart';
 import '../../../domain/entities/qiblah_direction_entity.dart';
 import '../../../domain/usecases/watch_qiblah_direction.dart';
 
@@ -15,10 +14,8 @@ class QiblaBloc extends Bloc<QiblaEvent, QiblaState> {
   final WatchQiblahDirection watchQiblahDirection;
 
   QiblaBloc({WatchQiblahDirection? watchQiblahDirection})
-      : watchQiblahDirection = watchQiblahDirection ??
-            WatchQiblahDirection(
-              const QiblaRepositoryImpl(QiblaLocalDataSourceImpl()),
-            ),
+      : watchQiblahDirection =
+            watchQiblahDirection ?? getIt<WatchQiblahDirection>(),
         super(QiblaInitial()) {
     on<QiblaEvent>((event, emit) async {
       if (event is RequestQiblahDirection) {

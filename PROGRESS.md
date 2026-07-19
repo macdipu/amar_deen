@@ -4,8 +4,8 @@ See `harness.yaml` for the machine-readable operating config (workflow gates, st
 
 ## Current status
 Active epic: EPIC 1 — Architecture Scaffold
-Active task: TASK-007 — done 2026-07-19 (Dipu asked to finish the Qibla folder move)
-Blocked on: nothing (see legacy-cleanup note below — one non-blocking follow-up)
+Active task: TASK-005 — done 2026-07-19 (Dipu picked this over TASK-006/TASK-008)
+Blocked on: nothing (see legacy-cleanup + injectable-codegen notes below — non-blocking follow-ups)
 
 ## Completed
 - [x] Repo git-initialized, baseline commit taken (pre-migration snapshot) — 2026-07-19
@@ -41,10 +41,18 @@ Blocked on: nothing (see legacy-cleanup note below — one non-blocking follow-u
   - `lib/routes/routes.dart` cut over to import the new `presentation/screen/qibla_screen.dart`.
   - **Old `lib/src/features/qibla/` intentionally left in place, not deleted.** Per `AMAR_DEEN_PLAN.md` §5.3 Phase 3, legacy code is only removed "once each feature's new implementation is verified in a real build" — this session's remote environment has no `flutter`/`dart` binary (see TASK-004's note), so that verification can't happen here. The old files are now unreferenced (route + all internal imports point at the new location; confirmed via grep) but still present as a safety net until a real build/run confirms the new code, then should be deleted as a fast follow-up.
 
+- [x] TASK-005: `get_it` + `injectable` DI container — 2026-07-19, Dipu picked this next specifically to close the gap TASK-007 flagged (`QiblaBloc` default-constructing its own dependency chain instead of receiving it injected).
+  - Added real dependencies to `pubspec.yaml`, versions checked against pub.dev (not guessed) and confirmed compatible with the installed Dart 3.12.2 toolchain noted in TASK-001: `get_it: ^9.2.1`, `injectable: ^3.0.0` (deps); `build_runner: ^2.15.2`, `injectable_generator: ^3.1.0` (dev deps).
+  - `lib/core/di/injection.dart`: `final GetIt getIt = GetIt.instance;` + `configureDependencies()`, called from `main()` before `runApp` (right after `SystemChrome.setPreferredOrientations`, before `NotificationService().init()`).
+  - Annotated the Qibla feature's injectable classes for future codegen: `@LazySingleton(as: QiblaLocalDataSource)` on `QiblaLocalDataSourceImpl`, `@LazySingleton(as: QiblaRepository)` on `QiblaRepositoryImpl`, `@injectable` on `WatchQiblahDirection` use case.
+  - **`configureDependencies()`'s body is hand-written manual `getIt.registerLazySingleton`/`registerFactory` calls, not `getIt.init()` from a generated `injection.config.dart`.** This environment has no `flutter`/`dart` binary (same gap noted in TASK-004/007) so `build_runner` can't actually run to produce that generated file — writing a fake hand-authored file and labeling it as codegen output would be dishonest, so instead the annotations are in place (correct and ready) but the registration is manual until someone with Flutter tooling runs `flutter pub run build_runner build --delete-conflicting-outputs`, adds `@InjectableInit()` above `configureDependencies()`, and swaps the body for `getIt.init()`. Documented inline in `injection.dart` with a doc comment explaining why.
+  - `QiblaBloc` updated: constructor default changed from manually `WatchQiblahDirection(const QiblaRepositoryImpl(QiblaLocalDataSourceImpl()))` to `getIt<WatchQiblahDirection>()` — now actually resolves through the DI container, closing the exact gap that motivated picking this task.
+  - Could not run `flutter pub get`/`build_runner`/`flutter analyze` in this session (no Flutter tooling) — versions were verified against pub.dev metadata for compatibility, but the dependency resolution itself is unverified. Flag if a `pub get` conflict shows up when this is next opened in a real Flutter environment.
+
 ## Up next
-- Legacy cleanup: delete `lib/src/features/qibla/` once a real device/emulator build confirms the migrated feature works (needs an environment with `flutter` installed — this session didn't have one).
-- Confirm with Dipu whether the full-repository-pattern depth chosen for TASK-007 is what was wanted, since the clarifying question didn't get answered before the tool errored.
-- TASK-005 (`get_it`+`injectable` DI in `core/di/`), TASK-006 (`go_router` in `core/routing/`), or TASK-008 (Theme) are next up in Epic 1. Ask Dipu which to pick up.
+- Verify in a real Flutter environment: `flutter pub get` resolves cleanly with the new `get_it`/`injectable` deps, `flutter analyze` is clean, and the app still runs (DI wiring + Qibla screen).
+- Once verified: run `build_runner`, wire `@InjectableInit()`, replace `configureDependencies()`'s manual body with `getIt.init()`, and delete `lib/src/features/qibla/` (legacy, unreferenced — see TASK-007 note above).
+- TASK-006 (`go_router` in `core/routing/`) or TASK-008 (Theme) are next up in Epic 1 — ask Dipu which to pick up.
 
 ## Notes for next session
 - `getAddress()` in `location_controller.dart` (the Google Maps HTTP reverse-geocode path, as opposed to `getAddressFromLatLng()` in `location_bloc.dart` which uses the on-device `geocoding` plugin and needs no API key) is currently **dead code** — nothing in `lib/` calls it. Worth flagging for Epic 2/6: it's also a live network call to Google, which conflicts with the offline-first constraint. Decide then whether to delete it or wire it in as an optional online enhancement.

@@ -175,8 +175,13 @@ epics:
         status: done
         summary: Create core/ + features/ folder skeleton, placeholder files only.
       - id: TASK-005
-        status: todo
-        summary: get_it + injectable DI container in core/di/.
+        status: done
+        summary: >
+          get_it + injectable DI container in core/di/. Dependencies added and versions
+          verified against pub.dev; Qibla feature classes annotated (@LazySingleton,
+          @injectable); QiblaBloc now resolves its use case via getIt. configureDependencies()
+          is hand-written manual registration, not generated getIt.init(), since this
+          environment has no flutter/dart binary to run build_runner - see PROGRESS.md.
       - id: TASK-006
         status: todo
         summary: go_router setup in core/routing/.
