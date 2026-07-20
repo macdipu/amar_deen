@@ -52,7 +52,7 @@ Non-negotiable:
 | 25 | Matrimonial service | ❌ | ✅ | ❌ | **Out of scope** — unrelated |
 | 26 | Live Makkah/Madinah streaming | ❌ | ✅ | ➖ | **Out of scope** — needs streaming infra |
 | 27 | Hajj & Umrah guide | ❌ | ✅ | ➖ | Missing (content-only, low effort) |
-| 28 | Bangla localization | ❌ | ✅ | ✅ | **Missing — critical for BD market** |
+| 28 | Bangla localization | ⚠️ in progress 2026-07-20 (unlike other rows corrected this session, this one really was missing — infra + app shell done, most content screens still pending, see TASK-019/020 in `PROGRESS.md`) | ✅ | ✅ | **Missing — critical for BD market** (partially addressed) |
 | 29 | Light/dark theme | ⚠️ present (`ThemeBloc`), unverified in UI | ✅ | ✅ | Verify only |
 | 30 | Home-screen widgets | ❌ | ❌ | ✅ (Al Muslim) | Missing (nice-to-have) |
 | 31 | Offline-first architecture | ❌ (prayer times via API) | ➖ | ✅ | **Missing — core requirement** |
@@ -269,9 +269,9 @@ This doesn't relax `destructive_action_gate`/`git_safety` in `harness.yaml` (for
 - [x] **TASK-018**: `hijri_calendar` feature via `hijri` package, current Hijri date across relevant screens. **Done 2026-07-20 as verify-only** — already fully implemented pre-migration (home screen + prayer timing screen, with adjustment-days support). No code changes needed. See `PROGRESS.md`.
 
 ### EPIC 4 — Localization
-- [ ] **TASK-019**: Externalize all existing strings to `.arb` (English baseline).
-- [ ] **TASK-020**: Bangla `.arb` translations.
-- [ ] **TASK-021**: Language switcher in Settings, persisted in Hive.
+- [~] **TASK-019**: Externalize all existing strings to `.arb` (English baseline). **In progress 2026-07-20** — unlike TASK-015/017/018, this one was a real, confirmed gap (no `.arb`/`intl` infra existed at all). Full scaffolding now in place (`flutter_localizations`, `l10n.yaml`, generated `AppLocalizations`) and the app shell (bottom nav, full Settings feature, onboarding permission screens, home location sheet) is converted and verified. Content-heavy features (Quran, Azkar, Dua, Tasbih, Home cards, Prayer Timing, Live TV, Allah's Names, Search, Bookmark, Qibla) still pending. See `PROGRESS.md`.
+- [~] **TASK-020**: Bangla `.arb` translations. **In progress 2026-07-20** — tracks TASK-019 1:1, every string externalized so far has a Bangla translation in `lib/l10n/app_bn.arb`. See `PROGRESS.md`.
+- [x] **TASK-021**: Language switcher in Settings, persisted in Hive. **Done 2026-07-20** — implemented as a `HydratedBloc` (`LocaleBloc`), not raw Hive, matching this project's established pattern for simple app-wide preferences (same as `ThemeBloc`/`TimeFormatBloc`). Fully wired end-to-end: switching the toggle in Settings actually changes rendered strings for every screen converted under TASK-019 so far. See `PROGRESS.md`.
 
 ### EPIC 5 — Ramadan Tools
 - [ ] **TASK-022**: Suhoor/Iftar/Imsak derived from Fajr/Maghrib, countdown UI.

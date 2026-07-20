@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../../core/routing/app_router.dart';
 import '../../../core/util/bloc/location/location_bloc.dart';
@@ -19,6 +20,7 @@ class LocationPermissionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -39,7 +41,7 @@ class LocationPermissionScreen extends StatelessWidget {
                 height: 32.h,
               ),
               Text(
-                'Allow your location',
+                l10n.permissionLocationTitle,
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -48,7 +50,7 @@ class LocationPermissionScreen extends StatelessWidget {
                 height: 8.h,
               ),
               Text(
-                'We will need your location to provide you better experience.',
+                l10n.permissionLocationBody,
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -62,7 +64,7 @@ class LocationPermissionScreen extends StatelessWidget {
                   }
                   await _continue(context);
                 },
-                text: 'Sure, I like that',
+                text: l10n.permissionAllow,
               ),
               SizedBox(
                 height: 8.h,
@@ -71,9 +73,7 @@ class LocationPermissionScreen extends StatelessWidget {
                 onPressed: () async {
                   await _continue(context);
                 },
-                child: Text(
-                  'Not now',
-                ),
+                child: Text(l10n.permissionNotNow),
               ),
             ],
           ),

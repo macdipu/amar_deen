@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../../core/routing/app_router.dart';
 import '../../../core/util/constants.dart';
@@ -13,6 +14,7 @@ class NotificationPermissionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -33,7 +35,7 @@ class NotificationPermissionScreen extends StatelessWidget {
                 height: 32.h,
               ),
               Text(
-                'Allow your notification',
+                l10n.permissionNotificationTitle,
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -42,7 +44,7 @@ class NotificationPermissionScreen extends StatelessWidget {
                 height: 8.h,
               ),
               Text(
-                'We will need your notification to provide you better experience.',
+                l10n.permissionNotificationBody,
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -60,7 +62,7 @@ class NotificationPermissionScreen extends StatelessWidget {
                   await Permission.scheduleExactAlarm.request();
                   context.pushReplacement(AppRoutes.tabScreen);
                 },
-                text: 'Sure, I like that',
+                text: l10n.permissionAllow,
               ),
               SizedBox(
                 height: 8.h,
@@ -69,9 +71,7 @@ class NotificationPermissionScreen extends StatelessWidget {
                 onPressed: () {
                   context.pushReplacement(AppRoutes.tabScreen);
                 },
-                child: Text(
-                  'Not now',
-                ),
+                child: Text(l10n.permissionNotNow),
               ),
             ],
           ),

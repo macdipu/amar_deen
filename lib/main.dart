@@ -6,9 +6,11 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/di/injection.dart';
+import 'core/localization/locale_bloc/locale_bloc.dart';
 import 'core/routing/app_router.dart';
 import 'core/theme/theme_bloc/theme_bloc.dart';
 import 'features/prayer_times/presentation/bloc/azan_settings_bloc/azan_settings_bloc.dart';
+import 'l10n/generated/app_localizations.dart';
 import 'src/core/notification/notification_service.dart';
 import 'src/core/util/bloc/allah_names/allah_name_bloc.dart';
 import 'src/core/util/bloc/database/database_bloc.dart';
@@ -45,6 +47,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => ThemeBloc(),
+        ),
+        BlocProvider(
+          create: (context) => LocaleBloc(),
         ),
         BlocProvider(
           create: (context) => TimeFormatBloc(),
@@ -99,13 +104,21 @@ class MyApp extends StatelessWidget {
         designSize: Size(414, 896),
         builder: (context, child) {
           return BlocBuilder<ThemeBloc, ThemeState>(
-            builder: (context, state) {
-              return MaterialApp.router(
-                title: 'Sirate Mustaqeem',
-                debugShowCheckedModeBanner: false,
-                color: Colors.white,
-                theme: state.currentTheme,
-                routerConfig: appRouter,
+            builder: (context, themeState) {
+              return BlocBuilder<LocaleBloc, LocaleState>(
+                builder: (context, localeState) {
+                  return MaterialApp.router(
+                    title: 'Sirate Mustaqeem',
+                    debugShowCheckedModeBanner: false,
+                    color: Colors.white,
+                    theme: themeState.currentTheme,
+                    locale: localeState.locale,
+                    supportedLocales: kSupportedLocales,
+                    localizationsDelegates:
+                        AppLocalizations.localizationsDelegates,
+                    routerConfig: appRouter,
+                  );
+                },
               );
             },
           );

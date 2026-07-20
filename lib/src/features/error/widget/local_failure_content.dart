@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import '../../../core/error/error_code.dart';
 import '../../../core/error/failures.dart';
 import '../../../core/util/controller/location_controller.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 class LocalFailureContent extends StatelessWidget {
   const LocalFailureContent(this.failure);
@@ -38,9 +39,7 @@ class LocalFailureContent extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async => await openLocationSetting(),
-            child: Text(
-              'To App Setting',
-            ),
+            child: Text(AppLocalizations.of(context).settingGoToAppSettings),
           ),
           if (failure.extraInfo != null)
             Column(

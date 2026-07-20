@@ -334,14 +334,46 @@ epics:
     name: Localization
     tasks:
       - id: TASK-019
-        status: todo
-        summary: Externalize all existing strings to .arb (English baseline).
+        status: in_progress
+        summary: >
+          Started 2026-07-20. Confirmed (unlike TASK-015/017/018) this is a genuine,
+          unstarted gap - no .arb/intl/flutter_localizations infrastructure existed at
+          all before this. Full scaffolding now in place: flutter_localizations +
+          generate:true in pubspec.yaml, l10n.yaml, lib/l10n/app_en.arb template,
+          generated lib/l10n/generated/ (committed, same rationale as
+          injection.config.dart - no CI/codegen step in this repo). Externalized and
+          verified so far: bottom nav bar, full Settings feature (all screens/widgets
+          including the new language row), both onboarding permission screens, home
+          screen's location bottom sheet, and the one in-widget string in
+          local_failure_content.dart. ~71 files across the app have hardcoded
+          Text()/label strings; this covers the app shell + Settings, the rest
+          (Quran, Azkar, Dua, Tasbih, Home content cards, Prayer Timing, Live TV,
+          Allah's Names, Search, Bookmark, Qibla, error_code.dart's deep
+          service-layer failure messages) is still pending - continuing
+          incrementally. flutter analyze/test clean at each step so far.
       - id: TASK-020
-        status: todo
-        summary: Bangla .arb translations.
+        status: in_progress
+        summary: >
+          Started 2026-07-20, tracks TASK-019 1:1 - every key added to app_en.arb so
+          far has a corresponding lib/l10n/app_bn.arb Bangla translation, will finish
+          when TASK-019 does. Brand/proper names (social media platform names,
+          contributor names) deliberately left untranslated - matches convention in
+          other Bangla-localized apps.
       - id: TASK-021
-        status: todo
-        summary: Language switcher in Settings, persisted in Hive.
+        status: done
+        summary: >
+          Done 2026-07-20. New LocaleBloc (lib/core/localization/locale_bloc/,
+          HydratedBloc like ThemeBloc/TimeFormatBloc - not raw Hive; this matches the
+          project's established persistence pattern for simple app-wide preferences,
+          see DECISIONS.md for the same reasoning applied to TASK-016's Azkar
+          favorites). Wired into main.dart's MaterialApp.router
+          (locale/supportedLocales/localizationsDelegates) and a new
+          ChangeLanguageSwitch (EN/BN toggle, mirrors ChangeFormatSwitch's visual
+          pattern) in the Settings User Preferences card. Switching language now
+          actually changes rendered UI strings for every screen converted under
+          TASK-019 so far - verified via flutter analyze/test (full visual/on-device
+          verification still pending, consistent with this session's established
+          testing limits).
 
   - id: EPIC-5
     name: Ramadan Tools
