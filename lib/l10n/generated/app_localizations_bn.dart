@@ -162,4 +162,176 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get permissionNotNow => 'এখন নয়';
+
+  @override
+  String get prayerFajr => 'ফজর';
+
+  @override
+  String get prayerSunrise => 'সূর্যোদয়';
+
+  @override
+  String get prayerDhuhr => 'যোহর';
+
+  @override
+  String get prayerAsr => 'আসর';
+
+  @override
+  String get prayerMaghrib => 'মাগরিব';
+
+  @override
+  String get prayerIsha => 'এশা';
+
+  @override
+  String get prayerDuha => 'দুহা';
+
+  @override
+  String get prayerIshraq => 'ইশরাক';
+
+  @override
+  String get prayerTahajjud => 'তাহাজ্জুদ';
+
+  @override
+  String get homeLessThanAMinute => 'এক মিনিটেরও কম';
+
+  @override
+  String homeMinutesRemaining(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count মিনিট',
+      zero: '০ মিনিট',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeHoursRemaining(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ঘণ্টা',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homePrayerIsAwayFrom(String prayer) {
+    return '$prayer শুরু হতে বাকি আছে ';
+  }
+
+  @override
+  String get voluntaryPrayersTitle => 'নফল নামাজ';
+
+  @override
+  String get voluntaryIshraqTitle => 'ইশরাক';
+
+  @override
+  String get voluntaryIshraqSubtitle =>
+      'সূর্যোদয়ের কিছুক্ষণ পর, সূর্য সম্পূর্ণ উঠে যাওয়ার পর।';
+
+  @override
+  String get voluntaryDuhaTitle => 'দুহা (চাশত)';
+
+  @override
+  String get voluntaryDuhaSubtitle => 'মধ্য সকাল থেকে যোহরের কিছু আগ পর্যন্ত।';
+
+  @override
+  String get voluntaryTahajjudTitle => 'তাহাজ্জুদ';
+
+  @override
+  String get voluntaryTahajjudSubtitle =>
+      'রাতের শেষ তৃতীয়াংশ - নফল রাতের নামাজের জন্য সবচেয়ে ফযীলতপূর্ণ সময়।';
+
+  @override
+  String prayerWindowFrom(String prayer, String start) {
+    return '$prayer — $start থেকে';
+  }
+
+  @override
+  String prayerWindowRange(String prayer, String start, String end) {
+    return '$prayer — $start থেকে $end';
+  }
+
+  @override
+  String get prayerSettingsTitle => 'নামাজের সময় সেটিংস';
+
+  @override
+  String get prayerSettingsCalculationMethod => 'গণনা পদ্ধতি';
+
+  @override
+  String get prayerSettingsAsrSchool => 'আসরের মাযহাব';
+
+  @override
+  String get prayerSettingsDayOffset => 'নামাজের দিন অফসেট';
+
+  @override
+  String get prayerSettingsHijriAdjustment => 'হিজরি তারিখ সমন্বয়';
+
+  @override
+  String get prayerSettingsResetToDefaults => 'ডিফল্টে পুনরায় সেট করুন';
+
+  @override
+  String get prayerSettingsAzanReminders => 'আজানের রিমাইন্ডার';
+
+  @override
+  String get commonComingSoon =>
+      'টিম এই ফিচারটি নিয়ে কাজ করছে এবং শীঘ্রই এটি উপলব্ধ হবে। সাথে থাকুন!';
+
+  @override
+  String get homeAyatOfTheDay => 'আজকের কুরআনের আয়াত';
+
+  @override
+  String homeSurahAyahLabel(String surah, int ayah) {
+    return 'সূরা $surah - আয়াত $ayah';
+  }
+
+  @override
+  String get homeHadeesOfTheDay => 'আজকের হাদিস';
+
+  @override
+  String get homeHadeesOfTheDayText =>
+      '\"একজন মুসলিম অপর মুসলিমের ভাই, সে তার উপর জুলুম করবে না এবং তাকে কোনো অত্যাচারীর হাতেও তুলে দেবে না। যে ব্যক্তি তার ভাইয়ের প্রয়োজন পূরণ করে, আল্লাহ তার প্রয়োজন পূরণ করেন; যে ব্যক্তি কোনো মুসলিম ভাইকে কষ্ট থেকে মুক্ত করে, আল্লাহ কিয়ামতের দিন তাকে কষ্ট থেকে মুক্ত করবেন, আর যে ব্যক্তি কোনো মুসলিমের দোষ ঢেকে রাখে, আল্লাহ কিয়ামতের দিন তার দোষ ঢেকে রাখবেন।\"';
+
+  @override
+  String get homeHadeesOfTheDayAttribution =>
+      '- নবী মুহাম্মদ (সাল্লাল্লাহু আলাইহি ওয়াসাল্লাম)';
+
+  @override
+  String get homeHadeesOfTheDaySource => 'বুখারী, মাজালিম (অবিচার), ৩';
+
+  @override
+  String get homeCollectionSectionTitle => 'সংগ্রহ';
+
+  @override
+  String get homeCollectionQuran => 'কুরআন';
+
+  @override
+  String get homeCollectionHadees => 'হাদিস';
+
+  @override
+  String get homeCollectionDua => 'দোয়া';
+
+  @override
+  String get homeCollectionTasbih => 'তাসবিহ';
+
+  @override
+  String get homeCollectionAzkars => 'আযকার';
+
+  @override
+  String get homeCollectionAllahNames => 'আল্লাহর ৯৯ নাম';
+
+  @override
+  String get homeCollectionPrayerTimes => 'নামাজের সময়';
+
+  @override
+  String get homeCollectionVoluntaryPrayers => 'নফল নামাজ';
+
+  @override
+  String get homeCollectionQiblaDirection => 'কাবার দিক';
+
+  @override
+  String get homeCollectionLiveTv => 'লাইভ টিভি';
+
+  @override
+  String get homeCollectionOthers => 'অন্যান্য';
 }

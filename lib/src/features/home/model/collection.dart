@@ -1,3 +1,6 @@
+import 'package:flutter/widgets.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../../../core/routing/app_router.dart';
 
 class Collection {
@@ -8,60 +11,63 @@ class Collection {
   Collection(this.assetName, this.title, this.routeName);
 }
 
-List<Collection> collections = [
+List<Collection> buildCollections(BuildContext context) {
+  final l10n = AppLocalizations.of(context);
+  return [
   Collection(
     'assets/images/collection_icon/svg/quran.svg',
-    'Quran',
+    l10n.homeCollectionQuran,
     AppRoutes.quran,
   ),
   Collection(
     'assets/images/collection_icon/svg/hadees.svg',
-    'Hadees',
+    l10n.homeCollectionHadees,
     'Coming Soon',
   ),
   Collection(
     'assets/images/collection_icon/svg/duas.svg',
-    'Dua',
+    l10n.homeCollectionDua,
     AppRoutes.dua,
   ),
   Collection(
     'assets/images/collection_icon/svg/tasbih.svg',
-    'Tasbih',
+    l10n.homeCollectionTasbih,
     AppRoutes.tasbih,
   ),
   Collection(
     'assets/images/collection_icon/svg/other.svg',
-    'Azkars',
+    l10n.homeCollectionAzkars,
     AppRoutes.azkar,
   ),
   Collection(
     'assets/images/collection_icon/svg/allah.svg',
-    '99 Names of Allah',
+    l10n.homeCollectionAllahNames,
     AppRoutes.allahName,
   ),
   Collection(
     'assets/images/collection_icon/svg/prayer_time.svg',
-    'Prayer Times',
+    l10n.homeCollectionPrayerTimes,
     AppRoutes.prayerTimingPage,
   ),
   Collection(
     'assets/images/collection_icon/svg/prayer_time_1.svg',
-    'Voluntary Prayers',
+    l10n.homeCollectionVoluntaryPrayers,
     AppRoutes.voluntaryPrayers,
   ),
   Collection(
     'assets/images/collection_icon/svg/kiblat.svg',
-    'Qabah Direction',
+    l10n.homeCollectionQiblaDirection,
     AppRoutes.qibla,
   ),
   Collection(
     'assets/images/collection_icon/svg/qaabah.svg',
-    'Live TV',
+    l10n.homeCollectionLiveTv,
     AppRoutes.liveTv,
   ),
   Collection(
     'assets/images/collection_icon/svg/other.svg',
-    'Others',
+    l10n.homeCollectionOthers,
     'Coming Soon',
   ),
-];
+  ];
+}

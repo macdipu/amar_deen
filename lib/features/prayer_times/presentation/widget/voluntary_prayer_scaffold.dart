@@ -6,6 +6,7 @@ import '../../../../src/core/util/bloc/prayer_time_config/prayer_time_config_blo
 import '../../../../src/core/util/constants.dart';
 import '../../../../src/features/error/widget/failure_widget.dart';
 import '../../../../src/features/utils/loading_widget.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 import '../bloc/voluntary_prayer_bloc/voluntary_prayer_bloc.dart';
 import 'voluntary_prayer_card.dart';
 
@@ -34,9 +35,10 @@ class _VoluntaryPrayerScaffoldState extends State<VoluntaryPrayerScaffold> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Voluntary Prayers'),
+        title: Text(l10n.voluntaryPrayersTitle),
       ),
       body: BlocBuilder<VoluntaryPrayerBloc, VoluntaryPrayerState>(
         builder: (context, state) {
@@ -52,22 +54,19 @@ class _VoluntaryPrayerScaffoldState extends State<VoluntaryPrayerScaffold> {
                           padding: kPagePadding,
                           children: [
                             VoluntaryPrayerCard(
-                              title: 'Ishraq',
-                              subtitle:
-                                  'Shortly after sunrise, once the sun has fully risen.',
+                              title: l10n.voluntaryIshraqTitle,
+                              subtitle: l10n.voluntaryIshraqSubtitle,
                               startTime: state.voluntaryPrayerTimes.ishraq,
                             ),
                             VoluntaryPrayerCard(
-                              title: 'Duha (Chasht)',
-                              subtitle:
-                                  'Mid-morning, until shortly before Dhuhr.',
+                              title: l10n.voluntaryDuhaTitle,
+                              subtitle: l10n.voluntaryDuhaSubtitle,
                               startTime: state.voluntaryPrayerTimes.duhaStart,
                               endTime: state.voluntaryPrayerTimes.duhaEnd,
                             ),
                             VoluntaryPrayerCard(
-                              title: 'Tahajjud',
-                              subtitle:
-                                  'Last third of the night - the most virtuous time for voluntary night prayer.',
+                              title: l10n.voluntaryTahajjudTitle,
+                              subtitle: l10n.voluntaryTahajjudSubtitle,
                               startTime:
                                   state.voluntaryPrayerTimes.tahajjudStart,
                               endTime: state.voluntaryPrayerTimes.tahajjudEnd,

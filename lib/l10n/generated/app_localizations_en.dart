@@ -161,4 +161,178 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get permissionNotNow => 'Not now';
+
+  @override
+  String get prayerFajr => 'Fajr';
+
+  @override
+  String get prayerSunrise => 'Sunrise';
+
+  @override
+  String get prayerDhuhr => 'Dhuhr';
+
+  @override
+  String get prayerAsr => 'Asr';
+
+  @override
+  String get prayerMaghrib => 'Maghrib';
+
+  @override
+  String get prayerIsha => 'Isha';
+
+  @override
+  String get prayerDuha => 'Duha';
+
+  @override
+  String get prayerIshraq => 'Ishraq';
+
+  @override
+  String get prayerTahajjud => 'Tahajjud';
+
+  @override
+  String get homeLessThanAMinute => 'less than a minute';
+
+  @override
+  String homeMinutesRemaining(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count minutes',
+      one: '$count minute',
+      zero: '0 minutes',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeHoursRemaining(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hours',
+      one: '$count hour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homePrayerIsAwayFrom(String prayer) {
+    return '$prayer is only away from ';
+  }
+
+  @override
+  String get voluntaryPrayersTitle => 'Voluntary Prayers';
+
+  @override
+  String get voluntaryIshraqTitle => 'Ishraq';
+
+  @override
+  String get voluntaryIshraqSubtitle =>
+      'Shortly after sunrise, once the sun has fully risen.';
+
+  @override
+  String get voluntaryDuhaTitle => 'Duha (Chasht)';
+
+  @override
+  String get voluntaryDuhaSubtitle =>
+      'Mid-morning, until shortly before Dhuhr.';
+
+  @override
+  String get voluntaryTahajjudTitle => 'Tahajjud';
+
+  @override
+  String get voluntaryTahajjudSubtitle =>
+      'Last third of the night - the most virtuous time for voluntary night prayer.';
+
+  @override
+  String prayerWindowFrom(String prayer, String start) {
+    return '$prayer — from $start';
+  }
+
+  @override
+  String prayerWindowRange(String prayer, String start, String end) {
+    return '$prayer — $start to $end';
+  }
+
+  @override
+  String get prayerSettingsTitle => 'Prayer time settings';
+
+  @override
+  String get prayerSettingsCalculationMethod => 'Calculation method';
+
+  @override
+  String get prayerSettingsAsrSchool => 'Asr school';
+
+  @override
+  String get prayerSettingsDayOffset => 'Prayer day offset';
+
+  @override
+  String get prayerSettingsHijriAdjustment => 'Hijri date adjustment';
+
+  @override
+  String get prayerSettingsResetToDefaults => 'Reset to defaults';
+
+  @override
+  String get prayerSettingsAzanReminders => 'Azan reminders';
+
+  @override
+  String get commonComingSoon =>
+      'The team is working on this feature and it will be available soon. Stay tuned!';
+
+  @override
+  String get homeAyatOfTheDay => 'Quran Ayat of the Day';
+
+  @override
+  String homeSurahAyahLabel(String surah, int ayah) {
+    return 'Surah $surah - Ayah $ayah';
+  }
+
+  @override
+  String get homeHadeesOfTheDay => 'Hadees of the Day';
+
+  @override
+  String get homeHadeesOfTheDayText =>
+      '\"A Muslim is a brother of another Muslim, so he should not oppress him, nor should he hand him over to an oppressor. Whoever has fulfilled the needs of his brother, Allah will fulfil his needs; whoever has brought his (Muslim) brother out of a discomfort, Allah will bring him out of the discomforts of the Day of Resurrection, and whoever has screened a Muslim, Allah will screen him(of his faults) on the Day of Resurrection.\"';
+
+  @override
+  String get homeHadeesOfTheDayAttribution => '- Prophet Muhammad (PBUH)';
+
+  @override
+  String get homeHadeesOfTheDaySource => 'Bukhari, Mazalim (Injustices), 3';
+
+  @override
+  String get homeCollectionSectionTitle => 'Collection';
+
+  @override
+  String get homeCollectionQuran => 'Quran';
+
+  @override
+  String get homeCollectionHadees => 'Hadees';
+
+  @override
+  String get homeCollectionDua => 'Dua';
+
+  @override
+  String get homeCollectionTasbih => 'Tasbih';
+
+  @override
+  String get homeCollectionAzkars => 'Azkars';
+
+  @override
+  String get homeCollectionAllahNames => '99 Names of Allah';
+
+  @override
+  String get homeCollectionPrayerTimes => 'Prayer Times';
+
+  @override
+  String get homeCollectionVoluntaryPrayers => 'Voluntary Prayers';
+
+  @override
+  String get homeCollectionQiblaDirection => 'Qabah Direction';
+
+  @override
+  String get homeCollectionLiveTv => 'Live TV';
+
+  @override
+  String get homeCollectionOthers => 'Others';
 }

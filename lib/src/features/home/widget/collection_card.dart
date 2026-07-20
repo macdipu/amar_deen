@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart'
     show AlignedGridView;
 
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../utils/sirat_card.dart';
 import '../model/collection.dart';
 import 'collection_button.dart';
@@ -12,6 +14,8 @@ class CollectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final collections = buildCollections(context);
     return SiratCard(
       margin: EdgeInsets.zero,
       padding: EdgeInsets.all(10),
@@ -20,7 +24,7 @@ class CollectionCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Collection',
+            l10n.homeCollectionSectionTitle,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),

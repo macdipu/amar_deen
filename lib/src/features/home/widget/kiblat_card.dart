@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
+import '../../../core/util/prayer_name.dart';
 import 'prayer_timing_widget.dart';
 
 class KiblatCard extends StatelessWidget {
@@ -41,12 +42,18 @@ class KiblatCard extends StatelessWidget {
         builder: (context, state) {
           if (state is TimingLoaded) {
             final items = [
-              _PrayerItem('Fazr', state.prayerTimes.fajr, _fajrIcon),
-              _PrayerItem('Sunrise', state.prayerTimes.sunrise, _sunriseIcon),
-              _PrayerItem('Dhuhr', state.prayerTimes.dhuhr, _dhuhrIcon),
-              _PrayerItem('Asr', state.prayerTimes.asr, _asrIcon),
-              _PrayerItem('Maghrib', state.prayerTimes.maghrib, _maghribIcon),
-              _PrayerItem('Isha', state.prayerTimes.isha, _ishaIcon),
+              _PrayerItem(localizedPrayerName(context, 'Fajr'),
+                  state.prayerTimes.fajr, _fajrIcon),
+              _PrayerItem(localizedPrayerName(context, 'Sunrise'),
+                  state.prayerTimes.sunrise, _sunriseIcon),
+              _PrayerItem(localizedPrayerName(context, 'Dhuhr'),
+                  state.prayerTimes.dhuhr, _dhuhrIcon),
+              _PrayerItem(localizedPrayerName(context, 'Asr'),
+                  state.prayerTimes.asr, _asrIcon),
+              _PrayerItem(localizedPrayerName(context, 'Maghrib'),
+                  state.prayerTimes.maghrib, _maghribIcon),
+              _PrayerItem(localizedPrayerName(context, 'Isha'),
+                  state.prayerTimes.isha, _ishaIcon),
             ];
 
             final nextIdx = _nextPrayerIndex(items.map((e) => e.time).toList());

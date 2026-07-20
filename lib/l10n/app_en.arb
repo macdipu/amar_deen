@@ -57,5 +57,79 @@
   "permissionNotificationTitle": "Allow your notification",
   "permissionNotificationBody": "We will need your notification to provide you better experience.",
   "permissionAllow": "Sure, I like that",
-  "permissionNotNow": "Not now"
+  "permissionNotNow": "Not now",
+
+  "prayerFajr": "Fajr",
+  "prayerSunrise": "Sunrise",
+  "prayerDhuhr": "Dhuhr",
+  "prayerAsr": "Asr",
+  "prayerMaghrib": "Maghrib",
+  "prayerIsha": "Isha",
+  "prayerDuha": "Duha",
+  "prayerIshraq": "Ishraq",
+  "prayerTahajjud": "Tahajjud",
+
+  "homeLessThanAMinute": "less than a minute",
+  "homeMinutesRemaining": "{count, plural, =0{0 minutes} one{{count} minute} other{{count} minutes}}",
+  "@homeMinutesRemaining": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "homeHoursRemaining": "{count, plural, one{{count} hour} other{{count} hours}}",
+  "@homeHoursRemaining": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "homePrayerIsAwayFrom": "{prayer} is only away from ",
+  "@homePrayerIsAwayFrom": {
+    "placeholders": {"prayer": {"type": "String"}}
+  },
+
+  "voluntaryPrayersTitle": "Voluntary Prayers",
+  "voluntaryIshraqTitle": "Ishraq",
+  "voluntaryIshraqSubtitle": "Shortly after sunrise, once the sun has fully risen.",
+  "voluntaryDuhaTitle": "Duha (Chasht)",
+  "voluntaryDuhaSubtitle": "Mid-morning, until shortly before Dhuhr.",
+  "voluntaryTahajjudTitle": "Tahajjud",
+  "voluntaryTahajjudSubtitle": "Last third of the night - the most virtuous time for voluntary night prayer.",
+
+  "prayerWindowFrom": "{prayer} — from {start}",
+  "@prayerWindowFrom": {
+    "placeholders": {"prayer": {"type": "String"}, "start": {"type": "String"}}
+  },
+  "prayerWindowRange": "{prayer} — {start} to {end}",
+  "@prayerWindowRange": {
+    "placeholders": {"prayer": {"type": "String"}, "start": {"type": "String"}, "end": {"type": "String"}}
+  },
+
+  "prayerSettingsTitle": "Prayer time settings",
+  "prayerSettingsCalculationMethod": "Calculation method",
+  "prayerSettingsAsrSchool": "Asr school",
+  "prayerSettingsDayOffset": "Prayer day offset",
+  "prayerSettingsHijriAdjustment": "Hijri date adjustment",
+  "prayerSettingsResetToDefaults": "Reset to defaults",
+  "prayerSettingsAzanReminders": "Azan reminders",
+
+  "commonComingSoon": "The team is working on this feature and it will be available soon. Stay tuned!",
+
+  "homeAyatOfTheDay": "Quran Ayat of the Day",
+  "homeSurahAyahLabel": "Surah {surah} - Ayah {ayah}",
+  "@homeSurahAyahLabel": {
+    "placeholders": {"surah": {"type": "String"}, "ayah": {"type": "int"}}
+  },
+  "homeHadeesOfTheDay": "Hadees of the Day",
+  "homeHadeesOfTheDayText": "\"A Muslim is a brother of another Muslim, so he should not oppress him, nor should he hand him over to an oppressor. Whoever has fulfilled the needs of his brother, Allah will fulfil his needs; whoever has brought his (Muslim) brother out of a discomfort, Allah will bring him out of the discomforts of the Day of Resurrection, and whoever has screened a Muslim, Allah will screen him(of his faults) on the Day of Resurrection.\"",
+  "homeHadeesOfTheDayAttribution": "- Prophet Muhammad (PBUH)",
+  "homeHadeesOfTheDaySource": "Bukhari, Mazalim (Injustices), 3",
+
+  "homeCollectionSectionTitle": "Collection",
+  "homeCollectionQuran": "Quran",
+  "homeCollectionHadees": "Hadees",
+  "homeCollectionDua": "Dua",
+  "homeCollectionTasbih": "Tasbih",
+  "homeCollectionAzkars": "Azkars",
+  "homeCollectionAllahNames": "99 Names of Allah",
+  "homeCollectionPrayerTimes": "Prayer Times",
+  "homeCollectionVoluntaryPrayers": "Voluntary Prayers",
+  "homeCollectionQiblaDirection": "Qabah Direction",
+  "homeCollectionLiveTv": "Live TV",
+  "homeCollectionOthers": "Others"
 }

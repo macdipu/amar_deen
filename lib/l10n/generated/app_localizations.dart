@@ -385,6 +385,294 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not now'**
   String get permissionNotNow;
+
+  /// No description provided for @prayerFajr.
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr'**
+  String get prayerFajr;
+
+  /// No description provided for @prayerSunrise.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise'**
+  String get prayerSunrise;
+
+  /// No description provided for @prayerDhuhr.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhuhr'**
+  String get prayerDhuhr;
+
+  /// No description provided for @prayerAsr.
+  ///
+  /// In en, this message translates to:
+  /// **'Asr'**
+  String get prayerAsr;
+
+  /// No description provided for @prayerMaghrib.
+  ///
+  /// In en, this message translates to:
+  /// **'Maghrib'**
+  String get prayerMaghrib;
+
+  /// No description provided for @prayerIsha.
+  ///
+  /// In en, this message translates to:
+  /// **'Isha'**
+  String get prayerIsha;
+
+  /// No description provided for @prayerDuha.
+  ///
+  /// In en, this message translates to:
+  /// **'Duha'**
+  String get prayerDuha;
+
+  /// No description provided for @prayerIshraq.
+  ///
+  /// In en, this message translates to:
+  /// **'Ishraq'**
+  String get prayerIshraq;
+
+  /// No description provided for @prayerTahajjud.
+  ///
+  /// In en, this message translates to:
+  /// **'Tahajjud'**
+  String get prayerTahajjud;
+
+  /// No description provided for @homeLessThanAMinute.
+  ///
+  /// In en, this message translates to:
+  /// **'less than a minute'**
+  String get homeLessThanAMinute;
+
+  /// No description provided for @homeMinutesRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{0 minutes} one{{count} minute} other{{count} minutes}}'**
+  String homeMinutesRemaining(int count);
+
+  /// No description provided for @homeHoursRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{{count} hour} other{{count} hours}}'**
+  String homeHoursRemaining(int count);
+
+  /// No description provided for @homePrayerIsAwayFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'{prayer} is only away from '**
+  String homePrayerIsAwayFrom(String prayer);
+
+  /// No description provided for @voluntaryPrayersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Voluntary Prayers'**
+  String get voluntaryPrayersTitle;
+
+  /// No description provided for @voluntaryIshraqTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ishraq'**
+  String get voluntaryIshraqTitle;
+
+  /// No description provided for @voluntaryIshraqSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shortly after sunrise, once the sun has fully risen.'**
+  String get voluntaryIshraqSubtitle;
+
+  /// No description provided for @voluntaryDuhaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Duha (Chasht)'**
+  String get voluntaryDuhaTitle;
+
+  /// No description provided for @voluntaryDuhaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mid-morning, until shortly before Dhuhr.'**
+  String get voluntaryDuhaSubtitle;
+
+  /// No description provided for @voluntaryTahajjudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tahajjud'**
+  String get voluntaryTahajjudTitle;
+
+  /// No description provided for @voluntaryTahajjudSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Last third of the night - the most virtuous time for voluntary night prayer.'**
+  String get voluntaryTahajjudSubtitle;
+
+  /// No description provided for @prayerWindowFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'{prayer} — from {start}'**
+  String prayerWindowFrom(String prayer, String start);
+
+  /// No description provided for @prayerWindowRange.
+  ///
+  /// In en, this message translates to:
+  /// **'{prayer} — {start} to {end}'**
+  String prayerWindowRange(String prayer, String start, String end);
+
+  /// No description provided for @prayerSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer time settings'**
+  String get prayerSettingsTitle;
+
+  /// No description provided for @prayerSettingsCalculationMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculation method'**
+  String get prayerSettingsCalculationMethod;
+
+  /// No description provided for @prayerSettingsAsrSchool.
+  ///
+  /// In en, this message translates to:
+  /// **'Asr school'**
+  String get prayerSettingsAsrSchool;
+
+  /// No description provided for @prayerSettingsDayOffset.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer day offset'**
+  String get prayerSettingsDayOffset;
+
+  /// No description provided for @prayerSettingsHijriAdjustment.
+  ///
+  /// In en, this message translates to:
+  /// **'Hijri date adjustment'**
+  String get prayerSettingsHijriAdjustment;
+
+  /// No description provided for @prayerSettingsResetToDefaults.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to defaults'**
+  String get prayerSettingsResetToDefaults;
+
+  /// No description provided for @prayerSettingsAzanReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Azan reminders'**
+  String get prayerSettingsAzanReminders;
+
+  /// No description provided for @commonComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'The team is working on this feature and it will be available soon. Stay tuned!'**
+  String get commonComingSoon;
+
+  /// No description provided for @homeAyatOfTheDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran Ayat of the Day'**
+  String get homeAyatOfTheDay;
+
+  /// No description provided for @homeSurahAyahLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah {surah} - Ayah {ayah}'**
+  String homeSurahAyahLabel(String surah, int ayah);
+
+  /// No description provided for @homeHadeesOfTheDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadees of the Day'**
+  String get homeHadeesOfTheDay;
+
+  /// No description provided for @homeHadeesOfTheDayText.
+  ///
+  /// In en, this message translates to:
+  /// **'\"A Muslim is a brother of another Muslim, so he should not oppress him, nor should he hand him over to an oppressor. Whoever has fulfilled the needs of his brother, Allah will fulfil his needs; whoever has brought his (Muslim) brother out of a discomfort, Allah will bring him out of the discomforts of the Day of Resurrection, and whoever has screened a Muslim, Allah will screen him(of his faults) on the Day of Resurrection.\"'**
+  String get homeHadeesOfTheDayText;
+
+  /// No description provided for @homeHadeesOfTheDayAttribution.
+  ///
+  /// In en, this message translates to:
+  /// **'- Prophet Muhammad (PBUH)'**
+  String get homeHadeesOfTheDayAttribution;
+
+  /// No description provided for @homeHadeesOfTheDaySource.
+  ///
+  /// In en, this message translates to:
+  /// **'Bukhari, Mazalim (Injustices), 3'**
+  String get homeHadeesOfTheDaySource;
+
+  /// No description provided for @homeCollectionSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Collection'**
+  String get homeCollectionSectionTitle;
+
+  /// No description provided for @homeCollectionQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran'**
+  String get homeCollectionQuran;
+
+  /// No description provided for @homeCollectionHadees.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadees'**
+  String get homeCollectionHadees;
+
+  /// No description provided for @homeCollectionDua.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua'**
+  String get homeCollectionDua;
+
+  /// No description provided for @homeCollectionTasbih.
+  ///
+  /// In en, this message translates to:
+  /// **'Tasbih'**
+  String get homeCollectionTasbih;
+
+  /// No description provided for @homeCollectionAzkars.
+  ///
+  /// In en, this message translates to:
+  /// **'Azkars'**
+  String get homeCollectionAzkars;
+
+  /// No description provided for @homeCollectionAllahNames.
+  ///
+  /// In en, this message translates to:
+  /// **'99 Names of Allah'**
+  String get homeCollectionAllahNames;
+
+  /// No description provided for @homeCollectionPrayerTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Times'**
+  String get homeCollectionPrayerTimes;
+
+  /// No description provided for @homeCollectionVoluntaryPrayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Voluntary Prayers'**
+  String get homeCollectionVoluntaryPrayers;
+
+  /// No description provided for @homeCollectionQiblaDirection.
+  ///
+  /// In en, this message translates to:
+  /// **'Qabah Direction'**
+  String get homeCollectionQiblaDirection;
+
+  /// No description provided for @homeCollectionLiveTv.
+  ///
+  /// In en, this message translates to:
+  /// **'Live TV'**
+  String get homeCollectionLiveTv;
+
+  /// No description provided for @homeCollectionOthers.
+  ///
+  /// In en, this message translates to:
+  /// **'Others'**
+  String get homeCollectionOthers;
 }
 
 class _AppLocalizationsDelegate

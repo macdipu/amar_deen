@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:quran/quran.dart';
 
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../utils/sirat_card.dart';
 
 class AyatCard extends StatelessWidget {
@@ -16,6 +18,7 @@ class AyatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).colorScheme.primary;
+    final l10n = AppLocalizations.of(context);
 
     return SiratCard(
       margin: EdgeInsets.zero,
@@ -39,7 +42,7 @@ class AyatCard extends StatelessWidget {
               ),
               SizedBox(width: 12.w),
               Text(
-                'Quran Ayat of the Day',
+                l10n.homeAyatOfTheDay,
                 style: TextStyle(
                   fontSize: 17.sp,
                   fontWeight: FontWeight.w600,
@@ -95,7 +98,9 @@ class AyatCard extends StatelessWidget {
                 ),
                 SizedBox(height: 12.h),
                 Text(
-                  'Surah ${quran.getSurahName(randomVerse.surahNumber)} - Ayah ${randomVerse.verseNumber}',
+                  l10n.homeSurahAyahLabel(
+                      quran.getSurahName(randomVerse.surahNumber),
+                      randomVerse.verseNumber),
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontStyle: FontStyle.italic,

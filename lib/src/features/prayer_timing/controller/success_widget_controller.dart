@@ -9,6 +9,8 @@ import '../../../core/util/bloc/time_format/time_format_bloc.dart';
 import '../../../core/util/constants.dart';
 import '../../../core/util/controller/date_controller.dart';
 import '../../../core/util/controller/timing_controller.dart';
+import '../../../core/util/prayer_name.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 enum TimingProps {
   Fajr,
@@ -73,14 +75,15 @@ class SuccessWidgetController {
         ? DateFormat('HH:mm').format(time)
         : convertTimeTo12HourFormat(time);
 
-    final name = _controller.currentWindowPrayer;
+    final name = localizedPrayerName(context, _controller.currentWindowPrayer);
     final start = format(_controller.currentWindowStart);
     final end = _controller.currentWindowEnd;
 
     if (end == null) {
-      return '$name — from $start';
+      return AppLocalizations.of(context).prayerWindowFrom(name, start);
     }
-    return '$name — $start to ${format(end)}';
+    return AppLocalizations.of(context)
+        .prayerWindowRange(name, start, format(end));
   }
 
   List<Widget> generateTimingList() {
@@ -103,7 +106,7 @@ class SuccessWidgetController {
           children: [
             Expanded(
               child: Text(
-                timingsList[index].key,
+                localizedPrayerName(context, timingsList[index].key),
                 textAlign: TextAlign.left,
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Colors.white,

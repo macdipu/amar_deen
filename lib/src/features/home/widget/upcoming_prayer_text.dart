@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../../../features/prayer_times/domain/entities/prayer_times_entity.dart';
 import '../../../core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
+import '../../../core/util/prayer_name.dart';
 
 class _NextPrayerInfo {
   final String name;
@@ -38,19 +41,18 @@ class _UpcomingPrayerTextState extends State<UpcomingPrayerText> {
     super.dispose();
   }
 
-  static String _formatDuration(Duration d) {
-    if (d.isNegative) return '0 minutes';
-    if (d.inMinutes < 1) return 'less than a minute';
+  static String _formatDuration(AppLocalizations l10n, Duration d) {
+    if (d.isNegative) return l10n.homeMinutesRemaining(0);
+    if (d.inMinutes < 1) return l10n.homeLessThanAMinute;
     if (d.inMinutes < 60) {
-      final mins = d.inMinutes;
-      return '$mins ${mins == 1 ? 'minute' : 'minutes'}';
+      return l10n.homeMinutesRemaining(d.inMinutes);
     }
     final h = d.inHours;
     final mins = d.inMinutes.remainder(60);
     if (mins == 0) {
-      return '$h ${h == 1 ? 'hour' : 'hours'}';
+      return l10n.homeHoursRemaining(h);
     }
-    return '$h ${h == 1 ? 'hour' : 'hours'} $mins ${mins == 1 ? 'minute' : 'minutes'}';
+    return '${l10n.homeHoursRemaining(h)} ${l10n.homeMinutesRemaining(mins)}';
   }
 
   static _NextPrayerInfo? _nextPrayer(PrayerTimesEntity t) {
@@ -89,7 +91,9 @@ class _UpcomingPrayerTextState extends State<UpcomingPrayerText> {
           return const SizedBox.shrink();
         }
 
-        final durationStr = _formatDuration(next.remaining);
+        final l10n = AppLocalizations.of(context);
+        final durationStr = _formatDuration(l10n, next.remaining);
+        final prayerLabel = localizedPrayerName(context, next.name);
         final baseStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: Colors.white,
               fontSize: 14.sp,
@@ -102,7 +106,7 @@ class _UpcomingPrayerTextState extends State<UpcomingPrayerText> {
             TextSpan(
               style: baseStyle,
               children: [
-                TextSpan(text: '${next.name} is only away from '),
+                TextSpan(text: l10n.homePrayerIsAwayFrom(prayerLabel)),
                 TextSpan(
                   text: durationStr,
                   style: baseStyle?.copyWith(
