@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:muslim_data_flutter/muslim_data_flutter.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/bloc/database/database_bloc.dart';
 import '../../../core/util/constants.dart';
@@ -36,9 +37,10 @@ class _AzkarFavoritesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AzkarFavoritesCubit, AzkarFavoritesState>(
       builder: (context, state) {
+        final l10n = AppLocalizations.of(context);
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Favorite Azkars'),
+            title: Text(l10n.azkarFavoriteAzkars),
           ),
           body: SafeArea(
             child: Builder(
@@ -50,7 +52,7 @@ class _AzkarFavoritesView extends StatelessWidget {
                 if (state.status == AzkarLoadStatus.error) {
                   return Center(
                     child: Text(
-                      state.errorMessage ?? 'Something went wrong.',
+                      state.errorMessage ?? l10n.commonSomethingWentWrong,
                       style: Theme.of(context).textTheme.titleLarge,
                       textAlign: TextAlign.center,
                     ),
@@ -60,7 +62,7 @@ class _AzkarFavoritesView extends StatelessWidget {
                 if (state.items.isEmpty) {
                   return Center(
                     child: Text(
-                      'No favorite Azkars yet.',
+                      l10n.azkarNoFavoritesYet,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   );

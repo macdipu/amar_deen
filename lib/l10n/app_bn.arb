@@ -128,5 +128,31 @@
   "liveTvUnableToPlay": "এই মুহূর্তে এই চ্যানেলটি চালানো যাচ্ছে না।",
   "liveTvExitFullScreen": "ফুল স্ক্রিন থেকে বের হন",
   "liveTvLive": "লাইভ",
-  "liveTvPaused": "থামানো হয়েছে"
+  "liveTvPaused": "থামানো হয়েছে",
+
+  "azkarAppBarTitle": "আযকার (হিসনুল মুসলিম)",
+  "azkarFavoriteAzkars": "পছন্দের আযকার",
+  "azkarNoCategoriesAvailable": "কোনো আযকার বিভাগ পাওয়া যায়নি।",
+  "azkarNoChaptersFound": "কোনো অধ্যায় পাওয়া যায়নি।",
+  "azkarNoItemsFound": "কোনো আযকার পাওয়া যায়নি।",
+  "azkarNoFavoritesYet": "এখনো কোনো পছন্দের আযকার নেই।",
+  "azkarLanguageEnglish": "ইংরেজি",
+  "azkarLanguageArabic": "আরবি",
+  "azkarLanguageKurdishSorani": "কুর্দি (সোরানি)",
+  "azkarLanguageKurdishBadini": "কুর্দি (বাদিনি)",
+  "azkarLanguagePersian": "ফার্সি",
+  "azkarLanguageRussian": "রুশ",
+
+  "duaAyaLabel": "আয়াত: {aya}",
+
+  "tasbihAddNew": "নতুন তাসবিহ যোগ করুন",
+  "tasbihEditTitle": "তাসবিহ সম্পাদনা করুন",
+  "tasbihActions": "কার্যক্রম:",
+  "tasbihCopy": "কপি করুন",
+  "tasbihNameHint": "এখানে তাসবিহর নাম লিখুন",
+  "tasbihNameEmptyError": "তাসবিহর নাম খালি রাখা যাবে না",
+  "tasbihCountsLabel": "তাসবিহর সংখ্যা:",
+  "tasbihCountsHint": "এখানে তাসবিহর সংখ্যা লিখুন",
+  "tasbihCounterEmptyError": "তাসবিহর কাউন্টার খালি রাখা যাবে না",
+  "tasbihCountsSuffix": "বার"
 }

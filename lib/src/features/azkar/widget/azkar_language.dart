@@ -1,4 +1,6 @@
+import 'package:flutter/widgets.dart';
 import 'package:muslim_data_flutter/muslim_data_flutter.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 const List<Language> azkarSupportedLanguages = [
   Language.en,
@@ -9,20 +11,21 @@ const List<Language> azkarSupportedLanguages = [
   Language.ru,
 ];
 
-String azkarLanguageLabel(Language language) {
+String azkarLanguageLabel(BuildContext context, Language language) {
+  final l10n = AppLocalizations.of(context);
   switch (language) {
     case Language.en:
-      return 'English';
+      return l10n.azkarLanguageEnglish;
     case Language.ar:
-      return 'Arabic';
+      return l10n.azkarLanguageArabic;
     case Language.ckb:
-      return 'Kurdish (Sorani)';
+      return l10n.azkarLanguageKurdishSorani;
     case Language.ckbBadini:
-      return 'Kurdish (Badini)';
+      return l10n.azkarLanguageKurdishBadini;
     case Language.fa:
-      return 'Persian';
+      return l10n.azkarLanguagePersian;
     case Language.ru:
-      return 'Russian';
+      return l10n.azkarLanguageRussian;
     default:
       return language.name.toUpperCase();
   }

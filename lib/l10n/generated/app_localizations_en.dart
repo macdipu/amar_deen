@@ -387,4 +387,75 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get liveTvPaused => 'Paused';
+
+  @override
+  String get azkarAppBarTitle => 'Azkars (Hisnul Muslim)';
+
+  @override
+  String get azkarFavoriteAzkars => 'Favorite Azkars';
+
+  @override
+  String get azkarNoCategoriesAvailable => 'No Azkar categories available.';
+
+  @override
+  String get azkarNoChaptersFound => 'No chapters found.';
+
+  @override
+  String get azkarNoItemsFound => 'No Azkars found.';
+
+  @override
+  String get azkarNoFavoritesYet => 'No favorite Azkars yet.';
+
+  @override
+  String get azkarLanguageEnglish => 'English';
+
+  @override
+  String get azkarLanguageArabic => 'Arabic';
+
+  @override
+  String get azkarLanguageKurdishSorani => 'Kurdish (Sorani)';
+
+  @override
+  String get azkarLanguageKurdishBadini => 'Kurdish (Badini)';
+
+  @override
+  String get azkarLanguagePersian => 'Persian';
+
+  @override
+  String get azkarLanguageRussian => 'Russian';
+
+  @override
+  String duaAyaLabel(int aya) {
+    return 'Aya: $aya';
+  }
+
+  @override
+  String get tasbihAddNew => 'Add New Tasbih';
+
+  @override
+  String get tasbihEditTitle => 'Edit Tasbih';
+
+  @override
+  String get tasbihActions => 'Actions:';
+
+  @override
+  String get tasbihCopy => 'Copy';
+
+  @override
+  String get tasbihNameHint => 'Input tasbih name here';
+
+  @override
+  String get tasbihNameEmptyError => 'Tashbih name cannot be empty';
+
+  @override
+  String get tasbihCountsLabel => 'Tasbih counts:';
+
+  @override
+  String get tasbihCountsHint => 'Input tasbih counts here';
+
+  @override
+  String get tasbihCounterEmptyError => 'Tashbih counter cannot be empty';
+
+  @override
+  String get tasbihCountsSuffix => 'counts';
 }

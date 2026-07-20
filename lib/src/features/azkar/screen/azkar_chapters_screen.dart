@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_data_flutter/muslim_data_flutter.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../utils/loading_widget.dart';
 import '../cubit/azkar_chapters_cubit.dart';
@@ -39,6 +40,7 @@ class _AzkarChaptersView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AzkarChaptersCubit, AzkarChaptersState>(
       builder: (context, state) {
+        final l10n = AppLocalizations.of(context);
         return Scaffold(
           appBar: AppBar(
             title: Text(state.categoryTitle),
@@ -53,7 +55,7 @@ class _AzkarChaptersView extends StatelessWidget {
                 if (state.status == AzkarLoadStatus.error) {
                   return Center(
                     child: Text(
-                      state.errorMessage ?? 'Something went wrong.',
+                      state.errorMessage ?? l10n.commonSomethingWentWrong,
                       style: Theme.of(context).textTheme.titleLarge,
                       textAlign: TextAlign.center,
                     ),
@@ -63,7 +65,7 @@ class _AzkarChaptersView extends StatelessWidget {
                 if (state.chapters.isEmpty) {
                   return Center(
                     child: Text(
-                      'No chapters found.',
+                      l10n.azkarNoChaptersFound,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   );

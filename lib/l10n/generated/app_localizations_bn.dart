@@ -386,4 +386,75 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get liveTvPaused => 'থামানো হয়েছে';
+
+  @override
+  String get azkarAppBarTitle => 'আযকার (হিসনুল মুসলিম)';
+
+  @override
+  String get azkarFavoriteAzkars => 'পছন্দের আযকার';
+
+  @override
+  String get azkarNoCategoriesAvailable => 'কোনো আযকার বিভাগ পাওয়া যায়নি।';
+
+  @override
+  String get azkarNoChaptersFound => 'কোনো অধ্যায় পাওয়া যায়নি।';
+
+  @override
+  String get azkarNoItemsFound => 'কোনো আযকার পাওয়া যায়নি।';
+
+  @override
+  String get azkarNoFavoritesYet => 'এখনো কোনো পছন্দের আযকার নেই।';
+
+  @override
+  String get azkarLanguageEnglish => 'ইংরেজি';
+
+  @override
+  String get azkarLanguageArabic => 'আরবি';
+
+  @override
+  String get azkarLanguageKurdishSorani => 'কুর্দি (সোরানি)';
+
+  @override
+  String get azkarLanguageKurdishBadini => 'কুর্দি (বাদিনি)';
+
+  @override
+  String get azkarLanguagePersian => 'ফার্সি';
+
+  @override
+  String get azkarLanguageRussian => 'রুশ';
+
+  @override
+  String duaAyaLabel(int aya) {
+    return 'আয়াত: $aya';
+  }
+
+  @override
+  String get tasbihAddNew => 'নতুন তাসবিহ যোগ করুন';
+
+  @override
+  String get tasbihEditTitle => 'তাসবিহ সম্পাদনা করুন';
+
+  @override
+  String get tasbihActions => 'কার্যক্রম:';
+
+  @override
+  String get tasbihCopy => 'কপি করুন';
+
+  @override
+  String get tasbihNameHint => 'এখানে তাসবিহর নাম লিখুন';
+
+  @override
+  String get tasbihNameEmptyError => 'তাসবিহর নাম খালি রাখা যাবে না';
+
+  @override
+  String get tasbihCountsLabel => 'তাসবিহর সংখ্যা:';
+
+  @override
+  String get tasbihCountsHint => 'এখানে তাসবিহর সংখ্যা লিখুন';
+
+  @override
+  String get tasbihCounterEmptyError => 'তাসবিহর কাউন্টার খালি রাখা যাবে না';
+
+  @override
+  String get tasbihCountsSuffix => 'বার';
 }

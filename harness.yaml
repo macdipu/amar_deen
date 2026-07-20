@@ -344,13 +344,17 @@ epics:
           injection.config.dart - no CI/codegen step in this repo). Externalized and
           verified so far: bottom nav bar, full Settings feature (all screens/widgets
           including the new language row), both onboarding permission screens, home
-          screen's location bottom sheet, and the one in-widget string in
-          local_failure_content.dart. ~71 files across the app have hardcoded
-          Text()/label strings; this covers the app shell + Settings, the rest
-          (Quran, Azkar, Dua, Tasbih, Home content cards, Prayer Timing, Live TV,
-          Allah's Names, Search, Bookmark, Qibla, error_code.dart's deep
-          service-layer failure messages) is still pending - continuing
-          incrementally. flutter analyze/test clean at each step so far.
+          screen's location bottom sheet, the one in-widget string in
+          local_failure_content.dart, prayer names + Home screen content + Prayer
+          Timing settings, Search/Bookmark/Allah's Names/Qibla/Live TV, and now
+          Azkar/Dua/Tasbih (2026-07-20 continued - app bar titles, empty/error states,
+          Azkar language-name labels, Tasbih add/edit dialog strings). Only Quran
+          (largest, deliberately last) remains unconverted, plus the
+          error_code.dart deep-service-layer refactor noted as a separate follow-up.
+          Generated lib/l10n/generated/*.dart hand-edited to match this session's
+          .arb additions (no flutter/dart binary available this session) - needs a
+          real flutter gen-l10n diff-check once tooling is available, see
+          PROGRESS.md.
       - id: TASK-020
         status: in_progress
         summary: >
@@ -358,7 +362,9 @@ epics:
           far has a corresponding lib/l10n/app_bn.arb Bangla translation, will finish
           when TASK-019 does. Brand/proper names (social media platform names,
           contributor names) deliberately left untranslated - matches convention in
-          other Bangla-localized apps.
+          other Bangla-localized apps. Azkar's 6 language-option names (English/
+          Arabic/Kurdish.../Persian/Russian) deliberately translated, unlike brand
+          names - judgment call, see PROGRESS.md.
       - id: TASK-021
         status: done
         summary: >

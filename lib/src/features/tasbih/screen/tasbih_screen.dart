@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/bloc/tasbih/tasbih_bloc.dart';
 import '../../../core/util/constants.dart';
@@ -36,11 +37,12 @@ class _TasbihScreenState extends State<TasbihScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return BlocBuilder<TasbihBloc, TasbihState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Tasbih'),
+            title: Text(l10n.homeCollectionTasbih),
             actions: [
               GestureDetector(
                 onTap: () async {
@@ -52,7 +54,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                       ),
                       builder: (context) {
                         return DetailDialog(
-                          title: 'Add New Tasbih',
+                          title: l10n.tasbihAddNew,
                           nameController: nameController,
                           counterController: counterController,
                           submitFunction: () async {

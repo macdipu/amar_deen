@@ -775,6 +775,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Paused'**
   String get liveTvPaused;
+
+  /// No description provided for @azkarAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Azkars (Hisnul Muslim)'**
+  String get azkarAppBarTitle;
+
+  /// No description provided for @azkarFavoriteAzkars.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite Azkars'**
+  String get azkarFavoriteAzkars;
+
+  /// No description provided for @azkarNoCategoriesAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No Azkar categories available.'**
+  String get azkarNoCategoriesAvailable;
+
+  /// No description provided for @azkarNoChaptersFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No chapters found.'**
+  String get azkarNoChaptersFound;
+
+  /// No description provided for @azkarNoItemsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No Azkars found.'**
+  String get azkarNoItemsFound;
+
+  /// No description provided for @azkarNoFavoritesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorite Azkars yet.'**
+  String get azkarNoFavoritesYet;
+
+  /// No description provided for @azkarLanguageEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get azkarLanguageEnglish;
+
+  /// No description provided for @azkarLanguageArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get azkarLanguageArabic;
+
+  /// No description provided for @azkarLanguageKurdishSorani.
+  ///
+  /// In en, this message translates to:
+  /// **'Kurdish (Sorani)'**
+  String get azkarLanguageKurdishSorani;
+
+  /// No description provided for @azkarLanguageKurdishBadini.
+  ///
+  /// In en, this message translates to:
+  /// **'Kurdish (Badini)'**
+  String get azkarLanguageKurdishBadini;
+
+  /// No description provided for @azkarLanguagePersian.
+  ///
+  /// In en, this message translates to:
+  /// **'Persian'**
+  String get azkarLanguagePersian;
+
+  /// No description provided for @azkarLanguageRussian.
+  ///
+  /// In en, this message translates to:
+  /// **'Russian'**
+  String get azkarLanguageRussian;
+
+  /// No description provided for @duaAyaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Aya: {aya}'**
+  String duaAyaLabel(int aya);
+
+  /// No description provided for @tasbihAddNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Tasbih'**
+  String get tasbihAddNew;
+
+  /// No description provided for @tasbihEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Tasbih'**
+  String get tasbihEditTitle;
+
+  /// No description provided for @tasbihActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions:'**
+  String get tasbihActions;
+
+  /// No description provided for @tasbihCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get tasbihCopy;
+
+  /// No description provided for @tasbihNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Input tasbih name here'**
+  String get tasbihNameHint;
+
+  /// No description provided for @tasbihNameEmptyError.
+  ///
+  /// In en, this message translates to:
+  /// **'Tashbih name cannot be empty'**
+  String get tasbihNameEmptyError;
+
+  /// No description provided for @tasbihCountsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tasbih counts:'**
+  String get tasbihCountsLabel;
+
+  /// No description provided for @tasbihCountsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Input tasbih counts here'**
+  String get tasbihCountsHint;
+
+  /// No description provided for @tasbihCounterEmptyError.
+  ///
+  /// In en, this message translates to:
+  /// **'Tashbih counter cannot be empty'**
+  String get tasbihCounterEmptyError;
+
+  /// No description provided for @tasbihCountsSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'counts'**
+  String get tasbihCountsSuffix;
 }
 
 class _AppLocalizationsDelegate

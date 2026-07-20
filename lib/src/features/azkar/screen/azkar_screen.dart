@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart'
     show AlignedGridView;
 import 'package:muslim_data_flutter/muslim_data_flutter.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/constants.dart';
 import '../../utils/bottom_sheet_select.dart';
@@ -31,15 +32,16 @@ class _AzkarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return BlocBuilder<AzkarCategoriesCubit, AzkarCategoriesState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Azkars (Hisnul Muslim)'),
+            title: Text(l10n.azkarAppBarTitle),
             actions: [
               IconButton(
                 icon: const Icon(Icons.favorite),
-                tooltip: 'Favorite Azkars',
+                tooltip: l10n.azkarFavoriteAzkars,
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -80,7 +82,8 @@ class _AzkarView extends StatelessWidget {
                         if (state.status == AzkarLoadStatus.error) {
                           return Center(
                             child: Text(
-                              state.errorMessage ?? 'Something went wrong.',
+                              state.errorMessage ??
+                                  l10n.commonSomethingWentWrong,
                               style: Theme.of(context).textTheme.titleLarge,
                               textAlign: TextAlign.center,
                             ),
@@ -90,7 +93,7 @@ class _AzkarView extends StatelessWidget {
                         if (state.categories.isEmpty) {
                           return Center(
                             child: Text(
-                              'No Azkar categories available.',
+                              l10n.azkarNoCategoriesAvailable,
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                           );
@@ -157,7 +160,7 @@ class _AzkarLanguageRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Language',
+            AppLocalizations.of(context).settingLanguage,
             style: theme.textTheme.titleLarge?.copyWith(
               color: primary,
               fontWeight: FontWeight.w600,
@@ -170,8 +173,8 @@ class _AzkarLanguageRow extends StatelessWidget {
             label: '',
             value: value,
             options: azkarSupportedLanguages,
-            optionLabelBuilder: azkarLanguageLabel,
-            selectedLabelBuilder: azkarLanguageLabel,
+            optionLabelBuilder: (lang) => azkarLanguageLabel(context, lang),
+            selectedLabelBuilder: (lang) => azkarLanguageLabel(context, lang),
             onChanged: onChanged,
           ),
         ],

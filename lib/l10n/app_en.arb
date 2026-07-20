@@ -151,5 +151,34 @@
   "liveTvUnableToPlay": "Unable to play this channel right now.",
   "liveTvExitFullScreen": "Exit full screen",
   "liveTvLive": "Live",
-  "liveTvPaused": "Paused"
+  "liveTvPaused": "Paused",
+
+  "azkarAppBarTitle": "Azkars (Hisnul Muslim)",
+  "azkarFavoriteAzkars": "Favorite Azkars",
+  "azkarNoCategoriesAvailable": "No Azkar categories available.",
+  "azkarNoChaptersFound": "No chapters found.",
+  "azkarNoItemsFound": "No Azkars found.",
+  "azkarNoFavoritesYet": "No favorite Azkars yet.",
+  "azkarLanguageEnglish": "English",
+  "azkarLanguageArabic": "Arabic",
+  "azkarLanguageKurdishSorani": "Kurdish (Sorani)",
+  "azkarLanguageKurdishBadini": "Kurdish (Badini)",
+  "azkarLanguagePersian": "Persian",
+  "azkarLanguageRussian": "Russian",
+
+  "duaAyaLabel": "Aya: {aya}",
+  "@duaAyaLabel": {
+    "placeholders": {"aya": {"type": "int"}}
+  },
+
+  "tasbihAddNew": "Add New Tasbih",
+  "tasbihEditTitle": "Edit Tasbih",
+  "tasbihActions": "Actions:",
+  "tasbihCopy": "Copy",
+  "tasbihNameHint": "Input tasbih name here",
+  "tasbihNameEmptyError": "Tashbih name cannot be empty",
+  "tasbihCountsLabel": "Tasbih counts:",
+  "tasbihCountsHint": "Input tasbih counts here",
+  "tasbihCounterEmptyError": "Tashbih counter cannot be empty",
+  "tasbihCountsSuffix": "counts"
 }
