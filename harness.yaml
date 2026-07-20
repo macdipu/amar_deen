@@ -278,11 +278,35 @@ epics:
     name: Worship Essentials
     tasks:
       - id: TASK-015
-        status: todo
-        summary: dua_azkar feature - categorized library, bundled local JSON/asset data.
+        status: done
+        summary: >
+          Done 2026-07-20 as verify-only, not build-from-scratch. Investigation found
+          Dua and Azkar already substantially exist in this fork pre-migration: Dua
+          (lib/src/features/dua/) is Quranic-verse-based (surah/ayaNumber/aya) backed
+          by the bundled SQLite DB with working favorites already. Azkar
+          (lib/src/features/azkar/) wraps muslim_data_flutter's Hisnul-Muslim dataset
+          via AzkarRepository - categories/chapters/items browsing all present. BRD gap
+          table in AMAR_DEEN_PLAN.md section 2 was stale on this point; corrected.
       - id: TASK-016
-        status: todo
-        summary: Favorite/bookmark for Dua/Azkar via Hive.
+        status: done
+        summary: >
+          Done 2026-07-20. Dua favorites already existed pre-migration
+          (toggleDuaFavorite in the bundled SQLite DB). Added the missing Azkar half:
+          new azkar_favorites side-table in database_service.dart (same
+          create-if-missing pattern as quran/dua favorites, keyed by
+          azkar_item_id+chapter_id+language since Azkar content is owned by
+          muslim_data_flutter's DB, not ours), AzkarItemCard widget with a favorite
+          toggle, AzkarFavoritesCubit aggregating favorites across chapters (no
+          get-by-id API exists upstream, so it groups by chapter_id and re-fetches),
+          and AzkarFavoritesScreen reachable via a new app-bar icon on AzkarScreen.
+          DECISION: used SQLite (existing DatabaseService pattern) rather than Hive as
+          originally scoped in this task summary - see DECISIONS.md, hive/hive_flutter
+          were already flagged there as stale/unmaintained with no explicit go-ahead
+          for hive_ce; SQLite matches Dua's existing favorites pattern exactly and
+          avoids adding a new persistence dependency for one feature. AskUserQuestion
+          failed (tool error) when trying to confirm this with the user before
+          proceeding - documented in PROGRESS.md, user notified in chat.
+          flutter analyze: 0 new issues. flutter test: passing.
       - id: TASK-017
         status: todo
         summary: tasbih feature - counter, resettable target, haptics.

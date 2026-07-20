@@ -6,46 +6,39 @@ import 'package:muslim_data_flutter/muslim_data_flutter.dart';
 import '../../../core/util/bloc/database/database_bloc.dart';
 import '../../../core/util/constants.dart';
 import '../../utils/loading_widget.dart';
-import '../cubit/azkar_items_cubit.dart';
 import '../cubit/azkar_categories_cubit.dart';
+import '../cubit/azkar_favorites_cubit.dart';
 import '../widget/azkar_item_card.dart';
 
-class AzkarItemsScreen extends StatelessWidget {
-  const AzkarItemsScreen({
-    super.key,
-    required this.chapterId,
-    required this.chapterTitle,
-    required this.language,
-  });
+class AzkarFavoritesScreen extends StatelessWidget {
+  const AzkarFavoritesScreen({super.key, required this.language});
 
-  final int chapterId;
-  final String chapterTitle;
   final Language language;
 
   @override
   Widget build(BuildContext context) {
     final db = BlocProvider.of<DatabaseBloc>(context).db;
     return BlocProvider(
-      create: (_) => AzkarItemsCubit(
-        chapterId: chapterId,
-        chapterTitle: chapterTitle,
-        language: language,
-      )..load(db: db),
-      child: const _AzkarItemsView(),
+      create: (_) {
+        final cubit = AzkarFavoritesCubit(language: language);
+        if (db != null) cubit.load(db);
+        return cubit;
+      },
+      child: const _AzkarFavoritesView(),
     );
   }
 }
 
-class _AzkarItemsView extends StatelessWidget {
-  const _AzkarItemsView();
+class _AzkarFavoritesView extends StatelessWidget {
+  const _AzkarFavoritesView();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AzkarItemsCubit, AzkarItemsState>(
+    return BlocBuilder<AzkarFavoritesCubit, AzkarFavoritesState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(state.chapterTitle),
+            title: const Text('Favorite Azkars'),
           ),
           body: SafeArea(
             child: Builder(
@@ -67,7 +60,7 @@ class _AzkarItemsView extends StatelessWidget {
                 if (state.items.isEmpty) {
                   return Center(
                     child: Text(
-                      'No Azkars found.',
+                      'No favorite Azkars yet.',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   );
@@ -82,13 +75,13 @@ class _AzkarItemsView extends StatelessWidget {
 
                     return AzkarItemCard(
                       item: item,
-                      isFavorite: state.favoriteItemIds.contains(item.id),
+                      isFavorite: true,
                       onToggleFavorite: () {
                         final db =
                             BlocProvider.of<DatabaseBloc>(context).db;
                         if (db == null) return;
                         context
-                            .read<AzkarItemsCubit>()
+                            .read<AzkarFavoritesCubit>()
                             .toggleFavorite(db, item);
                       },
                     );

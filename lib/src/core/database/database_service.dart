@@ -62,6 +62,7 @@ class DatabaseService {
 
       final Database db = await openDatabase(pathName);
       await _ensureQuranFavoritesTable(db);
+      await _ensureAzkarFavoritesTable(db);
 
       await DatabaseTable.cachedDataFromDb(db, context);
 
@@ -285,5 +286,96 @@ class DatabaseService {
         .map((row) => int.tryParse(row['ayat_id'].toString()))
         .whereType<int>()
         .toList();
+  }
+
+  /// Azkar content itself comes from the bundled `muslim_data_flutter`
+  /// package's own database (not `assets/latest.db`), so - same as Quran
+  /// favourites - favorited items are tracked in a side table keyed by
+  /// item id rather than a `favorite` column on a table we don't own.
+  Future<void> _ensureAzkarFavoritesTable(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS azkar_favourites (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        azkar_item_id INTEGER NOT NULL,
+        chapter_id INTEGER NOT NULL,
+        language TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        UNIQUE(azkar_item_id, language)
+      )
+    ''');
+  }
+
+  Future<List<int>> toggleAzkarFavorite(
+    Database db, {
+    required int azkarItemId,
+    required int chapterId,
+    required String language,
+  }) async {
+    await _ensureAzkarFavoritesTable(db);
+
+    final existing = await db.query(
+      'azkar_favourites',
+      columns: ['id'],
+      where: 'azkar_item_id = ? AND language = ?',
+      whereArgs: [azkarItemId, language],
+      limit: 1,
+    );
+
+    if (existing.isEmpty) {
+      await db.insert(
+        'azkar_favourites',
+        {
+          'azkar_item_id': azkarItemId,
+          'chapter_id': chapterId,
+          'language': language,
+          'created_at': DateTime.now().toIso8601String(),
+        },
+      );
+    } else {
+      await db.delete(
+        'azkar_favourites',
+        where: 'azkar_item_id = ? AND language = ?',
+        whereArgs: [azkarItemId, language],
+      );
+    }
+
+    return getAzkarFavoriteItemIds(db, language: language);
+  }
+
+  Future<List<int>> getAzkarFavoriteItemIds(
+    Database db, {
+    required String language,
+  }) async {
+    await _ensureAzkarFavoritesTable(db);
+
+    final rows = await db.query(
+      'azkar_favourites',
+      columns: ['azkar_item_id'],
+      where: 'language = ?',
+      whereArgs: [language],
+      orderBy: 'datetime(created_at) DESC, id DESC',
+    );
+
+    return rows
+        .map((row) => int.tryParse(row['azkar_item_id'].toString()))
+        .whereType<int>()
+        .toList();
+  }
+
+  /// Full favourite rows (item id + chapter id) for [language], needed to
+  /// re-fetch each favorited item's content by chapter (there's no
+  /// "get azkar item by id" lookup in `muslim_data_flutter`).
+  Future<List<Map<String, Object?>>> getAzkarFavoriteRefs(
+    Database db, {
+    required String language,
+  }) async {
+    await _ensureAzkarFavoritesTable(db);
+
+    return db.query(
+      'azkar_favourites',
+      where: 'language = ?',
+      whereArgs: [language],
+      orderBy: 'datetime(created_at) DESC, id DESC',
+    );
   }
 }

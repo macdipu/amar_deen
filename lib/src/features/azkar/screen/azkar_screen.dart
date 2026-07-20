@@ -11,6 +11,7 @@ import '../../utils/loading_widget.dart';
 import '../cubit/azkar_categories_cubit.dart';
 import '../widget/azkar_language.dart';
 import 'azkar_chapters_screen.dart';
+import 'azkar_favorites_screen.dart';
 
 
 class AzkarScreen extends StatelessWidget {
@@ -35,6 +36,24 @@ class _AzkarView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Azkars (Hisnul Muslim)'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.favorite),
+                tooltip: 'Favorite Azkars',
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => AzkarFavoritesScreen(
+                        language: azkarSupportedLanguages
+                                .contains(state.language)
+                            ? state.language
+                            : azkarSupportedLanguages.first,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
           body: SafeArea(
             child: Padding(
