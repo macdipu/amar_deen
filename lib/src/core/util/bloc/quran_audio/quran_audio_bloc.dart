@@ -26,7 +26,7 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
       } else if (event is StopAudio) {
         await _handleStop(emit);
       } else if (event is ClearAudioError) {
-        emit(state.copyWith(errorMessage: null));
+        emit(state.copyWith(error: null));
       } else if (event is _InternalTrackChanged) {
         emit(state.copyWith(
           currentAyatId: event.currentAyatId,
@@ -36,11 +36,6 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
         ));
       } else if (event is _InternalPlayerStateChanged) {
         emit(state.copyWith(status: event.status));
-      } else if (event is _InternalError) {
-        emit(state.copyWith(
-          status: QuranAudioStatus.error,
-          errorMessage: event.message,
-        ));
       }
     });
   }
@@ -100,13 +95,13 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
       currentAyatId: event.ayatId,
       currentSurahId: event.surahId,
       playlistAyatIds: const [],
-      errorMessage: null,
+      error: null,
     ));
 
     if (!await _hasInternet()) {
       emit(state.copyWith(
         status: QuranAudioStatus.error,
-        errorMessage: 'No internet connection. Please try again.',
+        error: QuranAudioError.noInternet,
       ));
       return;
     }
@@ -123,7 +118,7 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
     } catch (e) {
       emit(state.copyWith(
         status: QuranAudioStatus.error,
-        errorMessage: 'Unable to play audio right now.',
+        error: QuranAudioError.playbackFailed,
       ));
     }
   }
@@ -141,7 +136,7 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
       if (!await _hasInternet()) {
         emit(state.copyWith(
           status: QuranAudioStatus.error,
-          errorMessage: 'No internet connection. Please try again.',
+          error: QuranAudioError.noInternet,
         ));
         return;
       }
@@ -164,13 +159,13 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
       currentSurahId: event.surahId,
       playlistAyatIds: event.ayatIds,
       currentAyatId: event.ayatIds.isNotEmpty ? event.ayatIds.first : null,
-      errorMessage: null,
+      error: null,
     ));
 
     if (!await _hasInternet()) {
       emit(state.copyWith(
         status: QuranAudioStatus.error,
-        errorMessage: 'No internet connection. Please try again.',
+        error: QuranAudioError.noInternet,
       ));
       return;
     }
@@ -189,7 +184,7 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
     } catch (e) {
       emit(state.copyWith(
         status: QuranAudioStatus.error,
-        errorMessage: 'Unable to play surah audio right now.',
+        error: QuranAudioError.surahPlaybackFailed,
       ));
     }
   }
@@ -204,7 +199,7 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
       if (!await _hasInternet()) {
         emit(state.copyWith(
           status: QuranAudioStatus.error,
-          errorMessage: 'No internet connection. Please try again.',
+          error: QuranAudioError.noInternet,
         ));
         return;
       }

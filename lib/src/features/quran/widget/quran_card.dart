@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qcf_quran/qcf_quran.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/bloc/quran/quran_bloc.dart';
 import '../../../core/util/bloc/quran_audio/quran_audio_bloc.dart';
@@ -104,10 +105,13 @@ class QuranCard extends StatelessWidget {
                         ),
                       );
 
-                      final msg = bloc.state.errorMessage;
-                      if (msg != null && msg.isNotEmpty) {
+                      final error = bloc.state.error;
+                      if (error != null) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(msg)),
+                          SnackBar(
+                            content:
+                                Text(localizedQuranAudioError(context, error)),
+                          ),
                         );
                         bloc.add(const ClearAudioError());
                       }
@@ -221,7 +225,9 @@ void _openQuranReaderAtBookmarkedAyah(BuildContext context, Quran quran) {
   final index = surahs.surahs.indexWhere((s) => s.id == quran.surahId);
   if (index < 0) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Could not open this verse in the Quran.')),
+      SnackBar(
+        content: Text(AppLocalizations.of(context).quranCouldNotOpenVerse),
+      ),
     );
     return;
   }

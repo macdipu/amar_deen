@@ -334,37 +334,45 @@ epics:
     name: Localization
     tasks:
       - id: TASK-019
-        status: in_progress
+        status: done
         summary: >
-          Started 2026-07-20. Confirmed (unlike TASK-015/017/018) this is a genuine,
-          unstarted gap - no .arb/intl/flutter_localizations infrastructure existed at
-          all before this. Full scaffolding now in place: flutter_localizations +
-          generate:true in pubspec.yaml, l10n.yaml, lib/l10n/app_en.arb template,
-          generated lib/l10n/generated/ (committed, same rationale as
-          injection.config.dart - no CI/codegen step in this repo). Externalized and
-          verified so far: bottom nav bar, full Settings feature (all screens/widgets
-          including the new language row), both onboarding permission screens, home
-          screen's location bottom sheet, the one in-widget string in
-          local_failure_content.dart, prayer names + Home screen content + Prayer
-          Timing settings, Search/Bookmark/Allah's Names/Qibla/Live TV, and now
-          Azkar/Dua/Tasbih (2026-07-20 continued - app bar titles, empty/error states,
-          Azkar language-name labels, Tasbih add/edit dialog strings). Only Quran
-          (largest, deliberately last) remains unconverted, plus the
-          error_code.dart deep-service-layer refactor noted as a separate follow-up.
-          Generated lib/l10n/generated/*.dart hand-edited to match this session's
-          .arb additions (no flutter/dart binary available this session) - needs a
-          real flutter gen-l10n diff-check once tooling is available, see
-          PROGRESS.md.
+          Started 2026-07-20, finished 2026-07-20 with the Quran feature (largest,
+          deliberately done last). Full .arb/intl/flutter_localizations
+          infrastructure in place (l10n.yaml, generate:true, lib/l10n/app_en.arb,
+          committed lib/l10n/generated/ - no CI/codegen step in this repo, same
+          rationale as injection.config.dart). Every screen/widget across the app
+          has been through a conversion pass: app shell + Settings, onboarding
+          permission screens, Home screen content, prayer names + Prayer Timing
+          settings, Search/Bookmark/Allah's Names/Qibla/Live TV,
+          Azkar/Dua/Tasbih, and finally Quran (app bar/tabs/search/reader
+          resume-banner/reciter-option labels/Meccan-Medinan+ayah-count line/audio
+          mini-player, plus a QuranAudioBloc error-message cleanup from raw
+          strings to a QuranAudioError enum so widgets can localize at display
+          time). Two deliberate scope boundaries remain, not oversights: (1)
+          option_screen.dart's 16-entry translation-mode list is a literal
+          data-lookup key (Quran.getTranslationText's translationByMode map), not
+          display prose - needs a curated, reviewed Bangla label map rather than a
+          mechanical swap; (2) error_code.dart's deep-service-layer failure
+          messages still need the error-code-only-Failure + UI-side-lookup
+          refactor to become localizable at all - separate follow-up task.
+          Generated lib/l10n/generated/*.dart hand-edited twice this session (no
+          flutter/dart binary available) - needs a real flutter gen-l10n
+          diff-check as the top verification priority once tooling is available,
+          see PROGRESS.md.
       - id: TASK-020
-        status: in_progress
+        status: done
         summary: >
-          Started 2026-07-20, tracks TASK-019 1:1 - every key added to app_en.arb so
-          far has a corresponding lib/l10n/app_bn.arb Bangla translation, will finish
-          when TASK-019 does. Brand/proper names (social media platform names,
-          contributor names) deliberately left untranslated - matches convention in
-          other Bangla-localized apps. Azkar's 6 language-option names (English/
-          Arabic/Kurdish.../Persian/Russian) deliberately translated, unlike brand
-          names - judgment call, see PROGRESS.md.
+          Finished 2026-07-20 alongside TASK-019 - every key added to app_en.arb
+          has a corresponding lib/l10n/app_bn.arb Bangla translation, including
+          Quran's 47 new keys. Brand/proper names (social media platform names,
+          contributor names, Quran reciter names, font-family identifiers,
+          translation-edition/translator credits) deliberately left untranslated -
+          matches convention in other Bangla-localized apps and avoids
+          mistranslating scholarly names without a native/domain reviewer. Azkar's
+          6 language-option names and Quran's 7 audio-reciter-language names
+          deliberately translated, unlike the brand/proper-noun cases - judgment
+          call, see PROGRESS.md. Bangla translations overall are
+          machine-assisted, not native-speaker-reviewed - flagged for Dipu.
       - id: TASK-021
         status: done
         summary: >

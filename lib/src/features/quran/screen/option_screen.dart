@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/constants.dart';
 import '../../utils/custom_switch.dart';
@@ -70,7 +71,7 @@ class OptionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Quran Styling Option',
+          AppLocalizations.of(context).quranOptionAppBarTitle,
         ),
       ),
       body: SafeArea(
@@ -99,34 +100,36 @@ class OptionScreen extends StatelessWidget {
 class AudioEditionOption extends StatelessWidget {
   const AudioEditionOption();
 
-  String _humanType(String type) {
+  String _humanType(BuildContext context, String type) {
+    final l10n = AppLocalizations.of(context);
     switch (type.trim().toLowerCase()) {
       case 'versebyverse':
-        return 'Verse by verse';
+        return l10n.quranAudioTypeVerseByVerse;
       case 'translation':
-        return 'Translation';
+        return l10n.quranAudioTypeTranslation;
       default:
         if (type.isEmpty) return '';
         return type[0].toUpperCase() + type.substring(1);
     }
   }
 
-  String _humanLanguage(String language) {
+  String _humanLanguage(BuildContext context, String language) {
+    final l10n = AppLocalizations.of(context);
     switch (language.trim().toLowerCase()) {
       case 'ar':
-        return 'Arabic';
+        return l10n.quranLangArabic;
       case 'en':
-        return 'English';
+        return l10n.quranLangEnglish;
       case 'ur':
-        return 'Urdu';
+        return l10n.quranLangUrdu;
       case 'fa':
-        return 'Persian';
+        return l10n.quranLangPersian;
       case 'fr':
-        return 'French';
+        return l10n.quranLangFrench;
       case 'ru':
-        return 'Russian';
+        return l10n.quranLangRussian;
       case 'zh':
-        return 'Chinese';
+        return l10n.quranLangChinese;
       default:
         return language.isEmpty ? '' : language.toUpperCase();
     }
@@ -185,7 +188,11 @@ class AudioEditionOption extends StatelessWidget {
               ),
               SizedBox(height: 4.h),
               Text(
-                'Type: ${_humanType(a.type)} • Language: ${_humanLanguage(a.language)} • Quality: ${a.quality} kbps',
+                AppLocalizations.of(context).quranAudioMetaLine(
+                  _humanType(context, a.type),
+                  _humanLanguage(context, a.language),
+                  a.quality,
+                ),
                 style: subtitleStyle,
               ),
             ],
@@ -193,7 +200,7 @@ class AudioEditionOption extends StatelessWidget {
         }
 
         return BottomSheetSelect<String>(
-          label: 'Audio reciter',
+          label: AppLocalizations.of(context).quranOptionAudioReciter,
           value: value,
           options: ids,
           selectedLabelBuilder: selectedLabel,
@@ -218,7 +225,7 @@ class ShowTranslationOption extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Show translation',
+            AppLocalizations.of(context).quranOptionShowTranslation,
             style: Theme.of(context)
                 .textTheme
                 .titleLarge!
@@ -249,7 +256,7 @@ class TranslationMode extends StatelessWidget {
     return BlocBuilder<QuranThemeBloc, QuranThemeState>(
       builder: (context, state) {
         return BottomSheetSelect<String>(
-          label: 'Translation mode',
+          label: AppLocalizations.of(context).quranOptionTranslationMode,
           value: state.translationMode,
           options: _translationModes,
           onChanged: (value) {
@@ -280,7 +287,7 @@ class QuranFontSize extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Quran font size',
+                  AppLocalizations.of(context).quranOptionQuranFontSize,
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!
@@ -346,7 +353,7 @@ class QuranFontFamily extends StatelessWidget {
         }
 
         return BottomSheetSelect<String>(
-          label: 'Quran font family',
+          label: AppLocalizations.of(context).quranOptionQuranFontFamily,
           value: state.quranFontFamily,
           options: _normalQuranFonts,
           onChanged: (value) {
@@ -371,7 +378,7 @@ class TranslationFontSize extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              'Translation font size',
+              AppLocalizations.of(context).quranOptionTranslationFontSize,
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!
@@ -441,7 +448,7 @@ class TranslationFontFamily extends StatelessWidget {
             : options.first;
 
         return BottomSheetSelect<String>(
-          label: 'Translation font family',
+          label: AppLocalizations.of(context).quranOptionTranslationFontFamily,
           value: selectedValue,
           options: options,
           onChanged: (value) {
@@ -457,14 +464,22 @@ class TranslationFontFamily extends StatelessWidget {
 class QuranTypeOption extends StatelessWidget {
   const QuranTypeOption();
 
+  static String _label(BuildContext context, String type) {
+    return type == 'Normal'
+        ? AppLocalizations.of(context).quranTypeNormal
+        : type;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QuranThemeBloc, QuranThemeState>(
       builder: (context, state) {
         return BottomSheetSelect<String>(
-          label: 'Quran type',
+          label: AppLocalizations.of(context).quranOptionQuranType,
           value: state.quranType,
           options: _quranTypes,
+          optionLabelBuilder: (type) => _label(context, type),
+          selectedLabelBuilder: (type) => _label(context, type),
           onChanged: (value) {
             BlocProvider.of<QuranThemeBloc>(context).add(SetQuranType(value));
           },
@@ -477,6 +492,18 @@ class QuranTypeOption extends StatelessWidget {
 class QcfScrollDirectionOption extends StatelessWidget {
   const QcfScrollDirectionOption();
 
+  static String _label(BuildContext context, String direction) {
+    final l10n = AppLocalizations.of(context);
+    switch (direction) {
+      case 'Vertical':
+        return l10n.quranScrollDirectionVertical;
+      case 'Horizontal':
+        return l10n.quranScrollDirectionHorizontal;
+      default:
+        return direction;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QuranThemeBloc, QuranThemeState>(
@@ -486,9 +513,11 @@ class QcfScrollDirectionOption extends StatelessWidget {
         }
 
         return BottomSheetSelect<String>(
-          label: 'QCF scroll direction',
+          label: AppLocalizations.of(context).quranOptionQcfScrollDirection,
           value: state.qcfScrollDirection,
           options: _qcfScrollDirections,
+          optionLabelBuilder: (d) => _label(context, d),
+          selectedLabelBuilder: (d) => _label(context, d),
           onChanged: (value) {
             BlocProvider.of<QuranThemeBloc>(context)
                 .add(SetQcfScrollDirection(value));

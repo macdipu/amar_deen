@@ -458,4 +458,166 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tasbihCountsSuffix => 'counts';
+
+  @override
+  String get quranAppBarTitle => 'Al-Quran';
+
+  @override
+  String get quranTabSurah => 'Surah';
+
+  @override
+  String get quranTabJuz => 'Juz';
+
+  @override
+  String quranContinueReadingSurah(String surah) {
+    return 'Continue Reading Surah $surah';
+  }
+
+  @override
+  String quranContinueReadingJuz(String juz) {
+    return 'Continue Reading $juz';
+  }
+
+  @override
+  String get quranSearchAppBarTitle => 'Search Quran';
+
+  @override
+  String get quranSearchHint => 'Search by name, number, place…';
+
+  @override
+  String get quranSearchSurahsTitle => 'Search Surahs';
+
+  @override
+  String get quranSearchJuzTitle => 'Search Juz';
+
+  @override
+  String get quranNoResults => 'No results';
+
+  @override
+  String get quranSearchSurahsHintBody =>
+      'Type a Surah name (English/Arabic) or number.';
+
+  @override
+  String get quranSearchJuzHintBody => 'Type a Juz name or number (e.g. “2”).';
+
+  @override
+  String quranSearchNoMatchSurah(String query) {
+    return 'Nothing matched “$query”. Try a different spelling.';
+  }
+
+  @override
+  String quranSearchNoMatchJuz(String query) {
+    return 'Nothing matched “$query”. Try searching by number.';
+  }
+
+  @override
+  String get quranCouldNotOpenVerse =>
+      'Could not open this verse in the Quran.';
+
+  @override
+  String quranPlayingSurah(int surah) {
+    return 'Playing Surah $surah';
+  }
+
+  @override
+  String quranPlayingSurahAyah(int surah, int ayah) {
+    return 'Playing Surah $surah • Ayah $ayah';
+  }
+
+  @override
+  String quranPlayFullSurah(int surah) {
+    return 'Play full Surah $surah';
+  }
+
+  @override
+  String get quranAudioNoInternet => 'No internet connection. Please try again.';
+
+  @override
+  String get quranAudioPlaybackFailed => 'Unable to play audio right now.';
+
+  @override
+  String get quranAudioSurahPlaybackFailed =>
+      'Unable to play surah audio right now.';
+
+  @override
+  String quranSurahMeta(String place, int ayats) {
+    return '$place - $ayats ayat';
+  }
+
+  @override
+  String get quranPlaceMakki => 'Meccan';
+
+  @override
+  String get quranPlaceMadina => 'Medinan';
+
+  @override
+  String get quranOptionAppBarTitle => 'Quran Styling Option';
+
+  @override
+  String get quranOptionAudioReciter => 'Audio reciter';
+
+  @override
+  String get quranOptionShowTranslation => 'Show translation';
+
+  @override
+  String get quranOptionQuranFontSize => 'Quran font size';
+
+  @override
+  String get quranOptionQuranFontFamily => 'Quran font family';
+
+  @override
+  String get quranOptionTranslationFontSize => 'Translation font size';
+
+  @override
+  String get quranOptionTranslationFontFamily => 'Translation font family';
+
+  @override
+  String get quranOptionTranslationMode => 'Translation mode';
+
+  @override
+  String get quranOptionQuranType => 'Quran type';
+
+  @override
+  String get quranOptionQcfScrollDirection => 'QCF scroll direction';
+
+  @override
+  String get quranTypeNormal => 'Normal';
+
+  @override
+  String get quranScrollDirectionVertical => 'Vertical';
+
+  @override
+  String get quranScrollDirectionHorizontal => 'Horizontal';
+
+  @override
+  String get quranAudioTypeVerseByVerse => 'Verse by verse';
+
+  @override
+  String get quranAudioTypeTranslation => 'Translation';
+
+  @override
+  String get quranLangArabic => 'Arabic';
+
+  @override
+  String get quranLangEnglish => 'English';
+
+  @override
+  String get quranLangUrdu => 'Urdu';
+
+  @override
+  String get quranLangPersian => 'Persian';
+
+  @override
+  String get quranLangFrench => 'French';
+
+  @override
+  String get quranLangRussian => 'Russian';
+
+  @override
+  String get quranLangChinese => 'Chinese';
+
+  @override
+  String quranAudioMetaLine(String type, String language, int quality) {
+    return 'Type: $type • Language: $language • Quality: $quality kbps';
+  }
 }

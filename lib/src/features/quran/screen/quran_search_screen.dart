@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/bloc/juz/juz_bloc.dart';
 import '../../../core/util/bloc/surah/surah_bloc.dart';
@@ -36,12 +37,13 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final primary = theme.colorScheme.primary;
+    final l10n = AppLocalizations.of(context);
 
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Search Quran'),
+          title: Text(l10n.quranSearchAppBarTitle),
           centerTitle: false,
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(52.h),
@@ -88,9 +90,9 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
                   unselectedLabelStyle: theme.textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
-                  tabs: const [
-                    Tab(height: double.infinity, text: 'Surah'),
-                    Tab(height: double.infinity, text: 'Juz'),
+                  tabs: [
+                    Tab(height: double.infinity, text: l10n.quranTabSurah),
+                    Tab(height: double.infinity, text: l10n.quranTabJuz),
                   ],
                 ),
               ),
@@ -126,7 +128,7 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
                     onChanged: (v) => setState(() => _query = v.trim()),
                     textInputAction: TextInputAction.search,
                     decoration: InputDecoration(
-                      hintText: 'Search by name, number, place…',
+                      hintText: l10n.quranSearchHint,
                       prefixIcon: Icon(Icons.search, color: primary),
                       suffixIcon: _query.isEmpty
                           ? null
@@ -188,11 +190,12 @@ class _SurahSearchTab extends StatelessWidget {
         }
 
         if (indices.isEmpty) {
+          final l10n = AppLocalizations.of(context);
           return _SearchEmptyState(
-            title: q.isEmpty ? 'Search Surahs' : 'No results',
+            title: q.isEmpty ? l10n.quranSearchSurahsTitle : l10n.quranNoResults,
             subtitle: q.isEmpty
-                ? 'Type a Surah name (English/Arabic) or number.'
-                : 'Nothing matched “$q”. Try a different spelling.',
+                ? l10n.quranSearchSurahsHintBody
+                : l10n.quranSearchNoMatchSurah(q),
           );
         }
 
@@ -234,11 +237,12 @@ class _JuzSearchTab extends StatelessWidget {
         }
 
         if (indices.isEmpty) {
+          final l10n = AppLocalizations.of(context);
           return _SearchEmptyState(
-            title: q.isEmpty ? 'Search Juz' : 'No results',
+            title: q.isEmpty ? l10n.quranSearchJuzTitle : l10n.quranNoResults,
             subtitle: q.isEmpty
-                ? 'Type a Juz name or number (e.g. “2”).'
-                : 'Nothing matched “$q”. Try searching by number.',
+                ? l10n.quranSearchJuzHintBody
+                : l10n.quranSearchNoMatchJuz(q),
           );
         }
 

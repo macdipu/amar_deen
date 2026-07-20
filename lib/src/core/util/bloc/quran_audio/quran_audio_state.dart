@@ -4,13 +4,18 @@ enum QuranAudioStatus { idle, loading, playing, paused, stopped, error }
 
 enum QuranAudioMode { none, ayah, surah }
 
+/// Error kind for [QuranAudioState.error]. Kept as an enum (not a raw
+/// message string) so widgets can localize it via `AppLocalizations` at
+/// display time instead of the bloc emitting hardcoded English text.
+enum QuranAudioError { noInternet, playbackFailed, surahPlaybackFailed }
+
 class QuranAudioState extends Equatable {
   final QuranAudioStatus status;
   final QuranAudioMode mode;
   final int? currentSurahId;
   final int? currentAyatId;
   final List<int> playlistAyatIds;
-  final String? errorMessage;
+  final QuranAudioError? error;
 
   const QuranAudioState({
     this.status = QuranAudioStatus.idle,
@@ -18,7 +23,7 @@ class QuranAudioState extends Equatable {
     this.currentSurahId,
     this.currentAyatId,
     this.playlistAyatIds = const [],
-    this.errorMessage,
+    this.error,
   });
 
   QuranAudioState copyWith({
@@ -27,7 +32,7 @@ class QuranAudioState extends Equatable {
     int? currentSurahId,
     int? currentAyatId,
     List<int>? playlistAyatIds,
-    String? errorMessage,
+    QuranAudioError? error,
   }) {
     return QuranAudioState(
       status: status ?? this.status,
@@ -35,7 +40,7 @@ class QuranAudioState extends Equatable {
       currentSurahId: currentSurahId ?? this.currentSurahId,
       currentAyatId: currentAyatId ?? this.currentAyatId,
       playlistAyatIds: playlistAyatIds ?? this.playlistAyatIds,
-      errorMessage: errorMessage,
+      error: error,
     );
   }
 
@@ -51,7 +56,7 @@ class QuranAudioState extends Equatable {
         currentSurahId,
         currentAyatId,
         playlistAyatIds,
-        errorMessage,
+        error,
       ];
 }
 

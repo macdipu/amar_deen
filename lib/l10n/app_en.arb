@@ -180,5 +180,85 @@
   "tasbihCountsLabel": "Tasbih counts:",
   "tasbihCountsHint": "Input tasbih counts here",
   "tasbihCounterEmptyError": "Tashbih counter cannot be empty",
-  "tasbihCountsSuffix": "counts"
+  "tasbihCountsSuffix": "counts",
+
+  "quranAppBarTitle": "Al-Quran",
+  "quranTabSurah": "Surah",
+  "quranTabJuz": "Juz",
+  "quranContinueReadingSurah": "Continue Reading Surah {surah}",
+  "@quranContinueReadingSurah": {
+    "placeholders": {"surah": {"type": "String"}}
+  },
+  "quranContinueReadingJuz": "Continue Reading {juz}",
+  "@quranContinueReadingJuz": {
+    "placeholders": {"juz": {"type": "String"}}
+  },
+  "quranSearchAppBarTitle": "Search Quran",
+  "quranSearchHint": "Search by name, number, place…",
+  "quranSearchSurahsTitle": "Search Surahs",
+  "quranSearchJuzTitle": "Search Juz",
+  "quranNoResults": "No results",
+  "quranSearchSurahsHintBody": "Type a Surah name (English/Arabic) or number.",
+  "quranSearchJuzHintBody": "Type a Juz name or number (e.g. “2”).",
+  "quranSearchNoMatchSurah": "Nothing matched “{query}”. Try a different spelling.",
+  "@quranSearchNoMatchSurah": {
+    "placeholders": {"query": {"type": "String"}}
+  },
+  "quranSearchNoMatchJuz": "Nothing matched “{query}”. Try searching by number.",
+  "@quranSearchNoMatchJuz": {
+    "placeholders": {"query": {"type": "String"}}
+  },
+  "quranCouldNotOpenVerse": "Could not open this verse in the Quran.",
+  "quranPlayingSurah": "Playing Surah {surah}",
+  "@quranPlayingSurah": {
+    "placeholders": {"surah": {"type": "int"}}
+  },
+  "quranPlayingSurahAyah": "Playing Surah {surah} • Ayah {ayah}",
+  "@quranPlayingSurahAyah": {
+    "placeholders": {"surah": {"type": "int"}, "ayah": {"type": "int"}}
+  },
+  "quranPlayFullSurah": "Play full Surah {surah}",
+  "@quranPlayFullSurah": {
+    "placeholders": {"surah": {"type": "int"}}
+  },
+  "quranAudioNoInternet": "No internet connection. Please try again.",
+  "quranAudioPlaybackFailed": "Unable to play audio right now.",
+  "quranAudioSurahPlaybackFailed": "Unable to play surah audio right now.",
+  "quranSurahMeta": "{place} - {ayats} ayat",
+  "@quranSurahMeta": {
+    "placeholders": {"place": {"type": "String"}, "ayats": {"type": "int"}}
+  },
+  "quranPlaceMakki": "Meccan",
+  "quranPlaceMadina": "Medinan",
+
+  "quranOptionAppBarTitle": "Quran Styling Option",
+  "quranOptionAudioReciter": "Audio reciter",
+  "quranOptionShowTranslation": "Show translation",
+  "quranOptionQuranFontSize": "Quran font size",
+  "quranOptionQuranFontFamily": "Quran font family",
+  "quranOptionTranslationFontSize": "Translation font size",
+  "quranOptionTranslationFontFamily": "Translation font family",
+  "quranOptionTranslationMode": "Translation mode",
+  "quranOptionQuranType": "Quran type",
+  "quranOptionQcfScrollDirection": "QCF scroll direction",
+  "quranTypeNormal": "Normal",
+  "quranScrollDirectionVertical": "Vertical",
+  "quranScrollDirectionHorizontal": "Horizontal",
+  "quranAudioTypeVerseByVerse": "Verse by verse",
+  "quranAudioTypeTranslation": "Translation",
+  "quranLangArabic": "Arabic",
+  "quranLangEnglish": "English",
+  "quranLangUrdu": "Urdu",
+  "quranLangPersian": "Persian",
+  "quranLangFrench": "French",
+  "quranLangRussian": "Russian",
+  "quranLangChinese": "Chinese",
+  "quranAudioMetaLine": "Type: {type} • Language: {language} • Quality: {quality} kbps",
+  "@quranAudioMetaLine": {
+    "placeholders": {
+      "type": {"type": "String"},
+      "language": {"type": "String"},
+      "quality": {"type": "int"}
+    }
+  }
 }

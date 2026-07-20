@@ -457,4 +457,165 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get tasbihCountsSuffix => 'বার';
+
+  @override
+  String get quranAppBarTitle => 'আল-কুরআন';
+
+  @override
+  String get quranTabSurah => 'সূরা';
+
+  @override
+  String get quranTabJuz => 'পারা';
+
+  @override
+  String quranContinueReadingSurah(String surah) {
+    return 'সূরা $surah পড়া চালিয়ে যান';
+  }
+
+  @override
+  String quranContinueReadingJuz(String juz) {
+    return '$juz পড়া চালিয়ে যান';
+  }
+
+  @override
+  String get quranSearchAppBarTitle => 'কুরআন অনুসন্ধান করুন';
+
+  @override
+  String get quranSearchHint => 'নাম, নম্বর বা স্থান দিয়ে খুঁজুন…';
+
+  @override
+  String get quranSearchSurahsTitle => 'সূরা খুঁজুন';
+
+  @override
+  String get quranSearchJuzTitle => 'পারা খুঁজুন';
+
+  @override
+  String get quranNoResults => 'কোনো ফলাফল পাওয়া যায়নি';
+
+  @override
+  String get quranSearchSurahsHintBody =>
+      'একটি সূরার নাম (ইংরেজি/আরবি) বা নম্বর লিখুন।';
+
+  @override
+  String get quranSearchJuzHintBody => 'একটি পারার নাম বা নম্বর লিখুন (যেমন “২”)।';
+
+  @override
+  String quranSearchNoMatchSurah(String query) {
+    return '“$query”-এর সাথে কিছু মেলেনি। ভিন্ন বানান চেষ্টা করুন।';
+  }
+
+  @override
+  String quranSearchNoMatchJuz(String query) {
+    return '“$query”-এর সাথে কিছু মেলেনি। নম্বর দিয়ে খোঁজার চেষ্টা করুন।';
+  }
+
+  @override
+  String get quranCouldNotOpenVerse => 'এই আয়াতটি কুরআনে খোলা যায়নি।';
+
+  @override
+  String quranPlayingSurah(int surah) {
+    return 'সূরা $surah চলছে';
+  }
+
+  @override
+  String quranPlayingSurahAyah(int surah, int ayah) {
+    return 'সূরা $surah চলছে • আয়াত $ayah';
+  }
+
+  @override
+  String quranPlayFullSurah(int surah) {
+    return 'সম্পূর্ণ সূরা $surah প্লে করুন';
+  }
+
+  @override
+  String get quranAudioNoInternet => 'ইন্টারনেট সংযোগ নেই। আবার চেষ্টা করুন।';
+
+  @override
+  String get quranAudioPlaybackFailed => 'এই মুহূর্তে অডিও চালানো যাচ্ছে না।';
+
+  @override
+  String get quranAudioSurahPlaybackFailed =>
+      'এই মুহূর্তে সূরার অডিও চালানো যাচ্ছে না।';
+
+  @override
+  String quranSurahMeta(String place, int ayats) {
+    return '$place - $ayats আয়াত';
+  }
+
+  @override
+  String get quranPlaceMakki => 'মাক্কী';
+
+  @override
+  String get quranPlaceMadina => 'মাদানী';
+
+  @override
+  String get quranOptionAppBarTitle => 'কুরআন স্টাইলিং অপশন';
+
+  @override
+  String get quranOptionAudioReciter => 'অডিও ক্বারী';
+
+  @override
+  String get quranOptionShowTranslation => 'অনুবাদ দেখান';
+
+  @override
+  String get quranOptionQuranFontSize => 'কুরআনের ফন্ট সাইজ';
+
+  @override
+  String get quranOptionQuranFontFamily => 'কুরআনের ফন্ট পরিবার';
+
+  @override
+  String get quranOptionTranslationFontSize => 'অনুবাদের ফন্ট সাইজ';
+
+  @override
+  String get quranOptionTranslationFontFamily => 'অনুবাদের ফন্ট পরিবার';
+
+  @override
+  String get quranOptionTranslationMode => 'অনুবাদ মোড';
+
+  @override
+  String get quranOptionQuranType => 'কুরআনের ধরন';
+
+  @override
+  String get quranOptionQcfScrollDirection => 'QCF স্ক্রল দিক';
+
+  @override
+  String get quranTypeNormal => 'সাধারণ';
+
+  @override
+  String get quranScrollDirectionVertical => 'উল্লম্ব';
+
+  @override
+  String get quranScrollDirectionHorizontal => 'অনুভূমিক';
+
+  @override
+  String get quranAudioTypeVerseByVerse => 'আয়াত অনুযায়ী';
+
+  @override
+  String get quranAudioTypeTranslation => 'অনুবাদ';
+
+  @override
+  String get quranLangArabic => 'আরবি';
+
+  @override
+  String get quranLangEnglish => 'ইংরেজি';
+
+  @override
+  String get quranLangUrdu => 'উর্দু';
+
+  @override
+  String get quranLangPersian => 'ফার্সি';
+
+  @override
+  String get quranLangFrench => 'ফরাসি';
+
+  @override
+  String get quranLangRussian => 'রুশ';
+
+  @override
+  String get quranLangChinese => 'চীনা';
+
+  @override
+  String quranAudioMetaLine(String type, String language, int quality) {
+    return 'ধরন: $type • ভাষা: $language • মান: $quality kbps';
+  }
 }

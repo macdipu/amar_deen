@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/bloc/quran/quran_bloc.dart';
 import '../../../core/util/bloc/quran_audio/quran_audio_bloc.dart';
 import '../../../core/util/constants.dart';
 import '../bloc/quran_theme/quran_theme_bloc.dart';
+import '../controller/quran_controller.dart';
 
 class QuranAudioMiniPlayer extends StatelessWidget {
   const QuranAudioMiniPlayer({
@@ -52,8 +54,14 @@ class QuranAudioMiniPlayer extends StatelessWidget {
                 Expanded(
                   child: Text(
                     isActive
-                        ? 'Playing Surah $surahId • Ayah ${audioState.currentAyatId ?? ''}'
-                        : 'Play full Surah $surahId',
+                        ? (audioState.currentAyatId != null
+                            ? AppLocalizations.of(context)
+                                .quranPlayingSurahAyah(
+                                    surahId, audioState.currentAyatId!)
+                            : AppLocalizations.of(context)
+                                .quranPlayingSurah(surahId))
+                        : AppLocalizations.of(context)
+                            .quranPlayFullSurah(surahId),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -92,10 +100,13 @@ class QuranAudioMiniPlayer extends StatelessWidget {
                       bloc.add(const TogglePlayPause());
                     }
 
-                    final msg = bloc.state.errorMessage;
-                    if (msg != null && msg.isNotEmpty) {
+                    final error = bloc.state.error;
+                    if (error != null) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(msg)),
+                        SnackBar(
+                          content:
+                              Text(localizedQuranAudioError(context, error)),
+                        ),
                       );
                       bloc.add(const ClearAudioError());
                     }
