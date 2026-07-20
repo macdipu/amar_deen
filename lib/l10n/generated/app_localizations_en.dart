@@ -335,4 +335,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeCollectionOthers => 'Others';
+
+  @override
+  String get bookmarkEmpty =>
+      'You have not favorited or bookmarked any Qurans, Tasbihs or Duas.';
+
+  @override
+  String get qiblaTitle => 'Qiblah Direction';
+
+  @override
+  String get qiblaDirectionIs => 'Qiblah direction is ';
+
+  @override
+  String get qiblaDirectionNorth => 'North';
+
+  @override
+  String get qiblaDirectionNorthEast => 'North-East';
+
+  @override
+  String get qiblaDirectionEast => 'East';
+
+  @override
+  String get qiblaDirectionSouthEast => 'South-East';
+
+  @override
+  String get qiblaDirectionSouth => 'South';
+
+  @override
+  String get qiblaDirectionSouthWest => 'South-West';
+
+  @override
+  String get qiblaDirectionWest => 'West';
+
+  @override
+  String get qiblaDirectionNorthWest => 'North-West';
+
+  @override
+  String get liveTvWatch => 'Watch';
+
+  @override
+  String get liveTvNoInternet => 'No internet connection.';
+
+  @override
+  String get liveTvUnableToPlay => 'Unable to play this channel right now.';
+
+  @override
+  String get liveTvExitFullScreen => 'Exit full screen';
+
+  @override
+  String get liveTvLive => 'Live';
+
+  @override
+  String get liveTvPaused => 'Paused';
 }

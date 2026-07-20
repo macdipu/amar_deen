@@ -334,4 +334,56 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get homeCollectionOthers => 'অন্যান্য';
+
+  @override
+  String get bookmarkEmpty =>
+      'আপনি এখনো কোনো কুরআন, তাসবিহ বা দোয়া পছন্দ বা বুকমার্ক করেননি।';
+
+  @override
+  String get qiblaTitle => 'কিবলার দিক';
+
+  @override
+  String get qiblaDirectionIs => 'কিবলার দিক হলো ';
+
+  @override
+  String get qiblaDirectionNorth => 'উত্তর';
+
+  @override
+  String get qiblaDirectionNorthEast => 'উত্তর-পূর্ব';
+
+  @override
+  String get qiblaDirectionEast => 'পূর্ব';
+
+  @override
+  String get qiblaDirectionSouthEast => 'দক্ষিণ-পূর্ব';
+
+  @override
+  String get qiblaDirectionSouth => 'দক্ষিণ';
+
+  @override
+  String get qiblaDirectionSouthWest => 'দক্ষিণ-পশ্চিম';
+
+  @override
+  String get qiblaDirectionWest => 'পশ্চিম';
+
+  @override
+  String get qiblaDirectionNorthWest => 'উত্তর-পশ্চিম';
+
+  @override
+  String get liveTvWatch => 'দেখুন';
+
+  @override
+  String get liveTvNoInternet => 'ইন্টারনেট সংযোগ নেই।';
+
+  @override
+  String get liveTvUnableToPlay => 'এই মুহূর্তে এই চ্যানেলটি চালানো যাচ্ছে না।';
+
+  @override
+  String get liveTvExitFullScreen => 'ফুল স্ক্রিন থেকে বের হন';
+
+  @override
+  String get liveTvLive => 'লাইভ';
+
+  @override
+  String get liveTvPaused => 'থামানো হয়েছে';
 }

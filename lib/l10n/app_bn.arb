@@ -108,5 +108,25 @@
   "homeCollectionVoluntaryPrayers": "নফল নামাজ",
   "homeCollectionQiblaDirection": "কাবার দিক",
   "homeCollectionLiveTv": "লাইভ টিভি",
-  "homeCollectionOthers": "অন্যান্য"
+  "homeCollectionOthers": "অন্যান্য",
+
+  "bookmarkEmpty": "আপনি এখনো কোনো কুরআন, তাসবিহ বা দোয়া পছন্দ বা বুকমার্ক করেননি।",
+
+  "qiblaTitle": "কিবলার দিক",
+  "qiblaDirectionIs": "কিবলার দিক হলো ",
+  "qiblaDirectionNorth": "উত্তর",
+  "qiblaDirectionNorthEast": "উত্তর-পূর্ব",
+  "qiblaDirectionEast": "পূর্ব",
+  "qiblaDirectionSouthEast": "দক্ষিণ-পূর্ব",
+  "qiblaDirectionSouth": "দক্ষিণ",
+  "qiblaDirectionSouthWest": "দক্ষিণ-পশ্চিম",
+  "qiblaDirectionWest": "পশ্চিম",
+  "qiblaDirectionNorthWest": "উত্তর-পশ্চিম",
+
+  "liveTvWatch": "দেখুন",
+  "liveTvNoInternet": "ইন্টারনেট সংযোগ নেই।",
+  "liveTvUnableToPlay": "এই মুহূর্তে এই চ্যানেলটি চালানো যাচ্ছে না।",
+  "liveTvExitFullScreen": "ফুল স্ক্রিন থেকে বের হন",
+  "liveTvLive": "লাইভ",
+  "liveTvPaused": "থামানো হয়েছে"
 }

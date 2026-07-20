@@ -131,5 +131,25 @@
   "homeCollectionVoluntaryPrayers": "Voluntary Prayers",
   "homeCollectionQiblaDirection": "Qabah Direction",
   "homeCollectionLiveTv": "Live TV",
-  "homeCollectionOthers": "Others"
+  "homeCollectionOthers": "Others",
+
+  "bookmarkEmpty": "You have not favorited or bookmarked any Qurans, Tasbihs or Duas.",
+
+  "qiblaTitle": "Qiblah Direction",
+  "qiblaDirectionIs": "Qiblah direction is ",
+  "qiblaDirectionNorth": "North",
+  "qiblaDirectionNorthEast": "North-East",
+  "qiblaDirectionEast": "East",
+  "qiblaDirectionSouthEast": "South-East",
+  "qiblaDirectionSouth": "South",
+  "qiblaDirectionSouthWest": "South-West",
+  "qiblaDirectionWest": "West",
+  "qiblaDirectionNorthWest": "North-West",
+
+  "liveTvWatch": "Watch",
+  "liveTvNoInternet": "No internet connection.",
+  "liveTvUnableToPlay": "Unable to play this channel right now.",
+  "liveTvExitFullScreen": "Exit full screen",
+  "liveTvLive": "Live",
+  "liveTvPaused": "Paused"
 }

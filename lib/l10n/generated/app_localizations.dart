@@ -673,6 +673,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Others'**
   String get homeCollectionOthers;
+
+  /// No description provided for @bookmarkEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not favorited or bookmarked any Qurans, Tasbihs or Duas.'**
+  String get bookmarkEmpty;
+
+  /// No description provided for @qiblaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qiblah Direction'**
+  String get qiblaTitle;
+
+  /// No description provided for @qiblaDirectionIs.
+  ///
+  /// In en, this message translates to:
+  /// **'Qiblah direction is '**
+  String get qiblaDirectionIs;
+
+  /// No description provided for @qiblaDirectionNorth.
+  ///
+  /// In en, this message translates to:
+  /// **'North'**
+  String get qiblaDirectionNorth;
+
+  /// No description provided for @qiblaDirectionNorthEast.
+  ///
+  /// In en, this message translates to:
+  /// **'North-East'**
+  String get qiblaDirectionNorthEast;
+
+  /// No description provided for @qiblaDirectionEast.
+  ///
+  /// In en, this message translates to:
+  /// **'East'**
+  String get qiblaDirectionEast;
+
+  /// No description provided for @qiblaDirectionSouthEast.
+  ///
+  /// In en, this message translates to:
+  /// **'South-East'**
+  String get qiblaDirectionSouthEast;
+
+  /// No description provided for @qiblaDirectionSouth.
+  ///
+  /// In en, this message translates to:
+  /// **'South'**
+  String get qiblaDirectionSouth;
+
+  /// No description provided for @qiblaDirectionSouthWest.
+  ///
+  /// In en, this message translates to:
+  /// **'South-West'**
+  String get qiblaDirectionSouthWest;
+
+  /// No description provided for @qiblaDirectionWest.
+  ///
+  /// In en, this message translates to:
+  /// **'West'**
+  String get qiblaDirectionWest;
+
+  /// No description provided for @qiblaDirectionNorthWest.
+  ///
+  /// In en, this message translates to:
+  /// **'North-West'**
+  String get qiblaDirectionNorthWest;
+
+  /// No description provided for @liveTvWatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch'**
+  String get liveTvWatch;
+
+  /// No description provided for @liveTvNoInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection.'**
+  String get liveTvNoInternet;
+
+  /// No description provided for @liveTvUnableToPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to play this channel right now.'**
+  String get liveTvUnableToPlay;
+
+  /// No description provided for @liveTvExitFullScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit full screen'**
+  String get liveTvExitFullScreen;
+
+  /// No description provided for @liveTvLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get liveTvLive;
+
+  /// No description provided for @liveTvPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get liveTvPaused;
 }
 
 class _AppLocalizationsDelegate

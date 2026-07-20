@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 class LiveTvFullscreenPlayer extends StatelessWidget {
   const LiveTvFullscreenPlayer({
@@ -60,7 +61,7 @@ class LiveTvFullscreenPlayer extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.fullscreen_exit, color: Colors.white),
-                      tooltip: 'Exit full screen',
+                      tooltip: AppLocalizations.of(context).liveTvExitFullScreen,
                       onPressed: onExitFullscreen,
                     ),
                     Expanded(
@@ -160,7 +161,9 @@ class LiveTvPlayerControls extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                isPlaying ? 'Live' : 'Paused',
+                isPlaying
+                    ? AppLocalizations.of(context).liveTvLive
+                    : AppLocalizations.of(context).liveTvPaused,
                 style: textStyle,
               ),
             ),

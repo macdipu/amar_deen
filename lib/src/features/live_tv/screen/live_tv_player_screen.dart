@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
 
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../../core/util/constants.dart';
 import '../model/live_tv_channel.dart';
 import 'live_tv_fullscreen_player.dart';
@@ -58,7 +60,7 @@ class _LiveTvPlayerScreenState extends State<LiveTvPlayerScreen> {
     if (connectivity == ConnectivityResult.none) {
       if (mounted && !_stopped) {
         setState(() {
-          _error = 'No internet connection.';
+          _error = AppLocalizations.of(context).liveTvNoInternet;
         });
       }
       return;
@@ -102,7 +104,7 @@ class _LiveTvPlayerScreenState extends State<LiveTvPlayerScreen> {
       }
       if (mounted && !_stopped) {
         setState(() {
-          _error = 'Unable to play this channel right now.';
+          _error = AppLocalizations.of(context).liveTvUnableToPlay;
         });
       }
     }
@@ -208,7 +210,7 @@ class _ErrorState extends StatelessWidget {
           SizedBox(height: 10.h),
           ElevatedButton(
             onPressed: onRetry,
-            child: const Text('Retry'),
+            child: Text(AppLocalizations.of(context).commonRetry),
           ),
         ],
       ),

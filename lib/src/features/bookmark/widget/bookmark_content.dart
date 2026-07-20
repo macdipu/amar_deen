@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../../core/util/constants.dart';
 import '../../utils/loading_widget.dart';
 import '../bloc/category_bloc.dart';
@@ -51,7 +53,7 @@ class _BookmarkContentState extends State<BookmarkContent> {
                       ),
                     ),
                     Text(
-                      'You have not favorited or bookmarked any Qurans, Tasbihs or Duas.',
+                      AppLocalizations.of(context).bookmarkEmpty,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleLarge,
                     )

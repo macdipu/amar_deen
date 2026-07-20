@@ -1,5 +1,7 @@
-/// Human-readable cardinal direction for a bearing in degrees (0-360, 0 = north).
-String getDirectionText(int angle) {
+/// Cardinal direction key for a bearing in degrees (0-360, 0 = north).
+/// Pure domain logic - returns a stable English key, not a display string;
+/// the presentation layer maps this to a localized label.
+String getDirectionKey(int angle) {
   if (angle > 0 && angle < 90) {
     return 'North-East';
   }
