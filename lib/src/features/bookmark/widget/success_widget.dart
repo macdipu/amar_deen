@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../../core/util/constants.dart';
 import '../../dua/widget/dua_card.dart';
 import '../../quran/widget/quran_card.dart';
@@ -17,6 +19,7 @@ class SuccessWidget extends StatelessWidget {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
         state as CategoryDone;
+        final l10n = AppLocalizations.of(context);
 
         return SafeArea(
           child: SizedBox(
@@ -34,7 +37,7 @@ class SuccessWidget extends StatelessWidget {
                           height: 8.h,
                         ),
                         CategoryTitle(
-                          'Quran',
+                          l10n.homeCollectionQuran,
                           'assets/images/collection_icon/svg/quran.svg',
                         ),
                         SizedBox(
@@ -72,7 +75,7 @@ class SuccessWidget extends StatelessWidget {
                           height: 8.h,
                         ),
                         CategoryTitle(
-                          'Dua',
+                          l10n.homeCollectionDua,
                           'assets/images/collection_icon/svg/duas.svg',
                         ),
                         SizedBox(
@@ -102,7 +105,7 @@ class SuccessWidget extends StatelessWidget {
                           height: 8.h,
                         ),
                         CategoryTitle(
-                          'Tasbih',
+                          l10n.homeCollectionTasbih,
                           'assets/images/collection_icon/svg/tasbih.svg',
                         ),
                         SizedBox(

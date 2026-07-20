@@ -5,7 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'routes/routes.dart';
+import 'core/di/injection.dart';
+import 'core/localization/locale_bloc/locale_bloc.dart';
+import 'core/routing/app_router.dart';
+import 'core/theme/theme_bloc/theme_bloc.dart';
+import 'features/prayer_times/presentation/bloc/azan_settings_bloc/azan_settings_bloc.dart';
+import 'l10n/generated/app_localizations.dart';
 import 'src/core/notification/notification_service.dart';
 import 'src/core/util/bloc/allah_names/allah_name_bloc.dart';
 import 'src/core/util/bloc/database/database_bloc.dart';
@@ -19,17 +24,14 @@ import 'src/core/util/bloc/quran/quran_bloc.dart';
 import 'src/core/util/bloc/quran_audio/quran_audio_bloc.dart';
 import 'src/core/util/bloc/surah/surah_bloc.dart';
 import 'src/core/util/bloc/tasbih/tasbih_bloc.dart';
-import 'src/core/util/bloc/theme/theme_bloc.dart';
 import 'src/core/util/bloc/time_format/time_format_bloc.dart';
 import 'src/features/bottom_tab/bloc/tab/tab_bloc.dart';
 import 'src/features/quran/bloc/quran_theme/quran_theme_bloc.dart';
-import 'src/features/splash/screen/splash_screen.dart';
-
-final GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  configureDependencies();
   await NotificationService().init();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: HydratedStorageDirectory(
@@ -47,6 +49,9 @@ class MyApp extends StatelessWidget {
           create: (context) => ThemeBloc(),
         ),
         BlocProvider(
+          create: (context) => LocaleBloc(),
+        ),
+        BlocProvider(
           create: (context) => TimeFormatBloc(),
         ),
         BlocProvider(
@@ -60,6 +65,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => PrayerTimeConfigBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AzanSettingsBloc(),
         ),
         BlocProvider(
           create: (context) => AllahNameBloc(),
@@ -96,15 +104,21 @@ class MyApp extends StatelessWidget {
         designSize: Size(414, 896),
         builder: (context, child) {
           return BlocBuilder<ThemeBloc, ThemeState>(
-            builder: (context, state) {
-              return MaterialApp(
-                title: 'Sirate Mustaqeem',
-                debugShowCheckedModeBanner: false,
-                color: Colors.white,
-                theme: state.currentTheme,
-                navigatorKey: appNavigatorKey,
-                home: const SplashScreen(),
-                onGenerateRoute: RouteGenerator.generateRoute,
+            builder: (context, themeState) {
+              return BlocBuilder<LocaleBloc, LocaleState>(
+                builder: (context, localeState) {
+                  return MaterialApp.router(
+                    title: 'Sirate Mustaqeem',
+                    debugShowCheckedModeBanner: false,
+                    color: Colors.white,
+                    theme: themeState.currentTheme,
+                    locale: localeState.locale,
+                    supportedLocales: kSupportedLocales,
+                    localizationsDelegates:
+                        AppLocalizations.localizationsDelegates,
+                    routerConfig: appRouter,
+                  );
+                },
               );
             },
           );

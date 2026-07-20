@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
+import '../../../../../features/prayer_times/domain/entities/prayer_calculation_method.dart';
+
 part 'prayer_time_config_event.dart';
 part 'prayer_time_config_state.dart';
 
@@ -9,8 +11,8 @@ class PrayerTimeConfigBloc
   PrayerTimeConfigBloc()
       : super(
           const PrayerTimeConfigState(
-            method: PrayerTimeMethod.mwl,
-            school: PrayerTimeSchool.shafi,
+            method: PrayerCalculationMethod.muslimWorldLeague,
+            madhab: PrayerMadhab.shafi,
             dayOffset: 0,
             hijriAdjustmentDays: 0,
           ),
@@ -18,16 +20,16 @@ class PrayerTimeConfigBloc
     on<PrayerTimeConfigEvent>((event, emit) async {
       if (event is SetPrayerTimeMethod) {
         emit(state.copyWith(method: event.method));
-      } else if (event is SetPrayerTimeSchool) {
-        emit(state.copyWith(school: event.school));
+      } else if (event is SetPrayerTimeMadhab) {
+        emit(state.copyWith(madhab: event.madhab));
       } else if (event is SetPrayerDayOffset) {
         emit(state.copyWith(dayOffset: event.offset.clamp(0, 2)));
       } else if (event is SetHijriAdjustmentDays) {
         emit(state.copyWith(hijriAdjustmentDays: event.offset.clamp(0, 2)));
       } else if (event is ResetPrayerTimeConfig) {
         emit(const PrayerTimeConfigState(
-          method: PrayerTimeMethod.mwl,
-          school: PrayerTimeSchool.shafi,
+          method: PrayerCalculationMethod.muslimWorldLeague,
+          madhab: PrayerMadhab.shafi,
           dayOffset: 0,
           hijriAdjustmentDays: 0,
         ));
@@ -38,19 +40,20 @@ class PrayerTimeConfigBloc
   @override
   PrayerTimeConfigState? fromJson(Map<String, dynamic> json) {
     try {
-      final methodId = int.tryParse(json['methodId']?.toString() ?? '');
-      final schoolId = int.tryParse(json['schoolId']?.toString() ?? '');
+      final method = PrayerCalculationMethod.values.byNameOrNull(
+            json['method']?.toString(),
+          ) ??
+          PrayerCalculationMethod.muslimWorldLeague;
+      final madhab =
+          PrayerMadhab.values.byNameOrNull(json['madhab']?.toString()) ??
+              PrayerMadhab.shafi;
       final dayOffset = int.tryParse(json['dayOffset']?.toString() ?? '') ?? 0;
       final hijriAdj =
           int.tryParse(json['hijriAdjustmentDays']?.toString() ?? '') ?? 0;
 
-      final method = PrayerTimeMethodX.fromId(methodId) ?? PrayerTimeMethod.mwl;
-      final school =
-          PrayerTimeSchoolX.fromId(schoolId) ?? PrayerTimeSchool.shafi;
-
       return PrayerTimeConfigState(
         method: method,
-        school: school,
+        madhab: madhab,
         dayOffset: dayOffset.clamp(0, 2),
         hijriAdjustmentDays: hijriAdj.clamp(0, 2),
       );
@@ -63,8 +66,8 @@ class PrayerTimeConfigBloc
   Map<String, dynamic>? toJson(PrayerTimeConfigState state) {
     try {
       return {
-        'methodId': state.method.id,
-        'schoolId': state.school.id,
+        'method': state.method.name,
+        'madhab': state.madhab.name,
         'dayOffset': state.dayOffset,
         'hijriAdjustmentDays': state.hijriAdjustmentDays,
       };
@@ -74,94 +77,44 @@ class PrayerTimeConfigBloc
   }
 }
 
-enum PrayerTimeMethod {
-  mwl,
-  isna,
-  egyptian,
-  makkah,
-  karachi,
-  tehran,
-  jafari,
-}
-
-extension PrayerTimeMethodX on PrayerTimeMethod {
-  int get id {
-    switch (this) {
-      case PrayerTimeMethod.mwl:
-        return 3;
-      case PrayerTimeMethod.isna:
-        return 2;
-      case PrayerTimeMethod.egyptian:
-        return 5;
-      case PrayerTimeMethod.makkah:
-        return 4;
-      case PrayerTimeMethod.karachi:
-        return 1;
-      case PrayerTimeMethod.tehran:
-        return 7;
-      case PrayerTimeMethod.jafari:
-        return 0;
-    }
-  }
-
+extension PrayerCalculationMethodLabel on PrayerCalculationMethod {
   String get label {
     switch (this) {
-      case PrayerTimeMethod.mwl:
+      case PrayerCalculationMethod.muslimWorldLeague:
         return 'Muslim World League';
-      case PrayerTimeMethod.isna:
-        return 'ISNA';
-      case PrayerTimeMethod.egyptian:
+      case PrayerCalculationMethod.northAmerica:
+        return 'ISNA (North America)';
+      case PrayerCalculationMethod.egyptian:
         return 'Egyptian';
-      case PrayerTimeMethod.makkah:
+      case PrayerCalculationMethod.ummAlQura:
         return 'Umm al-Qura (Makkah)';
-      case PrayerTimeMethod.karachi:
+      case PrayerCalculationMethod.karachi:
         return 'Karachi';
-      case PrayerTimeMethod.tehran:
+      case PrayerCalculationMethod.tehran:
         return 'Tehran';
-      case PrayerTimeMethod.jafari:
+      case PrayerCalculationMethod.jafari:
         return 'Jafari';
     }
   }
-
-  static PrayerTimeMethod? fromId(int? id) {
-    if (id == null) return null;
-    for (final method in PrayerTimeMethod.values) {
-      if (method.id == id) return method;
-    }
-    return null;
-  }
 }
 
-enum PrayerTimeSchool {
-  shafi,
-  hanafi,
-}
-
-extension PrayerTimeSchoolX on PrayerTimeSchool {
-  int get id {
-    switch (this) {
-      case PrayerTimeSchool.shafi:
-        return 0;
-      case PrayerTimeSchool.hanafi:
-        return 1;
-    }
-  }
-
+extension PrayerMadhabLabel on PrayerMadhab {
   String get label {
     switch (this) {
-      case PrayerTimeSchool.shafi:
+      case PrayerMadhab.shafi:
         return 'Shafi';
-      case PrayerTimeSchool.hanafi:
+      case PrayerMadhab.hanafi:
         return 'Hanafi';
     }
   }
+}
 
-  static PrayerTimeSchool? fromId(int? id) {
-    if (id == null) return null;
-    for (final school in PrayerTimeSchool.values) {
-      if (school.id == id) return school;
+extension _EnumByNameOrNull<T extends Enum> on Iterable<T> {
+  T? byNameOrNull(String? name) {
+    if (name == null) return null;
+    for (final value in this) {
+      if (value.name == name) return value;
     }
     return null;
   }
 }
-

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../routes/routes.dart';
+import '../../../../core/routing/app_router.dart';
 import '../../../core/util/bloc/database/database_bloc.dart';
 import '../../../core/util/constants.dart';
 
@@ -20,17 +21,14 @@ class SplashScaffold extends StatelessWidget {
           final notificationPermission = await Permission.notification.status;
 
           if (!locationPermission.isGranted) {
-            Navigator.of(context)
-                .pushReplacementNamed(RouteGenerator.locationPermission);
+            context.pushReplacement(AppRoutes.locationPermission);
           } else if (!notificationPermission.isGranted) {
-            Navigator.of(context)
-                .pushReplacementNamed(RouteGenerator.notificationPermission);
+            context.pushReplacement(AppRoutes.notificationPermission);
           } else {
-            Navigator.of(context).pushReplacementNamed(RouteGenerator.tabScreen);
+            context.pushReplacement(AppRoutes.tabScreen);
           }
         } else if (state is DatabaseFailed) {
-          Navigator.of(context)
-              .pushReplacementNamed(RouteGenerator.databaseError);
+          context.pushReplacement(AppRoutes.databaseError);
         }
       },
       child: Scaffold(

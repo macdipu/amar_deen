@@ -17,8 +17,10 @@ class TimingScreenScaffold extends StatelessWidget {
       extendBody: true,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor:
-            Theme.of(context).appBarTheme.backgroundColor!.withValues(alpha: 0.3),
+        backgroundColor: Theme.of(context)
+            .appBarTheme
+            .backgroundColor!
+            .withValues(alpha: 0.3),
         elevation: 0,
         title: Text('Prayer Timing'),
       ),
@@ -31,7 +33,7 @@ class TimingScreenScaffold extends StatelessWidget {
             child: (state is TimingLoading)
                 ? LoadingWidget()
                 : (state is TimingLoaded)
-                    ? SuccessWidget(state.timing)
+                    ? SuccessWidget(state.prayerTimes)
                     : (state is TimingFailed)
                         ? SafeArea(
                             child: FailureWidget(

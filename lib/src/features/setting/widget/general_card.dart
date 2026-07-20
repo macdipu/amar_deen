@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../utils/sirat_card.dart';
 import '../model/general_option.dart';
@@ -10,12 +12,13 @@ class GeneralCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final generalOptions = buildGeneralOptions(context);
     return SiratCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'General',
+            AppLocalizations.of(context).settingGeneral,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -30,8 +33,7 @@ class GeneralCard extends StatelessWidget {
                   imagePath: generalOptions[index].imagePath,
                   onTap: generalOptions[index].onTap ??
                       () {
-                        Navigator.of(context)
-                            .pushNamed(generalOptions[index].routeName!);
+                        context.push(generalOptions[index].routeName!);
                       },
                   title: generalOptions[index].title,
                   subtitle: generalOptions[index].subtitle,

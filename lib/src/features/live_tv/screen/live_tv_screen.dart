@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../../core/util/constants.dart';
 import '../../error/widget/failure_widget.dart';
 import '../../utils/loading_widget.dart';
@@ -18,7 +20,7 @@ class LiveTvScreen extends StatelessWidget {
       create: (_) => LiveTvBloc()..add(const FetchLiveTvChannels()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Live TV'),
+          title: Text(AppLocalizations.of(context).homeCollectionLiveTv),
         ),
         body: SafeArea(
           child: Padding(
@@ -124,7 +126,7 @@ class _ChannelCard extends StatelessWidget {
                     ),
                     SizedBox(width: 8.w),
                     Text(
-                      'Watch',
+                      AppLocalizations.of(context).liveTvWatch,
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.w600,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/constants.dart';
 
@@ -10,6 +11,7 @@ class NotificationDisabledDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Center(
       child: Container(
         margin: kPagePadding,
@@ -35,8 +37,7 @@ class NotificationDisabledDialog extends StatelessWidget {
               height: 16.h,
             ),
             Text(
-              'You have denied the notification permission previously. '
-              'Please go to app setting to enabled it.',
+              l10n.settingNotificationDeniedBody,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -44,9 +45,7 @@ class NotificationDisabledDialog extends StatelessWidget {
               onPressed: () async {
                 await openAppSettings();
               },
-              child: Text(
-                'To app setting',
-              ),
+              child: Text(l10n.settingGoToAppSettings),
             ),
           ],
         ),

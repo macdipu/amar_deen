@@ -39,11 +39,11 @@ Non-negotiable:
 | 12 | Qibla compass | ✅ | ✅ | ✅ | None |
 | 13 | Mosque finder | ❌ | ❌ | ✅ | Missing (lower priority) |
 | 14 | Hadith collection | ✅ (40 Nawawi only) | ✅ (Bukhari, Muslim, more) | ✅ | Depth gap |
-| 15 | Daily Dua & Azkar | ❌ | ✅ | ✅ | **Missing — critical** |
-| 16 | Tasbih / digital Zikir counter | ❌ | ✅ | ✅ | **Missing** |
+| 15 | Daily Dua & Azkar | ✅ (corrected 2026-07-20 — original assessment was wrong; both already existed pre-migration, see TASK-015/016 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
+| 16 | Tasbih / digital Zikir counter | ✅ (corrected 2026-07-20 — already existed pre-migration; only haptics were missing, added TASK-017) | ✅ | ✅ | None (was misclassified) |
 | 17 | Ramadan Suhoor/Iftar/Imsak + countdown | ❌ | ➖ | ✅ (Muslims Day) | Missing |
 | 18 | Voluntary fasting reminders | ❌ | ❌ | ✅ (Muslims Day) | Missing (nice-to-have) |
-| 19 | Hijri calendar | ❌ | ✅ | ✅ | **Missing** |
+| 19 | Hijri calendar | ✅ (corrected 2026-07-20 — already existed pre-migration, see TASK-018 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
 | 20 | Daily reminder notifications | ❌ | ➖ | ✅ | Missing |
 | 21 | 99 Names of Allah | ❌ | ✅ | ✅ | Missing |
 | 22 | Zakat calculator | ❌ | ✅ | ✅ (some) | Missing (medium) |
@@ -52,14 +52,14 @@ Non-negotiable:
 | 25 | Matrimonial service | ❌ | ✅ | ❌ | **Out of scope** — unrelated |
 | 26 | Live Makkah/Madinah streaming | ❌ | ✅ | ➖ | **Out of scope** — needs streaming infra |
 | 27 | Hajj & Umrah guide | ❌ | ✅ | ➖ | Missing (content-only, low effort) |
-| 28 | Bangla localization | ❌ | ✅ | ✅ | **Missing — critical for BD market** |
+| 28 | Bangla localization | ⚠️ in progress 2026-07-20 (unlike other rows corrected this session, this one really was missing — infra + app shell done, most content screens still pending, see TASK-019/020 in `PROGRESS.md`) | ✅ | ✅ | **Missing — critical for BD market** (partially addressed) |
 | 29 | Light/dark theme | ⚠️ present (`ThemeBloc`), unverified in UI | ✅ | ✅ | Verify only |
 | 30 | Home-screen widgets | ❌ | ❌ | ✅ (Al Muslim) | Missing (nice-to-have) |
 | 31 | Offline-first architecture | ❌ (prayer times via API) | ➖ | ✅ | **Missing — core requirement** |
 
 Legend: ✅ has it · ➖ partial/unclear · ❌ absent
 
-**Critical gaps:** offline prayer-time calc, Dua/Azkar module, Tasbih counter, Hijri calendar, Bangla localization, Azan alarm system.
+**Critical gaps:** offline prayer-time calc, Bangla localization, Azan alarm system. (Dua/Azkar, Tasbih, and Hijri calendar removed from this list 2026-07-20 — rows 15/16/19 above were misassessments, all three already existed pre-migration; see TASK-015/016/017/018 in `PROGRESS.md`.) Note this whole table is a point-in-time snapshot from 2026-07-19 project kickoff — rows 7-10/13 (prayer times, Azan, countdown, voluntary prayers) have since been built in Epic 2 and no longer reflect current state; check `PROGRESS.md`/the task checklist above for what's actually done rather than relying on this table for current status.
 **Moderate gaps:** Tafsir, audio recitation, word-by-word Quran, Ramadan tools, 99 Names, Zakat calculator, daily reminders.
 **Out of scope this phase:** Ask Scholar Q&A, voice-call-to-Mufti, matrimonial, live streaming, mosque finder — all need backend/server infra or live data feeds that conflict with the no-backend constraint.
 
@@ -205,13 +205,14 @@ Do not introduce alternatives without flagging it as a decision request, not a s
 
 ## 6. Operating Rules (every session, no exceptions)
 
-### 6.1 Analysis-first, confirmation-gated workflow
-For every task:
+### 6.1 Analysis-first, autonomous workflow
+**Changed 2026-07-19 (Dipu's explicit instruction): the per-step confirmation gate between "propose" and "implement" is dropped.** For every task:
 1. **Analyze** — read the relevant existing code before touching anything. State what you found.
-2. **Propose** — short plan: files touched, pattern followed, uncertainties.
-3. **Confirm** — stop and ask before writing code, unless trivial (single file, <20 lines, no architectural decision). When in doubt, ask.
-4. **Implement.**
-5. **Report** — update `PROGRESS.md` before ending the session or moving to the next task.
+2. **Propose** — short plan: files touched, pattern followed, uncertainties. State it, then proceed — no stop-and-wait.
+3. **Implement.**
+4. **Report** — update `PROGRESS.md` before ending the session or moving to the next task.
+
+This doesn't relax `destructive_action_gate`/`git_safety` in `harness.yaml` (force-push, `reset --hard`, discarding uncommitted work, etc. still require confirmation) — those are a different risk category from "may I start implementing this task." Still ask (rather than guess) when genuinely blocked: missing information with no reasonable default, or a decision that's irreversibly the user's call (which epic/task to pick up next, or a fork with materially different tradeoffs and no clear best answer) — a narrow exception, not the default.
 
 ### 6.2 Architectural discipline
 - `presentation/` never imports from `data/` directly — always through `domain/` interfaces.
@@ -247,30 +248,30 @@ For every task:
 - [x] **TASK-003**: Confirm green build on a real/emulated device. **Done 2026-07-19** — required a full Android Gradle toolchain migration (Gradle 7.4→8.14.2, AGP 7.1.2→8.11.1, Kotlin 1.6.10→2.2.20) plus replacing 2 dead plugins whose native code used removed Flutter v1-embedding APIs (`flutter_native_timezone`→`flutter_timezone`, `motion_sensors`→`flutter_qiblah`). Full blow-by-blow in `PROGRESS.md`. **Epic 0 is now fully closed.**
 
 ### EPIC 1 — Architecture Scaffold
-- [ ] **TASK-004**: Create `core/` + `features/` folder skeleton (Section 5.1), placeholder files only.
-- [ ] **TASK-005**: `get_it` + `injectable` DI container in `core/di/`.
-- [ ] **TASK-006**: `go_router` setup in `core/routing/`.
-- [ ] **TASK-007** (partial): Migrate `Qibla` feature end-to-end — proof of pattern, smallest feature first. Sensor/bearing engine already replaced (`motion_sensors`→`flutter_qiblah`) as a side effect of TASK-003's build fix, collapsing `QiblaBloc`+`AngleBloc` into one bloc. Folder move into `data/domain/presentation` still open.
-- [ ] **TASK-008**: Migrate `Theme` (light/dark) into `core/theme/`, verify toggle still works.
+- [x] **TASK-004**: Create `core/` + `features/` folder skeleton (Section 5.1), placeholder files only. **Done 2026-07-19** — see `PROGRESS.md`.
+- [x] **TASK-005**: `get_it` + `injectable` DI container in `core/di/`. **Done 2026-07-19** — deps added (versions checked against pub.dev), Qibla feature wired through `getIt` as the proof case, `configureDependencies()` now uses the real generated `getIt.init()` (build_runner ran for the first time 2026-07-19, see `PROGRESS.md`).
+- [x] **TASK-006**: `go_router` setup in `core/routing/`. **Done 2026-07-19** — `lib/routes/routes.dart` deleted (atomic cutover), 7 call sites with named-route navigation updated to go_router's `context.push`/`pushReplacement`. Unverified by a real `flutter run` in this session (no Flutter tooling available) — see `PROGRESS.md`.
+- [x] **TASK-007**: Migrate `Qibla` feature end-to-end — proof of pattern, smallest feature first. **Done 2026-07-19** — sensor/bearing engine already replaced (`motion_sensors`→`flutter_qiblah`) as a side effect of TASK-003's build fix; folder move into `data/domain/presentation` completed with the full Repository Pattern (entity, repository interface + impl, use case), matching §5.1. Old `lib/src/features/qibla/` deleted 2026-07-19 once verified unreferenced (see `PROGRESS.md`).
+- [x] **TASK-008**: Migrate `Theme` (light/dark) into `core/theme/`, verify toggle still works. **Done 2026-07-19** — closes Epic 1. Not verified by an actual running app (no Flutter tooling this session) — see `PROGRESS.md`.
 
 ### EPIC 2 — Offline Prayer Core
-- [ ] **TASK-009**: `PrayerRepository` interface + `adhan_dart`-backed impl in `features/prayer_times/`.
-- [ ] **TASK-010**: Remove existing prayer-time API dependency entirely.
-- [ ] **TASK-011**: Prayer countdown + start/end time UI.
-- [ ] **TASK-012**: Voluntary prayer times (Duha, Ishraq, Tahajjud).
-- [ ] **TASK-013**: Azan alarm system — `flutter_local_notifications` scheduling, per-prayer toggle, exact-alarm/Doze handling.
+- [x] **TASK-009**: `PrayerRepository` interface + `adhan_dart`-backed impl in `features/prayer_times/`. **Done 2026-07-19** — repository built and DI-registered, deliberately not wired into `TimingBloc`/UI (that's TASK-010). Not verified by Flutter tooling this session — see `PROGRESS.md`.
+- [x] **TASK-010**: Remove existing prayer-time API dependency entirely. **Done 2026-07-19** — largest unverified change this session (18 files); see `PROGRESS.md` for full detail and risk callouts before trusting this feature on a real device.
+- [x] **TASK-011**: Prayer countdown + start/end time UI. **Done 2026-07-19** — countdown already existed pre-session; added the missing start/end window display to the Prayer Timing screen. See `PROGRESS.md`.
+- [x] **TASK-012**: Voluntary prayer times (Duha, Ishraq, Tahajjud). **Done 2026-07-19** — fully new feature in `features/prayer_times/`. Ishraq/Duha minute offsets are a content-precision judgment call worth a second look — see `PROGRESS.md`.
+- [x] **TASK-013**: Azan alarm system — `flutter_local_notifications` scheduling, per-prayer toggle, exact-alarm/Doze handling. **Done 2026-07-19** — found the pre-existing scheduling path was dead code and rebuilt it. **Known gap: no real Azan audio file exists yet**, still uses a placeholder sound — needs Dipu to supply one. See `PROGRESS.md`.
 - [ ] **TASK-014**: Airplane-mode manual verification, logged in `PROGRESS.md`.
 
 ### EPIC 3 — Worship Essentials
-- [ ] **TASK-015**: `dua_azkar` feature — categorized library, bundled local JSON/asset data.
-- [ ] **TASK-016**: Favorite/bookmark for Dua/Azkar via Hive.
-- [ ] **TASK-017**: `tasbih` feature — counter, resettable target, haptics.
-- [ ] **TASK-018**: `hijri_calendar` feature via `hijri` package, current Hijri date across relevant screens.
+- [x] **TASK-015**: `dua_azkar` feature — categorized library, bundled local JSON/asset data. **Done 2026-07-20 as verify-only, not build-from-scratch** — both features already substantially existed pre-migration (Dua: Quranic-verse-based, SQLite-backed, with favorites; Azkar: Hisnul-Muslim dataset via `muslim_data_flutter`, category/chapter/item browsing). Section 2 gap table below was stale on this point, now corrected. See `PROGRESS.md`.
+- [x] **TASK-016**: Favorite/bookmark for Dua/Azkar via Hive. **Done 2026-07-20** — Dua favorites already existed. Built the missing Azkar half using **SQLite** (not Hive — see decision note in `PROGRESS.md`/`DECISIONS.md`; `hive`/`hive_flutter` already flagged there as stale with no confirmed go-ahead for `hive_ce`, and SQLite matches Dua's existing pattern exactly). New favorites side-table + `AzkarFavoritesScreen`/`AzkarFavoritesCubit`. See `PROGRESS.md`.
+- [x] **TASK-017**: `tasbih` feature — counter, resettable target, haptics. **Done 2026-07-20** — counter/target/screens/routing already existed pre-migration; only added the missing haptic feedback (`HapticFeedback.lightImpact()` per tap, `mediumImpact()` on reaching target). See `PROGRESS.md`.
+- [x] **TASK-018**: `hijri_calendar` feature via `hijri` package, current Hijri date across relevant screens. **Done 2026-07-20 as verify-only** — already fully implemented pre-migration (home screen + prayer timing screen, with adjustment-days support). No code changes needed. See `PROGRESS.md`.
 
 ### EPIC 4 — Localization
-- [ ] **TASK-019**: Externalize all existing strings to `.arb` (English baseline).
-- [ ] **TASK-020**: Bangla `.arb` translations.
-- [ ] **TASK-021**: Language switcher in Settings, persisted in Hive.
+- [~] **TASK-019**: Externalize all existing strings to `.arb` (English baseline). **In progress 2026-07-20** — unlike TASK-015/017/018, this one was a real, confirmed gap (no `.arb`/`intl` infra existed at all). Full scaffolding now in place (`flutter_localizations`, `l10n.yaml`, generated `AppLocalizations`) and the app shell (bottom nav, full Settings feature, onboarding permission screens, home location sheet) is converted and verified. Content-heavy features (Quran, Azkar, Dua, Tasbih, Home cards, Prayer Timing, Live TV, Allah's Names, Search, Bookmark, Qibla) still pending. See `PROGRESS.md`.
+- [~] **TASK-020**: Bangla `.arb` translations. **In progress 2026-07-20** — tracks TASK-019 1:1, every string externalized so far has a Bangla translation in `lib/l10n/app_bn.arb`. See `PROGRESS.md`.
+- [x] **TASK-021**: Language switcher in Settings, persisted in Hive. **Done 2026-07-20** — implemented as a `HydratedBloc` (`LocaleBloc`), not raw Hive, matching this project's established pattern for simple app-wide preferences (same as `ThemeBloc`/`TimeFormatBloc`). Fully wired end-to-end: switching the toggle in Settings actually changes rendered strings for every screen converted under TASK-019 so far. See `PROGRESS.md`.
 
 ### EPIC 5 — Ramadan Tools
 - [ ] **TASK-022**: Suhoor/Iftar/Imsak derived from Fajr/Maghrib, countdown UI.
@@ -300,7 +301,7 @@ For every task:
 - [ ] Read `PROGRESS.md`
 - [ ] Read `DECISIONS.md`
 - [ ] State current Epic/Task being resumed
-- [ ] New task → Analyze → Propose → Confirm (Section 6.1) before writing code
+- [ ] New task → Analyze → Propose → Implement, no confirmation gate (Section 6.1)
 - [ ] End of session → update `PROGRESS.md`, commit, update `DECISIONS.md` if a new lock was made
 
 ---

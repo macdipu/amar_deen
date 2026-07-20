@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../core/notification/notification_service.dart';
 import '../../../core/util/bloc/notification/notification_bloc.dart';
-import '../../../core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
+import '../../../core/util/controller/notification_controller.dart';
 import '../widget/notification_disabled_dialog.dart';
 
-void notificationSwitchOnToggle(NotificationState state, BuildContext context) {
+Future<void> notificationSwitchOnToggle(
+    NotificationState state, BuildContext context) async {
   if (state.status == PermissionStatus.permanentlyDenied) {
     showDialog(
       context: context,
@@ -14,9 +16,9 @@ void notificationSwitchOnToggle(NotificationState state, BuildContext context) {
     );
   } else {
     if (state.status == PermissionStatus.granted) {
-      BlocProvider.of<TimingBloc>(context).add(CancelNotification());
+      await NotificationService().cancelAllNotifications();
     } else if (state.status == PermissionStatus.restricted) {
-      BlocProvider.of<TimingBloc>(context).add(PushNotification());
+      await rescheduleAzans(context);
     }
     BlocProvider.of<NotificationBloc>(context).add(
       ToggleNotification(),

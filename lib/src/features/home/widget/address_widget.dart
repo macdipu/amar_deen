@@ -5,11 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/util/bloc/location/location_bloc.dart';
 import '../../../core/util/constants.dart';
 import '../../../core/util/location_display.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 class AddressWidget extends StatelessWidget {
   const AddressWidget({super.key});
 
   void _onTap(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     showModalBottomSheet<void>(
       context: context,
       shape: RoundedRectangleBorder(
@@ -23,15 +25,14 @@ class AddressWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Location',
+              l10n.homeLocationSheetTitle,
               style: Theme.of(ctx).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
             ),
             SizedBox(height: 12.h),
             Text(
-              'Prayer times use your saved location. To change it, update '
-              'location permission and accuracy in your device settings.',
+              l10n.homeLocationSheetBody,
               style: Theme.of(ctx).textTheme.bodyMedium,
             ),
             SizedBox(height: 20.h),
@@ -39,7 +40,7 @@ class AddressWidget extends StatelessWidget {
               width: double.infinity,
               child: FilledButton(
                 onPressed: () => Navigator.pop(ctx),
-                child: const Text('OK'),
+                child: Text(l10n.commonOk),
               ),
             ),
           ],
@@ -57,7 +58,8 @@ class AddressWidget extends StatelessWidget {
         }
 
         final line = cityCountryFromPlacemark(state.placemark);
-        final label = line.isNotEmpty ? line : 'Location unavailable';
+        final label =
+            line.isNotEmpty ? line : AppLocalizations.of(context).homeLocationUnavailable;
 
         final textMaxWidth = (1.sw - 32.w - 72.w).clamp(80.w, 1.sw);
 

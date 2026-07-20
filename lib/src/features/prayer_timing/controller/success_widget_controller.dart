@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
+import '../../../../features/prayer_times/domain/entities/prayer_times_entity.dart';
+import '../../../core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
 import '../../../core/util/bloc/time_format/time_format_bloc.dart';
 import '../../../core/util/constants.dart';
+import '../../../core/util/controller/date_controller.dart';
 import '../../../core/util/controller/timing_controller.dart';
-import '../../../core/util/model/timing.dart';
+import '../../../core/util/prayer_name.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 enum TimingProps {
   Fajr,
@@ -24,15 +29,16 @@ Map<TimingProps, String> backgroundAsset = {
 };
 
 class SuccessWidgetController {
-  final Timings timings;
+  final PrayerTimesEntity prayerTimes;
   final BuildContext context;
+  late final TimingController _controller;
   late final int timingCount;
-  late final List<Map<String, String>> timingsList;
+  late final List<MapEntry<String, DateTime>> timingsList;
 
-  SuccessWidgetController(this.timings, this.context) {
-    final controller = TimingController(timings);
-    timingCount = controller.timingCount;
-    timingsList = controller.timingsList;
+  SuccessWidgetController(this.prayerTimes, this.context) {
+    _controller = TimingController(prayerTimes);
+    timingCount = _controller.timingCount;
+    timingsList = _controller.timingsList;
   }
 
   String setBackgroundImage() {
@@ -52,8 +58,32 @@ class SuccessWidgetController {
     }
   }
 
-  String generateIslamicDate(Timing timing) {
-    return '${timing.data.date.hijri.day} ${timing.data.date.hijri.month.en} ${timing.data.date.hijri.year}';
+  /// Today's Hijri date, shifted by the user's configured
+  /// [hijriAdjustmentDays].
+  String generateIslamicDate() {
+    final hijriAdjustmentDays = BlocProvider.of<PrayerTimeConfigBloc>(context)
+        .state
+        .hijriAdjustmentDays;
+    return getIslamicDate(adjustmentDays: hijriAdjustmentDays);
+  }
+
+  /// "Dhuhr — 12:34 PM to 3:45 PM" for the currently active prayer window,
+  /// or "Isha — from 8:12 PM" once Isha's window has no known end (it
+  /// continues into tomorrow's Fajr, outside a single day's data).
+  String currentPrayerWindowLabel({required bool is24Hour}) {
+    String format(DateTime time) => is24Hour
+        ? DateFormat('HH:mm').format(time)
+        : convertTimeTo12HourFormat(time);
+
+    final name = localizedPrayerName(context, _controller.currentWindowPrayer);
+    final start = format(_controller.currentWindowStart);
+    final end = _controller.currentWindowEnd;
+
+    if (end == null) {
+      return AppLocalizations.of(context).prayerWindowFrom(name, start);
+    }
+    return AppLocalizations.of(context)
+        .prayerWindowRange(name, start, format(end));
   }
 
   List<Widget> generateTimingList() {
@@ -76,7 +106,7 @@ class SuccessWidgetController {
           children: [
             Expanded(
               child: Text(
-                timingsList[index].entries.first.key,
+                localizedPrayerName(context, timingsList[index].key),
                 textAlign: TextAlign.left,
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Colors.white,
@@ -88,9 +118,8 @@ class SuccessWidgetController {
                 builder: (context, state) {
                   return Text(
                     state.is24
-                        ? timingsList[index].entries.first.value
-                        : convertTimeTo12HourFormat(
-                            timingsList[index].entries.first.value),
+                        ? DateFormat('HH:mm').format(timingsList[index].value)
+                        : convertTimeTo12HourFormat(timingsList[index].value),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Colors.white,

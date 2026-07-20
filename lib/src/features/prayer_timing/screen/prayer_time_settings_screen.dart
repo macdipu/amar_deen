@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../features/prayer_times/domain/entities/prayer_calculation_method.dart';
+import '../../../../features/prayer_times/presentation/bloc/azan_settings_bloc/azan_settings_bloc.dart';
 import '../../../core/util/bloc/location/location_bloc.dart';
 import '../../../core/util/bloc/notification/notification_bloc.dart';
 import '../../../core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
 import '../../../core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
 import '../../../core/util/constants.dart';
+import '../../../core/util/controller/notification_controller.dart';
+import '../../../core/util/prayer_name.dart';
 import '../../utils/bottom_sheet_select.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 class PrayerTimeSettingsScreen extends StatelessWidget {
   const PrayerTimeSettingsScreen({super.key});
@@ -22,8 +27,8 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
       RequestTiming(
         notificationStatus,
         locationState,
-        config.method.id,
-        config.school.id,
+        config.method,
+        config.madhab,
         config.dayOffset,
         config.hijriAdjustmentDays,
       ),
@@ -32,9 +37,10 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Prayer time settings'),
+        title: Text(l10n.prayerSettingsTitle),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -45,10 +51,10 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
                 return Column(
                   children: [
                     SizedBox(height: 16.h),
-                    BottomSheetSelect<PrayerTimeMethod>(
-                      label: 'Calculation method',
+                    BottomSheetSelect<PrayerCalculationMethod>(
+                      label: l10n.prayerSettingsCalculationMethod,
                       value: state.method,
-                      options: PrayerTimeMethod.values,
+                      options: PrayerCalculationMethod.values,
                       optionLabelBuilder: (m) => m.label,
                       onChanged: (method) {
                         BlocProvider.of<PrayerTimeConfigBloc>(context)
@@ -57,20 +63,20 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
                       },
                     ),
                     const Divider(),
-                    BottomSheetSelect<PrayerTimeSchool>(
-                      label: 'Asr school',
-                      value: state.school,
-                      options: PrayerTimeSchool.values,
+                    BottomSheetSelect<PrayerMadhab>(
+                      label: l10n.prayerSettingsAsrSchool,
+                      value: state.madhab,
+                      options: PrayerMadhab.values,
                       optionLabelBuilder: (s) => s.label,
-                      onChanged: (school) {
+                      onChanged: (madhab) {
                         BlocProvider.of<PrayerTimeConfigBloc>(context)
-                            .add(SetPrayerTimeSchool(school));
+                            .add(SetPrayerTimeMadhab(madhab));
                         _refreshTimings(context);
                       },
                     ),
                     const Divider(),
                     _StepSettingRow(
-                      label: 'Prayer day offset',
+                      label: l10n.prayerSettingsDayOffset,
                       value: state.dayOffset,
                       min: 0,
                       max: 2,
@@ -82,7 +88,7 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
                     ),
                     const Divider(),
                     _StepSettingRow(
-                      label: 'Hijri date adjustment',
+                      label: l10n.prayerSettingsHijriAdjustment,
                       value: state.hijriAdjustmentDays,
                       min: 0,
                       max: 2,
@@ -102,8 +108,37 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
                               .add(const ResetPrayerTimeConfig());
                           _refreshTimings(context);
                         },
-                        child: const Text('Reset to defaults'),
+                        child: Text(l10n.prayerSettingsResetToDefaults),
                       ),
+                    ),
+                    SizedBox(height: 16.h),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        l10n.prayerSettingsAzanReminders,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    BlocBuilder<AzanSettingsBloc, AzanSettingsState>(
+                      builder: (context, azanState) {
+                        return Column(
+                          children: [
+                            for (final prayer in kAzanPrayerNames)
+                              _AzanToggleRow(
+                                prayer: prayer,
+                                enabled: azanState.isEnabled(prayer),
+                                onChanged: (_) {
+                                  BlocProvider.of<AzanSettingsBloc>(context)
+                                      .add(ToggleAzan(prayer));
+                                  rescheduleAzans(context);
+                                },
+                              ),
+                          ],
+                        );
+                      },
                     ),
                     SizedBox(height: 16.h),
                   ],
@@ -113,6 +148,35 @@ class PrayerTimeSettingsScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _AzanToggleRow extends StatelessWidget {
+  const _AzanToggleRow({
+    required this.prayer,
+    required this.enabled,
+    required this.onChanged,
+  });
+
+  final String prayer;
+  final bool enabled;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          localizedPrayerName(context, prayer),
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        Switch(
+          value: enabled,
+          onChanged: onChanged,
+        ),
+      ],
     );
   }
 }
@@ -170,4 +234,3 @@ class _StepSettingRow extends StatelessWidget {
     );
   }
 }
-

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/util/bloc/allah_names/allah_name_bloc.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../../core/util/constants.dart';
 import '../widget/name_card.dart';
 
@@ -19,7 +21,7 @@ class AllahNameScreen extends StatelessWidget {
         }
         return Scaffold(
           appBar: AppBar(
-            title: Text('99 Allah Names'),
+            title: Text(AppLocalizations.of(context).homeCollectionAllahNames),
           ),
           body: SafeArea(
             child: Padding(

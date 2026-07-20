@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+
 import '../../core/util/constants.dart';
 
 class ComingSoonDialog extends StatelessWidget {
@@ -30,8 +32,7 @@ class ComingSoonDialog extends StatelessWidget {
               ),
             ),
             Text(
-              'The team is working on this feature and it will be '
-              'available soon. Stay tuned!',
+              AppLocalizations.of(context).commonComingSoon,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),

@@ -6,8 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:sirat_e_mustaqeem/src/core/util/controller/date_controller.dart';
 import 'package:sirat_e_mustaqeem/src/features/home/widget/address_widget.dart';
 
+import '../../../../core/theme/theme_bloc/theme_bloc.dart';
 import '../../../core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
-import '../../../core/util/bloc/theme/theme_bloc.dart';
 import 'kiblat_card.dart';
 import 'upcoming_prayer_text.dart';
 

@@ -1,27 +1,27 @@
 part of 'prayer_time_config_bloc.dart';
 
 class PrayerTimeConfigState extends Equatable {
-  final PrayerTimeMethod method;
-  final PrayerTimeSchool school;
+  final PrayerCalculationMethod method;
+  final PrayerMadhab madhab;
   final int dayOffset;
   final int hijriAdjustmentDays;
 
   const PrayerTimeConfigState({
     required this.method,
-    required this.school,
+    required this.madhab,
     required this.dayOffset,
     required this.hijriAdjustmentDays,
   });
 
   PrayerTimeConfigState copyWith({
-    PrayerTimeMethod? method,
-    PrayerTimeSchool? school,
+    PrayerCalculationMethod? method,
+    PrayerMadhab? madhab,
     int? dayOffset,
     int? hijriAdjustmentDays,
   }) {
     return PrayerTimeConfigState(
       method: method ?? this.method,
-      school: school ?? this.school,
+      madhab: madhab ?? this.madhab,
       dayOffset: dayOffset ?? this.dayOffset,
       hijriAdjustmentDays: hijriAdjustmentDays ?? this.hijriAdjustmentDays,
     );
@@ -30,9 +30,8 @@ class PrayerTimeConfigState extends Equatable {
   @override
   List<Object> get props => [
         method,
-        school,
+        madhab,
         dayOffset,
         hijriAdjustmentDays,
       ];
 }
-

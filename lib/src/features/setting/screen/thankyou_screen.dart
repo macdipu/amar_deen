@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../utils/sirat_card.dart';
 import '../model/contributor.dart';
@@ -9,11 +10,10 @@ class ThankyouScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Thank You!',
-        ),
+        title: Text(l10n.settingThankYouAppBarTitle),
       ),
       body: SafeArea(
         child: Column(
@@ -27,8 +27,7 @@ class ThankyouScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'These generous Sirate Mustaqeem contributors '
-                        'helped to make this app a reality!',
+                        l10n.settingThankYouBody,
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               fontWeight: FontWeight.bold,
                             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/util/bloc/time_format/time_format_bloc.dart';
 import '../../../core/util/controller/timing_controller.dart';
@@ -14,7 +15,7 @@ class PrayerTimingWidget extends StatelessWidget {
       required this.iconAsset,
       required this.selected});
   final String title;
-  final String time;
+  final DateTime time;
   final String iconAsset;
   final bool selected;
 
@@ -67,8 +68,9 @@ class PrayerTimingWidget extends StatelessWidget {
           SizedBox(height: 6.h),
           BlocBuilder<TimeFormatBloc, TimeFormatState>(
             builder: (context, timeFormatState) {
-              final formatted =
-                  timeFormatState.is24 ? time : convertTimeTo12HourFormat(time);
+              final formatted = timeFormatState.is24
+                  ? DateFormat('HH:mm').format(time)
+                  : convertTimeTo12HourFormat(time);
               return Text(
                 formatted,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(

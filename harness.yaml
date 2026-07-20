@@ -62,23 +62,19 @@ session_start_checklist:
   - read PROGRESS.md
   - read DECISIONS.md
   - state current epic/task being resumed
-  - for a new task: analyze -> propose -> confirm before writing code
+  - for a new task: analyze -> propose -> implement, no confirmation gate (see workflow below)
   - end of session: update PROGRESS.md, commit, update DECISIONS.md if a new lock was made
 
 workflow:
-  name: analysis-first-confirmation-gated
+  # No per-step confirmation gate - see DECISIONS.md 2026-07-19 entry for rationale/scope.
+  name: analysis-first-autonomous
   steps:
     - id: analyze
       description: Read relevant existing code before touching anything. State what you found.
     - id: propose
-      description: Short plan - files touched, pattern followed, uncertainties.
-    - id: confirm
-      description: >
-        Stop and ask before writing code, unless trivial (single file, <20 lines,
-        no architectural decision). When in doubt, ask.
-      gate: true
+      description: Short plan - files touched, pattern followed, uncertainties. State it, then proceed.
     - id: implement
-      description: Do the work.
+      description: Do the work. No confirmation gate - proceed directly from propose.
     - id: report
       description: Update PROGRESS.md before ending the session or moving to the next task.
 
@@ -172,43 +168,108 @@ epics:
     name: Architecture Scaffold
     tasks:
       - id: TASK-004
-        status: todo
+        status: done
         summary: Create core/ + features/ folder skeleton, placeholder files only.
       - id: TASK-005
-        status: todo
-        summary: get_it + injectable DI container in core/di/.
+        status: done
+        summary: >
+          get_it + injectable DI container in core/di/. Dependencies added and versions
+          verified against pub.dev; Qibla feature classes annotated (@LazySingleton,
+          @injectable); QiblaBloc now resolves its use case via getIt. configureDependencies()
+          was hand-written manual registration until 2026-07-19, when Flutter tooling became
+          available for the first time and build_runner generated the real injection.config.dart
+          (matched the hand-written version exactly) - see PROGRESS.md.
       - id: TASK-006
-        status: todo
-        summary: go_router setup in core/routing/.
+        status: done
+        summary: >
+          go_router setup in core/routing/. Old lib/routes/routes.dart deleted outright
+          (atomic cutover, not parallel-track like TASK-004/007 - a MaterialApp can't run
+          both onGenerateRoute and MaterialApp.router at once). 7 files with real named-route
+          navigation updated to go_router's context.push/pushReplacement; anonymous
+          MaterialPageRoute pushes and Navigator.pop left untouched. Unverified: no flutter
+          tooling in this session to run pub get/analyze/an actual app launch - see PROGRESS.md.
       - id: TASK-007
-        status: partial
+        status: done
         summary: >
           Migrate Qibla feature end-to-end - proof of pattern, smallest feature first.
           Sensor/bearing engine already replaced (motion_sensors -> flutter_qiblah) as part of
           TASK-003's build fix, collapsing QiblaBloc+AngleBloc into one bloc. Folder move into
-          data/domain/presentation still not done - that part of this task remains open.
+          data/domain/presentation done 2026-07-19 with full Repository Pattern (entity, repo
+          interface + impl, use case) - see PROGRESS.md. Old lib/src/features/qibla/ deleted
+          2026-07-19 once flutter analyze confirmed it was unreferenced (see "fix all bugs"
+          verification pass entry in PROGRESS.md).
       - id: TASK-008
-        status: todo
-        summary: Migrate Theme (light/dark) into core/theme/, verify toggle still works.
+        status: done
+        summary: >
+          Migrate Theme (light/dark) into core/theme/, verify toggle still works. Done
+          2026-07-19 - closes Epic 1. app_theme.dart + theme_bloc/ moved verbatim, logic
+          unchanged. Deliberately did not move the raw color constants (kDarkPrimary etc.)
+          out of constants.dart - out of this task's scope, used directly in 9 unrelated
+          files. Not verified by an actual running toggle (no flutter tooling this session).
 
   - id: EPIC-2
     name: Offline Prayer Core
     tasks:
       - id: TASK-009
-        status: todo
-        summary: PrayerRepository interface + adhan_dart-backed impl in features/prayer_times/.
+        status: done
+        summary: >
+          PrayerRepository interface + adhan_dart-backed impl in features/prayer_times/. Done
+          2026-07-19. Scoped strictly to building the repository (domain entities/repository
+          interface/use case + data datasource/impl wrapping adhan_dart), registered in the DI
+          container - does NOT touch TimingBloc or remove the old Aladhan API call, that's
+          TASK-010. Introduces fresh PrayerCalculationMethod/PrayerMadhab domain enums,
+          temporarily duplicating PrayerTimeMethod/PrayerTimeSchool in the old
+          PrayerTimeConfigBloc until TASK-010 reconciles them. Not verified by flutter tooling
+          (unavailable this session) - flagged as higher-risk than prior tasks since it's new
+          computational logic, not a rewire.
       - id: TASK-010
-        status: todo
-        summary: Remove existing prayer-time API dependency entirely.
+        status: done
+        summary: >
+          Remove existing prayer-time API dependency entirely. Done 2026-07-19 - largest,
+          riskiest change of the session (18 files, several full rewrites, zero flutter
+          tooling to verify). Deleted the Aladhan-JSON Timing model + HTTP call entirely.
+          TimingBloc now uses TASK-009's GetPrayerTimes. Reconciled PrayerTimeConfigBloc onto
+          the domain's PrayerCalculationMethod/PrayerMadhab enums (was flagged as temporary
+          duplication in TASK-009). Hijri date display now computed on-device via the
+          already-present hijri_calendar package instead of the old API response. See
+          PROGRESS.md for full detail and the specific risk callouts - recommend this be the
+          first thing checked once Flutter tooling is available.
       - id: TASK-011
-        status: todo
-        summary: Prayer countdown + start/end time UI.
+        status: done
+        summary: >
+          Prayer countdown + start/end time UI. Done 2026-07-19. Countdown already existed
+          (upcoming_prayer_text.dart, pre-dates this session). Added the missing start/end
+          window display (TimingController.currentWindow*/SuccessWidgetController.
+          currentPrayerWindowLabel) to the Prayer Timing screen. Drive-by fix: consolidated
+          a duplicate Hijri-date computation TASK-010 had introduced onto the existing
+          date_controller.dart helper. Found but left alone: dead TimerBloc in
+          home/bloc/timer_bloc/ (unreferenced, has its own bug) - flagged for cleanup, not
+          fixed. Not verified by flutter tooling (unavailable this session).
       - id: TASK-012
-        status: todo
-        summary: Voluntary prayer times (Duha, Ishraq, Tahajjud).
+        status: done
+        summary: >
+          Voluntary prayer times (Duha, Ishraq, Tahajjud). Done 2026-07-19 - fully new
+          feature built in lib/features/prayer_times/{domain,data,presentation}/, first real
+          use of the presentation/ layer there. Tahajjud uses adhan_dart's SunnahTimes
+          (verified against the package's actual GitHub source, not just docs). Ishraq/Duha
+          use commonly-cited minute-offset conventions since adhan_dart has no built-in
+          value for them - flagged in PROGRESS.md as a content-precision choice Dipu may
+          want to review. New route + home-screen entry point added. Not verified by
+          flutter tooling (unavailable this session).
       - id: TASK-013
-        status: todo
-        summary: Azan alarm system - flutter_local_notifications scheduling, per-prayer toggle, exact-alarm/Doze handling.
+        status: done
+        summary: >
+          Azan alarm system. Done 2026-07-19. Found the pre-existing scheduling code was
+          dead (RequestTimingForTomorrow never dispatched) - rebuilt via new
+          AzanSchedulerService (lib/core/notifications/, one-shot exact alarms, not
+          daily-repeat) + AzanSettingsBloc (per-prayer toggle) + BlocConsumer wiring in
+          tab_scaffold.dart. Added missing Android manifest permissions
+          (POST_NOTIFICATIONS/SCHEDULE_EXACT_ALARM/RECEIVE_BOOT_COMPLETED/VIBRATE) and an
+          exact-alarm permission request during onboarding. KNOWN GAP: no real Azan audio
+          file exists in the repo - still uses the flutter_local_notifications example
+          project's placeholder sound, clearly flagged in code and PROGRESS.md. Needs
+          real-device verification more than any prior task (permission dialogs, Doze,
+          reboot survival can't be confirmed by reading code).
       - id: TASK-014
         status: todo
         summary: Airplane-mode manual verification, logged in PROGRESS.md.
@@ -217,30 +278,102 @@ epics:
     name: Worship Essentials
     tasks:
       - id: TASK-015
-        status: todo
-        summary: dua_azkar feature - categorized library, bundled local JSON/asset data.
+        status: done
+        summary: >
+          Done 2026-07-20 as verify-only, not build-from-scratch. Investigation found
+          Dua and Azkar already substantially exist in this fork pre-migration: Dua
+          (lib/src/features/dua/) is Quranic-verse-based (surah/ayaNumber/aya) backed
+          by the bundled SQLite DB with working favorites already. Azkar
+          (lib/src/features/azkar/) wraps muslim_data_flutter's Hisnul-Muslim dataset
+          via AzkarRepository - categories/chapters/items browsing all present. BRD gap
+          table in AMAR_DEEN_PLAN.md section 2 was stale on this point; corrected.
       - id: TASK-016
-        status: todo
-        summary: Favorite/bookmark for Dua/Azkar via Hive.
+        status: done
+        summary: >
+          Done 2026-07-20. Dua favorites already existed pre-migration
+          (toggleDuaFavorite in the bundled SQLite DB). Added the missing Azkar half:
+          new azkar_favorites side-table in database_service.dart (same
+          create-if-missing pattern as quran/dua favorites, keyed by
+          azkar_item_id+chapter_id+language since Azkar content is owned by
+          muslim_data_flutter's DB, not ours), AzkarItemCard widget with a favorite
+          toggle, AzkarFavoritesCubit aggregating favorites across chapters (no
+          get-by-id API exists upstream, so it groups by chapter_id and re-fetches),
+          and AzkarFavoritesScreen reachable via a new app-bar icon on AzkarScreen.
+          DECISION: used SQLite (existing DatabaseService pattern) rather than Hive as
+          originally scoped in this task summary - see DECISIONS.md, hive/hive_flutter
+          were already flagged there as stale/unmaintained with no explicit go-ahead
+          for hive_ce; SQLite matches Dua's existing favorites pattern exactly and
+          avoids adding a new persistence dependency for one feature. AskUserQuestion
+          failed (tool error) when trying to confirm this with the user before
+          proceeding - documented in PROGRESS.md, user notified in chat.
+          flutter analyze: 0 new issues. flutter test: passing.
       - id: TASK-017
-        status: todo
-        summary: tasbih feature - counter, resettable target, haptics.
+        status: done
+        summary: >
+          Done 2026-07-20. Audit found counter, resettable target, screens, global
+          TasbihBloc/SelectedTasbihBloc, and routing (home screen collection grid ->
+          /tasbih) all already existed pre-migration. Only real gap was haptics: zero
+          HapticFeedback/vibration calls anywhere, no haptics package in pubspec.
+          Added HapticFeedback.lightImpact() on each count tap and
+          HapticFeedback.mediumImpact() when the count reaches the target (via
+          BlocConsumer listener in selected_tasbih_screen.dart) - used
+          flutter/services.dart, no new dependency needed. flutter analyze: 0 new
+          issues. flutter test: passing.
       - id: TASK-018
-        status: todo
-        summary: hijri_calendar feature via hijri package, current Hijri date across relevant screens.
+        status: done
+        summary: >
+          Done 2026-07-20 as verify-only, no code changes needed. Audit found
+          hijri_calendar package already in pubspec.yaml, wrapped by
+          date_controller.dart's getIslamicDate(), and already displayed on both the
+          home screen app bar (appbar_expanded.dart) and the prayer timing screen
+          (success_widget_controller.dart), including the user-configurable
+          hijriAdjustmentDays setting. BRD gap table was stale on this too (same
+          pattern as TASK-015) - corrected in AMAR_DEEN_PLAN.md.
 
   - id: EPIC-4
     name: Localization
     tasks:
       - id: TASK-019
-        status: todo
-        summary: Externalize all existing strings to .arb (English baseline).
+        status: in_progress
+        summary: >
+          Started 2026-07-20. Confirmed (unlike TASK-015/017/018) this is a genuine,
+          unstarted gap - no .arb/intl/flutter_localizations infrastructure existed at
+          all before this. Full scaffolding now in place: flutter_localizations +
+          generate:true in pubspec.yaml, l10n.yaml, lib/l10n/app_en.arb template,
+          generated lib/l10n/generated/ (committed, same rationale as
+          injection.config.dart - no CI/codegen step in this repo). Externalized and
+          verified so far: bottom nav bar, full Settings feature (all screens/widgets
+          including the new language row), both onboarding permission screens, home
+          screen's location bottom sheet, and the one in-widget string in
+          local_failure_content.dart. ~71 files across the app have hardcoded
+          Text()/label strings; this covers the app shell + Settings, the rest
+          (Quran, Azkar, Dua, Tasbih, Home content cards, Prayer Timing, Live TV,
+          Allah's Names, Search, Bookmark, Qibla, error_code.dart's deep
+          service-layer failure messages) is still pending - continuing
+          incrementally. flutter analyze/test clean at each step so far.
       - id: TASK-020
-        status: todo
-        summary: Bangla .arb translations.
+        status: in_progress
+        summary: >
+          Started 2026-07-20, tracks TASK-019 1:1 - every key added to app_en.arb so
+          far has a corresponding lib/l10n/app_bn.arb Bangla translation, will finish
+          when TASK-019 does. Brand/proper names (social media platform names,
+          contributor names) deliberately left untranslated - matches convention in
+          other Bangla-localized apps.
       - id: TASK-021
-        status: todo
-        summary: Language switcher in Settings, persisted in Hive.
+        status: done
+        summary: >
+          Done 2026-07-20. New LocaleBloc (lib/core/localization/locale_bloc/,
+          HydratedBloc like ThemeBloc/TimeFormatBloc - not raw Hive; this matches the
+          project's established persistence pattern for simple app-wide preferences,
+          see DECISIONS.md for the same reasoning applied to TASK-016's Azkar
+          favorites). Wired into main.dart's MaterialApp.router
+          (locale/supportedLocales/localizationsDelegates) and a new
+          ChangeLanguageSwitch (EN/BN toggle, mirrors ChangeFormatSwitch's visual
+          pattern) in the Settings User Preferences card. Switching language now
+          actually changes rendered UI strings for every screen converted under
+          TASK-019 so far - verified via flutter analyze/test (full visual/on-device
+          verification still pending, consistent with this session's established
+          testing limits).
 
   - id: EPIC-5
     name: Ramadan Tools

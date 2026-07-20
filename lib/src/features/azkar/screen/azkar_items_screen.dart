@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:muslim_data_flutter/muslim_data_flutter.dart';
 
+import '../../../core/util/bloc/database/database_bloc.dart';
 import '../../../core/util/constants.dart';
 import '../../utils/loading_widget.dart';
 import '../cubit/azkar_items_cubit.dart';
 import '../cubit/azkar_categories_cubit.dart';
+import '../widget/azkar_item_card.dart';
 
 class AzkarItemsScreen extends StatelessWidget {
   const AzkarItemsScreen({
@@ -22,12 +24,13 @@ class AzkarItemsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final db = BlocProvider.of<DatabaseBloc>(context).db;
     return BlocProvider(
       create: (_) => AzkarItemsCubit(
         chapterId: chapterId,
         chapterTitle: chapterTitle,
         language: language,
-      )..load(),
+      )..load(db: db),
       child: const _AzkarItemsView(),
     );
   }
@@ -76,66 +79,18 @@ class _AzkarItemsView extends StatelessWidget {
                   separatorBuilder: (_, __) => SizedBox(height: 12.h),
                   itemBuilder: (context, index) {
                     final item = state.items[index];
-                    final arabic = item.item;
-                    final translation = item.translation;
-                    final reference = item.reference;
 
-                    return Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 14.w,
-                        vertical: 14.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(16.r),
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.surface,
-                          width: 1.1,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          if (arabic.isNotEmpty)
-                            Text(
-                              arabic,
-                              textAlign: TextAlign.end,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                    fontFamily: 'Uthman',
-                                    height: 1.6,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                            ),
-                          if (arabic.isNotEmpty && translation.isNotEmpty)
-                            SizedBox(height: 10.h),
-                          if (translation.isNotEmpty)
-                            Text(
-                              translation,
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    height: 1.4,
-                                  ),
-                            ),
-                          if (reference.isNotEmpty) ...[
-                            SizedBox(height: 10.h),
-                            Text(
-                              reference,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.color
-                                        ?.withValues(alpha: 0.75),
-                                  ),
-                            ),
-                          ],
-                        ],
-                      ),
+                    return AzkarItemCard(
+                      item: item,
+                      isFavorite: state.favoriteItemIds.contains(item.id),
+                      onToggleFavorite: () {
+                        final db =
+                            BlocProvider.of<DatabaseBloc>(context).db;
+                        if (db == null) return;
+                        context
+                            .read<AzkarItemsCubit>()
+                            .toggleFavorite(db, item);
+                      },
                     );
                   },
                 );
@@ -147,4 +102,3 @@ class _AzkarItemsView extends StatelessWidget {
     );
   }
 }
-
