@@ -40,10 +40,10 @@ Non-negotiable:
 | 13 | Mosque finder | ❌ | ❌ | ✅ | Missing (lower priority) |
 | 14 | Hadith collection | ✅ (40 Nawawi only) | ✅ (Bukhari, Muslim, more) | ✅ | Depth gap |
 | 15 | Daily Dua & Azkar | ✅ (corrected 2026-07-20 — original assessment was wrong; both already existed pre-migration, see TASK-015/016 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
-| 16 | Tasbih / digital Zikir counter | ❌ | ✅ | ✅ | **Missing** |
+| 16 | Tasbih / digital Zikir counter | ✅ (corrected 2026-07-20 — already existed pre-migration; only haptics were missing, added TASK-017) | ✅ | ✅ | None (was misclassified) |
 | 17 | Ramadan Suhoor/Iftar/Imsak + countdown | ❌ | ➖ | ✅ (Muslims Day) | Missing |
 | 18 | Voluntary fasting reminders | ❌ | ❌ | ✅ (Muslims Day) | Missing (nice-to-have) |
-| 19 | Hijri calendar | ❌ | ✅ | ✅ | **Missing** |
+| 19 | Hijri calendar | ✅ (corrected 2026-07-20 — already existed pre-migration, see TASK-018 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
 | 20 | Daily reminder notifications | ❌ | ➖ | ✅ | Missing |
 | 21 | 99 Names of Allah | ❌ | ✅ | ✅ | Missing |
 | 22 | Zakat calculator | ❌ | ✅ | ✅ (some) | Missing (medium) |
@@ -59,7 +59,7 @@ Non-negotiable:
 
 Legend: ✅ has it · ➖ partial/unclear · ❌ absent
 
-**Critical gaps:** offline prayer-time calc, Tasbih counter, Hijri calendar, Bangla localization, Azan alarm system. (Dua/Azkar module removed from this list 2026-07-20 — row 15 above was a misassessment, the module already existed pre-migration; see TASK-015/016 in `PROGRESS.md`.) Note this whole table is a point-in-time snapshot from 2026-07-19 project kickoff — rows 7-10/13 (prayer times, Azan, countdown, voluntary prayers) have since been built in Epic 2 and no longer reflect current state; check `PROGRESS.md`/the task checklist above for what's actually done rather than relying on this table for current status.
+**Critical gaps:** offline prayer-time calc, Bangla localization, Azan alarm system. (Dua/Azkar, Tasbih, and Hijri calendar removed from this list 2026-07-20 — rows 15/16/19 above were misassessments, all three already existed pre-migration; see TASK-015/016/017/018 in `PROGRESS.md`.) Note this whole table is a point-in-time snapshot from 2026-07-19 project kickoff — rows 7-10/13 (prayer times, Azan, countdown, voluntary prayers) have since been built in Epic 2 and no longer reflect current state; check `PROGRESS.md`/the task checklist above for what's actually done rather than relying on this table for current status.
 **Moderate gaps:** Tafsir, audio recitation, word-by-word Quran, Ramadan tools, 99 Names, Zakat calculator, daily reminders.
 **Out of scope this phase:** Ask Scholar Q&A, voice-call-to-Mufti, matrimonial, live streaming, mosque finder — all need backend/server infra or live data feeds that conflict with the no-backend constraint.
 
@@ -265,8 +265,8 @@ This doesn't relax `destructive_action_gate`/`git_safety` in `harness.yaml` (for
 ### EPIC 3 — Worship Essentials
 - [x] **TASK-015**: `dua_azkar` feature — categorized library, bundled local JSON/asset data. **Done 2026-07-20 as verify-only, not build-from-scratch** — both features already substantially existed pre-migration (Dua: Quranic-verse-based, SQLite-backed, with favorites; Azkar: Hisnul-Muslim dataset via `muslim_data_flutter`, category/chapter/item browsing). Section 2 gap table below was stale on this point, now corrected. See `PROGRESS.md`.
 - [x] **TASK-016**: Favorite/bookmark for Dua/Azkar via Hive. **Done 2026-07-20** — Dua favorites already existed. Built the missing Azkar half using **SQLite** (not Hive — see decision note in `PROGRESS.md`/`DECISIONS.md`; `hive`/`hive_flutter` already flagged there as stale with no confirmed go-ahead for `hive_ce`, and SQLite matches Dua's existing pattern exactly). New favorites side-table + `AzkarFavoritesScreen`/`AzkarFavoritesCubit`. See `PROGRESS.md`.
-- [ ] **TASK-017**: `tasbih` feature — counter, resettable target, haptics.
-- [ ] **TASK-018**: `hijri_calendar` feature via `hijri` package, current Hijri date across relevant screens.
+- [x] **TASK-017**: `tasbih` feature — counter, resettable target, haptics. **Done 2026-07-20** — counter/target/screens/routing already existed pre-migration; only added the missing haptic feedback (`HapticFeedback.lightImpact()` per tap, `mediumImpact()` on reaching target). See `PROGRESS.md`.
+- [x] **TASK-018**: `hijri_calendar` feature via `hijri` package, current Hijri date across relevant screens. **Done 2026-07-20 as verify-only** — already fully implemented pre-migration (home screen + prayer timing screen, with adjustment-days support). No code changes needed. See `PROGRESS.md`.
 
 ### EPIC 4 — Localization
 - [ ] **TASK-019**: Externalize all existing strings to `.arb` (English baseline).

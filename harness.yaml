@@ -308,11 +308,27 @@ epics:
           proceeding - documented in PROGRESS.md, user notified in chat.
           flutter analyze: 0 new issues. flutter test: passing.
       - id: TASK-017
-        status: todo
-        summary: tasbih feature - counter, resettable target, haptics.
+        status: done
+        summary: >
+          Done 2026-07-20. Audit found counter, resettable target, screens, global
+          TasbihBloc/SelectedTasbihBloc, and routing (home screen collection grid ->
+          /tasbih) all already existed pre-migration. Only real gap was haptics: zero
+          HapticFeedback/vibration calls anywhere, no haptics package in pubspec.
+          Added HapticFeedback.lightImpact() on each count tap and
+          HapticFeedback.mediumImpact() when the count reaches the target (via
+          BlocConsumer listener in selected_tasbih_screen.dart) - used
+          flutter/services.dart, no new dependency needed. flutter analyze: 0 new
+          issues. flutter test: passing.
       - id: TASK-018
-        status: todo
-        summary: hijri_calendar feature via hijri package, current Hijri date across relevant screens.
+        status: done
+        summary: >
+          Done 2026-07-20 as verify-only, no code changes needed. Audit found
+          hijri_calendar package already in pubspec.yaml, wrapped by
+          date_controller.dart's getIslamicDate(), and already displayed on both the
+          home screen app bar (appbar_expanded.dart) and the prayer timing screen
+          (success_widget_controller.dart), including the user-configurable
+          hijriAdjustmentDays setting. BRD gap table was stale on this too (same
+          pattern as TASK-015) - corrected in AMAR_DEEN_PLAN.md.
 
   - id: EPIC-4
     name: Localization

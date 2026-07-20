@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,7 +13,12 @@ class SelectedTasbihScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SelectedTasbihBloc, SelectedTasbihState>(
+    return BlocConsumer<SelectedTasbihBloc, SelectedTasbihState>(
+      listener: (context, state) {
+        if (state.count > 0 && state.count == state.tasbih.counter) {
+          HapticFeedback.mediumImpact();
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -38,6 +44,7 @@ class SelectedTasbihScreen extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
+                      HapticFeedback.lightImpact();
                       BlocProvider.of<SelectedTasbihBloc>(context)
                           .add(AddCounter());
                     },
