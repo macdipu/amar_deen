@@ -242,6 +242,18 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settingLanguage;
 
+  /// No description provided for @settingDailyReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Reminder'**
+  String get settingDailyReminder;
+
+  /// No description provided for @settingDailyReminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time'**
+  String get settingDailyReminderTime;
+
   /// No description provided for @settingGeneral.
   ///
   /// In en, this message translates to:
@@ -506,6 +518,12 @@ abstract class AppLocalizations {
   /// **'Last third of the night - the most virtuous time for voluntary night prayer.'**
   String get voluntaryTahajjudSubtitle;
 
+  /// No description provided for @prayerTimingAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Timing'**
+  String get prayerTimingAppBarTitle;
+
   /// No description provided for @prayerWindowFrom.
   ///
   /// In en, this message translates to:
@@ -656,6 +674,18 @@ abstract class AppLocalizations {
   /// **'Voluntary Prayers'**
   String get homeCollectionVoluntaryPrayers;
 
+  /// No description provided for @homeCollectionRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan'**
+  String get homeCollectionRamadan;
+
+  /// No description provided for @homeCollectionZakat.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat Calculator'**
+  String get homeCollectionZakat;
+
   /// No description provided for @homeCollectionQiblaDirection.
   ///
   /// In en, this message translates to:
@@ -764,6 +794,12 @@ abstract class AppLocalizations {
   /// **'Exit full screen'**
   String get liveTvExitFullScreen;
 
+  /// No description provided for @liveTvEnterFullScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Full screen'**
+  String get liveTvEnterFullScreen;
+
   /// No description provided for @liveTvLive.
   ///
   /// In en, this message translates to:
@@ -775,6 +811,744 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Paused'**
   String get liveTvPaused;
+
+  /// No description provided for @azkarAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Azkars (Hisnul Muslim)'**
+  String get azkarAppBarTitle;
+
+  /// No description provided for @azkarFavoriteAzkars.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite Azkars'**
+  String get azkarFavoriteAzkars;
+
+  /// No description provided for @azkarNoCategoriesAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No Azkar categories available.'**
+  String get azkarNoCategoriesAvailable;
+
+  /// No description provided for @azkarNoChaptersFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No chapters found.'**
+  String get azkarNoChaptersFound;
+
+  /// No description provided for @azkarNoItemsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No Azkars found.'**
+  String get azkarNoItemsFound;
+
+  /// No description provided for @azkarNoFavoritesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorite Azkars yet.'**
+  String get azkarNoFavoritesYet;
+
+  /// No description provided for @azkarLanguageEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get azkarLanguageEnglish;
+
+  /// No description provided for @azkarLanguageArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get azkarLanguageArabic;
+
+  /// No description provided for @azkarLanguageKurdishSorani.
+  ///
+  /// In en, this message translates to:
+  /// **'Kurdish (Sorani)'**
+  String get azkarLanguageKurdishSorani;
+
+  /// No description provided for @azkarLanguageKurdishBadini.
+  ///
+  /// In en, this message translates to:
+  /// **'Kurdish (Badini)'**
+  String get azkarLanguageKurdishBadini;
+
+  /// No description provided for @azkarLanguagePersian.
+  ///
+  /// In en, this message translates to:
+  /// **'Persian'**
+  String get azkarLanguagePersian;
+
+  /// No description provided for @azkarLanguageRussian.
+  ///
+  /// In en, this message translates to:
+  /// **'Russian'**
+  String get azkarLanguageRussian;
+
+  /// No description provided for @duaAyaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Aya: {aya}'**
+  String duaAyaLabel(int aya);
+
+  /// No description provided for @tasbihAddNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Tasbih'**
+  String get tasbihAddNew;
+
+  /// No description provided for @tasbihEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Tasbih'**
+  String get tasbihEditTitle;
+
+  /// No description provided for @tasbihActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions:'**
+  String get tasbihActions;
+
+  /// No description provided for @tasbihCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get tasbihCopy;
+
+  /// No description provided for @tasbihNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Input tasbih name here'**
+  String get tasbihNameHint;
+
+  /// No description provided for @tasbihNameEmptyError.
+  ///
+  /// In en, this message translates to:
+  /// **'Tashbih name cannot be empty'**
+  String get tasbihNameEmptyError;
+
+  /// No description provided for @tasbihCountsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tasbih counts:'**
+  String get tasbihCountsLabel;
+
+  /// No description provided for @tasbihCountsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Input tasbih counts here'**
+  String get tasbihCountsHint;
+
+  /// No description provided for @tasbihCounterEmptyError.
+  ///
+  /// In en, this message translates to:
+  /// **'Tashbih counter cannot be empty'**
+  String get tasbihCounterEmptyError;
+
+  /// No description provided for @tasbihCountsSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'counts'**
+  String get tasbihCountsSuffix;
+
+  /// No description provided for @quranAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Al-Quran'**
+  String get quranAppBarTitle;
+
+  /// No description provided for @quranTabSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah'**
+  String get quranTabSurah;
+
+  /// No description provided for @quranTabJuz.
+  ///
+  /// In en, this message translates to:
+  /// **'Juz'**
+  String get quranTabJuz;
+
+  /// No description provided for @quranContinueReadingSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Reading Surah {surah}'**
+  String quranContinueReadingSurah(String surah);
+
+  /// No description provided for @quranContinueReadingJuz.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Reading {juz}'**
+  String quranContinueReadingJuz(String juz);
+
+  /// No description provided for @quranSearchAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Quran'**
+  String get quranSearchAppBarTitle;
+
+  /// No description provided for @quranSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name, number, place…'**
+  String get quranSearchHint;
+
+  /// No description provided for @quranSearchSurahsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Surahs'**
+  String get quranSearchSurahsTitle;
+
+  /// No description provided for @quranSearchJuzTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Juz'**
+  String get quranSearchJuzTitle;
+
+  /// No description provided for @quranNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No results'**
+  String get quranNoResults;
+
+  /// No description provided for @quranSearchSurahsHintBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a Surah name (English/Arabic) or number.'**
+  String get quranSearchSurahsHintBody;
+
+  /// No description provided for @quranSearchJuzHintBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a Juz name or number (e.g. “2”).'**
+  String get quranSearchJuzHintBody;
+
+  /// No description provided for @quranSearchNoMatchSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing matched “{query}”. Try a different spelling.'**
+  String quranSearchNoMatchSurah(String query);
+
+  /// No description provided for @quranSearchNoMatchJuz.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing matched “{query}”. Try searching by number.'**
+  String quranSearchNoMatchJuz(String query);
+
+  /// No description provided for @quranCouldNotOpenVerse.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open this verse in the Quran.'**
+  String get quranCouldNotOpenVerse;
+
+  /// No description provided for @quranPlayingSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Playing Surah {surah}'**
+  String quranPlayingSurah(int surah);
+
+  /// No description provided for @quranPlayingSurahAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Playing Surah {surah} • Ayah {ayah}'**
+  String quranPlayingSurahAyah(int surah, int ayah);
+
+  /// No description provided for @quranPlayFullSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Play full Surah {surah}'**
+  String quranPlayFullSurah(int surah);
+
+  /// No description provided for @quranAudioNoInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Please try again.'**
+  String get quranAudioNoInternet;
+
+  /// No description provided for @quranAudioPlaybackFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to play audio right now.'**
+  String get quranAudioPlaybackFailed;
+
+  /// No description provided for @quranAudioSurahPlaybackFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to play surah audio right now.'**
+  String get quranAudioSurahPlaybackFailed;
+
+  /// No description provided for @quranSurahMeta.
+  ///
+  /// In en, this message translates to:
+  /// **'{place} - {ayats} ayat'**
+  String quranSurahMeta(String place, int ayats);
+
+  /// No description provided for @quranPlaceMakki.
+  ///
+  /// In en, this message translates to:
+  /// **'Meccan'**
+  String get quranPlaceMakki;
+
+  /// No description provided for @quranPlaceMadina.
+  ///
+  /// In en, this message translates to:
+  /// **'Medinan'**
+  String get quranPlaceMadina;
+
+  /// No description provided for @quranOptionAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran Styling Option'**
+  String get quranOptionAppBarTitle;
+
+  /// No description provided for @quranOptionAudioReciter.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio reciter'**
+  String get quranOptionAudioReciter;
+
+  /// No description provided for @quranOptionShowTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Show translation'**
+  String get quranOptionShowTranslation;
+
+  /// No description provided for @quranOptionQuranFontSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran font size'**
+  String get quranOptionQuranFontSize;
+
+  /// No description provided for @quranOptionQuranFontFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran font family'**
+  String get quranOptionQuranFontFamily;
+
+  /// No description provided for @quranOptionTranslationFontSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation font size'**
+  String get quranOptionTranslationFontSize;
+
+  /// No description provided for @quranOptionTranslationFontFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation font family'**
+  String get quranOptionTranslationFontFamily;
+
+  /// No description provided for @quranOptionTranslationMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation mode'**
+  String get quranOptionTranslationMode;
+
+  /// No description provided for @quranOptionQuranType.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran type'**
+  String get quranOptionQuranType;
+
+  /// No description provided for @quranOptionQcfScrollDirection.
+  ///
+  /// In en, this message translates to:
+  /// **'QCF scroll direction'**
+  String get quranOptionQcfScrollDirection;
+
+  /// No description provided for @quranTypeNormal.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal'**
+  String get quranTypeNormal;
+
+  /// No description provided for @quranScrollDirectionVertical.
+  ///
+  /// In en, this message translates to:
+  /// **'Vertical'**
+  String get quranScrollDirectionVertical;
+
+  /// No description provided for @quranScrollDirectionHorizontal.
+  ///
+  /// In en, this message translates to:
+  /// **'Horizontal'**
+  String get quranScrollDirectionHorizontal;
+
+  /// No description provided for @quranAudioTypeVerseByVerse.
+  ///
+  /// In en, this message translates to:
+  /// **'Verse by verse'**
+  String get quranAudioTypeVerseByVerse;
+
+  /// No description provided for @quranAudioTypeTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation'**
+  String get quranAudioTypeTranslation;
+
+  /// No description provided for @quranLangArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get quranLangArabic;
+
+  /// No description provided for @quranLangEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get quranLangEnglish;
+
+  /// No description provided for @quranLangUrdu.
+  ///
+  /// In en, this message translates to:
+  /// **'Urdu'**
+  String get quranLangUrdu;
+
+  /// No description provided for @quranLangPersian.
+  ///
+  /// In en, this message translates to:
+  /// **'Persian'**
+  String get quranLangPersian;
+
+  /// No description provided for @quranLangFrench.
+  ///
+  /// In en, this message translates to:
+  /// **'French'**
+  String get quranLangFrench;
+
+  /// No description provided for @quranLangRussian.
+  ///
+  /// In en, this message translates to:
+  /// **'Russian'**
+  String get quranLangRussian;
+
+  /// No description provided for @quranLangChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese'**
+  String get quranLangChinese;
+
+  /// No description provided for @quranAudioMetaLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Type: {type} • Language: {language} • Quality: {quality} kbps'**
+  String quranAudioMetaLine(String type, String language, int quality);
+
+  /// No description provided for @errorLocationDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is not enabled. Please go to setting to enable it.'**
+  String get errorLocationDisabled;
+
+  /// No description provided for @errorReadDatabaseFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Read database failed. Try again later.'**
+  String get errorReadDatabaseFailed;
+
+  /// No description provided for @errorConnectionInterrupted.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection interrupted. Please reconnect to the internet.'**
+  String get errorConnectionInterrupted;
+
+  /// No description provided for @quranTranslationModeUrdu.
+  ///
+  /// In en, this message translates to:
+  /// **'Urdu'**
+  String get quranTranslationModeUrdu;
+
+  /// No description provided for @quranTranslationModeEnglishSaheeh.
+  ///
+  /// In en, this message translates to:
+  /// **'English (Saheeh)'**
+  String get quranTranslationModeEnglishSaheeh;
+
+  /// No description provided for @quranTranslationModeEnglishClearQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'English (Clear Quran)'**
+  String get quranTranslationModeEnglishClearQuran;
+
+  /// No description provided for @quranTranslationModeTurkishSaheeh.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkish (Saheeh)'**
+  String get quranTranslationModeTurkishSaheeh;
+
+  /// No description provided for @quranTranslationModeMalayalamAbdulHameed.
+  ///
+  /// In en, this message translates to:
+  /// **'Malayalam (Abdul Hameed)'**
+  String get quranTranslationModeMalayalamAbdulHameed;
+
+  /// No description provided for @quranTranslationModePersianHusseinDari.
+  ///
+  /// In en, this message translates to:
+  /// **'Persian (Hussein Dari)'**
+  String get quranTranslationModePersianHusseinDari;
+
+  /// No description provided for @quranTranslationModeFrenchHamidullah.
+  ///
+  /// In en, this message translates to:
+  /// **'French (Hamidullah)'**
+  String get quranTranslationModeFrenchHamidullah;
+
+  /// No description provided for @quranTranslationModeItalianPiccardo.
+  ///
+  /// In en, this message translates to:
+  /// **'Italian (Piccardo)'**
+  String get quranTranslationModeItalianPiccardo;
+
+  /// No description provided for @quranTranslationModeDutchSiregar.
+  ///
+  /// In en, this message translates to:
+  /// **'Dutch (Siregar)'**
+  String get quranTranslationModeDutchSiregar;
+
+  /// No description provided for @quranTranslationModePortuguese.
+  ///
+  /// In en, this message translates to:
+  /// **'Portuguese'**
+  String get quranTranslationModePortuguese;
+
+  /// No description provided for @quranTranslationModeRussianKuliev.
+  ///
+  /// In en, this message translates to:
+  /// **'Russian (Kuliev)'**
+  String get quranTranslationModeRussianKuliev;
+
+  /// No description provided for @quranTranslationModeBengali.
+  ///
+  /// In en, this message translates to:
+  /// **'Bengali'**
+  String get quranTranslationModeBengali;
+
+  /// No description provided for @quranTranslationModeIndonesian.
+  ///
+  /// In en, this message translates to:
+  /// **'Indonesian'**
+  String get quranTranslationModeIndonesian;
+
+  /// No description provided for @quranTranslationModeChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese'**
+  String get quranTranslationModeChinese;
+
+  /// No description provided for @quranTranslationModeSpanish.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish'**
+  String get quranTranslationModeSpanish;
+
+  /// No description provided for @quranTranslationModeSwedish.
+  ///
+  /// In en, this message translates to:
+  /// **'Swedish'**
+  String get quranTranslationModeSwedish;
+
+  /// No description provided for @ramadanAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan'**
+  String get ramadanAppBarTitle;
+
+  /// No description provided for @ramadanSuhoorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suhoor'**
+  String get ramadanSuhoorTitle;
+
+  /// No description provided for @ramadanSuhoorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends at Imsak, shortly before Fajr.'**
+  String get ramadanSuhoorSubtitle;
+
+  /// No description provided for @ramadanIftarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar'**
+  String get ramadanIftarTitle;
+
+  /// No description provided for @ramadanIftarSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Breaking the fast, at Maghrib.'**
+  String get ramadanIftarSubtitle;
+
+  /// No description provided for @ramadanSuhoorEndsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Suhoor ends in '**
+  String get ramadanSuhoorEndsIn;
+
+  /// No description provided for @ramadanIftarIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar is in '**
+  String get ramadanIftarIn;
+
+  /// No description provided for @azanNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{prayer} Azan'**
+  String azanNotificationTitle(String prayer);
+
+  /// No description provided for @azanNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is time for {prayer} prayer.'**
+  String azanNotificationBody(String prayer);
+
+  /// No description provided for @voluntaryFastingSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming Voluntary Fasts'**
+  String get voluntaryFastingSectionTitle;
+
+  /// No description provided for @voluntaryFastingMonday.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday Fast'**
+  String get voluntaryFastingMonday;
+
+  /// No description provided for @voluntaryFastingThursday.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday Fast'**
+  String get voluntaryFastingThursday;
+
+  /// No description provided for @voluntaryFastingAyyamAlBeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayyam al-Beed (White Days)'**
+  String get voluntaryFastingAyyamAlBeed;
+
+  /// No description provided for @voluntaryFastingArafah.
+  ///
+  /// In en, this message translates to:
+  /// **'Day of Arafah'**
+  String get voluntaryFastingArafah;
+
+  /// No description provided for @voluntaryFastingReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{fastingDay} tomorrow'**
+  String voluntaryFastingReminderTitle(String fastingDay);
+
+  /// No description provided for @voluntaryFastingReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight.'**
+  String get voluntaryFastingReminderBody;
+
+  /// No description provided for @zakatAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat Calculator'**
+  String get zakatAppBarTitle;
+
+  /// No description provided for @zakatDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'This calculator uses the silver Nisab standard and assumes your wealth has been held for a full lunar year (Hawl). For a precise ruling, consult a qualified scholar.'**
+  String get zakatDisclaimer;
+
+  /// No description provided for @zakatCashLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash & Bank Savings'**
+  String get zakatCashLabel;
+
+  /// No description provided for @zakatGoldWeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Weight (grams)'**
+  String get zakatGoldWeightLabel;
+
+  /// No description provided for @zakatGoldPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Price per Gram'**
+  String get zakatGoldPriceLabel;
+
+  /// No description provided for @zakatSilverWeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver Weight (grams)'**
+  String get zakatSilverWeightLabel;
+
+  /// No description provided for @zakatSilverPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver Price per Gram'**
+  String get zakatSilverPriceLabel;
+
+  /// No description provided for @zakatBusinessAssetsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Business Assets'**
+  String get zakatBusinessAssetsLabel;
+
+  /// No description provided for @zakatInvestmentsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Investments'**
+  String get zakatInvestmentsLabel;
+
+  /// No description provided for @zakatDebtsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Debts Owed'**
+  String get zakatDebtsLabel;
+
+  /// No description provided for @zakatCalculateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculate Zakat'**
+  String get zakatCalculateButton;
+
+  /// No description provided for @zakatResultZakatableWealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakatable Wealth'**
+  String get zakatResultZakatableWealth;
+
+  /// No description provided for @zakatResultNisabThreshold.
+  ///
+  /// In en, this message translates to:
+  /// **'Nisab Threshold (Silver Standard)'**
+  String get zakatResultNisabThreshold;
+
+  /// No description provided for @zakatResultDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat is due'**
+  String get zakatResultDue;
+
+  /// No description provided for @zakatResultNotDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat is not due — wealth is below Nisab'**
+  String get zakatResultNotDue;
+
+  /// No description provided for @zakatResultAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat Amount (2.5%)'**
+  String get zakatResultAmount;
+
+  /// No description provided for @dailyReminderNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sirate Mustaqeem reminder'**
+  String get dailyReminderNotificationTitle;
+
+  /// No description provided for @dailyReminderNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a moment for Quran reading, Dhikr, or to check today's prayer times.'**
+  String get dailyReminderNotificationBody;
 }
 
 class _AppLocalizationsDelegate

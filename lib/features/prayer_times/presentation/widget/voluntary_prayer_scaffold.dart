@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/widgets/prayer_time_card.dart';
 import '../../../../src/core/util/bloc/location/location_bloc.dart';
 import '../../../../src/core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
 import '../../../../src/core/util/constants.dart';
@@ -8,7 +9,6 @@ import '../../../../src/features/error/widget/failure_widget.dart';
 import '../../../../src/features/utils/loading_widget.dart';
 import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 import '../bloc/voluntary_prayer_bloc/voluntary_prayer_bloc.dart';
-import 'voluntary_prayer_card.dart';
 
 class VoluntaryPrayerScaffold extends StatefulWidget {
   const VoluntaryPrayerScaffold();
@@ -53,18 +53,18 @@ class _VoluntaryPrayerScaffoldState extends State<VoluntaryPrayerScaffold> {
                         child: ListView(
                           padding: kPagePadding,
                           children: [
-                            VoluntaryPrayerCard(
+                            PrayerTimeCard(
                               title: l10n.voluntaryIshraqTitle,
                               subtitle: l10n.voluntaryIshraqSubtitle,
                               startTime: state.voluntaryPrayerTimes.ishraq,
                             ),
-                            VoluntaryPrayerCard(
+                            PrayerTimeCard(
                               title: l10n.voluntaryDuhaTitle,
                               subtitle: l10n.voluntaryDuhaSubtitle,
                               startTime: state.voluntaryPrayerTimes.duhaStart,
                               endTime: state.voluntaryPrayerTimes.duhaEnd,
                             ),
-                            VoluntaryPrayerCard(
+                            PrayerTimeCard(
                               title: l10n.voluntaryTahajjudTitle,
                               subtitle: l10n.voluntaryTahajjudSubtitle,
                               startTime:

@@ -88,11 +88,3 @@ class _InternalPlayerStateChanged extends QuranAudioEvent {
   List<Object> get props => [status];
 }
 
-class _InternalError extends QuranAudioEvent {
-  final String message;
-  const _InternalError(this.message);
-
-  @override
-  List<Object> get props => [message];
-}
-

@@ -10,7 +10,7 @@ import '../error/exceptions.dart';
 import '../error/failures.dart';
 import '../util/constants.dart';
 import '../util/model/dua.dart';
-import '../util/model/quran.dart';
+import 'package:sirat_e_mustaqeem/features/quran/domain/entities/quran.dart';
 import '../util/model/tasbih.dart';
 import 'database_table.dart';
 

@@ -1,5 +1,20 @@
 import 'package:quran/quran.dart' as quran_package;
 
+/// A single Ayah (verse), plus favorite/bookmark state.
+///
+/// Note: this still calls the `quran` pub package directly
+/// (`getTranslationText`/`getVerseText`/`getVerseCount`/
+/// `initializeFromPackage`), which is a data-source concern strictly
+/// speaking - the fully "by the book" Clean Architecture split would move
+/// those calls into a `data/datasources/quran_local_data_source.dart` and
+/// keep this a pure data holder. Deliberately not done in this pass (see
+/// TASK-024 in `PROGRESS.md` for the full reasoning) - `Qurans` backs the
+/// *global* `QuranBloc` (`lib/src/core/util/bloc/quran/`, provided in
+/// `main.dart`, also read by Home/Bookmark/Search), so splitting this
+/// cleanly would mean that global bloc depending on a specific feature's
+/// data layer, which needs more structural rework than can be safely done
+/// without a compiler to check every step. Moved here verbatim from
+/// `lib/src/core/util/model/quran.dart` - zero logic changes.
 class Quran {
   final int ayatId;
   final int ayatNumber;

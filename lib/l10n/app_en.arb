@@ -33,6 +33,8 @@
   "settingTimeFormat": "Time Format",
   "settingNotification": "Notification",
   "settingLanguage": "Language",
+  "settingDailyReminder": "Daily Reminder",
+  "settingDailyReminderTime": "Reminder time",
   "settingGeneral": "General",
   "settingConnect": "Connect",
   "settingQuranSettingsTitle": "Quran settings",
@@ -91,6 +93,7 @@
   "voluntaryTahajjudTitle": "Tahajjud",
   "voluntaryTahajjudSubtitle": "Last third of the night - the most virtuous time for voluntary night prayer.",
 
+  "prayerTimingAppBarTitle": "Prayer Timing",
   "prayerWindowFrom": "{prayer} — from {start}",
   "@prayerWindowFrom": {
     "placeholders": {"prayer": {"type": "String"}, "start": {"type": "String"}}
@@ -129,6 +132,8 @@
   "homeCollectionAllahNames": "99 Names of Allah",
   "homeCollectionPrayerTimes": "Prayer Times",
   "homeCollectionVoluntaryPrayers": "Voluntary Prayers",
+  "homeCollectionRamadan": "Ramadan",
+  "homeCollectionZakat": "Zakat Calculator",
   "homeCollectionQiblaDirection": "Qabah Direction",
   "homeCollectionLiveTv": "Live TV",
   "homeCollectionOthers": "Others",
@@ -150,6 +155,185 @@
   "liveTvNoInternet": "No internet connection.",
   "liveTvUnableToPlay": "Unable to play this channel right now.",
   "liveTvExitFullScreen": "Exit full screen",
+  "liveTvEnterFullScreen": "Full screen",
   "liveTvLive": "Live",
-  "liveTvPaused": "Paused"
+  "liveTvPaused": "Paused",
+
+  "azkarAppBarTitle": "Azkars (Hisnul Muslim)",
+  "azkarFavoriteAzkars": "Favorite Azkars",
+  "azkarNoCategoriesAvailable": "No Azkar categories available.",
+  "azkarNoChaptersFound": "No chapters found.",
+  "azkarNoItemsFound": "No Azkars found.",
+  "azkarNoFavoritesYet": "No favorite Azkars yet.",
+  "azkarLanguageEnglish": "English",
+  "azkarLanguageArabic": "Arabic",
+  "azkarLanguageKurdishSorani": "Kurdish (Sorani)",
+  "azkarLanguageKurdishBadini": "Kurdish (Badini)",
+  "azkarLanguagePersian": "Persian",
+  "azkarLanguageRussian": "Russian",
+
+  "duaAyaLabel": "Aya: {aya}",
+  "@duaAyaLabel": {
+    "placeholders": {"aya": {"type": "int"}}
+  },
+
+  "tasbihAddNew": "Add New Tasbih",
+  "tasbihEditTitle": "Edit Tasbih",
+  "tasbihActions": "Actions:",
+  "tasbihCopy": "Copy",
+  "tasbihNameHint": "Input tasbih name here",
+  "tasbihNameEmptyError": "Tashbih name cannot be empty",
+  "tasbihCountsLabel": "Tasbih counts:",
+  "tasbihCountsHint": "Input tasbih counts here",
+  "tasbihCounterEmptyError": "Tashbih counter cannot be empty",
+  "tasbihCountsSuffix": "counts",
+
+  "quranAppBarTitle": "Al-Quran",
+  "quranTabSurah": "Surah",
+  "quranTabJuz": "Juz",
+  "quranContinueReadingSurah": "Continue Reading Surah {surah}",
+  "@quranContinueReadingSurah": {
+    "placeholders": {"surah": {"type": "String"}}
+  },
+  "quranContinueReadingJuz": "Continue Reading {juz}",
+  "@quranContinueReadingJuz": {
+    "placeholders": {"juz": {"type": "String"}}
+  },
+  "quranSearchAppBarTitle": "Search Quran",
+  "quranSearchHint": "Search by name, number, place…",
+  "quranSearchSurahsTitle": "Search Surahs",
+  "quranSearchJuzTitle": "Search Juz",
+  "quranNoResults": "No results",
+  "quranSearchSurahsHintBody": "Type a Surah name (English/Arabic) or number.",
+  "quranSearchJuzHintBody": "Type a Juz name or number (e.g. “2”).",
+  "quranSearchNoMatchSurah": "Nothing matched “{query}”. Try a different spelling.",
+  "@quranSearchNoMatchSurah": {
+    "placeholders": {"query": {"type": "String"}}
+  },
+  "quranSearchNoMatchJuz": "Nothing matched “{query}”. Try searching by number.",
+  "@quranSearchNoMatchJuz": {
+    "placeholders": {"query": {"type": "String"}}
+  },
+  "quranCouldNotOpenVerse": "Could not open this verse in the Quran.",
+  "quranPlayingSurah": "Playing Surah {surah}",
+  "@quranPlayingSurah": {
+    "placeholders": {"surah": {"type": "int"}}
+  },
+  "quranPlayingSurahAyah": "Playing Surah {surah} • Ayah {ayah}",
+  "@quranPlayingSurahAyah": {
+    "placeholders": {"surah": {"type": "int"}, "ayah": {"type": "int"}}
+  },
+  "quranPlayFullSurah": "Play full Surah {surah}",
+  "@quranPlayFullSurah": {
+    "placeholders": {"surah": {"type": "int"}}
+  },
+  "quranAudioNoInternet": "No internet connection. Please try again.",
+  "quranAudioPlaybackFailed": "Unable to play audio right now.",
+  "quranAudioSurahPlaybackFailed": "Unable to play surah audio right now.",
+  "quranSurahMeta": "{place} - {ayats} ayat",
+  "@quranSurahMeta": {
+    "placeholders": {"place": {"type": "String"}, "ayats": {"type": "int"}}
+  },
+  "quranPlaceMakki": "Meccan",
+  "quranPlaceMadina": "Medinan",
+
+  "quranOptionAppBarTitle": "Quran Styling Option",
+  "quranOptionAudioReciter": "Audio reciter",
+  "quranOptionShowTranslation": "Show translation",
+  "quranOptionQuranFontSize": "Quran font size",
+  "quranOptionQuranFontFamily": "Quran font family",
+  "quranOptionTranslationFontSize": "Translation font size",
+  "quranOptionTranslationFontFamily": "Translation font family",
+  "quranOptionTranslationMode": "Translation mode",
+  "quranOptionQuranType": "Quran type",
+  "quranOptionQcfScrollDirection": "QCF scroll direction",
+  "quranTypeNormal": "Normal",
+  "quranScrollDirectionVertical": "Vertical",
+  "quranScrollDirectionHorizontal": "Horizontal",
+  "quranAudioTypeVerseByVerse": "Verse by verse",
+  "quranAudioTypeTranslation": "Translation",
+  "quranLangArabic": "Arabic",
+  "quranLangEnglish": "English",
+  "quranLangUrdu": "Urdu",
+  "quranLangPersian": "Persian",
+  "quranLangFrench": "French",
+  "quranLangRussian": "Russian",
+  "quranLangChinese": "Chinese",
+  "quranAudioMetaLine": "Type: {type} • Language: {language} • Quality: {quality} kbps",
+  "@quranAudioMetaLine": {
+    "placeholders": {
+      "type": {"type": "String"},
+      "language": {"type": "String"},
+      "quality": {"type": "int"}
+    }
+  },
+
+  "errorLocationDisabled": "Location is not enabled. Please go to setting to enable it.",
+  "errorReadDatabaseFailed": "Read database failed. Try again later.",
+  "errorConnectionInterrupted": "Connection interrupted. Please reconnect to the internet.",
+
+  "quranTranslationModeUrdu": "Urdu",
+  "quranTranslationModeEnglishSaheeh": "English (Saheeh)",
+  "quranTranslationModeEnglishClearQuran": "English (Clear Quran)",
+  "quranTranslationModeTurkishSaheeh": "Turkish (Saheeh)",
+  "quranTranslationModeMalayalamAbdulHameed": "Malayalam (Abdul Hameed)",
+  "quranTranslationModePersianHusseinDari": "Persian (Hussein Dari)",
+  "quranTranslationModeFrenchHamidullah": "French (Hamidullah)",
+  "quranTranslationModeItalianPiccardo": "Italian (Piccardo)",
+  "quranTranslationModeDutchSiregar": "Dutch (Siregar)",
+  "quranTranslationModePortuguese": "Portuguese",
+  "quranTranslationModeRussianKuliev": "Russian (Kuliev)",
+  "quranTranslationModeBengali": "Bengali",
+  "quranTranslationModeIndonesian": "Indonesian",
+  "quranTranslationModeChinese": "Chinese",
+  "quranTranslationModeSpanish": "Spanish",
+  "quranTranslationModeSwedish": "Swedish",
+
+  "ramadanAppBarTitle": "Ramadan",
+  "ramadanSuhoorTitle": "Suhoor",
+  "ramadanSuhoorSubtitle": "Ends at Imsak, shortly before Fajr.",
+  "ramadanIftarTitle": "Iftar",
+  "ramadanIftarSubtitle": "Breaking the fast, at Maghrib.",
+  "ramadanSuhoorEndsIn": "Suhoor ends in ",
+  "ramadanIftarIn": "Iftar is in ",
+
+  "azanNotificationTitle": "{prayer} Azan",
+  "@azanNotificationTitle": {
+    "placeholders": {"prayer": {"type": "String"}}
+  },
+  "azanNotificationBody": "It is time for {prayer} prayer.",
+  "@azanNotificationBody": {
+    "placeholders": {"prayer": {"type": "String"}}
+  },
+
+  "voluntaryFastingSectionTitle": "Upcoming Voluntary Fasts",
+  "voluntaryFastingMonday": "Monday Fast",
+  "voluntaryFastingThursday": "Thursday Fast",
+  "voluntaryFastingAyyamAlBeed": "Ayyam al-Beed (White Days)",
+  "voluntaryFastingArafah": "Day of Arafah",
+  "voluntaryFastingReminderTitle": "{fastingDay} tomorrow",
+  "@voluntaryFastingReminderTitle": {
+    "placeholders": {"fastingDay": {"type": "String"}}
+  },
+  "voluntaryFastingReminderBody": "Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight.",
+
+  "zakatAppBarTitle": "Zakat Calculator",
+  "zakatDisclaimer": "This calculator uses the silver Nisab standard and assumes your wealth has been held for a full lunar year (Hawl). For a precise ruling, consult a qualified scholar.",
+  "zakatCashLabel": "Cash & Bank Savings",
+  "zakatGoldWeightLabel": "Gold Weight (grams)",
+  "zakatGoldPriceLabel": "Gold Price per Gram",
+  "zakatSilverWeightLabel": "Silver Weight (grams)",
+  "zakatSilverPriceLabel": "Silver Price per Gram",
+  "zakatBusinessAssetsLabel": "Business Assets",
+  "zakatInvestmentsLabel": "Other Investments",
+  "zakatDebtsLabel": "Debts Owed",
+  "zakatCalculateButton": "Calculate Zakat",
+  "zakatResultZakatableWealth": "Zakatable Wealth",
+  "zakatResultNisabThreshold": "Nisab Threshold (Silver Standard)",
+  "zakatResultDue": "Zakat is due",
+  "zakatResultNotDue": "Zakat is not due — wealth is below Nisab",
+  "zakatResultAmount": "Zakat Amount (2.5%)",
+
+  "dailyReminderNotificationTitle": "Sirate Mustaqeem reminder",
+  "dailyReminderNotificationBody": "Take a moment for Quran reading, Dhikr, or to check today's prayer times."
 }

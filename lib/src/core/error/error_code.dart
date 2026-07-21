@@ -11,6 +11,10 @@ final kReadDatabaseFailed = {
   'message': 'Read database failed. Try again later.',
   'errorCode': 2,
 };
+final kNoInternetConnection = {
+  'message': 'No internet connection.',
+  'errorCode': 3,
+};
 
 /// remote error
 

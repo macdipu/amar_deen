@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/constants.dart';
 import '../bloc/tab/tab_bloc.dart';
@@ -54,7 +55,7 @@ class QuranTab extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Surah',
+                        AppLocalizations.of(context).quranTabSurah,
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               fontWeight: FontWeight.bold,
                               color: state.firstTab ? Colors.white : null,
@@ -95,7 +96,7 @@ class QuranTab extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Juz',
+                        AppLocalizations.of(context).quranTabJuz,
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               fontWeight: FontWeight.bold,
                               color: !state.firstTab ? Colors.white : null,

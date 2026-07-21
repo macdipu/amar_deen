@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/bloc/dua/dua_bloc.dart';
 import '../bloc/dropdown/dropdown_bloc.dart';
@@ -15,7 +16,7 @@ class DuaScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Dua'),
+            title: Text(AppLocalizations.of(context).homeCollectionDua),
           ),
           body: SafeArea(
             child: ListView.builder(

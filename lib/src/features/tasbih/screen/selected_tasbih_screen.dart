@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/constants.dart';
 import '../bloc/selected_tasbih/selected_tasbih_bloc.dart';
@@ -22,7 +23,7 @@ class SelectedTasbihScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Tasbih'),
+            title: Text(AppLocalizations.of(context).homeCollectionTasbih),
           ),
           body: SafeArea(
             child: Center(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 import 'package:sirat_e_mustaqeem/src/core/util/constants.dart';
 
 import '../../../core/util/bloc/juz/juz_bloc.dart';
@@ -45,7 +46,7 @@ class QuranScaffold extends StatelessWidget {
           color: Theme.of(context).textTheme.bodyMedium!.color,
         ),
         title: Text(
-          'Al-Quran',
+          AppLocalizations.of(context).quranAppBarTitle,
           style: Theme.of(context)
               .textTheme
               .titleLarge!
@@ -212,7 +213,8 @@ class QuranScaffold extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Continue Reading Surah $lastSurahName",
+                                AppLocalizations.of(context)
+                                    .quranContinueReadingSurah(lastSurahName),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -303,7 +305,8 @@ class QuranScaffold extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Continue Reading $lastJuzName",
+                                AppLocalizations.of(context)
+                                    .quranContinueReadingJuz(lastJuzName),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!

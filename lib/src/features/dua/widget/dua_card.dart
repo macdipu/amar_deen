@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/bloc/dua/dua_bloc.dart';
 import '../../../core/util/model/dua.dart';
@@ -52,7 +53,7 @@ class DuaCard extends StatelessWidget {
                 width: 4.w,
               ),
               Text(
-                'Aya: ${dua.ayaNumber}',
+                AppLocalizations.of(context).duaAyaLabel(dua.ayaNumber),
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               Spacer(),

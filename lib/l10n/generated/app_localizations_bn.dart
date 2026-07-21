@@ -82,6 +82,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingLanguage => 'ভাষা';
 
   @override
+  String get settingDailyReminder => 'দৈনিক রিমাইন্ডার';
+
+  @override
+  String get settingDailyReminderTime => 'রিমাইন্ডারের সময়';
+
+  @override
   String get settingGeneral => 'সাধারণ';
 
   @override
@@ -243,6 +249,9 @@ class AppLocalizationsBn extends AppLocalizations {
       'রাতের শেষ তৃতীয়াংশ - নফল রাতের নামাজের জন্য সবচেয়ে ফযীলতপূর্ণ সময়।';
 
   @override
+  String get prayerTimingAppBarTitle => 'নামাজের সময়সূচি';
+
+  @override
   String prayerWindowFrom(String prayer, String start) {
     return '$prayer — $start থেকে';
   }
@@ -327,6 +336,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get homeCollectionVoluntaryPrayers => 'নফল নামাজ';
 
   @override
+  String get homeCollectionRamadan => 'রমজান';
+
+  @override
+  String get homeCollectionZakat => 'যাকাত ক্যালকুলেটর';
+
+  @override
   String get homeCollectionQiblaDirection => 'কাবার দিক';
 
   @override
@@ -382,8 +397,413 @@ class AppLocalizationsBn extends AppLocalizations {
   String get liveTvExitFullScreen => 'ফুল স্ক্রিন থেকে বের হন';
 
   @override
+  String get liveTvEnterFullScreen => 'ফুল স্ক্রিন';
+
+  @override
   String get liveTvLive => 'লাইভ';
 
   @override
   String get liveTvPaused => 'থামানো হয়েছে';
+
+  @override
+  String get azkarAppBarTitle => 'আযকার (হিসনুল মুসলিম)';
+
+  @override
+  String get azkarFavoriteAzkars => 'পছন্দের আযকার';
+
+  @override
+  String get azkarNoCategoriesAvailable => 'কোনো আযকার বিভাগ পাওয়া যায়নি।';
+
+  @override
+  String get azkarNoChaptersFound => 'কোনো অধ্যায় পাওয়া যায়নি।';
+
+  @override
+  String get azkarNoItemsFound => 'কোনো আযকার পাওয়া যায়নি।';
+
+  @override
+  String get azkarNoFavoritesYet => 'এখনো কোনো পছন্দের আযকার নেই।';
+
+  @override
+  String get azkarLanguageEnglish => 'ইংরেজি';
+
+  @override
+  String get azkarLanguageArabic => 'আরবি';
+
+  @override
+  String get azkarLanguageKurdishSorani => 'কুর্দি (সোরানি)';
+
+  @override
+  String get azkarLanguageKurdishBadini => 'কুর্দি (বাদিনি)';
+
+  @override
+  String get azkarLanguagePersian => 'ফার্সি';
+
+  @override
+  String get azkarLanguageRussian => 'রুশ';
+
+  @override
+  String duaAyaLabel(int aya) {
+    return 'আয়াত: $aya';
+  }
+
+  @override
+  String get tasbihAddNew => 'নতুন তাসবিহ যোগ করুন';
+
+  @override
+  String get tasbihEditTitle => 'তাসবিহ সম্পাদনা করুন';
+
+  @override
+  String get tasbihActions => 'কার্যক্রম:';
+
+  @override
+  String get tasbihCopy => 'কপি করুন';
+
+  @override
+  String get tasbihNameHint => 'এখানে তাসবিহর নাম লিখুন';
+
+  @override
+  String get tasbihNameEmptyError => 'তাসবিহর নাম খালি রাখা যাবে না';
+
+  @override
+  String get tasbihCountsLabel => 'তাসবিহর সংখ্যা:';
+
+  @override
+  String get tasbihCountsHint => 'এখানে তাসবিহর সংখ্যা লিখুন';
+
+  @override
+  String get tasbihCounterEmptyError => 'তাসবিহর কাউন্টার খালি রাখা যাবে না';
+
+  @override
+  String get tasbihCountsSuffix => 'বার';
+
+  @override
+  String get quranAppBarTitle => 'আল-কুরআন';
+
+  @override
+  String get quranTabSurah => 'সূরা';
+
+  @override
+  String get quranTabJuz => 'পারা';
+
+  @override
+  String quranContinueReadingSurah(String surah) {
+    return 'সূরা $surah পড়া চালিয়ে যান';
+  }
+
+  @override
+  String quranContinueReadingJuz(String juz) {
+    return '$juz পড়া চালিয়ে যান';
+  }
+
+  @override
+  String get quranSearchAppBarTitle => 'কুরআন অনুসন্ধান করুন';
+
+  @override
+  String get quranSearchHint => 'নাম, নম্বর বা স্থান দিয়ে খুঁজুন…';
+
+  @override
+  String get quranSearchSurahsTitle => 'সূরা খুঁজুন';
+
+  @override
+  String get quranSearchJuzTitle => 'পারা খুঁজুন';
+
+  @override
+  String get quranNoResults => 'কোনো ফলাফল পাওয়া যায়নি';
+
+  @override
+  String get quranSearchSurahsHintBody =>
+      'একটি সূরার নাম (ইংরেজি/আরবি) বা নম্বর লিখুন।';
+
+  @override
+  String get quranSearchJuzHintBody => 'একটি পারার নাম বা নম্বর লিখুন (যেমন “২”)।';
+
+  @override
+  String quranSearchNoMatchSurah(String query) {
+    return '“$query”-এর সাথে কিছু মেলেনি। ভিন্ন বানান চেষ্টা করুন।';
+  }
+
+  @override
+  String quranSearchNoMatchJuz(String query) {
+    return '“$query”-এর সাথে কিছু মেলেনি। নম্বর দিয়ে খোঁজার চেষ্টা করুন।';
+  }
+
+  @override
+  String get quranCouldNotOpenVerse => 'এই আয়াতটি কুরআনে খোলা যায়নি।';
+
+  @override
+  String quranPlayingSurah(int surah) {
+    return 'সূরা $surah চলছে';
+  }
+
+  @override
+  String quranPlayingSurahAyah(int surah, int ayah) {
+    return 'সূরা $surah চলছে • আয়াত $ayah';
+  }
+
+  @override
+  String quranPlayFullSurah(int surah) {
+    return 'সম্পূর্ণ সূরা $surah প্লে করুন';
+  }
+
+  @override
+  String get quranAudioNoInternet => 'ইন্টারনেট সংযোগ নেই। আবার চেষ্টা করুন।';
+
+  @override
+  String get quranAudioPlaybackFailed => 'এই মুহূর্তে অডিও চালানো যাচ্ছে না।';
+
+  @override
+  String get quranAudioSurahPlaybackFailed =>
+      'এই মুহূর্তে সূরার অডিও চালানো যাচ্ছে না।';
+
+  @override
+  String quranSurahMeta(String place, int ayats) {
+    return '$place - $ayats আয়াত';
+  }
+
+  @override
+  String get quranPlaceMakki => 'মাক্কী';
+
+  @override
+  String get quranPlaceMadina => 'মাদানী';
+
+  @override
+  String get quranOptionAppBarTitle => 'কুরআন স্টাইলিং অপশন';
+
+  @override
+  String get quranOptionAudioReciter => 'অডিও ক্বারী';
+
+  @override
+  String get quranOptionShowTranslation => 'অনুবাদ দেখান';
+
+  @override
+  String get quranOptionQuranFontSize => 'কুরআনের ফন্ট সাইজ';
+
+  @override
+  String get quranOptionQuranFontFamily => 'কুরআনের ফন্ট পরিবার';
+
+  @override
+  String get quranOptionTranslationFontSize => 'অনুবাদের ফন্ট সাইজ';
+
+  @override
+  String get quranOptionTranslationFontFamily => 'অনুবাদের ফন্ট পরিবার';
+
+  @override
+  String get quranOptionTranslationMode => 'অনুবাদ মোড';
+
+  @override
+  String get quranOptionQuranType => 'কুরআনের ধরন';
+
+  @override
+  String get quranOptionQcfScrollDirection => 'QCF স্ক্রল দিক';
+
+  @override
+  String get quranTypeNormal => 'সাধারণ';
+
+  @override
+  String get quranScrollDirectionVertical => 'উল্লম্ব';
+
+  @override
+  String get quranScrollDirectionHorizontal => 'অনুভূমিক';
+
+  @override
+  String get quranAudioTypeVerseByVerse => 'আয়াত অনুযায়ী';
+
+  @override
+  String get quranAudioTypeTranslation => 'অনুবাদ';
+
+  @override
+  String get quranLangArabic => 'আরবি';
+
+  @override
+  String get quranLangEnglish => 'ইংরেজি';
+
+  @override
+  String get quranLangUrdu => 'উর্দু';
+
+  @override
+  String get quranLangPersian => 'ফার্সি';
+
+  @override
+  String get quranLangFrench => 'ফরাসি';
+
+  @override
+  String get quranLangRussian => 'রুশ';
+
+  @override
+  String get quranLangChinese => 'চীনা';
+
+  @override
+  String quranAudioMetaLine(String type, String language, int quality) {
+    return 'ধরন: $type • ভাষা: $language • মান: $quality kbps';
+  }
+
+  @override
+  String get errorLocationDisabled => 'লোকেশন সক্রিয় নেই। এটি সক্রিয় করতে সেটিংসে যান।';
+
+  @override
+  String get errorReadDatabaseFailed => 'ডাটাবেজ পড়তে ব্যর্থ হয়েছে। পরে আবার চেষ্টা করুন।';
+
+  @override
+  String get errorConnectionInterrupted =>
+      'সংযোগ বিঘ্নিত হয়েছে। আবার ইন্টারনেটে সংযুক্ত হন।';
+
+  @override
+  String get quranTranslationModeUrdu => 'উর্দু';
+
+  @override
+  String get quranTranslationModeEnglishSaheeh => 'ইংরেজি (সহীহ ইন্টারন্যাশনাল)';
+
+  @override
+  String get quranTranslationModeEnglishClearQuran => 'ইংরেজি (ক্লিয়ার কুরআন)';
+
+  @override
+  String get quranTranslationModeTurkishSaheeh => 'তুর্কি (সহীহ)';
+
+  @override
+  String get quranTranslationModeMalayalamAbdulHameed =>
+      'মালায়ালাম (আব্দুল হামিদ)';
+
+  @override
+  String get quranTranslationModePersianHusseinDari => 'ফার্সি (হুসাইন দারি)';
+
+  @override
+  String get quranTranslationModeFrenchHamidullah => 'ফরাসি (হামিদুল্লাহ)';
+
+  @override
+  String get quranTranslationModeItalianPiccardo => 'ইতালীয় (পিকার্দো)';
+
+  @override
+  String get quranTranslationModeDutchSiregar => 'ডাচ (সিরেগার)';
+
+  @override
+  String get quranTranslationModePortuguese => 'পর্তুগিজ';
+
+  @override
+  String get quranTranslationModeRussianKuliev => 'রুশ (কুলিয়েভ)';
+
+  @override
+  String get quranTranslationModeBengali => 'বাংলা';
+
+  @override
+  String get quranTranslationModeIndonesian => 'ইন্দোনেশীয়';
+
+  @override
+  String get quranTranslationModeChinese => 'চীনা';
+
+  @override
+  String get quranTranslationModeSpanish => 'স্প্যানিশ';
+
+  @override
+  String get quranTranslationModeSwedish => 'সুইডিশ';
+
+  @override
+  String get ramadanAppBarTitle => 'রমজান';
+
+  @override
+  String get ramadanSuhoorTitle => 'সেহরি';
+
+  @override
+  String get ramadanSuhoorSubtitle => 'ফজরের কিছুক্ষণ আগে, ইমসাকে শেষ হয়।';
+
+  @override
+  String get ramadanIftarTitle => 'ইফতার';
+
+  @override
+  String get ramadanIftarSubtitle => 'মাগরিবের সময় রোজা ভাঙা।';
+
+  @override
+  String get ramadanSuhoorEndsIn => 'সেহরি শেষ হতে বাকি ';
+
+  @override
+  String get ramadanIftarIn => 'ইফতারের বাকি ';
+
+  @override
+  String azanNotificationTitle(String prayer) {
+    return '$prayer আজান';
+  }
+
+  @override
+  String azanNotificationBody(String prayer) {
+    return '$prayer নামাজের সময় হয়েছে।';
+  }
+
+  @override
+  String get voluntaryFastingSectionTitle => 'আসন্ন নফল রোজা';
+
+  @override
+  String get voluntaryFastingMonday => 'সোমবারের রোজা';
+
+  @override
+  String get voluntaryFastingThursday => 'বৃহস্পতিবারের রোজা';
+
+  @override
+  String get voluntaryFastingAyyamAlBeed => 'আইয়ামে বীজ (সাদা দিনগুলো)';
+
+  @override
+  String get voluntaryFastingArafah => 'আরাফাতের দিন';
+
+  @override
+  String voluntaryFastingReminderTitle(String fastingDay) {
+    return 'আগামীকাল $fastingDay';
+  }
+
+  @override
+  String get voluntaryFastingReminderBody =>
+      'আগামীকাল একটি নফল রোজার দিন। আজ রাতেই সেহরি ও নিয়তের পরিকল্পনা করুন।';
+
+  @override
+  String get zakatAppBarTitle => 'যাকাত ক্যালকুলেটর';
+
+  @override
+  String get zakatDisclaimer =>
+      'এই ক্যালকুলেটর রৌপ্য নিসাব মান ব্যবহার করে এবং ধরে নেয় যে আপনার সম্পদ পূর্ণ এক চান্দ্র বছর (হাউল) ধরে রাখা হয়েছে। সঠিক সিদ্ধান্তের জন্য একজন যোগ্য আলেমের পরামর্শ নিন।';
+
+  @override
+  String get zakatCashLabel => 'নগদ ও ব্যাংক সঞ্চয়';
+
+  @override
+  String get zakatGoldWeightLabel => 'স্বর্ণের ওজন (গ্রাম)';
+
+  @override
+  String get zakatGoldPriceLabel => 'প্রতি গ্রাম স্বর্ণের মূল্য';
+
+  @override
+  String get zakatSilverWeightLabel => 'রৌপ্যের ওজন (গ্রাম)';
+
+  @override
+  String get zakatSilverPriceLabel => 'প্রতি গ্রাম রৌপ্যের মূল্য';
+
+  @override
+  String get zakatBusinessAssetsLabel => 'ব্যবসায়িক সম্পদ';
+
+  @override
+  String get zakatInvestmentsLabel => 'অন্যান্য বিনিয়োগ';
+
+  @override
+  String get zakatDebtsLabel => 'পাওনা ঋণ';
+
+  @override
+  String get zakatCalculateButton => 'যাকাত হিসাব করুন';
+
+  @override
+  String get zakatResultZakatableWealth => 'যাকাতযোগ্য সম্পদ';
+
+  @override
+  String get zakatResultNisabThreshold => 'নিসাব সীমা (রৌপ্য মান)';
+
+  @override
+  String get zakatResultDue => 'যাকাত ওয়াজিব';
+
+  @override
+  String get zakatResultNotDue => 'যাকাত ওয়াজিব নয় — সম্পদ নিসাবের নিচে';
+
+  @override
+  String get zakatResultAmount => 'যাকাতের পরিমাণ (২.৫%)';
+
+  @override
+  String get dailyReminderNotificationTitle => 'সিরাতে মুস্তাকিম রিমাইন্ডার';
+
+  @override
+  String get dailyReminderNotificationBody =>
+      'কুরআন তিলাওয়াত, জিকির অথবা আজকের নামাজের সময় দেখার জন্য কিছুটা সময় নিন।';
 }

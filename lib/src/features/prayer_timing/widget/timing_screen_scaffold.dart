@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/bloc/location/location_bloc.dart';
 import '../../../core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
@@ -22,7 +23,7 @@ class TimingScreenScaffold extends StatelessWidget {
             .backgroundColor!
             .withValues(alpha: 0.3),
         elevation: 0,
-        title: Text('Prayer Timing'),
+        title: Text(AppLocalizations.of(context).prayerTimingAppBarTitle),
       ),
       body: BlocBuilder<TimingBloc, TimingState>(
         builder: (context, state) {

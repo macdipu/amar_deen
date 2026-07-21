@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/error/error_code.dart';
 import '../../../core/error/failures.dart';
+
+/// Maps a [RemoteFailure]'s numeric [RemoteFailure.errorCode] to localized
+/// display text - see the equivalent note on [LocalFailureContent]'s
+/// `_localizedMessage`.
+String _localizedMessage(BuildContext context, RemoteFailure failure) {
+  final l10n = AppLocalizations.of(context);
+  switch (failure.errorCode) {
+    case RemoteErrorCode.INTERNET_ERROR_CODE:
+      return l10n.liveTvNoInternet;
+    case RemoteErrorCode.CONNECTION_INTERUPTED_ERROR_CODE:
+      return l10n.errorConnectionInterrupted;
+    default:
+      return l10n.commonSomethingWentWrong;
+  }
+}
 
 class RemoteFailureContent extends StatelessWidget {
   const RemoteFailureContent(this.failure);
@@ -30,7 +46,7 @@ class RemoteFailureContent extends StatelessWidget {
             height: 16.h,
           ),
           Text(
-            failure.message,
+            _localizedMessage(context, failure),
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
@@ -52,7 +68,7 @@ class RemoteFailureContent extends StatelessWidget {
           height: 16.h,
         ),
         Text(
-          failure.message,
+          _localizedMessage(context, failure),
           style: Theme.of(context).textTheme.titleLarge,
           textAlign: TextAlign.center,
         ),

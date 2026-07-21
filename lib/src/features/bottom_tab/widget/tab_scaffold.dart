@@ -84,6 +84,8 @@ class _TabScaffoldState extends State<TabScaffold> {
             BlocProvider.of<NotificationBloc>(context).state.status ==
                 PermissionStatus.granted) {
           rescheduleAzans(context);
+          rescheduleVoluntaryFastingReminders(context);
+          rescheduleDailyReminder(context);
         }
       },
       builder: (context, state) {

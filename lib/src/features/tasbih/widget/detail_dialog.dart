@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/constants.dart';
 import '../bloc/input/input_bloc.dart';
@@ -36,12 +37,13 @@ class DetailDialog extends StatelessWidget {
           ),
           child: BlocBuilder<InputBloc, InputState>(
             builder: (context, state) {
+              final l10n = AppLocalizations.of(context);
               return SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Add New Tasbih',
+                      l10n.tasbihAddNew,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             color: Theme.of(context).primaryColor,
@@ -72,7 +74,7 @@ class DetailDialog extends StatelessWidget {
                         filled: true,
                         fillColor: Theme.of(context).colorScheme.surface,
                         contentPadding: kInputFieldPadding,
-                        hintText: 'Input tasbih name here',
+                        hintText: l10n.tasbihNameHint,
                         hintStyle:
                             Theme.of(context).textTheme.bodyLarge!.copyWith(
                                   color: Theme.of(context).colorScheme.surface,
@@ -91,7 +93,7 @@ class DetailDialog extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Tashbih name cannot be empty',
+                                  l10n.tasbihNameEmptyError,
                                   style: TextStyle(
                                     color: Theme.of(context).colorScheme.error,
                                   ),
@@ -106,7 +108,7 @@ class DetailDialog extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text('Tasbih counts:'),
+                        Text(l10n.tasbihCountsLabel),
                       ],
                     ),
                     SizedBox(
@@ -145,7 +147,7 @@ class DetailDialog extends StatelessWidget {
                         filled: true,
                         fillColor: Theme.of(context).colorScheme.surface,
                         contentPadding: kInputFieldPadding,
-                        hintText: 'Input tasbih counts here',
+                        hintText: l10n.tasbihCountsHint,
                         hintStyle:
                             Theme.of(context).textTheme.bodyLarge!.copyWith(
                                   color: Theme.of(context).colorScheme.surface,
@@ -164,7 +166,7 @@ class DetailDialog extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Tashbih counter cannot be empty',
+                                  l10n.tasbihCounterEmptyError,
                                   style: TextStyle(
                                     color: Theme.of(context).colorScheme.error,
                                   ),

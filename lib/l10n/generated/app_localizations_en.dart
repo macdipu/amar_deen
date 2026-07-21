@@ -82,6 +82,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingLanguage => 'Language';
 
   @override
+  String get settingDailyReminder => 'Daily Reminder';
+
+  @override
+  String get settingDailyReminderTime => 'Reminder time';
+
+  @override
   String get settingGeneral => 'General';
 
   @override
@@ -245,6 +251,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Last third of the night - the most virtuous time for voluntary night prayer.';
 
   @override
+  String get prayerTimingAppBarTitle => 'Prayer Timing';
+
+  @override
   String prayerWindowFrom(String prayer, String start) {
     return '$prayer — from $start';
   }
@@ -328,6 +337,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeCollectionVoluntaryPrayers => 'Voluntary Prayers';
 
   @override
+  String get homeCollectionRamadan => 'Ramadan';
+
+  @override
+  String get homeCollectionZakat => 'Zakat Calculator';
+
+  @override
   String get homeCollectionQiblaDirection => 'Qabah Direction';
 
   @override
@@ -383,8 +398,416 @@ class AppLocalizationsEn extends AppLocalizations {
   String get liveTvExitFullScreen => 'Exit full screen';
 
   @override
+  String get liveTvEnterFullScreen => 'Full screen';
+
+  @override
   String get liveTvLive => 'Live';
 
   @override
   String get liveTvPaused => 'Paused';
+
+  @override
+  String get azkarAppBarTitle => 'Azkars (Hisnul Muslim)';
+
+  @override
+  String get azkarFavoriteAzkars => 'Favorite Azkars';
+
+  @override
+  String get azkarNoCategoriesAvailable => 'No Azkar categories available.';
+
+  @override
+  String get azkarNoChaptersFound => 'No chapters found.';
+
+  @override
+  String get azkarNoItemsFound => 'No Azkars found.';
+
+  @override
+  String get azkarNoFavoritesYet => 'No favorite Azkars yet.';
+
+  @override
+  String get azkarLanguageEnglish => 'English';
+
+  @override
+  String get azkarLanguageArabic => 'Arabic';
+
+  @override
+  String get azkarLanguageKurdishSorani => 'Kurdish (Sorani)';
+
+  @override
+  String get azkarLanguageKurdishBadini => 'Kurdish (Badini)';
+
+  @override
+  String get azkarLanguagePersian => 'Persian';
+
+  @override
+  String get azkarLanguageRussian => 'Russian';
+
+  @override
+  String duaAyaLabel(int aya) {
+    return 'Aya: $aya';
+  }
+
+  @override
+  String get tasbihAddNew => 'Add New Tasbih';
+
+  @override
+  String get tasbihEditTitle => 'Edit Tasbih';
+
+  @override
+  String get tasbihActions => 'Actions:';
+
+  @override
+  String get tasbihCopy => 'Copy';
+
+  @override
+  String get tasbihNameHint => 'Input tasbih name here';
+
+  @override
+  String get tasbihNameEmptyError => 'Tashbih name cannot be empty';
+
+  @override
+  String get tasbihCountsLabel => 'Tasbih counts:';
+
+  @override
+  String get tasbihCountsHint => 'Input tasbih counts here';
+
+  @override
+  String get tasbihCounterEmptyError => 'Tashbih counter cannot be empty';
+
+  @override
+  String get tasbihCountsSuffix => 'counts';
+
+  @override
+  String get quranAppBarTitle => 'Al-Quran';
+
+  @override
+  String get quranTabSurah => 'Surah';
+
+  @override
+  String get quranTabJuz => 'Juz';
+
+  @override
+  String quranContinueReadingSurah(String surah) {
+    return 'Continue Reading Surah $surah';
+  }
+
+  @override
+  String quranContinueReadingJuz(String juz) {
+    return 'Continue Reading $juz';
+  }
+
+  @override
+  String get quranSearchAppBarTitle => 'Search Quran';
+
+  @override
+  String get quranSearchHint => 'Search by name, number, place…';
+
+  @override
+  String get quranSearchSurahsTitle => 'Search Surahs';
+
+  @override
+  String get quranSearchJuzTitle => 'Search Juz';
+
+  @override
+  String get quranNoResults => 'No results';
+
+  @override
+  String get quranSearchSurahsHintBody =>
+      'Type a Surah name (English/Arabic) or number.';
+
+  @override
+  String get quranSearchJuzHintBody => 'Type a Juz name or number (e.g. “2”).';
+
+  @override
+  String quranSearchNoMatchSurah(String query) {
+    return 'Nothing matched “$query”. Try a different spelling.';
+  }
+
+  @override
+  String quranSearchNoMatchJuz(String query) {
+    return 'Nothing matched “$query”. Try searching by number.';
+  }
+
+  @override
+  String get quranCouldNotOpenVerse =>
+      'Could not open this verse in the Quran.';
+
+  @override
+  String quranPlayingSurah(int surah) {
+    return 'Playing Surah $surah';
+  }
+
+  @override
+  String quranPlayingSurahAyah(int surah, int ayah) {
+    return 'Playing Surah $surah • Ayah $ayah';
+  }
+
+  @override
+  String quranPlayFullSurah(int surah) {
+    return 'Play full Surah $surah';
+  }
+
+  @override
+  String get quranAudioNoInternet => 'No internet connection. Please try again.';
+
+  @override
+  String get quranAudioPlaybackFailed => 'Unable to play audio right now.';
+
+  @override
+  String get quranAudioSurahPlaybackFailed =>
+      'Unable to play surah audio right now.';
+
+  @override
+  String quranSurahMeta(String place, int ayats) {
+    return '$place - $ayats ayat';
+  }
+
+  @override
+  String get quranPlaceMakki => 'Meccan';
+
+  @override
+  String get quranPlaceMadina => 'Medinan';
+
+  @override
+  String get quranOptionAppBarTitle => 'Quran Styling Option';
+
+  @override
+  String get quranOptionAudioReciter => 'Audio reciter';
+
+  @override
+  String get quranOptionShowTranslation => 'Show translation';
+
+  @override
+  String get quranOptionQuranFontSize => 'Quran font size';
+
+  @override
+  String get quranOptionQuranFontFamily => 'Quran font family';
+
+  @override
+  String get quranOptionTranslationFontSize => 'Translation font size';
+
+  @override
+  String get quranOptionTranslationFontFamily => 'Translation font family';
+
+  @override
+  String get quranOptionTranslationMode => 'Translation mode';
+
+  @override
+  String get quranOptionQuranType => 'Quran type';
+
+  @override
+  String get quranOptionQcfScrollDirection => 'QCF scroll direction';
+
+  @override
+  String get quranTypeNormal => 'Normal';
+
+  @override
+  String get quranScrollDirectionVertical => 'Vertical';
+
+  @override
+  String get quranScrollDirectionHorizontal => 'Horizontal';
+
+  @override
+  String get quranAudioTypeVerseByVerse => 'Verse by verse';
+
+  @override
+  String get quranAudioTypeTranslation => 'Translation';
+
+  @override
+  String get quranLangArabic => 'Arabic';
+
+  @override
+  String get quranLangEnglish => 'English';
+
+  @override
+  String get quranLangUrdu => 'Urdu';
+
+  @override
+  String get quranLangPersian => 'Persian';
+
+  @override
+  String get quranLangFrench => 'French';
+
+  @override
+  String get quranLangRussian => 'Russian';
+
+  @override
+  String get quranLangChinese => 'Chinese';
+
+  @override
+  String quranAudioMetaLine(String type, String language, int quality) {
+    return 'Type: $type • Language: $language • Quality: $quality kbps';
+  }
+
+  @override
+  String get errorLocationDisabled =>
+      'Location is not enabled. Please go to setting to enable it.';
+
+  @override
+  String get errorReadDatabaseFailed => 'Read database failed. Try again later.';
+
+  @override
+  String get errorConnectionInterrupted =>
+      'Connection interrupted. Please reconnect to the internet.';
+
+  @override
+  String get quranTranslationModeUrdu => 'Urdu';
+
+  @override
+  String get quranTranslationModeEnglishSaheeh => 'English (Saheeh)';
+
+  @override
+  String get quranTranslationModeEnglishClearQuran => 'English (Clear Quran)';
+
+  @override
+  String get quranTranslationModeTurkishSaheeh => 'Turkish (Saheeh)';
+
+  @override
+  String get quranTranslationModeMalayalamAbdulHameed =>
+      'Malayalam (Abdul Hameed)';
+
+  @override
+  String get quranTranslationModePersianHusseinDari =>
+      'Persian (Hussein Dari)';
+
+  @override
+  String get quranTranslationModeFrenchHamidullah => 'French (Hamidullah)';
+
+  @override
+  String get quranTranslationModeItalianPiccardo => 'Italian (Piccardo)';
+
+  @override
+  String get quranTranslationModeDutchSiregar => 'Dutch (Siregar)';
+
+  @override
+  String get quranTranslationModePortuguese => 'Portuguese';
+
+  @override
+  String get quranTranslationModeRussianKuliev => 'Russian (Kuliev)';
+
+  @override
+  String get quranTranslationModeBengali => 'Bengali';
+
+  @override
+  String get quranTranslationModeIndonesian => 'Indonesian';
+
+  @override
+  String get quranTranslationModeChinese => 'Chinese';
+
+  @override
+  String get quranTranslationModeSpanish => 'Spanish';
+
+  @override
+  String get quranTranslationModeSwedish => 'Swedish';
+
+  @override
+  String get ramadanAppBarTitle => 'Ramadan';
+
+  @override
+  String get ramadanSuhoorTitle => 'Suhoor';
+
+  @override
+  String get ramadanSuhoorSubtitle => 'Ends at Imsak, shortly before Fajr.';
+
+  @override
+  String get ramadanIftarTitle => 'Iftar';
+
+  @override
+  String get ramadanIftarSubtitle => 'Breaking the fast, at Maghrib.';
+
+  @override
+  String get ramadanSuhoorEndsIn => 'Suhoor ends in ';
+
+  @override
+  String get ramadanIftarIn => 'Iftar is in ';
+
+  @override
+  String azanNotificationTitle(String prayer) {
+    return '$prayer Azan';
+  }
+
+  @override
+  String azanNotificationBody(String prayer) {
+    return 'It is time for $prayer prayer.';
+  }
+
+  @override
+  String get voluntaryFastingSectionTitle => 'Upcoming Voluntary Fasts';
+
+  @override
+  String get voluntaryFastingMonday => 'Monday Fast';
+
+  @override
+  String get voluntaryFastingThursday => 'Thursday Fast';
+
+  @override
+  String get voluntaryFastingAyyamAlBeed => 'Ayyam al-Beed (White Days)';
+
+  @override
+  String get voluntaryFastingArafah => 'Day of Arafah';
+
+  @override
+  String voluntaryFastingReminderTitle(String fastingDay) {
+    return '$fastingDay tomorrow';
+  }
+
+  @override
+  String get voluntaryFastingReminderBody =>
+      'Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight.';
+
+  @override
+  String get zakatAppBarTitle => 'Zakat Calculator';
+
+  @override
+  String get zakatDisclaimer =>
+      'This calculator uses the silver Nisab standard and assumes your wealth has been held for a full lunar year (Hawl). For a precise ruling, consult a qualified scholar.';
+
+  @override
+  String get zakatCashLabel => 'Cash & Bank Savings';
+
+  @override
+  String get zakatGoldWeightLabel => 'Gold Weight (grams)';
+
+  @override
+  String get zakatGoldPriceLabel => 'Gold Price per Gram';
+
+  @override
+  String get zakatSilverWeightLabel => 'Silver Weight (grams)';
+
+  @override
+  String get zakatSilverPriceLabel => 'Silver Price per Gram';
+
+  @override
+  String get zakatBusinessAssetsLabel => 'Business Assets';
+
+  @override
+  String get zakatInvestmentsLabel => 'Other Investments';
+
+  @override
+  String get zakatDebtsLabel => 'Debts Owed';
+
+  @override
+  String get zakatCalculateButton => 'Calculate Zakat';
+
+  @override
+  String get zakatResultZakatableWealth => 'Zakatable Wealth';
+
+  @override
+  String get zakatResultNisabThreshold => 'Nisab Threshold (Silver Standard)';
+
+  @override
+  String get zakatResultDue => 'Zakat is due';
+
+  @override
+  String get zakatResultNotDue => 'Zakat is not due — wealth is below Nisab';
+
+  @override
+  String get zakatResultAmount => 'Zakat Amount (2.5%)';
+
+  @override
+  String get dailyReminderNotificationTitle => 'Sirate Mustaqeem reminder';
+
+  @override
+  String get dailyReminderNotificationBody =>
+      'Take a moment for Quran reading, Dhikr, or to check today\'s prayer times.';
 }

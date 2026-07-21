@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/util/bloc/quran/quran_bloc.dart';
 import '../../../core/util/constants.dart';
-import '../../../core/util/model/quran.dart';
+import 'package:sirat_e_mustaqeem/features/quran/domain/entities/quran.dart';
 import '../bloc/selected_surah/selected_surah_bloc.dart';
+import '../controller/quran_controller.dart';
 import 'quran_card.dart';
 
 class SurahContent extends StatefulWidget {
@@ -240,7 +241,11 @@ class _SurahContentState extends State<SurahContent> {
                           Padding(
                             padding: EdgeInsets.only(left: 12.w),
                             child: Text(
-                              '${currentSurahState.surah.place} - ${currentSurahState.surah.ayats} asdf',
+                              quranSurahMetaLabel(
+                                context,
+                                currentSurahState.surah.place,
+                                currentSurahState.surah.ayats,
+                              ),
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge!

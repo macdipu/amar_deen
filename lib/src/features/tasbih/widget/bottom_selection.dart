@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../core/util/constants.dart';
 import '../../../core/util/model/tasbih.dart';
@@ -38,6 +39,7 @@ class _BottomSelectionState extends State<BottomSelection> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: kCardPadding,
       decoration: ShapeDecoration(
@@ -50,7 +52,7 @@ class _BottomSelectionState extends State<BottomSelection> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Actions:',
+            l10n.tasbihActions,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   color: Theme.of(context).primaryColor,
@@ -70,7 +72,7 @@ class _BottomSelectionState extends State<BottomSelection> {
                   ),
                   builder: (context) {
                     return DetailDialog(
-                      title: 'Edit Tasbih',
+                      title: l10n.tasbihEditTitle,
                       nameController: nameController,
                       counterController: counterController,
                       submitFunction: () async {
@@ -96,7 +98,7 @@ class _BottomSelectionState extends State<BottomSelection> {
                 SizedBox(
                   width: 8.w,
                 ),
-                Text('Edit'),
+                Text(l10n.commonEdit),
               ],
             ),
           ),
@@ -118,7 +120,7 @@ class _BottomSelectionState extends State<BottomSelection> {
                 SizedBox(
                   width: 8.w,
                 ),
-                Text('Copy'),
+                Text(l10n.tasbihCopy),
               ],
             ),
           ),
@@ -141,7 +143,7 @@ class _BottomSelectionState extends State<BottomSelection> {
                   width: 8.w,
                 ),
                 Text(
-                  'Delete',
+                  l10n.commonDelete,
                 ),
               ],
             ),

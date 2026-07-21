@@ -13,6 +13,7 @@ import 'features/prayer_times/presentation/bloc/azan_settings_bloc/azan_settings
 import 'l10n/generated/app_localizations.dart';
 import 'src/core/notification/notification_service.dart';
 import 'src/core/util/bloc/allah_names/allah_name_bloc.dart';
+import 'src/core/util/bloc/daily_reminder/daily_reminder_bloc.dart';
 import 'src/core/util/bloc/database/database_bloc.dart';
 import 'src/core/util/bloc/dua/dua_bloc.dart';
 import 'src/core/util/bloc/juz/juz_bloc.dart';
@@ -98,6 +99,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LocationBloc(),
+        ),
+        BlocProvider(
+          create: (context) => DailyReminderBloc(),
         ),
       ],
       child: ScreenUtilInit(

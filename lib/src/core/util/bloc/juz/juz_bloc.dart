@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../model/juz.dart';
+import 'package:sirat_e_mustaqeem/features/quran/domain/entities/juz.dart';
 
 part 'juz_event.dart';
 part 'juz_state.dart';

@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/util/constants.dart';
-import '../../../core/util/model/surah.dart';
+import 'package:sirat_e_mustaqeem/features/quran/domain/entities/surah.dart';
 import '../bloc/selected_surah/selected_surah_bloc.dart';
+import '../controller/quran_controller.dart';
 import '../cubit/quran_reading_cubit.dart';
 import '../cubit/quran_cubit.dart';
 import '../screen/selected_quran_screen.dart';
@@ -110,7 +111,11 @@ class SurahCard extends StatelessWidget {
                             height: 2.h,
                           ),
                           Text(
-                            '${surahs.surahs[index].place} - ${surahs.surahs[index].ayats} ayat',
+                            quranSurahMetaLabel(
+                              context,
+                              surahs.surahs[index].place,
+                              surahs.surahs[index].ayats,
+                            ),
                             style: Theme.of(context).textTheme.bodyLarge,
                           )
                         ],

@@ -1,3 +1,6 @@
+/// Moved here verbatim from `lib/src/core/util/model/juz.dart` - zero
+/// logic changes. Pure Dart, no package imports - already fully
+/// domain-clean.
 class Juz {
   final int id;
   final String englishName;
