@@ -331,6 +331,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeCollectionRamadan => 'Ramadan';
 
   @override
+  String get homeCollectionZakat => 'Zakat Calculator';
+
+  @override
   String get homeCollectionQiblaDirection => 'Qabah Direction';
 
   @override
@@ -739,4 +742,53 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get voluntaryFastingReminderBody =>
       'Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight.';
+
+  @override
+  String get zakatAppBarTitle => 'Zakat Calculator';
+
+  @override
+  String get zakatDisclaimer =>
+      'This calculator uses the silver Nisab standard and assumes your wealth has been held for a full lunar year (Hawl). For a precise ruling, consult a qualified scholar.';
+
+  @override
+  String get zakatCashLabel => 'Cash & Bank Savings';
+
+  @override
+  String get zakatGoldWeightLabel => 'Gold Weight (grams)';
+
+  @override
+  String get zakatGoldPriceLabel => 'Gold Price per Gram';
+
+  @override
+  String get zakatSilverWeightLabel => 'Silver Weight (grams)';
+
+  @override
+  String get zakatSilverPriceLabel => 'Silver Price per Gram';
+
+  @override
+  String get zakatBusinessAssetsLabel => 'Business Assets';
+
+  @override
+  String get zakatInvestmentsLabel => 'Other Investments';
+
+  @override
+  String get zakatDebtsLabel => 'Debts Owed';
+
+  @override
+  String get zakatCalculateButton => 'Calculate Zakat';
+
+  @override
+  String get zakatResultZakatableWealth => 'Zakatable Wealth';
+
+  @override
+  String get zakatResultNisabThreshold => 'Nisab Threshold (Silver Standard)';
+
+  @override
+  String get zakatResultDue => 'Zakat is due';
+
+  @override
+  String get zakatResultNotDue => 'Zakat is not due — wealth is below Nisab';
+
+  @override
+  String get zakatResultAmount => 'Zakat Amount (2.5%)';
 }

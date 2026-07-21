@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/prayer_times/presentation/screen/voluntary_prayer_screen.dart';
 import '../../features/qibla/presentation/screen/qibla_screen.dart';
 import '../../features/ramadan/presentation/screen/ramadan_screen.dart';
+import '../../features/zakat/presentation/screen/zakat_calculator_screen.dart';
 import '../../src/core/error/exceptions.dart';
 import '../../src/features/allah_name/screen/allah_name_screen.dart';
 import '../../src/features/azkar/screen/azkar_screen.dart';
@@ -31,6 +32,7 @@ abstract class AppRoutes {
   static const String prayerTimeSettings = '/prayer_time_settings';
   static const String voluntaryPrayers = '/voluntary_prayers';
   static const String ramadan = '/ramadan';
+  static const String zakatCalculator = '/zakat_calculator';
   static const String qibla = '/qibla';
   static const String thankyou = '/thank_you';
   static const String databaseError = '/database_error';
@@ -79,6 +81,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.ramadan,
       builder: (context, state) => const RamadanScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.zakatCalculator,
+      builder: (context, state) => const ZakatCalculatorScreen(),
     ),
     GoRoute(
       path: AppRoutes.qibla,

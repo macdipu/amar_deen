@@ -330,6 +330,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get homeCollectionRamadan => 'রমজান';
 
   @override
+  String get homeCollectionZakat => 'যাকাত ক্যালকুলেটর';
+
+  @override
   String get homeCollectionQiblaDirection => 'কাবার দিক';
 
   @override
@@ -735,4 +738,53 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get voluntaryFastingReminderBody =>
       'আগামীকাল একটি নফল রোজার দিন। আজ রাতেই সেহরি ও নিয়তের পরিকল্পনা করুন।';
+
+  @override
+  String get zakatAppBarTitle => 'যাকাত ক্যালকুলেটর';
+
+  @override
+  String get zakatDisclaimer =>
+      'এই ক্যালকুলেটর রৌপ্য নিসাব মান ব্যবহার করে এবং ধরে নেয় যে আপনার সম্পদ পূর্ণ এক চান্দ্র বছর (হাউল) ধরে রাখা হয়েছে। সঠিক সিদ্ধান্তের জন্য একজন যোগ্য আলেমের পরামর্শ নিন।';
+
+  @override
+  String get zakatCashLabel => 'নগদ ও ব্যাংক সঞ্চয়';
+
+  @override
+  String get zakatGoldWeightLabel => 'স্বর্ণের ওজন (গ্রাম)';
+
+  @override
+  String get zakatGoldPriceLabel => 'প্রতি গ্রাম স্বর্ণের মূল্য';
+
+  @override
+  String get zakatSilverWeightLabel => 'রৌপ্যের ওজন (গ্রাম)';
+
+  @override
+  String get zakatSilverPriceLabel => 'প্রতি গ্রাম রৌপ্যের মূল্য';
+
+  @override
+  String get zakatBusinessAssetsLabel => 'ব্যবসায়িক সম্পদ';
+
+  @override
+  String get zakatInvestmentsLabel => 'অন্যান্য বিনিয়োগ';
+
+  @override
+  String get zakatDebtsLabel => 'পাওনা ঋণ';
+
+  @override
+  String get zakatCalculateButton => 'যাকাত হিসাব করুন';
+
+  @override
+  String get zakatResultZakatableWealth => 'যাকাতযোগ্য সম্পদ';
+
+  @override
+  String get zakatResultNisabThreshold => 'নিসাব সীমা (রৌপ্য মান)';
+
+  @override
+  String get zakatResultDue => 'যাকাত ওয়াজিব';
+
+  @override
+  String get zakatResultNotDue => 'যাকাত ওয়াজিব নয় — সম্পদ নিসাবের নিচে';
+
+  @override
+  String get zakatResultAmount => 'যাকাতের পরিমাণ (২.৫%)';
 }

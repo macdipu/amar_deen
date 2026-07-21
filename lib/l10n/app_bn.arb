@@ -107,6 +107,7 @@
   "homeCollectionPrayerTimes": "নামাজের সময়",
   "homeCollectionVoluntaryPrayers": "নফল নামাজ",
   "homeCollectionRamadan": "রমজান",
+  "homeCollectionZakat": "যাকাত ক্যালকুলেটর",
   "homeCollectionQiblaDirection": "কাবার দিক",
   "homeCollectionLiveTv": "লাইভ টিভি",
   "homeCollectionOthers": "অন্যান্য",
@@ -244,5 +245,22 @@
   "voluntaryFastingAyyamAlBeed": "আইয়ামে বীজ (সাদা দিনগুলো)",
   "voluntaryFastingArafah": "আরাফাতের দিন",
   "voluntaryFastingReminderTitle": "আগামীকাল {fastingDay}",
-  "voluntaryFastingReminderBody": "আগামীকাল একটি নফল রোজার দিন। আজ রাতেই সেহরি ও নিয়তের পরিকল্পনা করুন।"
+  "voluntaryFastingReminderBody": "আগামীকাল একটি নফল রোজার দিন। আজ রাতেই সেহরি ও নিয়তের পরিকল্পনা করুন।",
+
+  "zakatAppBarTitle": "যাকাত ক্যালকুলেটর",
+  "zakatDisclaimer": "এই ক্যালকুলেটর রৌপ্য নিসাব মান ব্যবহার করে এবং ধরে নেয় যে আপনার সম্পদ পূর্ণ এক চান্দ্র বছর (হাউল) ধরে রাখা হয়েছে। সঠিক সিদ্ধান্তের জন্য একজন যোগ্য আলেমের পরামর্শ নিন।",
+  "zakatCashLabel": "নগদ ও ব্যাংক সঞ্চয়",
+  "zakatGoldWeightLabel": "স্বর্ণের ওজন (গ্রাম)",
+  "zakatGoldPriceLabel": "প্রতি গ্রাম স্বর্ণের মূল্য",
+  "zakatSilverWeightLabel": "রৌপ্যের ওজন (গ্রাম)",
+  "zakatSilverPriceLabel": "প্রতি গ্রাম রৌপ্যের মূল্য",
+  "zakatBusinessAssetsLabel": "ব্যবসায়িক সম্পদ",
+  "zakatInvestmentsLabel": "অন্যান্য বিনিয়োগ",
+  "zakatDebtsLabel": "পাওনা ঋণ",
+  "zakatCalculateButton": "যাকাত হিসাব করুন",
+  "zakatResultZakatableWealth": "যাকাতযোগ্য সম্পদ",
+  "zakatResultNisabThreshold": "নিসাব সীমা (রৌপ্য মান)",
+  "zakatResultDue": "যাকাত ওয়াজিব",
+  "zakatResultNotDue": "যাকাত ওয়াজিব নয় — সম্পদ নিসাবের নিচে",
+  "zakatResultAmount": "যাকাতের পরিমাণ (২.৫%)"
 }

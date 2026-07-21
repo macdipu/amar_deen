@@ -499,11 +499,26 @@ epics:
     note: low priority, don't start before Epics 0-6 substantially done
     tasks:
       - id: TASK-028
-        status: todo
-        summary: 99 Names of Allah - static content.
+        status: done
+        summary: >
+          Done 2026-07-21 as verify-only. Already fully implemented
+          pre-migration - AllahNameScreen/AllahNameBloc/NameCard/
+          NameScreen backed by muslim_data_flutter's bundled data,
+          already localized. No code changes.
       - id: TASK-029
-        status: todo
-        summary: Zakat calculator - formula-driven.
+        status: done
+        summary: >
+          Done 2026-07-21. New features/zakat/{domain,presentation}/ -
+          no data/ layer (no external source, pure arithmetic on
+          user-entered values). CalculateZakat use case: standard 2.5%
+          rate above the silver-standard Nisab (595g, not gold 85g) -
+          content/convention judgment call flagged for Dipu, same
+          treatment as Ishraq/Duha/Imsak. Gold/silver prices are
+          user-entered, not fetched live (offline-first constraint, no
+          trustworthy price source available). ZakatCalculatorCubit +
+          screen, new route + home-screen entry + hand-authored
+          coin-stack icon. DI hand-registered (4th injection.config.dart
+          hand-edit this session). See PROGRESS.md.
       - id: TASK-030
         status: todo
         summary: Daily reminder notifications, reusing TASK-013's notification service.

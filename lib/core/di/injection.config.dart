@@ -47,6 +47,8 @@ import 'package:sirat_e_mustaqeem/features/ramadan/domain/usecases/get_ramadan_t
     as _i603;
 import 'package:sirat_e_mustaqeem/features/ramadan/domain/usecases/get_upcoming_voluntary_fasting_days.dart'
     as _i606;
+import 'package:sirat_e_mustaqeem/features/zakat/domain/usecases/calculate_zakat.dart'
+    as _i610;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -86,6 +88,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i606.GetUpcomingVoluntaryFastingDays>(() =>
         _i606.GetUpcomingVoluntaryFastingDays(
             gh<_i605.VoluntaryFastingRepository>()));
+    gh.factory<_i610.CalculateZakat>(() => const _i610.CalculateZakat());
     return this;
   }
 }

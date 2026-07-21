@@ -60,6 +60,11 @@ List<Collection> buildCollections(BuildContext context) {
     AppRoutes.ramadan,
   ),
   Collection(
+    'assets/images/collection_icon/svg/zakat.svg',
+    l10n.homeCollectionZakat,
+    AppRoutes.zakatCalculator,
+  ),
+  Collection(
     'assets/images/collection_icon/svg/kiblat.svg',
     l10n.homeCollectionQiblaDirection,
     AppRoutes.qibla,

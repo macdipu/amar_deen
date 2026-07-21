@@ -662,6 +662,12 @@ abstract class AppLocalizations {
   /// **'Ramadan'**
   String get homeCollectionRamadan;
 
+  /// No description provided for @homeCollectionZakat.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat Calculator'**
+  String get homeCollectionZakat;
+
   /// No description provided for @homeCollectionQiblaDirection.
   ///
   /// In en, this message translates to:
@@ -1411,6 +1417,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight.'**
   String get voluntaryFastingReminderBody;
+
+  /// No description provided for @zakatAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat Calculator'**
+  String get zakatAppBarTitle;
+
+  /// No description provided for @zakatDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'This calculator uses the silver Nisab standard and assumes your wealth has been held for a full lunar year (Hawl). For a precise ruling, consult a qualified scholar.'**
+  String get zakatDisclaimer;
+
+  /// No description provided for @zakatCashLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash & Bank Savings'**
+  String get zakatCashLabel;
+
+  /// No description provided for @zakatGoldWeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Weight (grams)'**
+  String get zakatGoldWeightLabel;
+
+  /// No description provided for @zakatGoldPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Price per Gram'**
+  String get zakatGoldPriceLabel;
+
+  /// No description provided for @zakatSilverWeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver Weight (grams)'**
+  String get zakatSilverWeightLabel;
+
+  /// No description provided for @zakatSilverPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver Price per Gram'**
+  String get zakatSilverPriceLabel;
+
+  /// No description provided for @zakatBusinessAssetsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Business Assets'**
+  String get zakatBusinessAssetsLabel;
+
+  /// No description provided for @zakatInvestmentsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Investments'**
+  String get zakatInvestmentsLabel;
+
+  /// No description provided for @zakatDebtsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Debts Owed'**
+  String get zakatDebtsLabel;
+
+  /// No description provided for @zakatCalculateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculate Zakat'**
+  String get zakatCalculateButton;
+
+  /// No description provided for @zakatResultZakatableWealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakatable Wealth'**
+  String get zakatResultZakatableWealth;
+
+  /// No description provided for @zakatResultNisabThreshold.
+  ///
+  /// In en, this message translates to:
+  /// **'Nisab Threshold (Silver Standard)'**
+  String get zakatResultNisabThreshold;
+
+  /// No description provided for @zakatResultDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat is due'**
+  String get zakatResultDue;
+
+  /// No description provided for @zakatResultNotDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat is not due — wealth is below Nisab'**
+  String get zakatResultNotDue;
+
+  /// No description provided for @zakatResultAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat Amount (2.5%)'**
+  String get zakatResultAmount;
 }
 
 class _AppLocalizationsDelegate

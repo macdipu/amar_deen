@@ -45,8 +45,8 @@ Non-negotiable:
 | 18 | Voluntary fasting reminders | ✅ (2026-07-21, see TASK-023 in `PROGRESS.md`) | ❌ | ✅ (Muslims Day) | None |
 | 19 | Hijri calendar | ✅ (corrected 2026-07-20 — already existed pre-migration, see TASK-018 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
 | 20 | Daily reminder notifications | ❌ | ➖ | ✅ | Missing |
-| 21 | 99 Names of Allah | ❌ | ✅ | ✅ | Missing |
-| 22 | Zakat calculator | ❌ | ✅ | ✅ (some) | Missing (medium) |
+| 21 | 99 Names of Allah | ✅ (corrected 2026-07-21 — already existed pre-migration, see TASK-028 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
+| 22 | Zakat calculator | ✅ (2026-07-21, see TASK-029 in `PROGRESS.md`) | ✅ | ✅ (some) | None |
 | 23 | Islamic articles / lectures | ❌ | ✅ | ➖ | Missing (low priority) |
 | 24 | Ask Scholar Q&A / Voice call | ❌ | ✅ | ❌ (rare) | **Out of scope** — needs backend |
 | 25 | Matrimonial service | ❌ | ✅ | ❌ | **Out of scope** — unrelated |
@@ -284,8 +284,8 @@ This doesn't relax `destructive_action_gate`/`git_safety` in `harness.yaml` (for
 - [x] **TASK-027**: Last-read position + bookmarks. **Done 2026-07-21 as verify-only** — already substantially existed pre-migration: `QuranReadingCubit` (a `HydratedCubit`, so persisted to disk) tracks the last-read Surah/Juz + Ayah and drives the "Continue Reading" resume banner on the Quran home screen; "bookmarks" are covered by the existing per-Ayah favorites system (`toggleQuranFavorite`, SQLite-backed), already aggregated into the Bookmark screen. Uses `HydratedBloc`/SQLite rather than literally "Hive" — same established, already-locked reasoning as TASK-016/021 (`hive`/`hive_flutter` flagged stale in `DECISIONS.md`, no confirmed go-ahead for `hive_ce`). See `PROGRESS.md`.
 
 ### EPIC 7 — Extras (low priority, don't start before Epics 0–6 substantially done)
-- [ ] **TASK-028**: 99 Names of Allah — static content.
-- [ ] **TASK-029**: Zakat calculator — formula-driven.
+- [x] **TASK-028**: 99 Names of Allah — static content. **Done 2026-07-21 as verify-only** — already fully implemented pre-migration: `AllahNameScreen`/`AllahNameBloc`/`NameCard`/`NameScreen` (list + detail view), backed by `muslim_data_flutter`'s bundled `NameOfAllah` data (transliteration/translation/name), already reachable from the home screen and already localized (app bar title). No code changes needed.
+- [x] **TASK-029**: Zakat calculator — formula-driven. **Done 2026-07-21** — new `features/zakat/` (domain entity + `CalculateZakat` use case, no repository needed since there's no external data source, just arithmetic on user-entered values; presentation `Cubit` + screen). Standard 2.5% rate above the silver-standard Nisab (595g) — **a content/convention judgment call flagged for Dipu**, same treatment as the Ishraq/Duha and Imsak offsets: silver (not gold) Nisab is the commonly-cited, more-inclusive threshold, but this is a single-standard v1, not a user-selectable one. Gold/silver prices are user-entered (not fetched live — would need a network call against the offline-first constraint and a trustworthy price source neither of which this build has). New route + home-screen entry + a hand-authored coin-stack icon (no existing bundled icon fit). See `PROGRESS.md`.
 - [ ] **TASK-030**: Daily reminder notifications, reusing TASK-013's notification service.
 
 ### EPIC 8 — Polish (low priority, discuss scope before starting)

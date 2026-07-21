@@ -130,6 +130,7 @@
   "homeCollectionPrayerTimes": "Prayer Times",
   "homeCollectionVoluntaryPrayers": "Voluntary Prayers",
   "homeCollectionRamadan": "Ramadan",
+  "homeCollectionZakat": "Zakat Calculator",
   "homeCollectionQiblaDirection": "Qabah Direction",
   "homeCollectionLiveTv": "Live TV",
   "homeCollectionOthers": "Others",
@@ -310,5 +311,22 @@
   "@voluntaryFastingReminderTitle": {
     "placeholders": {"fastingDay": {"type": "String"}}
   },
-  "voluntaryFastingReminderBody": "Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight."
+  "voluntaryFastingReminderBody": "Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight.",
+
+  "zakatAppBarTitle": "Zakat Calculator",
+  "zakatDisclaimer": "This calculator uses the silver Nisab standard and assumes your wealth has been held for a full lunar year (Hawl). For a precise ruling, consult a qualified scholar.",
+  "zakatCashLabel": "Cash & Bank Savings",
+  "zakatGoldWeightLabel": "Gold Weight (grams)",
+  "zakatGoldPriceLabel": "Gold Price per Gram",
+  "zakatSilverWeightLabel": "Silver Weight (grams)",
+  "zakatSilverPriceLabel": "Silver Price per Gram",
+  "zakatBusinessAssetsLabel": "Business Assets",
+  "zakatInvestmentsLabel": "Other Investments",
+  "zakatDebtsLabel": "Debts Owed",
+  "zakatCalculateButton": "Calculate Zakat",
+  "zakatResultZakatableWealth": "Zakatable Wealth",
+  "zakatResultNisabThreshold": "Nisab Threshold (Silver Standard)",
+  "zakatResultDue": "Zakat is due",
+  "zakatResultNotDue": "Zakat is not due — wealth is below Nisab",
+  "zakatResultAmount": "Zakat Amount (2.5%)"
 }
