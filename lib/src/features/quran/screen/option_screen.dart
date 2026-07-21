@@ -248,6 +248,59 @@ class ShowTranslationOption extends StatelessWidget {
   }
 }
 
+/// Maps a `_translationModes` entry (also the literal lookup key into
+/// `Quran.getTranslationText()`'s `translationByMode` map - see
+/// `lib/src/core/util/model/quran.dart` - so these values themselves must
+/// never change) to a localized display label. Only affects what's shown in
+/// the picker; `SwitchTranslationMode`/persisted state still use the raw
+/// English key from `_translationModes` unchanged.
+///
+/// NOTE for Dipu: the Bangla labels below are a best-effort machine
+/// transliteration of translator/scholar names (Saheeh International,
+/// Hamidullah, Piccardo, Siregar, Kuliev, Abdul Hameed, Hussein Dari) -
+/// same caution as the Hadees-of-the-day translation elsewhere in this
+/// file tree. Please have a native/domain reviewer check these specific
+/// names before shipping; the language-name portions carry much less risk.
+String _translationModeLabel(BuildContext context, String mode) {
+  final l10n = AppLocalizations.of(context);
+  switch (mode) {
+    case 'Urdu':
+      return l10n.quranTranslationModeUrdu;
+    case 'English (Saheeh)':
+      return l10n.quranTranslationModeEnglishSaheeh;
+    case 'English (Clear Quran)':
+      return l10n.quranTranslationModeEnglishClearQuran;
+    case 'Turkish (Saheeh)':
+      return l10n.quranTranslationModeTurkishSaheeh;
+    case 'Malayalam (Abdul Hameed)':
+      return l10n.quranTranslationModeMalayalamAbdulHameed;
+    case 'Persian (Hussein Dari)':
+      return l10n.quranTranslationModePersianHusseinDari;
+    case 'French (Hamidullah)':
+      return l10n.quranTranslationModeFrenchHamidullah;
+    case 'Italian (Piccardo)':
+      return l10n.quranTranslationModeItalianPiccardo;
+    case 'Dutch (Siregar)':
+      return l10n.quranTranslationModeDutchSiregar;
+    case 'Portuguese':
+      return l10n.quranTranslationModePortuguese;
+    case 'Russian (Kuliev)':
+      return l10n.quranTranslationModeRussianKuliev;
+    case 'Bengali':
+      return l10n.quranTranslationModeBengali;
+    case 'Indonesian':
+      return l10n.quranTranslationModeIndonesian;
+    case 'Chinese':
+      return l10n.quranTranslationModeChinese;
+    case 'Spanish':
+      return l10n.quranTranslationModeSpanish;
+    case 'Swedish':
+      return l10n.quranTranslationModeSwedish;
+    default:
+      return mode;
+  }
+}
+
 class TranslationMode extends StatelessWidget {
   const TranslationMode();
 
@@ -259,6 +312,8 @@ class TranslationMode extends StatelessWidget {
           label: AppLocalizations.of(context).quranOptionTranslationMode,
           value: state.translationMode,
           options: _translationModes,
+          optionLabelBuilder: (mode) => _translationModeLabel(context, mode),
+          selectedLabelBuilder: (mode) => _translationModeLabel(context, mode),
           onChanged: (value) {
             BlocProvider.of<QuranThemeBloc>(context)
                 .add(SwitchTranslationMode(value));

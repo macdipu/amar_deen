@@ -1213,6 +1213,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Connection interrupted. Please reconnect to the internet.'**
   String get errorConnectionInterrupted;
+
+  /// No description provided for @quranTranslationModeUrdu.
+  ///
+  /// In en, this message translates to:
+  /// **'Urdu'**
+  String get quranTranslationModeUrdu;
+
+  /// No description provided for @quranTranslationModeEnglishSaheeh.
+  ///
+  /// In en, this message translates to:
+  /// **'English (Saheeh)'**
+  String get quranTranslationModeEnglishSaheeh;
+
+  /// No description provided for @quranTranslationModeEnglishClearQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'English (Clear Quran)'**
+  String get quranTranslationModeEnglishClearQuran;
+
+  /// No description provided for @quranTranslationModeTurkishSaheeh.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkish (Saheeh)'**
+  String get quranTranslationModeTurkishSaheeh;
+
+  /// No description provided for @quranTranslationModeMalayalamAbdulHameed.
+  ///
+  /// In en, this message translates to:
+  /// **'Malayalam (Abdul Hameed)'**
+  String get quranTranslationModeMalayalamAbdulHameed;
+
+  /// No description provided for @quranTranslationModePersianHusseinDari.
+  ///
+  /// In en, this message translates to:
+  /// **'Persian (Hussein Dari)'**
+  String get quranTranslationModePersianHusseinDari;
+
+  /// No description provided for @quranTranslationModeFrenchHamidullah.
+  ///
+  /// In en, this message translates to:
+  /// **'French (Hamidullah)'**
+  String get quranTranslationModeFrenchHamidullah;
+
+  /// No description provided for @quranTranslationModeItalianPiccardo.
+  ///
+  /// In en, this message translates to:
+  /// **'Italian (Piccardo)'**
+  String get quranTranslationModeItalianPiccardo;
+
+  /// No description provided for @quranTranslationModeDutchSiregar.
+  ///
+  /// In en, this message translates to:
+  /// **'Dutch (Siregar)'**
+  String get quranTranslationModeDutchSiregar;
+
+  /// No description provided for @quranTranslationModePortuguese.
+  ///
+  /// In en, this message translates to:
+  /// **'Portuguese'**
+  String get quranTranslationModePortuguese;
+
+  /// No description provided for @quranTranslationModeRussianKuliev.
+  ///
+  /// In en, this message translates to:
+  /// **'Russian (Kuliev)'**
+  String get quranTranslationModeRussianKuliev;
+
+  /// No description provided for @quranTranslationModeBengali.
+  ///
+  /// In en, this message translates to:
+  /// **'Bengali'**
+  String get quranTranslationModeBengali;
+
+  /// No description provided for @quranTranslationModeIndonesian.
+  ///
+  /// In en, this message translates to:
+  /// **'Indonesian'**
+  String get quranTranslationModeIndonesian;
+
+  /// No description provided for @quranTranslationModeChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese'**
+  String get quranTranslationModeChinese;
+
+  /// No description provided for @quranTranslationModeSpanish.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish'**
+  String get quranTranslationModeSpanish;
+
+  /// No description provided for @quranTranslationModeSwedish.
+  ///
+  /// In en, this message translates to:
+  /// **'Swedish'**
+  String get quranTranslationModeSwedish;
 }
 
 class _AppLocalizationsDelegate

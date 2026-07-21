@@ -628,4 +628,53 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get errorConnectionInterrupted =>
       'সংযোগ বিঘ্নিত হয়েছে। আবার ইন্টারনেটে সংযুক্ত হন।';
+
+  @override
+  String get quranTranslationModeUrdu => 'উর্দু';
+
+  @override
+  String get quranTranslationModeEnglishSaheeh => 'ইংরেজি (সহীহ ইন্টারন্যাশনাল)';
+
+  @override
+  String get quranTranslationModeEnglishClearQuran => 'ইংরেজি (ক্লিয়ার কুরআন)';
+
+  @override
+  String get quranTranslationModeTurkishSaheeh => 'তুর্কি (সহীহ)';
+
+  @override
+  String get quranTranslationModeMalayalamAbdulHameed =>
+      'মালায়ালাম (আব্দুল হামিদ)';
+
+  @override
+  String get quranTranslationModePersianHusseinDari => 'ফার্সি (হুসাইন দারি)';
+
+  @override
+  String get quranTranslationModeFrenchHamidullah => 'ফরাসি (হামিদুল্লাহ)';
+
+  @override
+  String get quranTranslationModeItalianPiccardo => 'ইতালীয় (পিকার্দো)';
+
+  @override
+  String get quranTranslationModeDutchSiregar => 'ডাচ (সিরেগার)';
+
+  @override
+  String get quranTranslationModePortuguese => 'পর্তুগিজ';
+
+  @override
+  String get quranTranslationModeRussianKuliev => 'রুশ (কুলিয়েভ)';
+
+  @override
+  String get quranTranslationModeBengali => 'বাংলা';
+
+  @override
+  String get quranTranslationModeIndonesian => 'ইন্দোনেশীয়';
+
+  @override
+  String get quranTranslationModeChinese => 'চীনা';
+
+  @override
+  String get quranTranslationModeSpanish => 'স্প্যানিশ';
+
+  @override
+  String get quranTranslationModeSwedish => 'সুইডিশ';
 }

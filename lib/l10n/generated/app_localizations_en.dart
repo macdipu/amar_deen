@@ -631,4 +631,54 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get errorConnectionInterrupted =>
       'Connection interrupted. Please reconnect to the internet.';
+
+  @override
+  String get quranTranslationModeUrdu => 'Urdu';
+
+  @override
+  String get quranTranslationModeEnglishSaheeh => 'English (Saheeh)';
+
+  @override
+  String get quranTranslationModeEnglishClearQuran => 'English (Clear Quran)';
+
+  @override
+  String get quranTranslationModeTurkishSaheeh => 'Turkish (Saheeh)';
+
+  @override
+  String get quranTranslationModeMalayalamAbdulHameed =>
+      'Malayalam (Abdul Hameed)';
+
+  @override
+  String get quranTranslationModePersianHusseinDari =>
+      'Persian (Hussein Dari)';
+
+  @override
+  String get quranTranslationModeFrenchHamidullah => 'French (Hamidullah)';
+
+  @override
+  String get quranTranslationModeItalianPiccardo => 'Italian (Piccardo)';
+
+  @override
+  String get quranTranslationModeDutchSiregar => 'Dutch (Siregar)';
+
+  @override
+  String get quranTranslationModePortuguese => 'Portuguese';
+
+  @override
+  String get quranTranslationModeRussianKuliev => 'Russian (Kuliev)';
+
+  @override
+  String get quranTranslationModeBengali => 'Bengali';
+
+  @override
+  String get quranTranslationModeIndonesian => 'Indonesian';
+
+  @override
+  String get quranTranslationModeChinese => 'Chinese';
+
+  @override
+  String get quranTranslationModeSpanish => 'Spanish';
+
+  @override
+  String get quranTranslationModeSwedish => 'Swedish';
 }

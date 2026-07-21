@@ -264,5 +264,22 @@
 
   "errorLocationDisabled": "Location is not enabled. Please go to setting to enable it.",
   "errorReadDatabaseFailed": "Read database failed. Try again later.",
-  "errorConnectionInterrupted": "Connection interrupted. Please reconnect to the internet."
+  "errorConnectionInterrupted": "Connection interrupted. Please reconnect to the internet.",
+
+  "quranTranslationModeUrdu": "Urdu",
+  "quranTranslationModeEnglishSaheeh": "English (Saheeh)",
+  "quranTranslationModeEnglishClearQuran": "English (Clear Quran)",
+  "quranTranslationModeTurkishSaheeh": "Turkish (Saheeh)",
+  "quranTranslationModeMalayalamAbdulHameed": "Malayalam (Abdul Hameed)",
+  "quranTranslationModePersianHusseinDari": "Persian (Hussein Dari)",
+  "quranTranslationModeFrenchHamidullah": "French (Hamidullah)",
+  "quranTranslationModeItalianPiccardo": "Italian (Piccardo)",
+  "quranTranslationModeDutchSiregar": "Dutch (Siregar)",
+  "quranTranslationModePortuguese": "Portuguese",
+  "quranTranslationModeRussianKuliev": "Russian (Kuliev)",
+  "quranTranslationModeBengali": "Bengali",
+  "quranTranslationModeIndonesian": "Indonesian",
+  "quranTranslationModeChinese": "Chinese",
+  "quranTranslationModeSpanish": "Spanish",
+  "quranTranslationModeSwedish": "Swedish"
 }
