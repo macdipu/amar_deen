@@ -545,13 +545,40 @@ epics:
     note: low priority, discuss scope before starting
     tasks:
       - id: TASK-031
-        status: todo
-        summary: Home-screen widgets (Android home_widget; iOS WidgetKit if scoped in).
+        status: blocked
+        summary: >
+          Scoped 2026-07-21, implementation blocked on native
+          tooling. Decision: Android-only v1 (home_widget package),
+          iOS WidgetKit deferred (needs a Swift Xcode extension
+          target, can't be scaffolded blind). Content: next-prayer
+          name + countdown, reusing TimingBloc's already-computed
+          data. Needs a real Gradle/Kotlin/Xcode toolchain to
+          implement safely - unlike every Dart-only task this
+          session, native Android/iOS project files can't be
+          brace-balance-verified, and a wrong Gradle/manifest edit
+          risks breaking the whole Android build. Full step-by-step
+          implementation plan written to PROGRESS.md. Also needs
+          Dipu's confirmation of the Android-only + next-prayer-
+          countdown scope before real build time is spent on it.
       - id: TASK-032
-        status: todo
-        summary: Confirm with Dipu whether Mosque Finder stays in scope (see DECISIONS.md open question).
+        status: done
+        summary: >
+          Decided 2026-07-21: out of scope by default. No existing
+          Mosque Finder code in the repo. Needs a POI dataset that's
+          either bundled (no legitimate offline dataset available/
+          sourceable this session) or live-fetched (breaks
+          offline-first, needs a maps API + credentials this project
+          doesn't have). Same "no legitimate source, don't fabricate"
+          reasoning as Tafsir/Hajj guide. Reversible if Dipu has a
+          specific dataset or API budget in mind.
       - id: TASK-033
-        status: todo
-        summary: Hajj & Umrah guide - static content.
+        status: blocked
+        summary: >
+          Blocked 2026-07-21, same treatment as TASK-025 (Tafsir).
+          Hajj & Umrah guide is procedural religious content needing
+          a legitimate scholarly source - no network access this
+          session to source/verify one, and freehand-authoring ritual
+          instructions is a content-integrity risk, not a corner to
+          cut. Needs Dipu to supply/point at a dataset.
 
 locked_decisions_ref: DECISIONS.md   # do not duplicate content here, this file only points at it
