@@ -327,6 +327,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get homeCollectionVoluntaryPrayers => 'নফল নামাজ';
 
   @override
+  String get homeCollectionRamadan => 'রমজান';
+
+  @override
   String get homeCollectionQiblaDirection => 'কাবার দিক';
 
   @override
@@ -677,4 +680,25 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get quranTranslationModeSwedish => 'সুইডিশ';
+
+  @override
+  String get ramadanAppBarTitle => 'রমজান';
+
+  @override
+  String get ramadanSuhoorTitle => 'সেহরি';
+
+  @override
+  String get ramadanSuhoorSubtitle => 'ফজরের কিছুক্ষণ আগে, ইমসাকে শেষ হয়।';
+
+  @override
+  String get ramadanIftarTitle => 'ইফতার';
+
+  @override
+  String get ramadanIftarSubtitle => 'মাগরিবের সময় রোজা ভাঙা।';
+
+  @override
+  String get ramadanSuhoorEndsIn => 'সেহরি শেষ হতে বাকি ';
+
+  @override
+  String get ramadanIftarIn => 'ইফতারের বাকি ';
 }

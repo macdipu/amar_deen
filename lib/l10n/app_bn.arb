@@ -106,6 +106,7 @@
   "homeCollectionAllahNames": "আল্লাহর ৯৯ নাম",
   "homeCollectionPrayerTimes": "নামাজের সময়",
   "homeCollectionVoluntaryPrayers": "নফল নামাজ",
+  "homeCollectionRamadan": "রমজান",
   "homeCollectionQiblaDirection": "কাবার দিক",
   "homeCollectionLiveTv": "লাইভ টিভি",
   "homeCollectionOthers": "অন্যান্য",
@@ -224,5 +225,13 @@
   "quranTranslationModeIndonesian": "ইন্দোনেশীয়",
   "quranTranslationModeChinese": "চীনা",
   "quranTranslationModeSpanish": "স্প্যানিশ",
-  "quranTranslationModeSwedish": "সুইডিশ"
+  "quranTranslationModeSwedish": "সুইডিশ",
+
+  "ramadanAppBarTitle": "রমজান",
+  "ramadanSuhoorTitle": "সেহরি",
+  "ramadanSuhoorSubtitle": "ফজরের কিছুক্ষণ আগে, ইমসাকে শেষ হয়।",
+  "ramadanIftarTitle": "ইফতার",
+  "ramadanIftarSubtitle": "মাগরিবের সময় রোজা ভাঙা।",
+  "ramadanSuhoorEndsIn": "সেহরি শেষ হতে বাকি ",
+  "ramadanIftarIn": "ইফতারের বাকি "
 }

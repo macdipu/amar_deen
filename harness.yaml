@@ -395,8 +395,23 @@ epics:
     name: Ramadan Tools
     tasks:
       - id: TASK-022
-        status: todo
-        summary: Suhoor/Iftar/Imsak derived from Fajr/Maghrib, countdown UI.
+        status: done
+        summary: >
+          Done 2026-07-21. New features/ramadan/ (full Clean Architecture,
+          mirrors TASK-012's Voluntary Prayers structure exactly).
+          RamadanRepositoryImpl derives Imsak (Fajr - 10min, content
+          judgment call flagged for Dipu, same as Ishraq/Duha) and Iftar
+          (= Maghrib) from PrayerTimesRepository - no new local data
+          source needed. RamadanBloc/RamadanCountdown (live 30s-tick
+          countdown, mirrors home screen's upcoming_prayer_text.dart
+          pattern) added. Promoted VoluntaryPrayerCard to
+          core/widgets/prayer_time_card.dart (renamed PrayerTimeCard)
+          since it's now shared across two top-level features. New route
+          + home-screen entry + hand-authored ramadan.svg icon (no
+          existing bundled icon fit). DI registrations hand-added to
+          injection.config.dart (no flutter/dart binary this session) -
+          new verification gap alongside the l10n hand-edits, needs a
+          real build_runner run to confirm. See PROGRESS.md.
       - id: TASK-023
         status: todo
         summary: Voluntary fasting reminders (Mon/Thu, Ayyam al-Beed, Arafah) via Hijri calendar.

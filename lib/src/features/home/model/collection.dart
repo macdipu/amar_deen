@@ -55,6 +55,11 @@ List<Collection> buildCollections(BuildContext context) {
     AppRoutes.voluntaryPrayers,
   ),
   Collection(
+    'assets/images/collection_icon/svg/ramadan.svg',
+    l10n.homeCollectionRamadan,
+    AppRoutes.ramadan,
+  ),
+  Collection(
     'assets/images/collection_icon/svg/kiblat.svg',
     l10n.homeCollectionQiblaDirection,
     AppRoutes.qibla,

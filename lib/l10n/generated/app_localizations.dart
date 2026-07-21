@@ -656,6 +656,12 @@ abstract class AppLocalizations {
   /// **'Voluntary Prayers'**
   String get homeCollectionVoluntaryPrayers;
 
+  /// No description provided for @homeCollectionRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan'**
+  String get homeCollectionRamadan;
+
   /// No description provided for @homeCollectionQiblaDirection.
   ///
   /// In en, this message translates to:
@@ -1309,6 +1315,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Swedish'**
   String get quranTranslationModeSwedish;
+
+  /// No description provided for @ramadanAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan'**
+  String get ramadanAppBarTitle;
+
+  /// No description provided for @ramadanSuhoorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suhoor'**
+  String get ramadanSuhoorTitle;
+
+  /// No description provided for @ramadanSuhoorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends at Imsak, shortly before Fajr.'**
+  String get ramadanSuhoorSubtitle;
+
+  /// No description provided for @ramadanIftarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar'**
+  String get ramadanIftarTitle;
+
+  /// No description provided for @ramadanIftarSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Breaking the fast, at Maghrib.'**
+  String get ramadanIftarSubtitle;
+
+  /// No description provided for @ramadanSuhoorEndsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Suhoor ends in '**
+  String get ramadanSuhoorEndsIn;
+
+  /// No description provided for @ramadanIftarIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar is in '**
+  String get ramadanIftarIn;
 }
 
 class _AppLocalizationsDelegate

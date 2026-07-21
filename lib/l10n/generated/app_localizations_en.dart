@@ -328,6 +328,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeCollectionVoluntaryPrayers => 'Voluntary Prayers';
 
   @override
+  String get homeCollectionRamadan => 'Ramadan';
+
+  @override
   String get homeCollectionQiblaDirection => 'Qabah Direction';
 
   @override
@@ -681,4 +684,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranTranslationModeSwedish => 'Swedish';
+
+  @override
+  String get ramadanAppBarTitle => 'Ramadan';
+
+  @override
+  String get ramadanSuhoorTitle => 'Suhoor';
+
+  @override
+  String get ramadanSuhoorSubtitle => 'Ends at Imsak, shortly before Fajr.';
+
+  @override
+  String get ramadanIftarTitle => 'Iftar';
+
+  @override
+  String get ramadanIftarSubtitle => 'Breaking the fast, at Maghrib.';
+
+  @override
+  String get ramadanSuhoorEndsIn => 'Suhoor ends in ';
+
+  @override
+  String get ramadanIftarIn => 'Iftar is in ';
 }

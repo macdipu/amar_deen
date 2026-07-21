@@ -3,12 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../src/core/util/bloc/time_format/time_format_bloc.dart';
-import '../../../../src/core/util/constants.dart';
-import '../../../../src/core/util/controller/timing_controller.dart';
+import '../../src/core/util/bloc/time_format/time_format_bloc.dart';
+import '../../src/core/util/constants.dart';
+import '../../src/core/util/controller/timing_controller.dart';
 
-class VoluntaryPrayerCard extends StatelessWidget {
-  const VoluntaryPrayerCard({
+/// Generic title/subtitle/time(-range) display card, shared across any
+/// feature that shows a derived prayer-adjacent time (voluntary prayers,
+/// Ramadan Suhoor/Iftar, ...). Lives in `core/widgets/` rather than a
+/// single feature's `presentation/` - per this project's "cross-feature
+/// needs go through core/" rule, since more than one top-level feature
+/// uses it. Moved here from `features/prayer_times/presentation/widget/
+/// voluntary_prayer_card.dart` (originally `VoluntaryPrayerCard`) when
+/// the Ramadan feature needed the same display, unchanged apart from the
+/// rename.
+class PrayerTimeCard extends StatelessWidget {
+  const PrayerTimeCard({
     super.key,
     required this.title,
     required this.subtitle,
@@ -20,8 +29,8 @@ class VoluntaryPrayerCard extends StatelessWidget {
   final String subtitle;
   final DateTime startTime;
 
-  /// Null when there's no known end (e.g. Ishraq is a single recommended
-  /// moment, not a window).
+  /// Null when there's no known end (e.g. Ishraq/Iftar are a single
+  /// recommended moment, not a window).
   final DateTime? endTime;
 
   @override

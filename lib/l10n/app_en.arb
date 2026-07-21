@@ -129,6 +129,7 @@
   "homeCollectionAllahNames": "99 Names of Allah",
   "homeCollectionPrayerTimes": "Prayer Times",
   "homeCollectionVoluntaryPrayers": "Voluntary Prayers",
+  "homeCollectionRamadan": "Ramadan",
   "homeCollectionQiblaDirection": "Qabah Direction",
   "homeCollectionLiveTv": "Live TV",
   "homeCollectionOthers": "Others",
@@ -281,5 +282,13 @@
   "quranTranslationModeIndonesian": "Indonesian",
   "quranTranslationModeChinese": "Chinese",
   "quranTranslationModeSpanish": "Spanish",
-  "quranTranslationModeSwedish": "Swedish"
+  "quranTranslationModeSwedish": "Swedish",
+
+  "ramadanAppBarTitle": "Ramadan",
+  "ramadanSuhoorTitle": "Suhoor",
+  "ramadanSuhoorSubtitle": "Ends at Imsak, shortly before Fajr.",
+  "ramadanIftarTitle": "Iftar",
+  "ramadanIftarSubtitle": "Breaking the fast, at Maghrib.",
+  "ramadanSuhoorEndsIn": "Suhoor ends in ",
+  "ramadanIftarIn": "Iftar is in "
 }

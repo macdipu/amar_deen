@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
 import '../../../../core/widgets/prayer_time_card.dart';
 import '../../../../src/core/util/bloc/location/location_bloc.dart';
@@ -7,23 +8,22 @@ import '../../../../src/core/util/bloc/prayer_time_config/prayer_time_config_blo
 import '../../../../src/core/util/constants.dart';
 import '../../../../src/features/error/widget/failure_widget.dart';
 import '../../../../src/features/utils/loading_widget.dart';
-import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
-import '../bloc/voluntary_prayer_bloc/voluntary_prayer_bloc.dart';
+import '../bloc/ramadan_bloc/ramadan_bloc.dart';
+import 'ramadan_countdown.dart';
 
-class VoluntaryPrayerScaffold extends StatefulWidget {
-  const VoluntaryPrayerScaffold();
+class RamadanScaffold extends StatefulWidget {
+  const RamadanScaffold();
 
   @override
-  State<VoluntaryPrayerScaffold> createState() =>
-      _VoluntaryPrayerScaffoldState();
+  State<RamadanScaffold> createState() => _RamadanScaffoldState();
 }
 
-class _VoluntaryPrayerScaffoldState extends State<VoluntaryPrayerScaffold> {
+class _RamadanScaffoldState extends State<RamadanScaffold> {
   @override
   void didChangeDependencies() {
     final prayerConfig = BlocProvider.of<PrayerTimeConfigBloc>(context).state;
-    BlocProvider.of<VoluntaryPrayerBloc>(context).add(
-      RequestVoluntaryPrayerTimes(
+    BlocProvider.of<RamadanBloc>(context).add(
+      RequestRamadanTimes(
         BlocProvider.of<LocationBloc>(context).state,
         prayerConfig.method,
         prayerConfig.madhab,
@@ -38,43 +38,37 @@ class _VoluntaryPrayerScaffoldState extends State<VoluntaryPrayerScaffold> {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.voluntaryPrayersTitle),
+        title: Text(l10n.ramadanAppBarTitle),
       ),
-      body: BlocBuilder<VoluntaryPrayerBloc, VoluntaryPrayerState>(
+      body: BlocBuilder<RamadanBloc, RamadanState>(
         builder: (context, state) {
           return AnimatedSwitcher(
             duration: kAnimationDuration,
             reverseDuration: Duration.zero,
             switchInCurve: kAnimationCurve,
-            child: (state is VoluntaryPrayerLoading)
+            child: (state is RamadanLoading)
                 ? LoadingWidget()
-                : (state is VoluntaryPrayerLoaded)
+                : (state is RamadanLoaded)
                     ? SafeArea(
                         child: ListView(
                           padding: kPagePadding,
                           children: [
+                            RamadanCountdown(
+                                ramadanTimes: state.ramadanTimes),
                             PrayerTimeCard(
-                              title: l10n.voluntaryIshraqTitle,
-                              subtitle: l10n.voluntaryIshraqSubtitle,
-                              startTime: state.voluntaryPrayerTimes.ishraq,
+                              title: l10n.ramadanSuhoorTitle,
+                              subtitle: l10n.ramadanSuhoorSubtitle,
+                              startTime: state.ramadanTimes.imsak,
                             ),
                             PrayerTimeCard(
-                              title: l10n.voluntaryDuhaTitle,
-                              subtitle: l10n.voluntaryDuhaSubtitle,
-                              startTime: state.voluntaryPrayerTimes.duhaStart,
-                              endTime: state.voluntaryPrayerTimes.duhaEnd,
-                            ),
-                            PrayerTimeCard(
-                              title: l10n.voluntaryTahajjudTitle,
-                              subtitle: l10n.voluntaryTahajjudSubtitle,
-                              startTime:
-                                  state.voluntaryPrayerTimes.tahajjudStart,
-                              endTime: state.voluntaryPrayerTimes.tahajjudEnd,
+                              title: l10n.ramadanIftarTitle,
+                              subtitle: l10n.ramadanIftarSubtitle,
+                              startTime: state.ramadanTimes.iftar,
                             ),
                           ],
                         ),
                       )
-                    : (state is VoluntaryPrayerFailed)
+                    : (state is RamadanFailed)
                         ? SafeArea(
                             child: FailureWidget(
                               state.failure,
