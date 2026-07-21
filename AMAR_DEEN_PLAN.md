@@ -31,37 +31,37 @@ Non-negotiable:
 | 4 | Word-by-word meaning | ❌ | ❌ | ✅ (Muslim Pro) | Missing (low prevalence) |
 | 5 | Audio recitation, multi-Qari | ✅ (corrected 2026-07-21 — already existed pre-migration, 28-reciter catalog + full playback/selector UI, see TASK-026 in `PROGRESS.md`) | ✅ (Tilawat) | ✅ | None (was misclassified) |
 | 6 | Last-read / bookmarks | ✅ (corrected 2026-07-21 — already existed pre-migration via `QuranReadingCubit` + the existing favorites system, see TASK-027 in `PROGRESS.md`) | ➖ | ✅ | None (was misclassified) |
-| 7 | Prayer times (offline calc) | ❌ (API-dependent) | ✅ | ✅ | **Missing — critical** |
-| 8 | Azan audio + alarm toggle | ❌ | ✅ | ✅ | **Missing** |
-| 9 | Prayer countdown / start-end times | ❌ | ✅ | ✅ | **Missing** |
-| 10 | Voluntary prayers (Duha, Ishraq, Tahajjud) | ❌ | ➖ | ✅ (Muslims Day) | Missing |
+| 7 | Prayer times (offline calc) | ✅ (corrected 2026-07-21 — offline `adhan_dart` calc built and wired in, see TASK-009/010 in `PROGRESS.md`) | ✅ | ✅ | None |
+| 8 | Azan audio + alarm toggle | ✅ (corrected 2026-07-21, see TASK-013 in `PROGRESS.md` — real Azan audio file still needed from Dipu, placeholder sound in use) | ✅ | ✅ | None (content gap only) |
+| 9 | Prayer countdown / start-end times | ✅ (corrected 2026-07-21, see TASK-011 in `PROGRESS.md`) | ✅ | ✅ | None |
+| 10 | Voluntary prayers (Duha, Ishraq, Tahajjud) | ✅ (corrected 2026-07-21, see TASK-012 in `PROGRESS.md` — Ishraq/Duha minute offsets are a content-precision judgment call flagged for Dipu) | ➖ | ✅ (Muslims Day) | None |
 | 11 | Forbidden prayer-time alerts | ❌ | ➖ | ✅ | Missing |
 | 12 | Qibla compass | ✅ | ✅ | ✅ | None |
-| 13 | Mosque finder | ❌ | ❌ | ✅ | Missing (lower priority) |
+| 13 | Mosque finder | ❌ (decided out of scope by default 2026-07-21, see TASK-032/`DECISIONS.md` — reversible if Dipu has a POI dataset or maps-API budget in mind) | ❌ | ✅ | Missing (lower priority, deliberately deferred) |
 | 14 | Hadith collection | ✅ (40 Nawawi only) | ✅ (Bukhari, Muslim, more) | ✅ | Depth gap |
 | 15 | Daily Dua & Azkar | ✅ (corrected 2026-07-20 — original assessment was wrong; both already existed pre-migration, see TASK-015/016 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
 | 16 | Tasbih / digital Zikir counter | ✅ (corrected 2026-07-20 — already existed pre-migration; only haptics were missing, added TASK-017) | ✅ | ✅ | None (was misclassified) |
 | 17 | Ramadan Suhoor/Iftar/Imsak + countdown | ✅ (2026-07-21, see TASK-022 in `PROGRESS.md`) | ➖ | ✅ (Muslims Day) | None |
 | 18 | Voluntary fasting reminders | ✅ (2026-07-21, see TASK-023 in `PROGRESS.md`) | ❌ | ✅ (Muslims Day) | None |
 | 19 | Hijri calendar | ✅ (corrected 2026-07-20 — already existed pre-migration, see TASK-018 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
-| 20 | Daily reminder notifications | ❌ | ➖ | ✅ | Missing |
+| 20 | Daily reminder notifications | ✅ (2026-07-21, see TASK-030 in `PROGRESS.md`) | ➖ | ✅ | None |
 | 21 | 99 Names of Allah | ✅ (corrected 2026-07-21 — already existed pre-migration, see TASK-028 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
 | 22 | Zakat calculator | ✅ (2026-07-21, see TASK-029 in `PROGRESS.md`) | ✅ | ✅ (some) | None |
 | 23 | Islamic articles / lectures | ❌ | ✅ | ➖ | Missing (low priority) |
 | 24 | Ask Scholar Q&A / Voice call | ❌ | ✅ | ❌ (rare) | **Out of scope** — needs backend |
 | 25 | Matrimonial service | ❌ | ✅ | ❌ | **Out of scope** — unrelated |
 | 26 | Live Makkah/Madinah streaming | ❌ | ✅ | ➖ | **Out of scope** — needs streaming infra |
-| 27 | Hajj & Umrah guide | ❌ | ✅ | ➖ | Missing (content-only, low effort) |
-| 28 | Bangla localization | ⚠️ in progress 2026-07-20 (unlike other rows corrected this session, this one really was missing — infra + app shell done, most content screens still pending, see TASK-019/020 in `PROGRESS.md`) | ✅ | ✅ | **Missing — critical for BD market** (partially addressed) |
+| 27 | Hajj & Umrah guide | ❌ (blocked 2026-07-21 on a legitimate content source, see TASK-033 — same content-integrity stance as Tafsir) | ✅ | ➖ | Missing (content-only, blocked on sourcing) |
+| 28 | Bangla localization | ✅ (fully closed 2026-07-21 — infra + every feature converted, closeout sweep found and fixed the last 2 hardcoded strings, see TASK-019/020 in `PROGRESS.md`) | ✅ | ✅ | None |
 | 29 | Light/dark theme | ⚠️ present (`ThemeBloc`), unverified in UI | ✅ | ✅ | Verify only |
-| 30 | Home-screen widgets | ❌ | ❌ | ✅ (Al Muslim) | Missing (nice-to-have) |
-| 31 | Offline-first architecture | ❌ (prayer times via API) | ➖ | ✅ | **Missing — core requirement** |
+| 30 | Home-screen widgets | ⚠️ scoped 2026-07-21 (Android-only v1 + next-prayer-countdown content decided, full implementation plan written), implementation blocked on native Android/Gradle/Kotlin tooling this environment lacks — see TASK-031 in `PROGRESS.md` | ❌ | ✅ (Al Muslim) | Missing (nice-to-have, plan ready) |
+| 31 | Offline-first architecture | ✅ (corrected 2026-07-21 — prayer times now calculated offline via `adhan_dart`, no API dependency, see TASK-009/010) | ➖ | ✅ | None |
 
 Legend: ✅ has it · ➖ partial/unclear · ❌ absent
 
-**Critical gaps:** offline prayer-time calc, Bangla localization, Azan alarm system. (Dua/Azkar, Tasbih, and Hijri calendar removed from this list 2026-07-20 — rows 15/16/19 above were misassessments, all three already existed pre-migration; see TASK-015/016/017/018 in `PROGRESS.md`.) Note this whole table is a point-in-time snapshot from 2026-07-19 project kickoff — rows 7-10/13 (prayer times, Azan, countdown, voluntary prayers) have since been built in Epic 2 and no longer reflect current state; check `PROGRESS.md`/the task checklist above for what's actually done rather than relying on this table for current status.
-**Moderate gaps:** Tafsir, audio recitation, word-by-word Quran, Ramadan tools, 99 Names, Zakat calculator, daily reminders.
-**Out of scope this phase:** Ask Scholar Q&A, voice-call-to-Mufti, matrimonial, live streaming, mosque finder — all need backend/server infra or live data feeds that conflict with the no-backend constraint.
+**Critical gaps: all closed as of 2026-07-21.** Offline prayer-time calc (TASK-009/010), Bangla localization (TASK-019/020), and the Azan alarm system (TASK-013, minus the real audio file which is a content gap, not a code one) were the three originally-critical gaps from the 2026-07-19 kickoff snapshot — all built and verified by static reading this session. (Dua/Azkar, Tasbih, and Hijri calendar were removed from this list 2026-07-20 as misassessments — rows 15/16/19, all three already existed pre-migration; see TASK-015/016/017/018 in `PROGRESS.md`.) This table has now been brought current as of 2026-07-21 (rows 7-10/13/20/27/28/30/31 corrected to match actual Epic 2-8 status) — still check `PROGRESS.md`/the task checklist above as the primary source of truth, this table is a supporting summary.
+**Moderate gaps remaining:** Tafsir (row 3, blocked on content sourcing, TASK-025), word-by-word Quran meaning (row 4, low-prevalence, not currently tracked as its own task in Section 7), Hajj & Umrah guide (row 27, blocked on content sourcing, TASK-033), home-screen widgets (row 30, scoped and planned but implementation-blocked on native tooling, TASK-031), forbidden prayer-time alerts (row 11, not currently tracked as its own task in Section 7). Audio recitation, Ramadan tools, 99 Names, Zakat calculator, and daily reminders have all moved to "None" (done) since the 2026-07-19 snapshot.
+**Out of scope this phase:** Ask Scholar Q&A, voice-call-to-Mufti, matrimonial, live streaming — all need backend/server infra or live data feeds that conflict with the no-backend constraint. Mosque finder (row 13) was assessed the same way and decided out of scope by default 2026-07-21 (TASK-032) — reversible, not a hard architectural exclusion like the other three.
 
 ---
 
