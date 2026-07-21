@@ -1,5 +1,9 @@
 import 'package:quran/quran.dart' as quran_package;
 
+/// Moved here verbatim from `lib/src/core/util/model/surah.dart` - zero
+/// logic changes. See `quran.dart`'s doc comment in this same directory
+/// for why this still calls the `quran` pub package directly rather than
+/// being split into a pure entity + separate data source.
 class Surah {
   final int id;
   final String nameEn;

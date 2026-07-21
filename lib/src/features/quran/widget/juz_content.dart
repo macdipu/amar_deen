@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/util/bloc/quran/quran_bloc.dart';
 import '../../../core/util/constants.dart';
-import '../../../core/util/model/quran.dart';
+import 'package:sirat_e_mustaqeem/features/quran/domain/entities/quran.dart';
 import '../bloc/selected_juz/selected_juz_bloc.dart';
 import 'juz_scroll_selection.dart';
 import 'quran_card.dart';

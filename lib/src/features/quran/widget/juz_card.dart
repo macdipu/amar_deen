@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/util/constants.dart';
-import '../../../core/util/model/juz.dart';
+import 'package:sirat_e_mustaqeem/features/quran/domain/entities/juz.dart';
 import '../bloc/selected_juz/selected_juz_bloc.dart';
 import '../cubit/quran_reading_cubit.dart';
 import '../cubit/quran_cubit.dart';

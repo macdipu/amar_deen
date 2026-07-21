@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../core/util/model/dua.dart';
-import '../../../core/util/model/quran.dart';
+import 'package:sirat_e_mustaqeem/features/quran/domain/entities/quran.dart';
 import '../../../core/util/model/tasbih.dart';
 
 part 'category_event.dart';

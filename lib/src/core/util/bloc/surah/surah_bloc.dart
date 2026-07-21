@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../model/surah.dart';
+import 'package:sirat_e_mustaqeem/features/quran/domain/entities/surah.dart';
 
 part 'surah_event.dart';
 part 'surah_state.dart';

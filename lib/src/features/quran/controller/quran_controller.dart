@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
-import '../../../core/database/database_service.dart';
+import '../../../../core/di/injection.dart';
+import '../../../../features/quran/domain/entities/quran.dart';
+import '../../../../features/quran/domain/usecases/toggle_quran_favorite.dart';
 import '../../../core/util/bloc/database/database_bloc.dart';
 import '../../../core/util/bloc/quran/quran_bloc.dart';
 import '../../../core/util/bloc/quran_audio/quran_audio_bloc.dart';
-import '../../../core/util/model/quran.dart';
 
 Future<void> toggleQuranFavorite(BuildContext context, Quran quran) async {
   final db = BlocProvider.of<DatabaseBloc>(context).db;
@@ -14,8 +15,7 @@ Future<void> toggleQuranFavorite(BuildContext context, Quran quran) async {
     return;
   }
 
-  final favoriteAyatIds =
-      await DatabaseService().toggleQuranFavorite(db, quran);
+  final favoriteAyatIds = await getIt<ToggleQuranFavorite>()(db, quran);
   BlocProvider.of<QuranBloc>(context).add(
     SyncQuranFavorites(favoriteAyatIds),
   );

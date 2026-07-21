@@ -29,6 +29,12 @@ import 'package:sirat_e_mustaqeem/features/qibla/domain/repositories/qibla_repos
     as _i677;
 import 'package:sirat_e_mustaqeem/features/qibla/domain/usecases/watch_qiblah_direction.dart'
     as _i955;
+import 'package:sirat_e_mustaqeem/features/quran/data/repositories/quran_repository_impl.dart'
+    as _i607;
+import 'package:sirat_e_mustaqeem/features/quran/domain/repositories/quran_repository.dart'
+    as _i608;
+import 'package:sirat_e_mustaqeem/features/quran/domain/usecases/toggle_quran_favorite.dart'
+    as _i609;
 import 'package:sirat_e_mustaqeem/features/ramadan/data/repositories/ramadan_repository_impl.dart'
     as _i601;
 import 'package:sirat_e_mustaqeem/features/ramadan/data/repositories/voluntary_fasting_repository_impl.dart'
@@ -65,12 +71,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i298.GetVoluntaryPrayerTimes(gh<_i373.PrayerTimesRepository>()));
     gh.lazySingleton<_i677.QiblaRepository>(
         () => _i154.QiblaRepositoryImpl(gh<_i259.QiblaLocalDataSource>()));
+    gh.lazySingleton<_i608.QuranRepository>(
+        () => const _i607.QuranRepositoryImpl());
     gh.lazySingleton<_i602.RamadanRepository>(
         () => _i601.RamadanRepositoryImpl(gh<_i373.PrayerTimesRepository>()));
     gh.lazySingleton<_i605.VoluntaryFastingRepository>(
         () => const _i604.VoluntaryFastingRepositoryImpl());
     gh.factory<_i955.WatchQiblahDirection>(
         () => _i955.WatchQiblahDirection(gh<_i677.QiblaRepository>()));
+    gh.factory<_i609.ToggleQuranFavorite>(
+        () => _i609.ToggleQuranFavorite(gh<_i608.QuranRepository>()));
     gh.factory<_i603.GetRamadanTimes>(
         () => _i603.GetRamadanTimes(gh<_i602.RamadanRepository>()));
     gh.factory<_i606.GetUpcomingVoluntaryFastingDays>(() =>

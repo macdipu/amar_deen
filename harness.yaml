@@ -440,8 +440,25 @@ epics:
     name: Quran Enhancement
     tasks:
       - id: TASK-024
-        status: todo
-        summary: Migrate Quran feature into Clean Architecture structure.
+        status: in_progress
+        summary: >
+          Started 2026-07-21, deliberately scoped down from a full
+          physical file migration - see PROGRESS.md. Unlike Qibla/Prayer
+          Times/Ramadan, QuranBloc/SurahBloc/JuzBloc/QuranAudioBloc are
+          *global* blocs (main.dart MultiBlocProvider, read by
+          Home/Bookmark/Search too), and the feature is ~30 files -
+          judged too risky to relocate blind with no compiler this
+          session. Done: moved the already-domain-clean Quran/Surah/Juz
+          models into features/quran/domain/entities/, added
+          QuranRepository/Impl + ToggleQuranFavorite use case completing
+          the repository pattern for the SQLite-favorites data access.
+          13 consuming files' imports updated and grep-verified, old
+          model files deleted. Not done (explicit follow-up): relocating
+          lib/src/features/quran/{screen,widget,controller,audio}/ into
+          features/quran/presentation/, and splitting the entity's
+          quran-package-calling methods into a data/datasources/ layer.
+          DI hand-registered (3rd injection.config.dart hand-edit this
+          session).
       - id: TASK-025
         status: todo
         summary: Tafsir data + reader UI per Ayah.

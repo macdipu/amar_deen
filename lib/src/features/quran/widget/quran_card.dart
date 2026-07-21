@@ -10,7 +10,7 @@ import '../../../core/util/bloc/quran/quran_bloc.dart';
 import '../../../core/util/bloc/quran_audio/quran_audio_bloc.dart';
 import '../../../core/util/bloc/surah/surah_bloc.dart';
 import '../../../core/util/constants.dart';
-import '../../../core/util/model/quran.dart';
+import 'package:sirat_e_mustaqeem/features/quran/domain/entities/quran.dart';
 import '../../bookmark/bloc/category_bloc.dart';
 import '../bloc/quran_theme/quran_theme_bloc.dart';
 import '../bloc/selected_surah/selected_surah_bloc.dart';
