@@ -203,5 +203,9 @@
   "quranLangFrench": "ফরাসি",
   "quranLangRussian": "রুশ",
   "quranLangChinese": "চীনা",
-  "quranAudioMetaLine": "ধরন: {type} • ভাষা: {language} • মান: {quality} kbps"
+  "quranAudioMetaLine": "ধরন: {type} • ভাষা: {language} • মান: {quality} kbps",
+
+  "errorLocationDisabled": "লোকেশন সক্রিয় নেই। এটি সক্রিয় করতে সেটিংসে যান।",
+  "errorReadDatabaseFailed": "ডাটাবেজ পড়তে ব্যর্থ হয়েছে। পরে আবার চেষ্টা করুন।",
+  "errorConnectionInterrupted": "সংযোগ বিঘ্নিত হয়েছে। আবার ইন্টারনেটে সংযুক্ত হন।"
 }

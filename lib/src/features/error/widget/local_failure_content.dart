@@ -7,6 +7,24 @@ import '../../../core/error/failures.dart';
 import '../../../core/util/controller/location_controller.dart';
 import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
 
+/// Maps a [LocalFailure]'s numeric [LocalFailure.error] code to localized
+/// display text, rather than showing [LocalFailure.message] directly - that
+/// field is authored at the (context-less) bloc/controller call site and is
+/// sometimes just a raw `Exception.toString()`, which can't be localized.
+String _localizedMessage(BuildContext context, LocalFailure failure) {
+  final l10n = AppLocalizations.of(context);
+  switch (failure.error) {
+    case 1:
+      return l10n.errorLocationDisabled;
+    case 2:
+      return l10n.errorReadDatabaseFailed;
+    case 3:
+      return l10n.liveTvNoInternet;
+    default:
+      return l10n.commonSomethingWentWrong;
+  }
+}
+
 class LocalFailureContent extends StatelessWidget {
   const LocalFailureContent(this.failure);
 
@@ -30,7 +48,7 @@ class LocalFailureContent extends StatelessWidget {
             height: 16.h,
           ),
           Text(
-            failure.message,
+            _localizedMessage(context, failure),
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
@@ -71,7 +89,7 @@ class LocalFailureContent extends StatelessWidget {
             height: 16.h,
           ),
           Text(
-            failure.message,
+            _localizedMessage(context, failure),
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
@@ -105,7 +123,7 @@ class LocalFailureContent extends StatelessWidget {
           height: 16.h,
         ),
         Text(
-          failure.message,
+          _localizedMessage(context, failure),
           style: Theme.of(context).textTheme.titleLarge,
           textAlign: TextAlign.center,
         ),

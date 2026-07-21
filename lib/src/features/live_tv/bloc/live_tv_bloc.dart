@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/error/error_code.dart';
 import '../../../core/error/failures.dart';
 import '../../../core/network/network_client.dart';
 import '../model/live_tv_channel.dart';
@@ -20,7 +21,10 @@ class LiveTvBloc extends Bloc<LiveTvEvent, LiveTvState> {
         if (connectivity == ConnectivityResult.none) {
           emit(
             LiveTvState.failed(
-              LocalFailure(message: 'No internet connection.', error: 0),
+              LocalFailure(
+                message: kNoInternetConnection['message'],
+                error: kNoInternetConnection['errorCode'] as int,
+              ),
             ),
           );
           return;

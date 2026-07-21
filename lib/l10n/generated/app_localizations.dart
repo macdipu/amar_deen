@@ -1195,6 +1195,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Type: {type} • Language: {language} • Quality: {quality} kbps'**
   String quranAudioMetaLine(String type, String language, int quality);
+
+  /// No description provided for @errorLocationDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is not enabled. Please go to setting to enable it.'**
+  String get errorLocationDisabled;
+
+  /// No description provided for @errorReadDatabaseFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Read database failed. Try again later.'**
+  String get errorReadDatabaseFailed;
+
+  /// No description provided for @errorConnectionInterrupted.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection interrupted. Please reconnect to the internet.'**
+  String get errorConnectionInterrupted;
 }
 
 class _AppLocalizationsDelegate

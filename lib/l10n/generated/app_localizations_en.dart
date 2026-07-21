@@ -620,4 +620,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String quranAudioMetaLine(String type, String language, int quality) {
     return 'Type: $type • Language: $language • Quality: $quality kbps';
   }
+
+  @override
+  String get errorLocationDisabled =>
+      'Location is not enabled. Please go to setting to enable it.';
+
+  @override
+  String get errorReadDatabaseFailed => 'Read database failed. Try again later.';
+
+  @override
+  String get errorConnectionInterrupted =>
+      'Connection interrupted. Please reconnect to the internet.';
 }

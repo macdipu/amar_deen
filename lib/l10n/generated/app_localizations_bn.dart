@@ -618,4 +618,14 @@ class AppLocalizationsBn extends AppLocalizations {
   String quranAudioMetaLine(String type, String language, int quality) {
     return 'ধরন: $type • ভাষা: $language • মান: $quality kbps';
   }
+
+  @override
+  String get errorLocationDisabled => 'লোকেশন সক্রিয় নেই। এটি সক্রিয় করতে সেটিংসে যান।';
+
+  @override
+  String get errorReadDatabaseFailed => 'ডাটাবেজ পড়তে ব্যর্থ হয়েছে। পরে আবার চেষ্টা করুন।';
+
+  @override
+  String get errorConnectionInterrupted =>
+      'সংযোগ বিঘ্নিত হয়েছে। আবার ইন্টারনেটে সংযুক্ত হন।';
 }

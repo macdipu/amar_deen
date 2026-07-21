@@ -260,5 +260,9 @@
       "language": {"type": "String"},
       "quality": {"type": "int"}
     }
-  }
+  },
+
+  "errorLocationDisabled": "Location is not enabled. Please go to setting to enable it.",
+  "errorReadDatabaseFailed": "Read database failed. Try again later.",
+  "errorConnectionInterrupted": "Connection interrupted. Please reconnect to the internet."
 }
