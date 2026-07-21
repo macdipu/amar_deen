@@ -1357,6 +1357,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Iftar is in '**
   String get ramadanIftarIn;
+
+  /// No description provided for @azanNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{prayer} Azan'**
+  String azanNotificationTitle(String prayer);
+
+  /// No description provided for @azanNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is time for {prayer} prayer.'**
+  String azanNotificationBody(String prayer);
+
+  /// No description provided for @voluntaryFastingSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming Voluntary Fasts'**
+  String get voluntaryFastingSectionTitle;
+
+  /// No description provided for @voluntaryFastingMonday.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday Fast'**
+  String get voluntaryFastingMonday;
+
+  /// No description provided for @voluntaryFastingThursday.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday Fast'**
+  String get voluntaryFastingThursday;
+
+  /// No description provided for @voluntaryFastingAyyamAlBeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayyam al-Beed (White Days)'**
+  String get voluntaryFastingAyyamAlBeed;
+
+  /// No description provided for @voluntaryFastingArafah.
+  ///
+  /// In en, this message translates to:
+  /// **'Day of Arafah'**
+  String get voluntaryFastingArafah;
+
+  /// No description provided for @voluntaryFastingReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{fastingDay} tomorrow'**
+  String voluntaryFastingReminderTitle(String fastingDay);
+
+  /// No description provided for @voluntaryFastingReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight.'**
+  String get voluntaryFastingReminderBody;
 }
 
 class _AppLocalizationsDelegate

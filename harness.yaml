@@ -413,8 +413,28 @@ epics:
           new verification gap alongside the l10n hand-edits, needs a
           real build_runner run to confirm. See PROGRESS.md.
       - id: TASK-023
-        status: todo
-        summary: Voluntary fasting reminders (Mon/Thu, Ayyam al-Beed, Arafah) via Hijri calendar.
+        status: done
+        summary: >
+          Done 2026-07-21, closes Epic 5. New VoluntaryFastingRepository
+          in features/ramadan/ walks the Hijri calendar day-by-day
+          (hijri_calendar package) to find the next Monday/Thursday/Ayyam
+          al-Beed(Hijri day 13)/Arafah(Hijri 9 Dhul-Hijjah) occurrence.
+          Uses only the toFormat() API already proven in this codebase
+          (date_controller.dart) rather than guessing at instance field
+          names - flagged as needing verification once real tooling is
+          available. Found and fixed a real bug: AzanSchedulerService
+          called a global cancelAllNotifications() on every reschedule,
+          which would have wiped fasting reminders moments after
+          scheduling - both schedulers now cancel only their own ID
+          range (Azan 0-9, fasting 20-23) via a new
+          NotificationService.cancelNotifications(ids). Also localized
+          Azan's own notification title/body (was hardcoded English,
+          missed during the Epic 4 sweep since it's not a widget Text()).
+          Minimal read-only UI section on the Ramadan screen (no new
+          route, TASK-023 didn't ask for dedicated UI the way TASK-022
+          did). DI hand-registered (2nd hand-edit of injection.config.dart
+          this session). See PROGRESS.md for full detail and the
+          Hijri-API-surface risk callout.
 
   - id: EPIC-6
     name: Quran Enhancement

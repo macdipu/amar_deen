@@ -53,6 +53,7 @@ class _TabScreenState extends State<TabScreen> with WidgetsBindingObserver {
           if (BlocProvider.of<NotificationBloc>(context).state.status ==
               PermissionStatus.granted) {
             rescheduleAzans(context);
+            rescheduleVoluntaryFastingReminders(context);
           } else {
             NotificationService().cancelAllNotifications();
           }

@@ -233,5 +233,16 @@
   "ramadanIftarTitle": "ইফতার",
   "ramadanIftarSubtitle": "মাগরিবের সময় রোজা ভাঙা।",
   "ramadanSuhoorEndsIn": "সেহরি শেষ হতে বাকি ",
-  "ramadanIftarIn": "ইফতারের বাকি "
+  "ramadanIftarIn": "ইফতারের বাকি ",
+
+  "azanNotificationTitle": "{prayer} আজান",
+  "azanNotificationBody": "{prayer} নামাজের সময় হয়েছে।",
+
+  "voluntaryFastingSectionTitle": "আসন্ন নফল রোজা",
+  "voluntaryFastingMonday": "সোমবারের রোজা",
+  "voluntaryFastingThursday": "বৃহস্পতিবারের রোজা",
+  "voluntaryFastingAyyamAlBeed": "আইয়ামে বীজ (সাদা দিনগুলো)",
+  "voluntaryFastingArafah": "আরাফাতের দিন",
+  "voluntaryFastingReminderTitle": "আগামীকাল {fastingDay}",
+  "voluntaryFastingReminderBody": "আগামীকাল একটি নফল রোজার দিন। আজ রাতেই সেহরি ও নিয়তের পরিকল্পনা করুন।"
 }

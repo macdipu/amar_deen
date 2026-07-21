@@ -19,21 +19,37 @@ class AzanSchedulerService {
     'Isha': 4,
   };
 
+  /// This service's own notification IDs (today's ids 0-4 + tomorrow's
+  /// ids 5-9, per [_baseNotificationId]/`idOffset`). Cancelling exactly
+  /// this range - not [NotificationService.cancelAllNotifications] - is
+  /// what lets other schedulers (e.g. voluntary-fasting reminders) keep
+  /// their own pending notifications across an Azan reschedule, which
+  /// happens far more often (essentially every app open) than a user
+  /// explicitly turning notifications off.
+  static const List<int> ownedNotificationIds = [
+    0, 1, 2, 3, 4, // today
+    5, 6, 7, 8, 9, // tomorrow
+  ];
+
   Future<void> scheduleAzans({
     required PrayerTimesEntity today,
     required PrayerTimesEntity tomorrow,
     required Map<String, bool> enabledByPrayer,
+    required Map<String, ({String title, String body})> notificationText,
   }) async {
-    await NotificationService().cancelAllNotifications();
+    await NotificationService().cancelNotifications(ownedNotificationIds);
 
     final now = DateTime.now();
-    await _scheduleDay(today, enabledByPrayer, now, idOffset: 0);
-    await _scheduleDay(tomorrow, enabledByPrayer, now, idOffset: 5);
+    await _scheduleDay(today, enabledByPrayer, notificationText, now,
+        idOffset: 0);
+    await _scheduleDay(tomorrow, enabledByPrayer, notificationText, now,
+        idOffset: 5);
   }
 
   Future<void> _scheduleDay(
     PrayerTimesEntity prayerTimes,
     Map<String, bool> enabledByPrayer,
+    Map<String, ({String title, String body})> notificationText,
     DateTime now, {
     required int idOffset,
   }) async {
@@ -49,10 +65,11 @@ class AzanSchedulerService {
       if (enabledByPrayer[entry.key] == false) continue;
       if (!entry.value.isAfter(now)) continue;
 
+      final text = notificationText[entry.key]!;
       await NotificationService().showPrayerNotification(
         id: _baseNotificationId[entry.key]! + idOffset,
-        title: '${entry.key} Azan',
-        body: 'It is time for ${entry.key} prayer.',
+        title: text.title,
+        body: text.body,
         duration: entry.value.difference(now),
       );
     }

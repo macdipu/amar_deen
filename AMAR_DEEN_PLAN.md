@@ -42,7 +42,7 @@ Non-negotiable:
 | 15 | Daily Dua & Azkar | ✅ (corrected 2026-07-20 — original assessment was wrong; both already existed pre-migration, see TASK-015/016 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
 | 16 | Tasbih / digital Zikir counter | ✅ (corrected 2026-07-20 — already existed pre-migration; only haptics were missing, added TASK-017) | ✅ | ✅ | None (was misclassified) |
 | 17 | Ramadan Suhoor/Iftar/Imsak + countdown | ✅ (2026-07-21, see TASK-022 in `PROGRESS.md`) | ➖ | ✅ (Muslims Day) | None |
-| 18 | Voluntary fasting reminders | ❌ | ❌ | ✅ (Muslims Day) | Missing (nice-to-have) |
+| 18 | Voluntary fasting reminders | ✅ (2026-07-21, see TASK-023 in `PROGRESS.md`) | ❌ | ✅ (Muslims Day) | None |
 | 19 | Hijri calendar | ✅ (corrected 2026-07-20 — already existed pre-migration, see TASK-018 in `PROGRESS.md`) | ✅ | ✅ | None (was misclassified) |
 | 20 | Daily reminder notifications | ❌ | ➖ | ✅ | Missing |
 | 21 | 99 Names of Allah | ❌ | ✅ | ✅ | Missing |
@@ -275,7 +275,7 @@ This doesn't relax `destructive_action_gate`/`git_safety` in `harness.yaml` (for
 
 ### EPIC 5 — Ramadan Tools
 - [x] **TASK-022**: Suhoor/Iftar/Imsak derived from Fajr/Maghrib, countdown UI. **Done 2026-07-21** — new `features/ramadan/` (full Clean Architecture: `RamadanRepository` wraps `PrayerTimesRepository` to derive Imsak/Iftar from Fajr/Maghrib, `RamadanBloc` mirrors `VoluntaryPrayerBloc`'s shape). Live countdown card (mirrors the Home app bar's countdown pattern) switches between "Suhoor ends in"/"Iftar is in" automatically. Promoted `VoluntaryPrayerCard` to `core/widgets/prayer_time_card.dart` (renamed `PrayerTimeCard`) since it's now shared by two top-level features. Imsak = Fajr − 10 min is a content-precision judgment call, same caveat as Ishraq/Duha's offsets — see `PROGRESS.md`.
-- [ ] **TASK-023**: Voluntary fasting reminders (Mon/Thu, Ayyam al-Beed, Arafah) via Hijri calendar.
+- [x] **TASK-023**: Voluntary fasting reminders (Mon/Thu, Ayyam al-Beed, Arafah) via Hijri calendar. **Done 2026-07-21** — new `VoluntaryFastingRepository` in `features/ramadan/` walks the Hijri calendar day-by-day (via the already-used `hijri_calendar` package) to find the next occurrence of each type; `VoluntaryFastingReminderService` (new, `core/notifications/`) schedules a one-shot reminder the evening before each. Found and fixed a real bug while wiring this in: `AzanSchedulerService.scheduleAzans()` called `NotificationService().cancelAllNotifications()` on every reschedule (essentially every app open) — a blanket cancel that would have silently wiped these new reminders moments after they were scheduled. Changed both schedulers to cancel only their own ID range. Also localized Azan's own notification title/body text as a drive-by fix (was hardcoded English, same file already being edited). See `PROGRESS.md` for the Hijri-package API-uncertainty caveat (no `flutter`/`dart` binary to verify field names against the actual installed version).
 
 ### EPIC 6 — Quran Enhancement
 - [ ] **TASK-024**: Migrate Quran feature into Clean Architecture structure.

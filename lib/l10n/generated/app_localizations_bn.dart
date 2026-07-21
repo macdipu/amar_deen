@@ -701,4 +701,38 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get ramadanIftarIn => 'ইফতারের বাকি ';
+
+  @override
+  String azanNotificationTitle(String prayer) {
+    return '$prayer আজান';
+  }
+
+  @override
+  String azanNotificationBody(String prayer) {
+    return '$prayer নামাজের সময় হয়েছে।';
+  }
+
+  @override
+  String get voluntaryFastingSectionTitle => 'আসন্ন নফল রোজা';
+
+  @override
+  String get voluntaryFastingMonday => 'সোমবারের রোজা';
+
+  @override
+  String get voluntaryFastingThursday => 'বৃহস্পতিবারের রোজা';
+
+  @override
+  String get voluntaryFastingAyyamAlBeed => 'আইয়ামে বীজ (সাদা দিনগুলো)';
+
+  @override
+  String get voluntaryFastingArafah => 'আরাফাতের দিন';
+
+  @override
+  String voluntaryFastingReminderTitle(String fastingDay) {
+    return 'আগামীকাল $fastingDay';
+  }
+
+  @override
+  String get voluntaryFastingReminderBody =>
+      'আগামীকাল একটি নফল রোজার দিন। আজ রাতেই সেহরি ও নিয়তের পরিকল্পনা করুন।';
 }

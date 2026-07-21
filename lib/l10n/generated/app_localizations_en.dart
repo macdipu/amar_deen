@@ -705,4 +705,38 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ramadanIftarIn => 'Iftar is in ';
+
+  @override
+  String azanNotificationTitle(String prayer) {
+    return '$prayer Azan';
+  }
+
+  @override
+  String azanNotificationBody(String prayer) {
+    return 'It is time for $prayer prayer.';
+  }
+
+  @override
+  String get voluntaryFastingSectionTitle => 'Upcoming Voluntary Fasts';
+
+  @override
+  String get voluntaryFastingMonday => 'Monday Fast';
+
+  @override
+  String get voluntaryFastingThursday => 'Thursday Fast';
+
+  @override
+  String get voluntaryFastingAyyamAlBeed => 'Ayyam al-Beed (White Days)';
+
+  @override
+  String get voluntaryFastingArafah => 'Day of Arafah';
+
+  @override
+  String voluntaryFastingReminderTitle(String fastingDay) {
+    return '$fastingDay tomorrow';
+  }
+
+  @override
+  String get voluntaryFastingReminderBody =>
+      'Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight.';
 }

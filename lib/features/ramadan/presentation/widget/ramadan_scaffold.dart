@@ -10,6 +10,7 @@ import '../../../../src/features/error/widget/failure_widget.dart';
 import '../../../../src/features/utils/loading_widget.dart';
 import '../bloc/ramadan_bloc/ramadan_bloc.dart';
 import 'ramadan_countdown.dart';
+import 'voluntary_fasting_section.dart';
 
 class RamadanScaffold extends StatefulWidget {
   const RamadanScaffold();
@@ -65,6 +66,7 @@ class _RamadanScaffoldState extends State<RamadanScaffold> {
                               subtitle: l10n.ramadanIftarSubtitle,
                               startTime: state.ramadanTimes.iftar,
                             ),
+                            const VoluntaryFastingSection(),
                           ],
                         ),
                       )

@@ -107,6 +107,19 @@ class NotificationService {
     await flutterLocalNotificationsPlugin.cancelAll();
   }
 
+  /// Cancels only the given notification [ids], leaving any other
+  /// scheduler's notifications untouched - unlike [cancelAllNotifications],
+  /// which is a genuine "everything, app-wide" wipe (only appropriate for
+  /// an explicit "turn off all notifications" action). Schedulers that
+  /// reschedule frequently (e.g. on every app open) must use this instead
+  /// of [cancelAllNotifications] for their own ID range, or they'll wipe
+  /// out every other scheduler's pending notifications too.
+  Future<void> cancelNotifications(Iterable<int> ids) async {
+    for (final id in ids) {
+      await flutterLocalNotificationsPlugin.cancel(id);
+    }
+  }
+
   /// Schedules a one-shot Azan/prayer-timing notification at [duration]
   /// from now, using an exact alarm that still fires during Doze
   /// (`exactAllowWhileIdle`). Deliberately one-shot, not a daily-repeating

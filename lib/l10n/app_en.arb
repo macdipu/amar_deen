@@ -290,5 +290,25 @@
   "ramadanIftarTitle": "Iftar",
   "ramadanIftarSubtitle": "Breaking the fast, at Maghrib.",
   "ramadanSuhoorEndsIn": "Suhoor ends in ",
-  "ramadanIftarIn": "Iftar is in "
+  "ramadanIftarIn": "Iftar is in ",
+
+  "azanNotificationTitle": "{prayer} Azan",
+  "@azanNotificationTitle": {
+    "placeholders": {"prayer": {"type": "String"}}
+  },
+  "azanNotificationBody": "It is time for {prayer} prayer.",
+  "@azanNotificationBody": {
+    "placeholders": {"prayer": {"type": "String"}}
+  },
+
+  "voluntaryFastingSectionTitle": "Upcoming Voluntary Fasts",
+  "voluntaryFastingMonday": "Monday Fast",
+  "voluntaryFastingThursday": "Thursday Fast",
+  "voluntaryFastingAyyamAlBeed": "Ayyam al-Beed (White Days)",
+  "voluntaryFastingArafah": "Day of Arafah",
+  "voluntaryFastingReminderTitle": "{fastingDay} tomorrow",
+  "@voluntaryFastingReminderTitle": {
+    "placeholders": {"fastingDay": {"type": "String"}}
+  },
+  "voluntaryFastingReminderBody": "Tomorrow is a recommended day to fast. Plan your Suhoor and intention (niyyah) tonight."
 }
