@@ -59,7 +59,7 @@ jobs:
         run: |
           mkdir -p release
           cp build/app/outputs/flutter-apk/app-release.apk \
-             "release/sirat-e-mustaqeem-${{ steps.tag.outputs.tag }}.apk"
+             "release/amar-deen-${{ steps.tag.outputs.tag }}.apk"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
