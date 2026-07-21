@@ -461,13 +461,38 @@ epics:
           session).
       - id: TASK-025
         status: todo
-        summary: Tafsir data + reader UI per Ayah.
+        summary: >
+          Tafsir data + reader UI per Ayah. Blocked, not just deferred -
+          a real Tafsir dataset is scholarly exegesis attributed to named
+          commentators and must come from a legitimate source (package/
+          bundled dataset), this environment has no network access to
+          source or verify one, and fabricating Quranic exegesis text
+          would be a serious content-integrity problem. Needs Dipu to
+          supply or point at a specific dataset/package.
       - id: TASK-026
-        status: todo
-        summary: Audio recitation + Qari selector (bundle vs stream - confirm with Dipu, must be optional/cached).
+        status: done
+        summary: >
+          Done 2026-07-21 as verify-only. Already substantially existed
+          pre-migration: quran_audio_catalog.dart (28-reciter catalog,
+          streams from cdn.islamic.network), QuranAudioBloc (per-Ayah +
+          full-Surah playback), option_screen.dart's AudioEditionOption
+          (reciter/Qari picker), quran_audio_mini_player.dart. Bundle vs
+          stream is still open exactly as the task originally scoped it -
+          current implementation streams with no local caching (soft
+          offline-first violation for this feature specifically,
+          gracefully handled not crashed) - flagged for Dipu, not decided
+          unilaterally. See PROGRESS.md.
       - id: TASK-027
-        status: todo
-        summary: Last-read position + bookmarks via Hive.
+        status: done
+        summary: >
+          Done 2026-07-21 as verify-only. Already substantially existed
+          pre-migration: QuranReadingCubit (HydratedCubit, persists last
+          Surah/Juz + Ayah, drives the "Continue Reading" resume banner)
+          covers last-read position; the pre-existing per-Ayah favorites
+          system (toggleQuranFavorite, aggregated onto the Bookmark
+          screen via category_bloc.dart) covers bookmarks. Uses
+          HydratedBloc/SQLite not literally Hive - same already-settled
+          reasoning as TASK-016/021, not a new decision. See PROGRESS.md.
 
   - id: EPIC-7
     name: Extras
