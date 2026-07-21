@@ -518,6 +518,12 @@ abstract class AppLocalizations {
   /// **'Last third of the night - the most virtuous time for voluntary night prayer.'**
   String get voluntaryTahajjudSubtitle;
 
+  /// No description provided for @prayerTimingAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Timing'**
+  String get prayerTimingAppBarTitle;
+
   /// No description provided for @prayerWindowFrom.
   ///
   /// In en, this message translates to:
@@ -787,6 +793,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Exit full screen'**
   String get liveTvExitFullScreen;
+
+  /// No description provided for @liveTvEnterFullScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Full screen'**
+  String get liveTvEnterFullScreen;
 
   /// No description provided for @liveTvLive.
   ///

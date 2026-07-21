@@ -357,6 +357,12 @@ epics:
           (no flutter/dart binary available) - needs a real flutter gen-l10n
           diff-check as the top verification priority once tooling is available,
           see PROGRESS.md.
+          UPDATE 2026-07-21: AMAR_DEEN_PLAN.md's own checkbox had gone stale
+          (still said "in progress" / listed features as pending that were
+          actually done). Closeout sweep re-grepped the whole repo and found
+          2 real remaining hardcoded strings (TimingScreenScaffold app bar,
+          LiveTvPlayerControls fullscreen tooltip) - fixed, plan corrected to
+          done. Ninth round of generated-l10n hand-edits.
       - id: TASK-020
         status: done
         summary: >

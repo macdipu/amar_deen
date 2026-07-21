@@ -249,6 +249,9 @@ class AppLocalizationsBn extends AppLocalizations {
       'রাতের শেষ তৃতীয়াংশ - নফল রাতের নামাজের জন্য সবচেয়ে ফযীলতপূর্ণ সময়।';
 
   @override
+  String get prayerTimingAppBarTitle => 'নামাজের সময়সূচি';
+
+  @override
   String prayerWindowFrom(String prayer, String start) {
     return '$prayer — $start থেকে';
   }
@@ -392,6 +395,9 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get liveTvExitFullScreen => 'ফুল স্ক্রিন থেকে বের হন';
+
+  @override
+  String get liveTvEnterFullScreen => 'ফুল স্ক্রিন';
 
   @override
   String get liveTvLive => 'লাইভ';

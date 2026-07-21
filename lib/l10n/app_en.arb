@@ -93,6 +93,7 @@
   "voluntaryTahajjudTitle": "Tahajjud",
   "voluntaryTahajjudSubtitle": "Last third of the night - the most virtuous time for voluntary night prayer.",
 
+  "prayerTimingAppBarTitle": "Prayer Timing",
   "prayerWindowFrom": "{prayer} — from {start}",
   "@prayerWindowFrom": {
     "placeholders": {"prayer": {"type": "String"}, "start": {"type": "String"}}
@@ -154,6 +155,7 @@
   "liveTvNoInternet": "No internet connection.",
   "liveTvUnableToPlay": "Unable to play this channel right now.",
   "liveTvExitFullScreen": "Exit full screen",
+  "liveTvEnterFullScreen": "Full screen",
   "liveTvLive": "Live",
   "liveTvPaused": "Paused",
 

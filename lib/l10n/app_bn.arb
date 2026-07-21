@@ -79,6 +79,7 @@
   "voluntaryTahajjudTitle": "তাহাজ্জুদ",
   "voluntaryTahajjudSubtitle": "রাতের শেষ তৃতীয়াংশ - নফল রাতের নামাজের জন্য সবচেয়ে ফযীলতপূর্ণ সময়।",
 
+  "prayerTimingAppBarTitle": "নামাজের সময়সূচি",
   "prayerWindowFrom": "{prayer} — {start} থেকে",
   "prayerWindowRange": "{prayer} — {start} থেকে {end}",
 
@@ -131,6 +132,7 @@
   "liveTvNoInternet": "ইন্টারনেট সংযোগ নেই।",
   "liveTvUnableToPlay": "এই মুহূর্তে এই চ্যানেলটি চালানো যাচ্ছে না।",
   "liveTvExitFullScreen": "ফুল স্ক্রিন থেকে বের হন",
+  "liveTvEnterFullScreen": "ফুল স্ক্রিন",
   "liveTvLive": "লাইভ",
   "liveTvPaused": "থামানো হয়েছে",
 

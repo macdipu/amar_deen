@@ -251,6 +251,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Last third of the night - the most virtuous time for voluntary night prayer.';
 
   @override
+  String get prayerTimingAppBarTitle => 'Prayer Timing';
+
+  @override
   String prayerWindowFrom(String prayer, String start) {
     return '$prayer — from $start';
   }
@@ -393,6 +396,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get liveTvExitFullScreen => 'Exit full screen';
+
+  @override
+  String get liveTvEnterFullScreen => 'Full screen';
 
   @override
   String get liveTvLive => 'Live';

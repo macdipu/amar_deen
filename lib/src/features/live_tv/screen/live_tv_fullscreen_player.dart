@@ -170,7 +170,7 @@ class LiveTvPlayerControls extends StatelessWidget {
             if (showFullscreenButton)
               IconButton(
                 icon: Icon(Icons.fullscreen, size: 28.sp, color: primary),
-                tooltip: 'Full screen',
+                tooltip: AppLocalizations.of(context).liveTvEnterFullScreen,
                 onPressed: onFullscreen,
               ),
           ],
