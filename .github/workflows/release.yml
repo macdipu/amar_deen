@@ -41,8 +41,12 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build release APK
-        run: flutter build apk --release
+      # Building a debug APK for now (not --release) - sidesteps release
+      # signing/R8 shrinking entirely while the CI pipeline itself is being
+      # ironed out. Switch to `flutter build apk --release` (and update the
+      # output path below to app-release.apk) once that's confirmed working.
+      - name: Build debug APK
+        run: flutter build apk --debug
 
       - name: Determine release tag
         id: tag
@@ -58,8 +62,8 @@ jobs:
       - name: Rename APK
         run: |
           mkdir -p release
-          cp build/app/outputs/flutter-apk/app-release.apk \
-             "release/amar-deen-${{ steps.tag.outputs.tag }}.apk"
+          cp build/app/outputs/flutter-apk/app-debug.apk \
+             "release/amar-deen-debug-${{ steps.tag.outputs.tag }}.apk"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
