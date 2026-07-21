@@ -13,11 +13,19 @@ import '../../../../features/ramadan/domain/entities/voluntary_fasting_day.dart'
 import '../../../../features/ramadan/domain/usecases/get_upcoming_voluntary_fasting_days.dart';
 import '../../notification/notification_service.dart';
 import '../../notification/receive_notification.dart';
+import '../bloc/daily_reminder/daily_reminder_bloc.dart';
 import '../bloc/location/location_bloc.dart';
 import '../bloc/prayer_time_config/prayer_time_config_bloc.dart';
 import '../bloc/prayer_timing_bloc/timing_bloc.dart';
 import '../prayer_name.dart';
 import '../voluntary_fasting_label.dart';
+
+/// Notification id owned by the daily reminder feature - distinct from
+/// `AzanSchedulerService.ownedNotificationIds` (0-9) and
+/// `VoluntaryFastingReminderService.ownedNotificationIds` (20-23), so
+/// [NotificationService.cancelAllNotifications] / [cancelNotifications]
+/// calls from either of those schedulers never touch this one.
+const int kDailyReminderNotificationId = 40;
 
 /// Recomputes tomorrow's prayer times and reschedules Azan notifications
 /// for today's remaining prayers plus all of tomorrow's, respecting the
@@ -92,6 +100,34 @@ Future<void> rescheduleVoluntaryFastingReminders(BuildContext context) async {
   await VoluntaryFastingReminderService().scheduleReminders(
     upcomingFastingDays: upcomingFastingDays,
     notificationText: notificationText,
+  );
+}
+
+/// Schedules or cancels the daily reminder notification depending on
+/// [DailyReminderBloc]'s current state. Unlike [rescheduleAzans] and
+/// [rescheduleVoluntaryFastingReminders], this doesn't need to be re-run
+/// on every app open - `showDailyRepeatingNotification` uses
+/// `matchDateTimeComponents: DateTimeComponents.time`, so the OS itself
+/// re-fires it daily. Call this only when the user toggles the reminder
+/// or changes its time, or when the master notification switch is turned
+/// back on.
+Future<void> rescheduleDailyReminder(BuildContext context) async {
+  final reminderState = BlocProvider.of<DailyReminderBloc>(context).state;
+
+  await NotificationService()
+      .cancelNotifications([kDailyReminderNotificationId]);
+
+  if (!reminderState.enabled) {
+    return;
+  }
+
+  final l10n = AppLocalizations.of(context);
+  await NotificationService().showDailyRepeatingNotification(
+    id: kDailyReminderNotificationId,
+    title: l10n.dailyReminderNotificationTitle,
+    body: l10n.dailyReminderNotificationBody,
+    hour: reminderState.hour,
+    minute: reminderState.minute,
   );
 }
 

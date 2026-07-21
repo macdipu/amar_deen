@@ -520,8 +520,25 @@ epics:
           coin-stack icon. DI hand-registered (4th injection.config.dart
           hand-edit this session). See PROGRESS.md.
       - id: TASK-030
-        status: todo
-        summary: Daily reminder notifications, reusing TASK-013's notification service.
+        status: done
+        summary: >
+          Done 2026-07-21. New global DailyReminderBloc (HydratedBloc,
+          matches ThemeBloc/TimeFormatBloc pattern; default disabled,
+          8:00 AM). New NotificationService.showDailyRepeatingNotification()
+          using matchDateTimeComponents: DateTimeComponents.time - a real
+          OS-level daily repeat, unlike Azan's per-app-open reschedule.
+          rescheduleDailyReminder() wired into the same trigger points as
+          the fasting reminders (tab_scaffold, tab_screen iOS resume,
+          setting_controller master toggle) plus the new Settings row
+          itself. Owns notification id 40 (Azan: 0-9, fasting: 20-23).
+          UI: toggle + time-picker row in UserPreferenceCard, reusing
+          ChangeNotificationSwitch (no new SVG asset), respects
+          TimeFormatBloc's 12/24h setting. Generic evergreen reminder
+          text (no fabricated daily content, same content-integrity
+          stance as Tafsir/Zakat). No DI registration needed - matches
+          AzanSchedulerService/VoluntaryFastingReminderService's
+          direct-call pattern. 8th round of l10n hand-edits this
+          session. See PROGRESS.md.
 
   - id: EPIC-8
     name: Polish

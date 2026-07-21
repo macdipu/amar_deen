@@ -33,6 +33,8 @@
   "settingTimeFormat": "Time Format",
   "settingNotification": "Notification",
   "settingLanguage": "Language",
+  "settingDailyReminder": "Daily Reminder",
+  "settingDailyReminderTime": "Reminder time",
   "settingGeneral": "General",
   "settingConnect": "Connect",
   "settingQuranSettingsTitle": "Quran settings",
@@ -328,5 +330,8 @@
   "zakatResultNisabThreshold": "Nisab Threshold (Silver Standard)",
   "zakatResultDue": "Zakat is due",
   "zakatResultNotDue": "Zakat is not due — wealth is below Nisab",
-  "zakatResultAmount": "Zakat Amount (2.5%)"
+  "zakatResultAmount": "Zakat Amount (2.5%)",
+
+  "dailyReminderNotificationTitle": "Sirate Mustaqeem reminder",
+  "dailyReminderNotificationBody": "Take a moment for Quran reading, Dhikr, or to check today's prayer times."
 }

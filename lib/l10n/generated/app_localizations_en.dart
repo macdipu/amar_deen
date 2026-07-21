@@ -82,6 +82,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingLanguage => 'Language';
 
   @override
+  String get settingDailyReminder => 'Daily Reminder';
+
+  @override
+  String get settingDailyReminderTime => 'Reminder time';
+
+  @override
   String get settingGeneral => 'General';
 
   @override
@@ -791,4 +797,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get zakatResultAmount => 'Zakat Amount (2.5%)';
+
+  @override
+  String get dailyReminderNotificationTitle => 'Sirate Mustaqeem reminder';
+
+  @override
+  String get dailyReminderNotificationBody =>
+      'Take a moment for Quran reading, Dhikr, or to check today\'s prayer times.';
 }

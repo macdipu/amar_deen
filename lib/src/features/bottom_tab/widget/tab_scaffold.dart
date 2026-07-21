@@ -85,6 +85,7 @@ class _TabScaffoldState extends State<TabScaffold> {
                 PermissionStatus.granted) {
           rescheduleAzans(context);
           rescheduleVoluntaryFastingReminders(context);
+          rescheduleDailyReminder(context);
         }
       },
       builder: (context, state) {

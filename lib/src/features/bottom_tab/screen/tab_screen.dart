@@ -54,6 +54,7 @@ class _TabScreenState extends State<TabScreen> with WidgetsBindingObserver {
               PermissionStatus.granted) {
             rescheduleAzans(context);
             rescheduleVoluntaryFastingReminders(context);
+            rescheduleDailyReminder(context);
           } else {
             NotificationService().cancelAllNotifications();
           }

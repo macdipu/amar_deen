@@ -242,6 +242,18 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settingLanguage;
 
+  /// No description provided for @settingDailyReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Reminder'**
+  String get settingDailyReminder;
+
+  /// No description provided for @settingDailyReminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time'**
+  String get settingDailyReminderTime;
+
   /// No description provided for @settingGeneral.
   ///
   /// In en, this message translates to:
@@ -1513,6 +1525,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zakat Amount (2.5%)'**
   String get zakatResultAmount;
+
+  /// No description provided for @dailyReminderNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sirate Mustaqeem reminder'**
+  String get dailyReminderNotificationTitle;
+
+  /// No description provided for @dailyReminderNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a moment for Quran reading, Dhikr, or to check today's prayer times.'**
+  String get dailyReminderNotificationBody;
 }
 
 class _AppLocalizationsDelegate

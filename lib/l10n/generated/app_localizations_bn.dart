@@ -82,6 +82,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingLanguage => 'ভাষা';
 
   @override
+  String get settingDailyReminder => 'দৈনিক রিমাইন্ডার';
+
+  @override
+  String get settingDailyReminderTime => 'রিমাইন্ডারের সময়';
+
+  @override
   String get settingGeneral => 'সাধারণ';
 
   @override
@@ -787,4 +793,11 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get zakatResultAmount => 'যাকাতের পরিমাণ (২.৫%)';
+
+  @override
+  String get dailyReminderNotificationTitle => 'সিরাতে মুস্তাকিম রিমাইন্ডার';
+
+  @override
+  String get dailyReminderNotificationBody =>
+      'কুরআন তিলাওয়াত, জিকির অথবা আজকের নামাজের সময় দেখার জন্য কিছুটা সময় নিন।';
 }

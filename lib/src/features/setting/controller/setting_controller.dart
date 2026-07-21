@@ -20,6 +20,7 @@ Future<void> notificationSwitchOnToggle(
     } else if (state.status == PermissionStatus.restricted) {
       await rescheduleAzans(context);
       await rescheduleVoluntaryFastingReminders(context);
+      await rescheduleDailyReminder(context);
     }
     BlocProvider.of<NotificationBloc>(context).add(
       ToggleNotification(),

@@ -28,6 +28,8 @@
   "settingTimeFormat": "সময়ের ফরম্যাট",
   "settingNotification": "নোটিফিকেশন",
   "settingLanguage": "ভাষা",
+  "settingDailyReminder": "দৈনিক রিমাইন্ডার",
+  "settingDailyReminderTime": "রিমাইন্ডারের সময়",
   "settingGeneral": "সাধারণ",
   "settingConnect": "যোগাযোগ",
   "settingQuranSettingsTitle": "কুরআন সেটিংস",
@@ -262,5 +264,8 @@
   "zakatResultNisabThreshold": "নিসাব সীমা (রৌপ্য মান)",
   "zakatResultDue": "যাকাত ওয়াজিব",
   "zakatResultNotDue": "যাকাত ওয়াজিব নয় — সম্পদ নিসাবের নিচে",
-  "zakatResultAmount": "যাকাতের পরিমাণ (২.৫%)"
+  "zakatResultAmount": "যাকাতের পরিমাণ (২.৫%)",
+
+  "dailyReminderNotificationTitle": "সিরাতে মুস্তাকিম রিমাইন্ডার",
+  "dailyReminderNotificationBody": "কুরআন তিলাওয়াত, জিকির অথবা আজকের নামাজের সময় দেখার জন্য কিছুটা সময় নিন।"
 }
