@@ -46,3 +46,7 @@ app.*.map.json
 /android/app/release
 # Claude Code local session state
 .claude/
+
+# SQLite runtime WAL/SHM files (regenerated locally, not source)
+assets/*.db-shm
+assets/*.db-wal
