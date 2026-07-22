@@ -21,6 +21,13 @@ class DetailDialog extends StatelessWidget {
   final TextEditingController counterController;
   final void Function()? submitFunction;
 
+  /// A "0" counter would make the tasbih permanently stuck (progress
+  /// becomes 0/0 == NaN, and the increment guard `count < counter` is
+  /// never true), so it's rejected the same as an empty field.
+  bool _hasValidCount() =>
+      counterController.text.isNotEmpty &&
+      (int.tryParse(counterController.text) ?? 0) > 0;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -122,14 +129,13 @@ class DetailDialog extends StatelessWidget {
                         FilteringTextInputFormatter.digitsOnly
                       ],
                       onSubmitted: (_) {
-                        if (nameController.text == '' &&
-                            counterController.text == '') {
+                        if (nameController.text == '' && !_hasValidCount()) {
                           BlocProvider.of<InputBloc>(context)
                               .add(SetInputError());
                         } else if (nameController.text == '') {
                           BlocProvider.of<InputBloc>(context)
                               .add(SetInputNameError());
-                        } else if (counterController.text == '') {
+                        } else if (!_hasValidCount()) {
                           BlocProvider.of<InputBloc>(context)
                               .add(SetInputCountError());
                         } else {
@@ -227,13 +233,13 @@ class DetailDialog extends StatelessWidget {
                           ),
                           onPressed: () {
                             if (nameController.text == '' &&
-                                counterController.text == '') {
+                                !_hasValidCount()) {
                               BlocProvider.of<InputBloc>(context)
                                   .add(SetInputError());
                             } else if (nameController.text == '') {
                               BlocProvider.of<InputBloc>(context)
                                   .add(SetInputNameError());
-                            } else if (counterController.text == '') {
+                            } else if (!_hasValidCount()) {
                               BlocProvider.of<InputBloc>(context)
                                   .add(SetInputCountError());
                             } else {

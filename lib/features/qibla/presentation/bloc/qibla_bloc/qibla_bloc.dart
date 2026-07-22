@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../../../../core/di/injection.dart';
 import 'package:amar_deen/core/error/failures.dart';
@@ -17,26 +18,35 @@ class QiblaBloc extends Bloc<QiblaEvent, QiblaState> {
       : watchQiblahDirection =
             watchQiblahDirection ?? getIt<WatchQiblahDirection>(),
         super(QiblaInitial()) {
-    on<QiblaEvent>((event, emit) async {
-      if (event is RequestQiblahDirection) {
-        if (event.locationState is LocationFailed) {
-          emit(QiblaFailed(event.locationState.failure!));
-          return;
+    /// `switchMap` cancels the previous event's still-running
+    /// `emit.forEach` (and with it, its sensor/location stream
+    /// subscription) whenever a new RequestQiblahDirection arrives - the
+    /// default concurrent transformer would instead leave every prior
+    /// subscription running forever, leaking one per dispatch (e.g. every
+    /// `didChangeDependencies` call on the Qibla screen).
+    on<QiblaEvent>(
+      (event, emit) async {
+        if (event is RequestQiblahDirection) {
+          if (event.locationState is LocationFailed) {
+            emit(QiblaFailed(event.locationState.failure!));
+            return;
+          }
+
+          emit(QiblaLoading());
+
+          await emit.forEach<QiblahDirectionEntity>(
+            this.watchQiblahDirection(),
+            onData: (direction) => QiblaLoaded(
+              direction: direction.qiblahBearing,
+              heading: direction.heading,
+            ),
+            onError: (error, stackTrace) => QiblaFailed(
+              LocalFailure(message: error.toString(), error: 0),
+            ),
+          );
         }
-
-        emit(QiblaLoading());
-
-        await emit.forEach<QiblahDirectionEntity>(
-          this.watchQiblahDirection(),
-          onData: (direction) => QiblaLoaded(
-            direction: direction.qiblahBearing,
-            heading: direction.heading,
-          ),
-          onError: (error, stackTrace) => QiblaFailed(
-            LocalFailure(message: error.toString(), error: 0),
-          ),
-        );
-      }
-    });
+      },
+      transformer: (events, mapper) => events.switchMap(mapper),
+    );
   }
 }

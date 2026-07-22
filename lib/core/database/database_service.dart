@@ -36,13 +36,16 @@ class DatabaseService {
       return;
     }
 
-    final preserved = await _readQuranFavouritesSafe(targetPath);
+    final preservedQuran = await _readQuranFavouritesSafe(targetPath);
+    final preservedAzkar = await _readAzkarFavouritesSafe(targetPath);
     await targetFile.delete();
     await targetFile.writeAsBytes(assetBytes, flush: true);
 
     final db = await openDatabase(targetPath);
     await _ensureQuranFavoritesTable(db);
-    await _restoreQuranFavouritesSafe(db, preserved);
+    await _restoreQuranFavouritesSafe(db, preservedQuran);
+    await _ensureAzkarFavoritesTable(db);
+    await _restoreAzkarFavouritesSafe(db, preservedAzkar);
     await db.close();
   }
 
@@ -126,6 +129,52 @@ class DatabaseService {
         'quran_favourites',
         {
           'ayat_id': ayatId,
+          'created_at': createdAt,
+        },
+        conflictAlgorithm: ConflictAlgorithm.ignore,
+      );
+    }
+  }
+
+  Future<List<Map<String, Object?>>> _readAzkarFavouritesSafe(
+      String dbPath) async {
+    try {
+      final db = await openDatabase(dbPath);
+      await _ensureAzkarFavoritesTable(db);
+      final rows = await db.query(
+        'azkar_favourites',
+        columns: ['azkar_item_id', 'chapter_id', 'language', 'created_at'],
+        orderBy: 'datetime(created_at) DESC, id DESC',
+      );
+      await db.close();
+      return rows;
+    } catch (_) {
+      return const [];
+    }
+  }
+
+  Future<void> _restoreAzkarFavouritesSafe(
+    Database db,
+    List<Map<String, Object?>> rows,
+  ) async {
+    if (rows.isEmpty) return;
+    for (final row in rows) {
+      final azkarItemId = int.tryParse(row['azkar_item_id']?.toString() ?? '');
+      final chapterId = int.tryParse(row['chapter_id']?.toString() ?? '');
+      final language = row['language']?.toString();
+      final createdAt = row['created_at']?.toString();
+      if (azkarItemId == null ||
+          chapterId == null ||
+          language == null ||
+          language.isEmpty ||
+          createdAt == null ||
+          createdAt.isEmpty) continue;
+      await db.insert(
+        'azkar_favourites',
+        {
+          'azkar_item_id': azkarItemId,
+          'chapter_id': chapterId,
+          'language': language,
           'created_at': createdAt,
         },
         conflictAlgorithm: ConflictAlgorithm.ignore,

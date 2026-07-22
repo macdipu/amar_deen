@@ -70,7 +70,18 @@ class QuranCard extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () async {
-                      await toggleQuranFavorite(context, quran);
+                      final success = await toggleQuranFavorite(context, quran);
+                      if (!context.mounted) return;
+
+                      if (!success) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(AppLocalizations.of(context)
+                                .commonSomethingWentWrong),
+                          ),
+                        );
+                        return;
+                      }
 
                       if (bookmarkScreen) {
                         await Future.delayed(Duration.zero);

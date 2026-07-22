@@ -9,16 +9,25 @@ import 'package:amar_deen/core/bloc/database/database_bloc.dart';
 import '../bloc/quran_bloc/quran_bloc.dart';
 import '../bloc/quran_audio_bloc/quran_audio_bloc.dart';
 
-Future<void> toggleQuranFavorite(BuildContext context, Quran quran) async {
+/// Returns false (instead of throwing) on DB failure so callers can surface
+/// it to the user - a raw DB exception here would otherwise go unhandled
+/// inside the async gesture callback that invokes this.
+Future<bool> toggleQuranFavorite(BuildContext context, Quran quran) async {
   final db = BlocProvider.of<DatabaseBloc>(context).db;
   if (db == null) {
-    return;
+    return false;
   }
 
-  final favoriteAyatIds = await getIt<ToggleQuranFavorite>()(db, quran);
-  BlocProvider.of<QuranBloc>(context).add(
-    SyncQuranFavorites(favoriteAyatIds),
-  );
+  try {
+    final favoriteAyatIds = await getIt<ToggleQuranFavorite>()(db, quran);
+    if (!context.mounted) return true;
+    BlocProvider.of<QuranBloc>(context).add(
+      SyncQuranFavorites(favoriteAyatIds),
+    );
+    return true;
+  } catch (_) {
+    return false;
+  }
 }
 
 String localizedQuranAudioError(BuildContext context, QuranAudioError error) {
