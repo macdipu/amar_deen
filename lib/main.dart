@@ -11,23 +11,23 @@ import 'core/routing/app_router.dart';
 import 'core/theme/theme_bloc/theme_bloc.dart';
 import 'features/prayer_times/presentation/bloc/azan_settings_bloc/azan_settings_bloc.dart';
 import 'l10n/generated/app_localizations.dart';
-import 'src/core/notification/notification_service.dart';
-import 'src/core/util/bloc/allah_names/allah_name_bloc.dart';
-import 'src/core/util/bloc/daily_reminder/daily_reminder_bloc.dart';
-import 'src/core/util/bloc/database/database_bloc.dart';
-import 'src/core/util/bloc/dua/dua_bloc.dart';
-import 'src/core/util/bloc/juz/juz_bloc.dart';
-import 'src/core/util/bloc/location/location_bloc.dart';
-import 'src/core/util/bloc/notification/notification_bloc.dart';
-import 'src/core/util/bloc/prayer_timing_bloc/timing_bloc.dart';
-import 'src/core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
-import 'src/core/util/bloc/quran/quran_bloc.dart';
-import 'src/core/util/bloc/quran_audio/quran_audio_bloc.dart';
-import 'src/core/util/bloc/surah/surah_bloc.dart';
-import 'src/core/util/bloc/tasbih/tasbih_bloc.dart';
-import 'src/core/util/bloc/time_format/time_format_bloc.dart';
-import 'src/features/bottom_tab/bloc/tab/tab_bloc.dart';
-import 'src/features/quran/bloc/quran_theme/quran_theme_bloc.dart';
+import 'package:amar_deen/core/notifications/notification_service.dart';
+import 'package:amar_deen/core/bloc/daily_reminder/daily_reminder_bloc.dart';
+import 'package:amar_deen/core/bloc/database/database_bloc.dart';
+import 'features/dua_azkar/presentation/dua/bloc/dua_bloc/dua_bloc.dart';
+import 'features/quran/presentation/bloc/juz_bloc/juz_bloc.dart';
+import 'package:amar_deen/core/bloc/location/location_bloc.dart';
+import 'package:amar_deen/core/bloc/notification/notification_bloc.dart';
+import 'features/prayer_times/presentation/bloc/timing_bloc/timing_bloc.dart';
+import 'features/prayer_times/presentation/bloc/prayer_time_config_bloc/prayer_time_config_bloc.dart';
+import 'features/quran/presentation/bloc/quran_bloc/quran_bloc.dart';
+import 'features/quran/presentation/bloc/quran_audio_bloc/quran_audio_bloc.dart';
+import 'features/quran/presentation/bloc/surah_bloc/surah_bloc.dart';
+import 'features/tasbih/presentation/bloc/tasbih_bloc/tasbih_bloc.dart';
+import 'package:amar_deen/core/bloc/time_format/time_format_bloc.dart';
+import 'features/allah_name/presentation/bloc/allah_name_bloc/allah_name_bloc.dart';
+import 'features/bottom_tab/presentation/bloc/tab_bloc/tab_bloc.dart';
+import 'features/quran/presentation/bloc/quran_theme_bloc/quran_theme_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -112,7 +112,7 @@ class MyApp extends StatelessWidget {
               return BlocBuilder<LocaleBloc, LocaleState>(
                 builder: (context, localeState) {
                   return MaterialApp.router(
-                    title: 'Sirate Mustaqeem',
+                    title: 'Amar Deen',
                     debugShowCheckedModeBanner: false,
                     color: Colors.white,
                     theme: themeState.currentTheme,

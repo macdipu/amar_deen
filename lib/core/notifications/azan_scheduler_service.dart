@@ -1,5 +1,5 @@
 import '../../features/prayer_times/domain/entities/prayer_times_entity.dart';
-import '../../src/core/notification/notification_service.dart';
+import 'notification_service.dart';
 
 /// Schedules exact, one-shot Azan notifications for today's remaining
 /// prayers and all of tomorrow's, respecting a per-prayer enable/disable

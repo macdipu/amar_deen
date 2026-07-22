@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import 'package:amar_deen/core/notifications/notification_service.dart';
+import 'package:amar_deen/core/bloc/notification/notification_bloc.dart';
+import 'package:amar_deen/core/utils/notification_controller.dart';
+import '../widget/notification_disabled_dialog.dart';
+
+Future<void> notificationSwitchOnToggle(
+    NotificationState state, BuildContext context) async {
+  if (state.status == PermissionStatus.permanentlyDenied) {
+    showDialog(
+      context: context,
+      builder: (context) => NotificationDisabledDialog(),
+    );
+  } else {
+    if (state.status == PermissionStatus.granted) {
+      await NotificationService().cancelAllNotifications();
+    } else if (state.status == PermissionStatus.restricted) {
+      await rescheduleAzans(context);
+      await rescheduleVoluntaryFastingReminders(context);
+      await rescheduleDailyReminder(context);
+    }
+    BlocProvider.of<NotificationBloc>(context).add(
+      ToggleNotification(),
+    );
+  }
+}

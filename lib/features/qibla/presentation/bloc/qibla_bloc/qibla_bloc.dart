@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/di/injection.dart';
-import '../../../../../src/core/error/failures.dart';
-import '../../../../../src/core/util/bloc/location/location_bloc.dart';
+import 'package:amar_deen/core/error/failures.dart';
+import 'package:amar_deen/core/bloc/location/location_bloc.dart';
 import '../../../domain/entities/qiblah_direction_entity.dart';
 import '../../../domain/usecases/watch_qiblah_direction.dart';
 

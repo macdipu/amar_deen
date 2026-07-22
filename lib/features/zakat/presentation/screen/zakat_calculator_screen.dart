@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+import 'package:amar_deen/l10n/generated/app_localizations.dart';
 
-import '../../../../src/core/util/constants.dart';
+import 'package:amar_deen/core/constants/constants.dart';
 import '../cubit/zakat_calculator_cubit.dart';
 
 class ZakatCalculatorScreen extends StatelessWidget {
@@ -103,7 +103,8 @@ class _ZakatCalculatorView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                   ),
-                  minimumSize: WidgetStateProperty.all(Size(double.infinity, 48.h)),
+                  minimumSize:
+                      WidgetStateProperty.all(Size(double.infinity, 48.h)),
                 ),
                 onPressed: () =>
                     context.read<ZakatCalculatorCubit>().calculate(),
@@ -139,9 +140,10 @@ class _ZakatCalculatorView extends StatelessWidget {
                           result.isZakatDue
                               ? l10n.zakatResultDue
                               : l10n.zakatResultNotDue,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
                         ),
                         if (result.isZakatDue) ...[
                           SizedBox(height: 8.h),
@@ -188,7 +190,8 @@ class _ZakatResultRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(child: Text(label, style: Theme.of(context).textTheme.bodyMedium)),
+        Expanded(
+            child: Text(label, style: Theme.of(context).textTheme.bodyMedium)),
         Text(value, style: valueStyle),
       ],
     );

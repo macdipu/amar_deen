@@ -27,7 +27,7 @@ class VoluntaryFastingRepositoryImpl implements VoluntaryFastingRepository {
     final hijri = HijriCalendarConfig.fromGregorian(date);
     return (
       day: int.parse(hijri.toFormat('dd')),
-      month: int.parse(hijri.toFormat('MM')),
+      month: int.parse(hijri.toFormat('mm')),
     );
   }
 

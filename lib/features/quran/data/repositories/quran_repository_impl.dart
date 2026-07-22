@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../../../src/core/database/database_service.dart';
+import 'package:amar_deen/core/database/database_service.dart';
 import '../../domain/entities/quran.dart';
 import '../../domain/repositories/quran_repository.dart';
 

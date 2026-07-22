@@ -1,0 +1,76 @@
+import 'package:intl/intl.dart';
+
+import 'package:amar_deen/features/prayer_times/domain/entities/prayer_times_entity.dart';
+
+/// Orders a day's [PrayerTimesEntity] into (prayer name, time) pairs and
+/// finds which prayer is current/next, for UI highlighting and notification
+/// scheduling.
+class TimingController {
+  final PrayerTimesEntity prayerTimes;
+
+  /// index into [timingsList] of the next/current prayer
+  int _timingCount = 0;
+
+  /// whether all of today's prayers have passed, so [timingCount] refers to
+  /// tomorrow's Fajr
+  bool _forTomorrow = false;
+
+  late final List<MapEntry<String, DateTime>> _timingsList;
+
+  TimingController(this.prayerTimes) {
+    _timingsList = [
+      MapEntry('Fajr', prayerTimes.fajr),
+      MapEntry('Dhuhr', prayerTimes.dhuhr),
+      MapEntry('Asr', prayerTimes.asr),
+      MapEntry('Maghrib', prayerTimes.maghrib),
+      MapEntry('Isha', prayerTimes.isha),
+    ];
+    _computeTimingCount();
+  }
+
+  void _computeTimingCount() {
+    final now = DateTime.now();
+
+    for (final entry in _timingsList) {
+      if (!now.isBefore(entry.value)) {
+        _timingCount++;
+      }
+    }
+
+    if (_timingCount == 5) {
+      _timingCount = 0;
+      _forTomorrow = true;
+    }
+  }
+
+  int get timingCount => _timingCount;
+  bool get forTomorrow => _forTomorrow;
+  List<MapEntry<String, DateTime>> get timingsList => _timingsList;
+  MapEntry<String, DateTime> get currentTiming => _timingsList[_timingCount];
+  String get prayer => _timingsList[_timingCount].key;
+  DateTime get time => _timingsList[_timingCount].value;
+
+  /// Name of the prayer whose window is currently active. Unlike [prayer]
+  /// (which resets to index 0 / "Fajr" once [forTomorrow] is true, even
+  /// though that Fajr time has already passed), this correctly reports
+  /// "Isha" for the remainder of the night until tomorrow's Fajr.
+  String get currentWindowPrayer =>
+      _forTomorrow ? _timingsList.last.key : prayer;
+
+  /// Start of the current prayer's window.
+  DateTime get currentWindowStart =>
+      _forTomorrow ? _timingsList.last.value : time;
+
+  /// End of the current prayer's window (the next prayer's start), or
+  /// `null` if it's Isha - that window continues into tomorrow's Fajr,
+  /// not available from a single day's [PrayerTimesEntity].
+  DateTime? get currentWindowEnd {
+    if (_forTomorrow) return null;
+    final nextIndex = _timingCount + 1;
+    if (nextIndex >= _timingsList.length) return null;
+    return _timingsList[nextIndex].value;
+  }
+}
+
+String convertTimeTo12HourFormat(DateTime time) =>
+    DateFormat('h:mm a').format(time);

@@ -39,13 +39,13 @@
   "settingThankYouTitle": "ধন্যবাদ",
   "settingThankYouSubtitle": "এই উদার অবদানকারীরা এই অ্যাপটি বাস্তবে পরিণত করতে সাহায্য করেছেন!",
   "settingRateTitle": "অ্যাপ স্টোরে রেট করুন",
-  "settingRateSubtitle": "'সিরাতে মুস্তাকীম' ব্যবহার করে ভালো লাগছে? অন্য মুসলিমদের সাহায্য করতে একটি রিভিউ দিন।",
+  "settingRateSubtitle": "'আমার দ্বীন' ব্যবহার করে ভালো লাগছে? অন্য মুসলিমদের সাহায্য করতে একটি রিভিউ দিন।",
   "settingShareTitle": "বন্ধুর সাথে শেয়ার করুন",
   "settingShareSubtitle": "একটি লিঙ্কের মাধ্যমে অন্যদের অ্যাপটি সম্পর্কে জানান।",
   "settingSupportTitle": "এই প্রজেক্টকে সমর্থন করুন",
   "settingSupportSubtitle": "অন্যান্য মুসলিমদের উপকারের জন্য 'Dev Technologies' প্রজেক্টকে সমর্থন করুন।",
   "settingThankYouAppBarTitle": "ধন্যবাদ!",
-  "settingThankYouBody": "এই উদার সিরাতে মুস্তাকীম অবদানকারীরা এই অ্যাপটি বাস্তবে পরিণত করতে সাহায্য করেছেন!",
+  "settingThankYouBody": "এই উদার আমার দ্বীন অবদানকারীরা এই অ্যাপটি বাস্তবে পরিণত করতে সাহায্য করেছেন!",
   "settingNotificationDeniedBody": "আপনি পূর্বে নোটিফিকেশন পারমিশন প্রত্যাখ্যান করেছেন। এটি সক্রিয় করতে অনুগ্রহ করে অ্যাপ সেটিংসে যান।",
   "settingGoToAppSettings": "অ্যাপ সেটিংসে যান",
 
@@ -268,6 +268,6 @@
   "zakatResultNotDue": "যাকাত ওয়াজিব নয় — সম্পদ নিসাবের নিচে",
   "zakatResultAmount": "যাকাতের পরিমাণ (২.৫%)",
 
-  "dailyReminderNotificationTitle": "সিরাতে মুস্তাকিম রিমাইন্ডার",
+  "dailyReminderNotificationTitle": "আমার দ্বীন রিমাইন্ডার",
   "dailyReminderNotificationBody": "কুরআন তিলাওয়াত, জিকির অথবা আজকের নামাজের সময় দেখার জন্য কিছুটা সময় নিন।"
 }

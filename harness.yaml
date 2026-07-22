@@ -5,7 +5,7 @@
 
 project:
   name: amar_deen
-  package: sirat_e_mustaqeem
+  package: amar_deen
   description: >
     Offline-first Islamic companion app (Flutter), fork of Sirat-E-Mustaqeem.
     Clean Architecture + Feature-First + Repository Pattern migration in progress.

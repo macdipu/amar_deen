@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+import 'package:amar_deen/l10n/generated/app_localizations.dart';
 
-import '../../../../src/core/util/constants.dart';
+import 'package:amar_deen/core/constants/constants.dart';
 import '../../domain/entities/ramadan_times_entity.dart';
 
 /// Live-updating "time left" banner for the Ramadan screen - counts down

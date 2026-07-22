@@ -119,7 +119,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get settingRateSubtitle =>
-      '\'সিরাতে মুস্তাকীম\' ব্যবহার করে ভালো লাগছে? অন্য মুসলিমদের সাহায্য করতে একটি রিভিউ দিন।';
+      '\'আমার দ্বীন\' ব্যবহার করে ভালো লাগছে? অন্য মুসলিমদের সাহায্য করতে একটি রিভিউ দিন।';
 
   @override
   String get settingShareTitle => 'বন্ধুর সাথে শেয়ার করুন';
@@ -140,7 +140,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get settingThankYouBody =>
-      'এই উদার সিরাতে মুস্তাকীম অবদানকারীরা এই অ্যাপটি বাস্তবে পরিণত করতে সাহায্য করেছেন!';
+      'এই উদার আমার দ্বীন অবদানকারীরা এই অ্যাপটি বাস্তবে পরিণত করতে সাহায্য করেছেন!';
 
   @override
   String get settingNotificationDeniedBody =>
@@ -515,7 +515,8 @@ class AppLocalizationsBn extends AppLocalizations {
       'একটি সূরার নাম (ইংরেজি/আরবি) বা নম্বর লিখুন।';
 
   @override
-  String get quranSearchJuzHintBody => 'একটি পারার নাম বা নম্বর লিখুন (যেমন “২”)।';
+  String get quranSearchJuzHintBody =>
+      'একটি পারার নাম বা নম্বর লিখুন (যেমন “২”)।';
 
   @override
   String quranSearchNoMatchSurah(String query) {
@@ -638,10 +639,12 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get errorLocationDisabled => 'লোকেশন সক্রিয় নেই। এটি সক্রিয় করতে সেটিংসে যান।';
+  String get errorLocationDisabled =>
+      'লোকেশন সক্রিয় নেই। এটি সক্রিয় করতে সেটিংসে যান।';
 
   @override
-  String get errorReadDatabaseFailed => 'ডাটাবেজ পড়তে ব্যর্থ হয়েছে। পরে আবার চেষ্টা করুন।';
+  String get errorReadDatabaseFailed =>
+      'ডাটাবেজ পড়তে ব্যর্থ হয়েছে। পরে আবার চেষ্টা করুন।';
 
   @override
   String get errorConnectionInterrupted =>
@@ -651,7 +654,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get quranTranslationModeUrdu => 'উর্দু';
 
   @override
-  String get quranTranslationModeEnglishSaheeh => 'ইংরেজি (সহীহ ইন্টারন্যাশনাল)';
+  String get quranTranslationModeEnglishSaheeh =>
+      'ইংরেজি (সহীহ ইন্টারন্যাশনাল)';
 
   @override
   String get quranTranslationModeEnglishClearQuran => 'ইংরেজি (ক্লিয়ার কুরআন)';
@@ -801,7 +805,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get zakatResultAmount => 'যাকাতের পরিমাণ (২.৫%)';
 
   @override
-  String get dailyReminderNotificationTitle => 'সিরাতে মুস্তাকিম রিমাইন্ডার';
+  String get dailyReminderNotificationTitle => 'আমার দ্বীন রিমাইন্ডার';
 
   @override
   String get dailyReminderNotificationBody =>

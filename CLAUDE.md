@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Flutter app `sirat_e_mustaqeem` ("Sirate Mustaqeem") — an Islamic companion app (Quran, prayer timings, Qibla, Azkar, Tasbih, Duas, Live TV, Allah's Names). Android minSdk 16 / target 30 / compileSdk 33, iOS platform 15.0.
+Flutter app `amar_deen` ("Amar Deen") — an Islamic companion app (Quran, prayer timings, Qibla, Azkar, Tasbih, Duas, Live TV, Allah's Names). Android minSdk 16 / target 30 / compileSdk 33, iOS platform 15.0.
 
 **Note on `rules.md`:** the root `rules.md` describes a *different* sibling project (`user_app`, GetX + Clean Architecture with `data/domain/presentation` layers and a `generate_feature.dart` scaffolder). This repo does **not** use GetX and has no such generator — it's built on `flutter_bloc`/`hydrated_bloc` with a flatter structure (see Architecture below). Do not apply `rules.md`'s GetX/UseCase/Repository-generator conventions here; use the patterns actually present in this codebase instead.
 

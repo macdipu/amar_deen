@@ -44,13 +44,13 @@
   "settingThankYouTitle": "Thank you",
   "settingThankYouSubtitle": "These generous contributors helped make this app a reality!",
   "settingRateTitle": "Rate on App Store",
-  "settingRateSubtitle": "Enjoy using 'Sirate Mustaqeem'? Please leave a review to help other Muslims.",
+  "settingRateSubtitle": "Enjoy using 'Amar Deen'? Please leave a review to help other Muslims.",
   "settingShareTitle": "Share with a friend",
   "settingShareSubtitle": "Tell others about the app with a link.",
   "settingSupportTitle": "Support this project",
   "settingSupportSubtitle": "Support 'Dev Technologies' project to benefit other Muslims.",
   "settingThankYouAppBarTitle": "Thank You!",
-  "settingThankYouBody": "These generous Sirate Mustaqeem contributors helped to make this app a reality!",
+  "settingThankYouBody": "These generous Amar Deen contributors helped to make this app a reality!",
   "settingNotificationDeniedBody": "You have denied the notification permission previously. Please go to app setting to enabled it.",
   "settingGoToAppSettings": "To app setting",
 
@@ -334,6 +334,6 @@
   "zakatResultNotDue": "Zakat is not due — wealth is below Nisab",
   "zakatResultAmount": "Zakat Amount (2.5%)",
 
-  "dailyReminderNotificationTitle": "Sirate Mustaqeem reminder",
+  "dailyReminderNotificationTitle": "Amar Deen reminder",
   "dailyReminderNotificationBody": "Take a moment for Quran reading, Dhikr, or to check today's prayer times."
 }

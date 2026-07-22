@@ -1,5 +1,5 @@
 import '../../features/ramadan/domain/entities/voluntary_fasting_day.dart';
-import '../../src/core/notification/notification_service.dart';
+import 'notification_service.dart';
 
 /// Schedules a one-shot reminder notification the evening before each
 /// upcoming voluntary fasting day (next Monday, next Thursday, next

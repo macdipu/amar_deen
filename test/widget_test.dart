@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import 'package:sirat_e_mustaqeem/core/di/injection.dart';
-import 'package:sirat_e_mustaqeem/main.dart';
+import 'package:amar_deen/core/di/injection.dart';
+import 'package:amar_deen/main.dart';
 
 class _InMemoryStorage implements Storage {
   final Map<String, dynamic> _data = {};

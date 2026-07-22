@@ -5,22 +5,22 @@ import '../../features/prayer_times/presentation/screen/voluntary_prayer_screen.
 import '../../features/qibla/presentation/screen/qibla_screen.dart';
 import '../../features/ramadan/presentation/screen/ramadan_screen.dart';
 import '../../features/zakat/presentation/screen/zakat_calculator_screen.dart';
-import '../../src/core/error/exceptions.dart';
-import '../../src/features/allah_name/screen/allah_name_screen.dart';
-import '../../src/features/azkar/screen/azkar_screen.dart';
-import '../../src/features/bottom_tab/screen/tab_screen.dart';
-import '../../src/features/dua/screen/dua_screen.dart';
-import '../../src/features/error/screen/database_error_screen.dart';
-import '../../src/features/live_tv/screen/live_tv_screen.dart';
-import '../../src/features/permission/screen/location_permission_screen.dart';
-import '../../src/features/permission/screen/notification_permission_screen.dart';
-import '../../src/features/prayer_timing/screen/prayer_time_settings_screen.dart';
-import '../../src/features/prayer_timing/screen/prayer_timing_screen.dart';
-import '../../src/features/quran/screen/option_screen.dart';
-import '../../src/features/quran/screen/quran_screen.dart';
-import '../../src/features/setting/screen/thankyou_screen.dart';
-import '../../src/features/splash/screen/splash_screen.dart';
-import '../../src/features/tasbih/screen/tasbih_screen.dart';
+import '../error/exceptions.dart';
+import '../../features/allah_name/presentation/screen/allah_name_screen.dart';
+import '../../features/dua_azkar/presentation/azkar/screen/azkar_screen.dart';
+import '../../features/bottom_tab/presentation/screen/tab_screen.dart';
+import '../../features/dua_azkar/presentation/dua/screen/dua_screen.dart';
+import '../../features/error/presentation/screen/database_error_screen.dart';
+import '../../features/live_tv/presentation/screen/live_tv_screen.dart';
+import '../../features/permission/presentation/screen/location_permission_screen.dart';
+import '../../features/permission/presentation/screen/notification_permission_screen.dart';
+import '../../features/prayer_times/presentation/screen/prayer_time_settings_screen.dart';
+import '../../features/prayer_times/presentation/screen/prayer_timing_screen.dart';
+import '../../features/quran/presentation/screen/option_screen.dart';
+import '../../features/quran/presentation/screen/quran_screen.dart';
+import '../../features/settings/presentation/screen/thankyou_screen.dart';
+import '../../features/splash/presentation/screen/splash_screen.dart';
+import '../../features/tasbih/presentation/screen/tasbih_screen.dart';
 
 /// Route path constants, carried over unchanged from the old
 /// `RouteGenerator` so existing call sites only need a navigation-API swap

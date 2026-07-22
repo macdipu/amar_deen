@@ -119,7 +119,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingRateSubtitle =>
-      'Enjoy using \'Sirate Mustaqeem\'? Please leave a review to help other Muslims.';
+      'Enjoy using \'Amar Deen\'? Please leave a review to help other Muslims.';
 
   @override
   String get settingShareTitle => 'Share with a friend';
@@ -139,7 +139,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingThankYouBody =>
-      'These generous Sirate Mustaqeem contributors helped to make this app a reality!';
+      'These generous Amar Deen contributors helped to make this app a reality!';
 
   @override
   String get settingNotificationDeniedBody =>
@@ -548,7 +548,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get quranAudioNoInternet => 'No internet connection. Please try again.';
+  String get quranAudioNoInternet =>
+      'No internet connection. Please try again.';
 
   @override
   String get quranAudioPlaybackFailed => 'Unable to play audio right now.';
@@ -644,7 +645,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Location is not enabled. Please go to setting to enable it.';
 
   @override
-  String get errorReadDatabaseFailed => 'Read database failed. Try again later.';
+  String get errorReadDatabaseFailed =>
+      'Read database failed. Try again later.';
 
   @override
   String get errorConnectionInterrupted =>
@@ -667,8 +669,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Malayalam (Abdul Hameed)';
 
   @override
-  String get quranTranslationModePersianHusseinDari =>
-      'Persian (Hussein Dari)';
+  String get quranTranslationModePersianHusseinDari => 'Persian (Hussein Dari)';
 
   @override
   String get quranTranslationModeFrenchHamidullah => 'French (Hamidullah)';
@@ -805,7 +806,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get zakatResultAmount => 'Zakat Amount (2.5%)';
 
   @override
-  String get dailyReminderNotificationTitle => 'Sirate Mustaqeem reminder';
+  String get dailyReminderNotificationTitle => 'Amar Deen reminder';
 
   @override
   String get dailyReminderNotificationBody =>

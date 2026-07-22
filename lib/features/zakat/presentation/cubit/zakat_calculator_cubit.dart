@@ -91,8 +91,7 @@ class ZakatCalculatorCubit extends Cubit<ZakatCalculatorState> {
       emit(state.copyWith(businessAssets: value));
   void updateOtherInvestments(double value) =>
       emit(state.copyWith(otherInvestments: value));
-  void updateDebtsOwed(double value) =>
-      emit(state.copyWith(debtsOwed: value));
+  void updateDebtsOwed(double value) => emit(state.copyWith(debtsOwed: value));
 
   void calculate() {
     final result = _calculateZakat(

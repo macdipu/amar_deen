@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+import 'package:amar_deen/l10n/generated/app_localizations.dart';
 
 import '../../../../core/di/injection.dart';
-import '../../../../src/core/util/voluntary_fasting_label.dart';
+import 'package:amar_deen/core/utils/voluntary_fasting_label.dart';
 import '../../domain/entities/voluntary_fasting_day.dart';
 import '../../domain/usecases/get_upcoming_voluntary_fasting_days.dart';
 

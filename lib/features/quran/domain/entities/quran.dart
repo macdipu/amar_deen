@@ -1,4 +1,5 @@
 import 'package:quran/quran.dart' as quran_package;
+import 'package:quran/translations/urdu.dart' as quran_urdu_data;
 
 /// A single Ayah (verse), plus favorite/bookmark state.
 ///
@@ -9,7 +10,7 @@ import 'package:quran/quran.dart' as quran_package;
 /// those calls into a `data/datasources/quran_local_data_source.dart` and
 /// keep this a pure data holder. Deliberately not done in this pass (see
 /// TASK-024 in `PROGRESS.md` for the full reasoning) - `Qurans` backs the
-/// *global* `QuranBloc` (`lib/src/core/util/bloc/quran/`, provided in
+/// *global* `QuranBloc` (`lib/features/quran/presentation/bloc/quran_bloc/`, provided in
 /// `main.dart`, also read by Home/Bookmark/Search), so splitting this
 /// cleanly would mean that global bloc depending on a specific feature's
 /// data layer, which needs more structural rework than can be safely done
@@ -134,6 +135,15 @@ class Qurans {
 
     int ayatIdCounter = 1;
 
+    // getVerseTranslation() linearly scans the whole translation list on
+    // every call; calling it once per ayah here would turn this loop
+    // O(ayahCount^2). Build a (surah, verse) -> text lookup once instead.
+    final urduLookup = <int, String>{
+      for (final entry in quran_urdu_data.urdu)
+        (entry['surah_number'] as int) * 1000 + (entry['verse_number'] as int):
+            entry['content'] as String,
+    };
+
     for (int surahId = 1; surahId <= 114; surahId++) {
       final verseCount = quran_package.getVerseCount(surahId);
 
@@ -143,11 +153,7 @@ class Qurans {
           ayatNumber,
           verseEndSymbol: true,
         );
-        final urduText = quran_package.getVerseTranslation(
-          surahId,
-          ayatNumber,
-          translation: quran_package.Translation.urdu,
-        );
+        final urduText = urduLookup[surahId * 1000 + ayatNumber] ?? '';
         final paraId = quran_package.getJuzNumber(surahId, ayatNumber);
 
         _qurans.add(
@@ -201,14 +207,13 @@ class Qurans {
     return _qurans.where((Quran quran) => quran.paraId == id).toList();
   }
 
-  List<Quran> get getFavoritesQuran =>
-      _favoriteAyatIdsByLatest
-          .map(
-            (ayatId) => _qurans.where((quran) => quran.ayatId == ayatId),
-          )
-          .where((matches) => matches.isNotEmpty)
-          .map((matches) => matches.first)
-          .toList();
+  List<Quran> get getFavoritesQuran => _favoriteAyatIdsByLatest
+      .map(
+        (ayatId) => _qurans.where((quran) => quran.ayatId == ayatId),
+      )
+      .where((matches) => matches.isNotEmpty)
+      .map((matches) => matches.first)
+      .toList();
 
   List<Quran> get qurans => _qurans;
 }

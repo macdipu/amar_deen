@@ -311,7 +311,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingRateSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Enjoy using \'Sirate Mustaqeem\'? Please leave a review to help other Muslims.'**
+  /// **'Enjoy using \'Amar Deen\'? Please leave a review to help other Muslims.'**
   String get settingRateSubtitle;
 
   /// No description provided for @settingShareTitle.
@@ -347,7 +347,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingThankYouBody.
   ///
   /// In en, this message translates to:
-  /// **'These generous Sirate Mustaqeem contributors helped to make this app a reality!'**
+  /// **'These generous Amar Deen contributors helped to make this app a reality!'**
   String get settingThankYouBody;
 
   /// No description provided for @settingNotificationDeniedBody.
@@ -1541,13 +1541,13 @@ abstract class AppLocalizations {
   /// No description provided for @dailyReminderNotificationTitle.
   ///
   /// In en, this message translates to:
-  /// **'Sirate Mustaqeem reminder'**
+  /// **'Amar Deen reminder'**
   String get dailyReminderNotificationTitle;
 
   /// No description provided for @dailyReminderNotificationBody.
   ///
   /// In en, this message translates to:
-  /// **'Take a moment for Quran reading, Dhikr, or to check today's prayer times.'**
+  /// **'Take a moment for Quran reading, Dhikr, or to check today\'s prayer times.'**
   String get dailyReminderNotificationBody;
 }
 

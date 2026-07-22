@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:amar_deen/l10n/generated/app_localizations.dart';
+
+import 'package:amar_deen/core/constants/constants.dart';
+import '../bloc/selected_tasbih_bloc/selected_tasbih_bloc.dart';
+import '../widget/circle_progress.dart';
+
+class SelectedTasbihScreen extends StatelessWidget {
+  const SelectedTasbihScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<SelectedTasbihBloc, SelectedTasbihState>(
+      listener: (context, state) {
+        if (state.count > 0 && state.count == state.tasbih.counter) {
+          HapticFeedback.mediumImpact();
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(AppLocalizations.of(context).homeCollectionTasbih),
+          ),
+          body: SafeArea(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 32.h,
+                  ),
+                  Padding(
+                    padding: kPagePadding,
+                    child: Text(
+                      state.tasbih.name,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontFamily: 'Uthman'),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      HapticFeedback.lightImpact();
+                      BlocProvider.of<SelectedTasbihBloc>(context)
+                          .add(AddCounter());
+                    },
+                    child: Container(
+                      width: 1.sw,
+                      height: 0.6.sh,
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 1.sw,
+                            height: 0.6.sh,
+                            padding: kPagePadding,
+                            child: CustomPaint(
+                              foregroundPainter: CircleProgress(
+                                  currentProgress:
+                                      state.count / state.tasbih.counter * 100,
+                                  foregroundColor:
+                                      Theme.of(context).primaryColor,
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.surface,
+                                  strokeWidth: 8.sp),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  state.count.toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displayLarge!
+                                      .copyWith(
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                ),
+                                Text(
+                                  '/ ${state.tasbih.counter}',
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            8.r,
+                          ),
+                        ),
+                      ),
+                      minimumSize: WidgetStateProperty.all(
+                        Size(
+                          0,
+                          56.h,
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      BlocProvider.of<SelectedTasbihBloc>(context)
+                          .add(ResetCounter());
+                    },
+                    child: SvgPicture.asset(
+                      'assets/images/tasbih_icon/svg/restart.svg',
+                      color: kDarkTextColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

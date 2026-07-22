@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../src/core/util/bloc/location/location_bloc.dart';
-import '../../../../src/features/utils/loading_widget.dart';
+import 'package:amar_deen/core/bloc/location/location_bloc.dart';
+import 'package:amar_deen/core/widgets/loading_widget.dart';
 import '../bloc/ramadan_bloc/ramadan_bloc.dart';
 import '../widget/ramadan_scaffold.dart';
 

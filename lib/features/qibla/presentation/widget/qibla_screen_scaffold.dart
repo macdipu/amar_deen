@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../src/core/util/bloc/location/location_bloc.dart';
-import '../../../../src/core/util/constants.dart';
-import '../../../../src/features/error/widget/failure_widget.dart';
-import '../../../../src/features/utils/loading_widget.dart';
-import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+import 'package:amar_deen/core/bloc/location/location_bloc.dart';
+import 'package:amar_deen/core/constants/constants.dart';
+import 'package:amar_deen/core/error/widgets/failure_widget.dart';
+import 'package:amar_deen/core/widgets/loading_widget.dart';
+import 'package:amar_deen/l10n/generated/app_localizations.dart';
 
 import '../../domain/utils/direction_text.dart';
 import '../bloc/qibla_bloc/qibla_bloc.dart';

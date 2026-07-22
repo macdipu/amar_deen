@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
-import '../../src/core/util/bloc/time_format/time_format_bloc.dart';
-import '../../src/core/util/constants.dart';
-import '../../src/core/util/controller/timing_controller.dart';
+import 'package:amar_deen/core/bloc/time_format/time_format_bloc.dart';
+import '../constants/constants.dart';
+import '../utils/timing_controller.dart';
 
 /// Generic title/subtitle/time(-range) display card, shared across any
 /// feature that shows a derived prayer-adjacent time (voluntary prayers,

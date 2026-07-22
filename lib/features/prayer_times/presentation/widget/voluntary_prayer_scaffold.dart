@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/prayer_time_card.dart';
-import '../../../../src/core/util/bloc/location/location_bloc.dart';
-import '../../../../src/core/util/bloc/prayer_time_config/prayer_time_config_bloc.dart';
-import '../../../../src/core/util/constants.dart';
-import '../../../../src/features/error/widget/failure_widget.dart';
-import '../../../../src/features/utils/loading_widget.dart';
-import 'package:sirat_e_mustaqeem/l10n/generated/app_localizations.dart';
+import 'package:amar_deen/core/bloc/location/location_bloc.dart';
+import '../bloc/prayer_time_config_bloc/prayer_time_config_bloc.dart';
+import 'package:amar_deen/core/constants/constants.dart';
+import 'package:amar_deen/core/error/widgets/failure_widget.dart';
+import 'package:amar_deen/core/widgets/loading_widget.dart';
+import 'package:amar_deen/l10n/generated/app_localizations.dart';
 import '../bloc/voluntary_prayer_bloc/voluntary_prayer_bloc.dart';
 
 class VoluntaryPrayerScaffold extends StatefulWidget {
