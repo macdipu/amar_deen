@@ -21,6 +21,20 @@ Future<Either<LocalFailure, Position>> getCurrentPosition() async {
 
   /// get the current permission for location service
   final LocationPermission permission = await Geolocator.checkPermission();
+
+  /// permission already permanently denied from a previous run (Android
+  /// reports this directly from checkPermission, not just after
+  /// requestPermission) - must bail out here or getCurrentPosition below
+  /// throws uncaught and the bloc never emits a state.
+  if (permission == LocationPermission.deniedForever) {
+    return Left(
+      LocalFailure(
+        message: kLocationDisableForever['message'],
+        error: kLocationDisableForever['errorCode'] as int,
+      ),
+    );
+  }
+
   LocationPermission newPermission = LocationPermission.denied;
 
   if (permission == LocationPermission.denied && Platform.isAndroid) {
@@ -75,14 +89,27 @@ Future<Either<LocalFailure, Position>> getCurrentPosition() async {
     );
   }
 
-  final Position position = await Geolocator.getCurrentPosition(
-    locationSettings: LocationSettings(
-      accuracy: LocationAccuracy.medium,
-      distanceFilter: 100,
-    ),
-  );
+  try {
+    final Position position = await Geolocator.getCurrentPosition(
+      locationSettings: LocationSettings(
+        accuracy: LocationAccuracy.medium,
+        distanceFilter: 100,
+      ),
+    );
 
-  return Right(position);
+    return Right(position);
+  } catch (e) {
+    /// any other geolocator failure (timeout, service disabled mid-flight,
+    /// etc.) must still resolve to a Left, or the caller (LocationBloc)
+    /// hangs on LocationLoading forever.
+    return Left(
+      LocalFailure(
+        message: kLocationDisable['message'],
+        error: kLocationDisable['errorCode'] as int,
+        extraInfo: e.toString(),
+      ),
+    );
+  }
 }
 
 Future<void> openLocationSetting() async {
