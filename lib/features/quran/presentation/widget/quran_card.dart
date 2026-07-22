@@ -93,56 +93,61 @@ class QuranCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 12.h),
-                  InkWell(
-                    borderRadius: BorderRadius.circular(999),
-                    onTap: () {
-                      final bloc = BlocProvider.of<QuranAudioBloc>(context);
-                      bloc.add(
-                        ToggleAyahPlayPause(
-                          ayatId: quran.ayatId,
-                          surahId: quran.surahId,
-                          edition: state.audioEdition,
-                          bitrate: state.audioBitrate,
+                  BlocListener<QuranAudioBloc, QuranAudioState>(
+                    listenWhen: (previous, current) =>
+                        current.error != null &&
+                        current.error != previous.error &&
+                        current.currentAyatId == quran.ayatId,
+                    listener: (context, audioState) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(localizedQuranAudioError(
+                              context, audioState.error!)),
                         ),
                       );
-
-                      final error = bloc.state.error;
-                      if (error != null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content:
-                                Text(localizedQuranAudioError(context, error)),
+                      context
+                          .read<QuranAudioBloc>()
+                          .add(const ClearAudioError());
+                    },
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(999),
+                      onTap: () {
+                        BlocProvider.of<QuranAudioBloc>(context).add(
+                          ToggleAyahPlayPause(
+                            ayatId: quran.ayatId,
+                            surahId: quran.surahId,
+                            edition: state.audioEdition,
+                            bitrate: state.audioBitrate,
                           ),
                         );
-                        bloc.add(const ClearAudioError());
-                      }
-                    },
-                    child: Container(
-                      width: 34.w,
-                      height: 34.w,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .primaryColor
-                            .withValues(alpha: 0.12),
-                        shape: BoxShape.circle,
-                      ),
-                      alignment: Alignment.center,
-                      child: isLoadingThisAyah
-                          ? SizedBox(
-                              width: 16.w,
-                              height: 16.w,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2.2,
+                      },
+                      child: Container(
+                        width: 34.w,
+                        height: 34.w,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .primaryColor
+                              .withValues(alpha: 0.12),
+                          shape: BoxShape.circle,
+                        ),
+                        alignment: Alignment.center,
+                        child: isLoadingThisAyah
+                            ? SizedBox(
+                                width: 16.w,
+                                height: 16.w,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2.2,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              )
+                            : Icon(
+                                isPlayingThisAyah
+                                    ? Icons.pause
+                                    : Icons.play_arrow,
                                 color: Theme.of(context).primaryColor,
+                                size: 20.sp,
                               ),
-                            )
-                          : Icon(
-                              isPlayingThisAyah
-                                  ? Icons.pause
-                                  : Icons.play_arrow,
-                              color: Theme.of(context).primaryColor,
-                              size: 20.sp,
-                            ),
+                      ),
                     ),
                   ),
                 ],

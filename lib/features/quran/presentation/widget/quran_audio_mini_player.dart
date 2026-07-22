@@ -80,55 +80,59 @@ class QuranAudioMiniPlayer extends StatelessWidget {
                       color: Theme.of(context).textTheme.bodyMedium?.color,
                     ),
                   ),
-                IconButton(
-                  onPressed: () {
-                    final bloc = BlocProvider.of<QuranAudioBloc>(context);
-                    if (!isActive) {
-                      final theme =
-                          BlocProvider.of<QuranThemeBloc>(context).state;
-                      final ayatIds = BlocProvider.of<QuranBloc>(context)
-                          .state
-                          .qurans
-                          .getAyatIdsBySurah(surahId);
-                      bloc.add(
-                        PlaySurah(
-                          surahId: surahId,
-                          ayatIds: ayatIds,
-                          edition: theme.audioEdition,
-                          bitrate: theme.audioBitrate,
-                        ),
-                      );
-                    } else {
-                      bloc.add(const TogglePlayPause());
-                    }
-
-                    final error = bloc.state.error;
-                    if (error != null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content:
-                              Text(localizedQuranAudioError(context, error)),
-                        ),
-                      );
-                      bloc.add(const ClearAudioError());
-                    }
+                BlocListener<QuranAudioBloc, QuranAudioState>(
+                  listenWhen: (previous, current) =>
+                      current.error != null &&
+                      current.error != previous.error &&
+                      current.currentSurahId == surahId,
+                  listener: (context, audioState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            localizedQuranAudioError(context, audioState.error!)),
+                      ),
+                    );
+                    context.read<QuranAudioBloc>().add(const ClearAudioError());
                   },
-                  icon: isLoading
-                      ? SizedBox(
-                          width: 20.w,
-                          height: 20.w,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2.2,
+                  child: IconButton(
+                    onPressed: () {
+                      final bloc = BlocProvider.of<QuranAudioBloc>(context);
+                      if (!isActive) {
+                        final theme =
+                            BlocProvider.of<QuranThemeBloc>(context).state;
+                        final ayatIds = BlocProvider.of<QuranBloc>(context)
+                            .state
+                            .qurans
+                            .getAyatIdsBySurah(surahId);
+                        bloc.add(
+                          PlaySurah(
+                            surahId: surahId,
+                            ayatIds: ayatIds,
+                            edition: theme.audioEdition,
+                            bitrate: theme.audioBitrate,
+                          ),
+                        );
+                      } else {
+                        bloc.add(const TogglePlayPause());
+                      }
+                    },
+                    icon: isLoading
+                        ? SizedBox(
+                            width: 20.w,
+                            height: 20.w,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2.2,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          )
+                        : Icon(
+                            isActive && isPlaying
+                                ? Icons.pause_circle_filled
+                                : Icons.play_circle_filled,
+                            size: 34.sp,
                             color: Theme.of(context).primaryColor,
                           ),
-                        )
-                      : Icon(
-                          isActive && isPlaying
-                              ? Icons.pause_circle_filled
-                              : Icons.play_circle_filled,
-                          size: 34.sp,
-                          color: Theme.of(context).primaryColor,
-                        ),
+                  ),
                 ),
               ],
             ),

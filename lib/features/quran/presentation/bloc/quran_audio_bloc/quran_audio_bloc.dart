@@ -26,7 +26,7 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
       } else if (event is StopAudio) {
         await _handleStop(emit);
       } else if (event is ClearAudioError) {
-        emit(state.copyWith(error: null));
+        emit(state.copyWith(clearError: true));
       } else if (event is _InternalTrackChanged) {
         emit(state.copyWith(
           currentAyatId: event.currentAyatId,
@@ -98,7 +98,7 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
       currentAyatId: event.ayatId,
       currentSurahId: event.surahId,
       playlistAyatIds: const [],
-      error: null,
+      clearError: true,
     ));
 
     if (!await _hasInternet()) {
@@ -163,7 +163,7 @@ class QuranAudioBloc extends HydratedBloc<QuranAudioEvent, QuranAudioState> {
       currentSurahId: event.surahId,
       playlistAyatIds: event.ayatIds,
       currentAyatId: event.ayatIds.isNotEmpty ? event.ayatIds.first : null,
-      error: null,
+      clearError: true,
     ));
 
     if (!await _hasInternet()) {

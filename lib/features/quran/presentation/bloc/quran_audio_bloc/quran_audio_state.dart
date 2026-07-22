@@ -26,6 +26,10 @@ class QuranAudioState extends Equatable {
     this.error,
   });
 
+  /// [clearError] must be passed explicitly to null out [error] - omitting
+  /// [error] otherwise preserves whatever error is already set, the same
+  /// as every other field here, instead of silently wiping it on unrelated
+  /// state transitions (e.g. track/player-state ticks).
   QuranAudioState copyWith({
     QuranAudioStatus? status,
     QuranAudioMode? mode,
@@ -33,6 +37,7 @@ class QuranAudioState extends Equatable {
     int? currentAyatId,
     List<int>? playlistAyatIds,
     QuranAudioError? error,
+    bool clearError = false,
   }) {
     return QuranAudioState(
       status: status ?? this.status,
@@ -40,7 +45,7 @@ class QuranAudioState extends Equatable {
       currentSurahId: currentSurahId ?? this.currentSurahId,
       currentAyatId: currentAyatId ?? this.currentAyatId,
       playlistAyatIds: playlistAyatIds ?? this.playlistAyatIds,
-      error: error,
+      error: clearError ? null : (error ?? this.error),
     );
   }
 

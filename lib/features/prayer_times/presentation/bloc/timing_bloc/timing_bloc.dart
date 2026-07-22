@@ -26,8 +26,16 @@ class TimingBloc extends Bloc<TimingEvent, TimingState> {
       if (event is RequestTiming) {
         emit(TimingLoading());
 
-        if (!(event.locationState is LocationSuccess)) {
+        if (event.locationState is LocationFailed) {
           emit(TimingFailed(event.locationState.failure!));
+          return;
+        }
+
+        if (event.locationState is! LocationSuccess) {
+          /// location still resolving (Loading/Initial) - `failure` is null
+          /// here, so stay in TimingLoading instead of force-unwrapping it.
+          /// A later RequestTiming once location resolves moves this
+          /// forward.
           return;
         }
 
