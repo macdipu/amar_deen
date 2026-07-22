@@ -5,7 +5,6 @@ import 'package:amar_deen/l10n/generated/app_localizations.dart';
 
 import 'package:amar_deen/core/constants/constants.dart';
 import '../widget/general_card.dart';
-import '../widget/social_media_card.dart';
 import '../widget/user_preference_card.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -73,10 +72,9 @@ class SettingScreen extends StatelessWidget {
               height: 10,
             ),
             UserPreferenceCard(),
-            SizedBox(
-              height: 10,
-            ),
-            SocialMediaCard(),
+            // TODO: old fork's "Connect" card (website/email/social links)
+            // pointed at prior maintainer's contact info — removed. Add
+            // Amar Deen's own contact/social links here later.
             SizedBox(height: 16.h),
           ],
         ),

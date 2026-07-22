@@ -1,5 +1,3 @@
-import 'package:amar_deen/core/constants/constants.dart';
-
 /// A single social/contact link shown on the Settings screen's "Connect"
 /// card.
 class SocialMediaEntity {
@@ -14,37 +12,8 @@ class SocialMediaEntity {
   });
 }
 
-/// Hardcoded contact links - no external source to abstract behind a
-/// repository, same "nothing to abstract" precedent as Zakat.
-final List<SocialMediaEntity> socialMediaList = [
-  SocialMediaEntity(
-    imagePath: 'assets/images/setting_icon/svg/link.svg',
-    name: 'Website',
-    url: WEBSITE_URL,
-  ),
-  SocialMediaEntity(
-    imagePath: 'assets/images/setting_icon/svg/email.svg',
-    name: 'Email',
-    url: EMAIL_URL,
-  ),
-  SocialMediaEntity(
-    imagePath: 'assets/images/setting_icon/svg/medium.svg',
-    name: 'Medium',
-    url: MEDIUM_URL,
-  ),
-  SocialMediaEntity(
-    imagePath: 'assets/images/setting_icon/svg/youtube.svg',
-    name: 'Youtube',
-    url: YOUTUBE_URL,
-  ),
-  SocialMediaEntity(
-    imagePath: 'assets/images/setting_icon/svg/facebook.svg',
-    name: 'Facebook',
-    url: FACEBOOK_URL,
-  ),
-  SocialMediaEntity(
-    imagePath: 'assets/images/setting_icon/svg/insta.svg',
-    name: 'Instagram',
-    url: INSTA_URL,
-  ),
-];
+// TODO: old fork's contact links (website/email/medium/youtube/facebook/
+// instagram, all pointing at the prior maintainer) removed along with the
+// Settings screen's "Connect" card. Repopulate with Amar Deen's own links
+// when available and re-add SocialMediaCard() to setting_screen.dart.
+final List<SocialMediaEntity> socialMediaList = [];

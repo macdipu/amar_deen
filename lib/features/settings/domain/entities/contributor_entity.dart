@@ -6,15 +6,11 @@ class ContributorEntity {
 
 /// Hardcoded credits list - no external source to abstract behind a
 /// repository, same "nothing to abstract" precedent as Zakat.
+// TODO: old fork's contributor credits (Cheam Jing En, Noman Shoaib, two
+// "Flutter Developer" entries, "Graphic Designer") removed. Repopulate with
+// Amar Deen's own contributors when available.
 class Contributors {
-  static const List<ContributorEntity> contributors = [
-    ContributorEntity('Muhammad Talha Sultan'),
-    ContributorEntity('Cheam Jing En'),
-    ContributorEntity('Noman Shoaib'),
-    ContributorEntity('Flutter Developer'),
-    ContributorEntity('Flutter Developer'),
-    ContributorEntity('Graphic Designer'),
-  ];
+  static const List<ContributorEntity> contributors = [];
 
   static int get firstColumnCount {
     final int total = contributors.length;
